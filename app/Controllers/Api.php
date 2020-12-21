@@ -1,4 +1,6 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 class Api extends BaseController
 {
@@ -13,12 +15,12 @@ class Api extends BaseController
 	}
 
 	//--------------------------------------------------------------------
-	
+
 
 	public function update()
 	{
 	}
 
 	//--------------------------------------------------------------------
-	
+
 }
