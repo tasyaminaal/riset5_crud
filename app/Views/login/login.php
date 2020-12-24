@@ -77,32 +77,10 @@ $visibility = 'hidden'; // bisa diisi hidden untuk menonaktifkan
                     <div class="ml-2 my-auto text-blue-500 hover:text-blue-700 font-semibold"> Login with SIPADU</div>
                 </div>
             </button>
-            <!-- login with sipadu -->
 
-            <!-- login with google -->
-            <button onclick="loginBPS()">
-                <div class=" flex py-2 px-6 border-2 border-blue-500 rounded-lg hover:border-blue-700 hover:bg-blue-100">
-                    <img src="/img/search.png" alt="" class="w-6 h-6">
-                    <div class="ml-2 my-auto text-blue-500 hover:text-blue-700 font-semibold"> Login with Google</div>
-                </div>
-            </button>
-            <!-- login with google -->
-
-            <!-- script new login window -->
             <script>
                 function loginSipadu() {
-                    var win = window.open(`http://localhost:8080/login/sipadu`, "_blank", "height=650,width=550,status=no,titlebar=no,menubar=no,top=10,left=300", true);
-                    var timer = setInterval(function() {
-                        if (win.closed) {
-                            clearInterval(timer);
-                            if (document.cookie.includes('login=yes'))
-                                location.reload();
-                        }
-                    }, 1000);
-                }
-
-                function loginBPS() {
-                    var win = window.open(`http://localhost:8080/auth/bps`, "_blank", "height=650,width=800,status=no,titlebar=no,menubar=no,top=10,left=300", true);
+                    var win = window.open(`http://localhost:8080/login/sipadu`, "_blank", "height=700,width=550,status=no,titlebar=no,menubar=no,top=10,left=300", true);
                     var timer = setInterval(function() {
                         if (win.closed) {
                             clearInterval(timer);
@@ -112,6 +90,30 @@ $visibility = 'hidden'; // bisa diisi hidden untuk menonaktifkan
                     }, 1000);
                 }
             </script>
+            <!-- login with sipadu -->
+
+            <!-- login with BPS -->
+            <button onclick="loginBPS()">
+                <div class=" flex py-2 px-6 border-2 border-blue-500 rounded-lg hover:border-blue-700 hover:bg-blue-100">
+                    <img src="/img/BPSlogo.png" alt="" class="w-6 h-6">
+                    <div class="ml-2 my-auto text-blue-500 hover:text-blue-700 font-semibold"> Login with SSOBPS</div>
+                </div>
+            </button>
+
+            <script>
+                function loginBPS() {
+                    var win = window.open(`http://localhost:8080/auth/bps`, "_blank", "height=700,width=900,status=no,titlebar=no,menubar=no,top=10,left=300", true);
+                    var timer = setInterval(function() {
+                        if (win.closed) {
+                            clearInterval(timer);
+                            if (document.cookie.includes('login=yes'))
+                                location.reload();
+                        }
+                    }, 1000);
+                }
+            </script>
+            <!-- login with BPS -->
+
 
         </div>
     </div>

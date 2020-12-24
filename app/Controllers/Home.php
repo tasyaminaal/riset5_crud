@@ -4,8 +4,10 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+
 	public function index()
 	{
+		// processing data sipadu
 		if (isset($_REQUEST['code']) && $_REQUEST['code']) {
 
 			$this->modelAuth = new \App\Models\AuthModel();
@@ -99,46 +101,98 @@ class Home extends BaseController
 			die();
 		}
 
-		if (session()->has('id_user'))
-			return view('home_test');
-		else {
-			$data['judulHalaman'] = 'Login';
-			$data['template'] = 'login';
+		// // processing login sso bps (masih belum tahu bisa apa ngga)
+		// $this->modelBPS = new \JKD\SSO\Client\Provider\KeycloakResourceOwner();
+		// if (isset($_GET['code']) && $_GET['code']) {
+		// 	if (empty($_GET['state']) || ($_GET['state'] !== $_SESSION['oauth2state'])) {
+
+		// 		unset($_SESSION['oauth2state']);
+		// 		exit('Invalid state');
+		// 	} else {
+		// 		$auth = new \App\Controllers\Auth;
+
+		// 		// get token
+		// 		try {
+		// 			$token = $auth->provider->getAccessToken('authorization_code', [
+		// 				'code' => $_GET['code']
+		// 			]);
+		// 		} catch (Exception $e) {
+		// 			exit('Gagal mendapatkan akses token : ' . $e->getMessage());
+		// 		}
+
+		// 		try {
+		// 			$user = $auth->provider->getResourceOwner($token);
+		// 			echo "Id : " . $user->getId();
+		// 			echo "Nama : " . $user->getName();
+		// 			echo "Nama Depan: " . $user->getnamaDepan();
+		// 			echo "Nama Belakang: " . $user->getnamaBelakang();
+		// 			echo "E-Mail : " . $user->getEmail();
+		// 			echo "Username : " . $user->getUsername();
+		// 			echo "NIP : " . $user->getNip();
+		// 			echo "NIP Baru : " . $user->getNipBaru();
+		// 			echo "Kode Organisasi : " . $user->getKodeOrganisasi();
+		// 			echo "Kode Provinsi : " . $user->getKodeProvinsi();
+		// 			echo "Kode Kabupaten : " . $user->getKodeKabupaten();
+		// 			echo "Alamat Kantor : " . $user->getAlamatKantor();
+		// 			echo "Provinsi : " . $user->getProvinsi();
+		// 			echo "Kabupaten : " . $user->getKabupaten();
+		// 			echo "Golongan : " . $user->getGolongan();
+		// 			echo "Jabatan : " . $user->getJabatan();
+		// 			echo "Foto : " . $user->getUrlFoto();
+		// 			echo "Eselon : " . $user->getEselon();
+		// 		} catch (Exception $e) {
+		// 			exit('Gagal Mendapatkan Data Pengguna: ' . $e->getMessage());
+		// 		}
+		// 	}
+		// }		
+
+		$data = [
+			'title' => 'Dashboard | Riset 5 Website Alumni',
+		];
+		return view('pages/dashboard', $data);
+	}
+
+	//--------------------------------------------------------------------
+
+
+	public function login()
+	{
+		if (session()->has('id_user')) {
+			$data = [
+				'title' => 'Dashboard | Riset 5 Website Alumni',
+			];
+			return view('pages/dashboard', $data);
+		} else {
+			$data = [
+				'title' 	=> 'Login | Riset 5 Website Alumni',
+				'template'	=> 'login',
+			];
 			return view('login/login', $data);
 		}
 	}
 
-	// public function sipadu()
-	// {
-	// 	$data['judulHalaman'] = 'Login with SIPADU';
-	// 	$data['template'] = 'login';
-	// 	return view('login/loginSipadu', $data);
-	// }
+	//--------------------------------------------------------------------
 
-	public function register()
-	{
-		$data['judulHalaman'] = 'Register';
-		$data['template'] = 'register';
-		return view('register/register', $data);
-	}
 
-	public function registerSuccess()
+	public function userInfo()
 	{
-		$data['judulHalaman'] = 'Register Success';
-		$data['template'] = 'register';
-		return view('register/register_success', $data);
+		$data = [
+			'title' => 'Profile | Riset 5 Website Alumni',
+		];
+
+		return view('pages/userinfo', $data);
 	}
 
 	public function reset()
 	{
-		$data['judulHalaman'] = 'Reset Password';
+		$data['title'] = 'Reset Password';
 		$data['template'] = 'reset';
 		return view('reset/inputemail', $data);
 	}
 
 	public function resetPass()
 	{
-		$data['judulHalaman'] = 'Reset Password';
+		$data['title'] = 'Reset Password';
 		$data['template'] = 'reset';
 		return view('reset/resetpass', $data);
 	}
