@@ -1,13 +1,18 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/pages">Website Alumni</a>
+        <a class="navbar-brand" href="/">Website Alumni</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/pages/login">Login</a>
+              <?php if (session()->has('id_user')) : ?>
+                <a class="nav-link active" aria-current="page" href="/home/userInfo">Profile</a>
+              <?php endif; ?>
+              <?php if (!session()->has('id_user')) : ?>
+                <a class="nav-link active" aria-current="page" href="/home/login">Login</a>
+              <?php endif; ?>
             </li>
           </ul>
           <form class="d-flex">
