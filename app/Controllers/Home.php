@@ -196,6 +196,35 @@ class Home extends BaseController
 		$data['template'] = 'reset';
 		return view('reset/resetpass', $data);
 	}
+
+	public function search() //pencarian
+	{
+		// nyoba faker,, gakepake di controller ini
+		// $faker = \Faker\Factory::create('id_ID');
+		// dd($faker->phoneNumber);
+
+		$pager = \Config\Services::pager();
+		$model = new \App\Models\AlumniModel;
+		$kunci = $this->request->getVar('cari');
+
+		if ($kunci) {
+			$query = $model->pencarian($kunci);
+			// $jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->affectedRows()." Data";
+		} else {
+			$query = $model;
+			// $jumlah = "";
+		}
+
+		$data = [
+			'title' => 'Pencarian Alumni | Website Riset 5',
+			'alumni' => $query->paginate(10),
+			'pager' => $model->pager,
+			'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
+			// 'jumlah' => $jumlah,
+		];
+
+		echo view('pages/search', $data);
+	}
 	//--------------------------------------------------------------------
 
 }
