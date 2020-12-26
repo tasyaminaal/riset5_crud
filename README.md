@@ -1,5 +1,18 @@
-# sebelum pakai harus di unzip dahulu file di app\ThirdParty\myth-auth.rar
+## Setelah Clone, jangan lupa gini kan ya ~
+--------------------------------------------------------------------------------------
+1. setting env nya jadi development, serta atur database di env. rename menjadi".env"
+2. composer require codeigniter4/framework
+3. composer require irsadarief/jkd-sso
+4. composer require fzaninotto/faker
+5. composer update
+6. unzip myth-auth.rar di .../app/ThirdParty
+7. php spark migrate
+8. php spark migrate -all
+9. php spark db:seed AlumniSeeder
+10. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
+:: fyi, ini yang terbaru yaa.. kurang penyatuan webservice sama RBAC nya, serta dashboard admin
+______________________________________________________________________________________
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
