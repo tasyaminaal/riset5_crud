@@ -18,25 +18,37 @@ class Alumni extends Migration
 			'angkatan' => [
 				'type' => 'VARCHAR',
 				'constraint' => '4',
+				// ditambah null untuk keperluan development
+				'null' => true,
 			],
 			'jenisKelamin' => [
 				'type' => 'VARCHAR',
 				'constraint' => '1',
+				// ditambah null untuk keperluan development
+				'null' => true,
 			],
 			'tempatLahir' => [
 				'type' => 'VARCHAR',
 				'constraint' => '50',
+				// ditambah null untuk keperluan development
+				'null' => true,
 			],
 			'tanggalLahir' => [
 				'type' => 'DATE',
+				// ditambah null untuk keperluan development
+				'null' => true,
 			],
 			'telpAlumni' => [
 				'type' => 'VARCHAR',
 				'constraint' => '20',
+				// ditambah null untuk keperluan development
+				'null' => true,
 			],
 			'alamat' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
+				// ditambah null untuk keperluan development
+				'null' => true,
 			],
 		]);
 
