@@ -1,4 +1,4 @@
-# sebelum pakai harus di unzip dahulu file \app\ThirdParty\myth-auth.rar
+# sebelum pakai harus di unzip dahulu file di app\ThirdParty\myth-auth.rar
 
 # CodeIgniter 4 Application Starter
 
