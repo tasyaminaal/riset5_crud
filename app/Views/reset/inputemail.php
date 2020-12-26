@@ -22,19 +22,27 @@ $visibilitySuccess = 'hidden'; // bisa diisi hidden untuk menonaktifkan
             link! </div>
         <!-- tulisan kalo akun yang dimasukkan salah -->
 
+        <?= view('Myth\Auth\Views\_message_block') ?>
+
+        <p><?= lang('Auth.enterEmailForInstructions') ?></p>
+
         <div class="w-full md:w-3/4text-center">
-            <form action="">
+            <form action="<?= route_to('forgot') ?>" method="post">
+                <?= csrf_field() ?>
 
                 <div class="flex flex-wrap w-full mb-7 ">
                     <div class="flex items-center text-gray-700  w-full">
                         <label for="emailAdd" class="text-sm my-auto md:text-base">E-mail Address&nbsp;:</label>
-                        <input type="text" id="emailAdd" name="emailAdd" class=" shadow-md border-2 py-2 px-3 ml-2 border-gray-200 rounded-md flex-grow md:flex-none md:w-2/3 focus:border-gray-700 focus:outline-none placeholder-gray-700  text-xs md:text-base align-middle " placeholder="type your e-mail address" required>
+                        <input type="email" id="email" name="email" class=" shadow-md border-2 py-2 px-3 ml-2 border-gray-200 rounded-md flex-grow md:flex-none md:w-2/3 focus:border-gray-700 focus:outline-none placeholder-gray-700  text-xs md:text-base align-middle <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>">
                     </div>
+                </div>
+                <div class="invalid-feedback">
+                    <?= session('errors.email') ?>
                 </div>
 
                 <div class="flex justify-center w-full mt-8">
                     <div class="flex justify-start w-1/2">
-                        <input type="submit" value="Send Password Reset Link" class="text-xs my-auto text-white font-bold hover:from-blue-500 hover:to-indigo-600  cursor-pointer focus:outline-none bg-gradient-to-r from-blue-500 to-indigo-500 py-2 px-2 md:px-4 ml-6 rounded-md">
+                        <button type="submit" class="text-xs my-auto text-white font-bold hover:from-blue-500 hover:to-indigo-600  cursor-pointer focus:outline-none bg-gradient-to-r from-blue-500 to-indigo-500 py-2 px-2 md:px-4 ml-6 rounded-md"><?= lang('Auth.sendInstructions') ?></button>
                     </div>
                 </div>
             </form>
