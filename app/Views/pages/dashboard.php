@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<?= $this->include('layout/navbarAwal') ?>
+<?= $this->include('layout/navbar') ?>
 <div class="container">
     <div class="row">
         <div class="col">

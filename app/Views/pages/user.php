@@ -2,7 +2,7 @@
 
 
 <?= $this->section('content'); ?>
-<?= $this->include('layout/navbarUser') ?>
+<?= $this->include('layout/navbar') ?>
 <div>
     <h1>Welcome, </h1>
     <div class="row">

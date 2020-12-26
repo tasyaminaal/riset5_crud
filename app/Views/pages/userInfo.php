@@ -2,7 +2,7 @@
 
 
 <?= $this->section('content'); ?>
-<?= $this->include('layout/navbarUser') ?>
+<?= $this->include('layout/navbar') ?>
 
 <div class="alert alert-<?= session()->get('warna'); ?> alert-dismissible show pesan" role="alert" id="alert-pesan">
     <?= session()->getFlashdata('pesan'); ?>

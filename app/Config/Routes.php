@@ -32,7 +32,6 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/login/sipadu', 'Auth::sipadu');
 $routes->get('/register', 'Home::register');
 $routes->get('/register/success', 'Home::registerSuccess');
 $routes->get('/reset/lama', 'Home::reset');

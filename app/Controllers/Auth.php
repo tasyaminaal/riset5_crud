@@ -43,11 +43,16 @@ class Auth extends BaseController
 			session()->setFlashdata('pesan', 'Logout berhasil!');
 			session()->setFlashdata('warna', 'success');
 		}
-		return redirect()->to('/');
 
 		//logout bps
-		$url_logout = $userkeycloak->provider->getLogoutUrl();
-		return redirect()->to($url_logout);
+		// $url_logout = $userkeycloak->provider->getLogoutUrl();
+		// return redirect()->to($url_logout);
+
+		if (!session()->has('id_user')) {
+			return redirect()->to('/logout');
+		}
+
+		return redirect()->to('/');
 	}
 
 	//--------------------------------------------------------------------
