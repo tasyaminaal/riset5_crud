@@ -6,11 +6,11 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=7.2",
-		"codeigniter4/framework": "^4",
-		"irsadarief/jkd-sso": "^1.6"
+		"codeigniter4/framework": "^4.0",
+		"irsadarief/jkd-sso": "^1.6",
+		"fzaninotto/faker": "^1.9"
 	},
 	"require-dev": {
-		"fzaninotto/faker": "^1.9@dev",
 		"mikey179/vfsstream": "1.6.*",
 		"phpunit/phpunit": "^8.5"
 	},
