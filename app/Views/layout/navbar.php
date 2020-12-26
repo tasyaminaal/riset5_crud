@@ -15,7 +15,7 @@
             <?php if (session()->has('id_user') || logged_in()) : ?>
               <?php if (session()->has('id_user')) : ?>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/home/userinfo">Profile</a>
+                  <a class="nav-link active" aria-current="page" href="/home/profile">Profile</a>
                 </li>
               <?php endif; ?>
 

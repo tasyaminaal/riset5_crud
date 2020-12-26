@@ -9,7 +9,7 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 $data = [
                         'nama'          => $faker->name,
                         'nim'           => $faker->randomNumber($nbDigits = 9, $strict = false),
-                        'angkatan'      => $faker->randomNumber($nbDigits = 2, $strict = false),
+                        'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
                         'jenisKelamin'  => $faker->randomElement($array = array ('L','P')),
                         'tempatLahir'   => $faker->city,
                         'tanggalLahir'  => $faker->date($format = 'Y-m-d', $max = 'now'),

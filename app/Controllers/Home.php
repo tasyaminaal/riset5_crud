@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\Controller;
+use App\Models\AlumniModel;
 
 class Home extends BaseController
 {
@@ -11,6 +13,7 @@ class Home extends BaseController
 		if (isset($_REQUEST['code']) && $_REQUEST['code']) {
 
 			$this->modelAuth = new \App\Models\AuthModel();
+			$this->modelAlumni = new \App\Models\AlumniModel();
 
 			$curl_status = curl_init();
 
@@ -73,6 +76,16 @@ class Home extends BaseController
 					'nama' => $user['nama'],
 					'role' => $user['role']
 				]);
+
+				// binding session dengan database
+				if($this->modelAlumni->getUserByNIM(session('username')) == NULL){
+					$bindUser = [
+						'nama'	=> session('nama'),
+						'nim'	=> session('username'),
+					];
+					$this->modelAlumni->query("INSERT INTO alumni (nama, nim) VALUES(:nama:, :nim:)", $bindUser);
+				}
+
 			} else {
 				if ($this->modelAuth->getUserByUsername($hasil['profile']['username']) == NULL) {
 					$data = array(
@@ -90,6 +103,15 @@ class Home extends BaseController
 					'nama' => $user['nama'],
 					'role' => $user['role']
 				]);
+
+				// binding session dengan database
+				if($this->modelAlumni->getUserByNIM(session('username')) == NULL){
+					$bindUser = [
+						'nama'	=> session('nama'),
+						'nim'	=> session('username'),
+					];
+					$this->modelAlumni->query("INSERT INTO alumni (nama, nim) VALUES(:nama:, :nim:)", $bindUser);
+				}
 			}
 
 			setcookie('login', 'yes', time() + 60, $_SERVER['SERVER_NAME']);
@@ -173,15 +195,15 @@ class Home extends BaseController
 
 	//--------------------------------------------------------------------
 
+	// dipindah ke User.PHP
+	// public function userInfo()
+	// {
+	// 	$data = [
+	// 		'title' => 'Profile | Riset 5 Website Alumni',
+	// 	];
 
-	public function userInfo()
-	{
-		$data = [
-			'title' => 'Profile | Riset 5 Website Alumni',
-		];
-
-		return view('pages/userinfo', $data);
-	}
+	// 	return view('pages/userinfo', $data);
+	// }
 
 	public function reset()
 	{
@@ -226,5 +248,139 @@ class Home extends BaseController
 		echo view('pages/search', $data);
 	}
 	//--------------------------------------------------------------------
+	
+	public function profile()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+        $query = $model->bukaProfile(session('username'))->getRow();
+		$jk = $query->jenisKelamin;
+
+		if($jk==NULL){
+            $jk = "";
+        } elseif($jk=="L") {
+            $jk = "Laki-laki";
+        } else {
+			$jk = "Perempuan";
+		}
+		
+		$data = [
+			'title' 		=> 'Profil User | Website Riset 5',
+			'nama'  		=> $query->nama,
+            'nim'           => $query->nim,
+            'angkatan'      => $query->angkatan,
+            'jenisKelamin'  => $jk,
+            'tempatLahir'   => $query->tempatLahir,
+            'tanggalLahir'  => $query->tanggalLahir,
+            'telpAlumni'    => $query->telpAlumni,
+            'alamat'        => $query->alamat,
+		];
+		return view('pages/userInfo', $data);
+	}
+
+	//--------------------------------------------------------------------
+
+	public function update($nim)
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+        $query = $model->bukaProfile(session('username'))->getRow();
+
+		$data = [
+			'title' 		=> 'Update Profil User | Website Riset 5',
+			'nama'  		=> $query->nama,
+            'nim'           => $query->nim,
+            'angkatan'      => $query->angkatan,
+            'jenisKelamin'  => $query->jenisKelamin,
+            'tempatLahir'   => $query->tempatLahir,
+            'tanggalLahir'  => $query->tanggalLahir,
+            'telpAlumni'    => $query->telpAlumni,
+            'alamat'        => $query->alamat,
+		];
+		return view('pages/update', $data);
+	}
+
+	//--------------------------------------------------------------------
+
+	public function updating()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$this->modelAlumni = new AlumniModel();
+    
+		$data = [
+			'nama'  		=> $this->request->getVar('nama'),
+            'nim'           => session('username'),
+            'angkatan'      => $this->request->getVar('angkatan'),
+            'jenisKelamin'  => $this->request->getVar('jenisKelamin'),
+            'tempatLahir'   => $this->request->getVar('tempatLahir'),
+            'tanggalLahir'  => $this->request->getVar('tanggalLahir'),
+            'telpAlumni'    => $this->request->getVar('telpAlumni'),
+            'alamat'        => $this->request->getVar('alamat'),
+		];
+
+		$this->modelAlumni->replace($data);
+
+		$query = $this->modelAlumni->bukaProfile(session('username'))->getRow();
+		$jk = $query->jenisKelamin;
+
+		if($jk==NULL){
+            $jk = "";
+        } elseif($jk=="L") {
+            $jk = "Laki-laki";
+        } else {
+			$jk = "Perempuan";
+		}
+		$require = [
+			'title' 		=> 'Update Profil User | Website Riset 5',
+			'nama'  		=> $query->nama,
+            'nim'           => $query->nim,
+            'angkatan'      => $query->angkatan,
+            'jenisKelamin'  => $jk,
+            'tempatLahir'   => $query->tempatLahir,
+            'tanggalLahir'  => $query->tanggalLahir,
+            'telpAlumni'    => $query->telpAlumni,
+            'alamat'        => $query->alamat,
+		];
+
+		return view('pages/userInfo', $require);
+	}
+
+	//--------------------------------------------------------------------
+
+	public function profileAlumni()
+    {
+        $model = new AlumniModel();
+        $kunci = $this->request->getVar('nim');
+        $query = $model->bukaProfile($kunci)->getRow();
+        $jk = $query->jenisKelamin;
+
+        if($jk=='P'){
+            $jk = "Perempuan";
+        } else {
+            $jk = "Laki-laki";
+        }
+
+		$data = [
+			'title' 		=> 'Profil Alumni | Website Riset 5',
+			'nama'  		=> $query->nama,
+            'nim'           => $query->nim,
+            'angkatan'      => $query->angkatan,
+            'jenisKelamin'  => $jk,
+            'tempatLahir'   => $query->tempatLahir,
+            'tanggalLahir'  => $query->tanggalLahir,
+            'telpAlumni'    => $query->telpAlumni,
+            'alamat'        => $query->alamat,
+		];
+		return view('pages/profileAlumni', $data);
+	}
+	
+	//--------------------------------------------------------------------
+
 
 }

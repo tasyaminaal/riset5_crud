@@ -45,7 +45,7 @@
 						<td><?= $row['nama']; ?></td>
 						<td><?= $row['nim']; ?></td>
 						<td><?= $row['angkatan']; ?></td>
-						<td class="center"><a class="btn btn-primary" href="#" role="button">Lihat Profile</a></td>
+						<td class="center"><a class="btn btn-primary" href="/home/profileAlumni?nim=<?=$row['nim'];?>" role="button">Lihat Profile</a></td>
 					</tr>
 				<?php $no++;
 				endforeach; ?>
