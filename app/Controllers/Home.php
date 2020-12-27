@@ -230,10 +230,10 @@ class Home extends BaseController
 		$kunci = $this->request->getVar('cari');
 
 		if ($kunci) {
-			$query = $model->pencarian($kunci);
+			$query = $model->orderBy('nama',$direction='ASC')->pencarian($kunci);
 			// $jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->affectedRows()." Data";
 		} else {
-			$query = $model;
+			$query = $model->orderBy('nama',$direction='ASC');
 			// $jumlah = "";
 		}
 
