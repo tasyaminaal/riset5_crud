@@ -21,10 +21,10 @@ class PermissionAccess extends Migration
         $this->forge->addKey('idAccess', TRUE);
 
         // masih dalam perbaikan DB dan RBAC
-        // $this->forge->addForeignKey('idPermission', 'permission', 'idPermission', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('idPermission', 'permission', 'idPermission', 'CASCADE', 'CASCADE');
 
         /// masih dalam perbaikan DB dan RBAC
-        // $this->forge->addForeignKey('idAccess', 'access', 'idAccess', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('idAccess', 'access', 'idAccess', 'CASCADE', 'CASCADE');
 
         $this->forge->createTable('permissionAccess');
     }

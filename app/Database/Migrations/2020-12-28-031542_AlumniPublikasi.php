@@ -18,10 +18,7 @@ class AlumniPublikasi extends Migration
         ]);
 
         $this->forge->addKey('idPublikasi', TRUE);
-
-        // di pdf tulisannya gini 
-        // FOREIGN KEY (nim) REFERENCES Alumni(nim) ON UPDATE CASCADE ON DELETE CASCADE
-        // tolong koreksinya ya kalo ini salah
+        
         $this->forge->addForeignKey('nim', 'alumni', 'nim', 'CASCADE', 'CASCADE');
 
         $this->forge->createTable('alumni_publikasi');
