@@ -7,14 +7,18 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
             $faker = \Faker\Factory::create('id_ID');
             for($i=0; $i<100;$i++){
                 $data = [
+                        'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
                         'nama'          => $faker->name,
                         'nim'           => $faker->randomNumber($nbDigits = 9, $strict = false),
-                        'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
                         'jenisKelamin'  => $faker->randomElement($array = array ('L','P')),
                         'tempatLahir'   => $faker->city,
                         'tanggalLahir'  => $faker->date($format = 'Y-m-d', $max = 'now'),
                         'telpAlumni'    => $faker->phoneNumber,
                         'alamat'        => $faker->address,
+                        'statusBekerja' => $faker->boolean,
+                        'perkiraanPensiun' => $faker->year,
+                        'jabatanTerakhir'  => $faker->jobTitle,
+                        'aktifPNS'      => $faker->boolean,
                 ];
                 $this->db->table('alumni')->insert($data);
             }

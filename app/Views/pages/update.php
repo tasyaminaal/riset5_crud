@@ -97,6 +97,38 @@
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
+
+                                    <label for="statusBekerja" class="col-sm-5 col-xs-6 tital ">Status bekerja(true/false)</label>
+                                    <div class="col-sm-7 col-xs-6">
+                                        : <input type="text" id="statusBekerja" name="statusBekerja" autofocus value="<?=$statusBekerja;?>">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="bot-border"></div>
+
+                                    <label for="perkiraanPensiun" class="col-sm-5 col-xs-6 tital ">Tahun pensiun(yyyy)</label>
+                                    <div class="col-sm-7 col-xs-6">
+                                        : <input type="text" id="perkiraanPensiun" name="perkiraanPensiun" autofocus value="<?=$perkiraanPensiun;?>">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="bot-border"></div>
+
+                                    <label for="jabatanTerakhir" class="col-sm-5 col-xs-6 tital ">Jabatan terkhir(50)</label>
+                                    <div class="col-sm-7 col-xs-6">
+                                        : <input type="text" id="jabatanTerakhir" name="jabatanTerakhir" autofocus value="<?=$jabatanTerakhir;?>">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="bot-border"></div>
+
+                                    <label for="aktifPNS" class="col-sm-5 col-xs-6 tital ">Status PNS(true/false)</label>
+                                    <div class="col-sm-7 col-xs-6">
+                                        : <input type="text" id="aktifPNS" name="aktifPNS" autofocus value="<?=$aktifPNS;?>">
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="bot-border"></div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-sm">Submit Data</button>  
                             </form>

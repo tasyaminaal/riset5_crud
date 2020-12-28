@@ -72,6 +72,30 @@
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
+
+                            <div class="col-sm-5 col-xs-6 tital " >Status Bekerja</div>
+                            <div class="col-sm-7">: <?= $statusBekerja ?></div>
+
+                            <div class="clearfix"></div>
+                            <div class="bot-border"></div>
+
+                            <div class="col-sm-5 col-xs-6 tital " >Perkiraan Pensiun</div>
+                            <div class="col-sm-7">: <?= $perkiraanPensiun ?></div>
+
+                            <div class="clearfix"></div>
+                            <div class="bot-border"></div>
+
+                            <div class="col-sm-5 col-xs-6 tital " >Jabatan Terakhir</div>
+                            <div class="col-sm-7">: <?= $jabatanTerakhir ?></div>
+
+                            <div class="clearfix"></div>
+                            <div class="bot-border"></div>
+
+                            <div class="col-sm-5 col-xs-6 tital " >Aktif PNS</div>
+                            <div class="col-sm-7">: <?= $aktifPNS ?></div>
+
+                            <div class="clearfix"></div>
+                            <div class="bot-border"></div>
                         </div>
                     </div>     
                 </div>

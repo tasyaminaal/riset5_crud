@@ -7,6 +7,10 @@ class Alumni extends Migration
 	public function up()
 	{
 		$this->forge->addField([
+			'angkatan' => [
+				'type' => 'VARCHAR',
+				'constraint' => '4',
+			],
 			'nama' => [
 				'type' => 'VARCHAR',
 				'constraint' => '80',
@@ -15,40 +19,40 @@ class Alumni extends Migration
 				'type' => 'VARCHAR',
 				'constraint' => '12',
 			],
-			'angkatan' => [
-				'type' => 'VARCHAR',
-				'constraint' => '4',
-				// ditambah null untuk keperluan development
-				'null' => true,
-			],
 			'jenisKelamin' => [
 				'type' => 'VARCHAR',
 				'constraint' => '1',
-				// ditambah null untuk keperluan development
-				'null' => true,
 			],
 			'tempatLahir' => [
 				'type' => 'VARCHAR',
 				'constraint' => '50',
-				// ditambah null untuk keperluan development
-				'null' => true,
 			],
 			'tanggalLahir' => [
 				'type' => 'DATE',
-				// ditambah null untuk keperluan development
-				'null' => true,
 			],
 			'telpAlumni' => [
 				'type' => 'VARCHAR',
 				'constraint' => '20',
-				// ditambah null untuk keperluan development
 				'null' => true,
 			],
 			'alamat' => [
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				// ditambah null untuk keperluan development
 				'null' => true,
+			],
+			'statusBekerja' => [
+				'type' => 'BOOLEAN',
+			],
+			'perkiraanPensiun' => [
+				'type' => 'YEAR',
+				'null' => true,
+			],
+			'jabatanTerakhir' => [
+				'type' => 'VARCHAR',
+				'constraint' => '50',
+			],
+			'aktifPNS' => [
+				'type' => 'BOOLEAN',
 			],
 		]);
 

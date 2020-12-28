@@ -14,6 +14,7 @@ class Home extends BaseController
 
 			$this->modelAuth = new \App\Models\AuthModel();
 			$this->modelAlumni = new \App\Models\AlumniModel();
+			$faker = \Faker\Factory::create('id_ID');
 
 			$curl_status = curl_init();
 
@@ -80,10 +81,20 @@ class Home extends BaseController
 				// binding session dengan database
 				if($this->modelAlumni->getUserByNIM(session('username')) == NULL){
 					$bindUser = [
+						'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
 						'nama'	=> session('nama'),
 						'nim'	=> session('username'),
+						'jenisKelamin'  => $faker->randomElement($array = array ('L','P')),
+                        'tempatLahir'   => $faker->city,
+                        'tanggalLahir'  => $faker->date($format = 'Y-m-d', $max = 'now'),
+                        'telpAlumni'    => $faker->phoneNumber,
+                        'alamat'        => $faker->address,
+                        'statusBekerja' => $faker->boolean,
+                        'perkiraanPensiun' => $faker->year,
+                        'jabatanTerakhir'  => $faker->jobTitle,
+                        'aktifPNS'      => $faker->boolean,
 					];
-					$this->modelAlumni->query("INSERT INTO alumni (nama, nim) VALUES(:nama:, :nim:)", $bindUser);
+					$this->modelAlumni->db->table('alumni')->insert($bindUser);;
 				}
 
 			} else {
@@ -107,10 +118,20 @@ class Home extends BaseController
 				// binding session dengan database
 				if($this->modelAlumni->getUserByNIM(session('username')) == NULL){
 					$bindUser = [
+						'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
 						'nama'	=> session('nama'),
 						'nim'	=> session('username'),
+						'jenisKelamin'  => $faker->randomElement($array = array ('L','P')),
+                        'tempatLahir'   => $faker->city,
+                        'tanggalLahir'  => $faker->date($format = 'Y-m-d', $max = 'now'),
+                        'telpAlumni'    => $faker->phoneNumber,
+                        'alamat'        => $faker->address,
+                        'statusBekerja' => $faker->boolean,
+                        'perkiraanPensiun' => $faker->year,
+                        'jabatanTerakhir'  => $faker->jobTitle,
+                        'aktifPNS'      => $faker->boolean,
 					];
-					$this->modelAlumni->query("INSERT INTO alumni (nama, nim) VALUES(:nama:, :nim:)", $bindUser);
+					$this->modelAlumni->db->table('alumni')->insert($bindUser);
 				}
 			}
 
@@ -256,26 +277,43 @@ class Home extends BaseController
 
 		$model = new AlumniModel();
         $query = $model->bukaProfile(session('username'))->getRow();
+		
 		$jk = $query->jenisKelamin;
+		$sb = $query->statusBekerja;
+		$ap = $query->aktifPNS;
 
-		if($jk==NULL){
-            $jk = "";
-        } elseif($jk=="L") {
+		if($jk=="L") {
             $jk = "Laki-laki";
         } else {
 			$jk = "Perempuan";
 		}
+
+		if($sb==0) {
+            $sb = "Tidak bekerja";
+        } else {
+			$sb = "Masih bekerja";
+		}
+
+		if($ap==0) {
+            $ap = "Tidak aktif sebagai PNS";
+        } else {
+			$ap = "Aktif sebagai PNS";
+		}
 		
 		$data = [
 			'title' 		=> 'Profil User | Website Riset 5',
+            'angkatan'      => $query->angkatan,
 			'nama'  		=> $query->nama,
             'nim'           => $query->nim,
-            'angkatan'      => $query->angkatan,
             'jenisKelamin'  => $jk,
             'tempatLahir'   => $query->tempatLahir,
             'tanggalLahir'  => $query->tanggalLahir,
             'telpAlumni'    => $query->telpAlumni,
-            'alamat'        => $query->alamat,
+			'alamat'        => $query->alamat,
+			'statusBekerja'	=> $sb,
+			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
+			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
+			'aktifPNS'		=> $ap,
 		];
 		return view('pages/userInfo', $data);
 	}
@@ -292,14 +330,18 @@ class Home extends BaseController
 
 		$data = [
 			'title' 		=> 'Update Profil User | Website Riset 5',
+            'angkatan'      => $query->angkatan,
 			'nama'  		=> $query->nama,
             'nim'           => $query->nim,
-            'angkatan'      => $query->angkatan,
             'jenisKelamin'  => $query->jenisKelamin,
             'tempatLahir'   => $query->tempatLahir,
             'tanggalLahir'  => $query->tanggalLahir,
             'telpAlumni'    => $query->telpAlumni,
-            'alamat'        => $query->alamat,
+			'alamat'        => $query->alamat,
+			'statusBekerja'	=> $query->statusBekerja,
+			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
+			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
+			'aktifPNS'		=> $query->aktifPNS,
 		];
 		return view('pages/update', $data);
 	}
@@ -321,20 +363,36 @@ class Home extends BaseController
             'tempatLahir'   => $this->request->getVar('tempatLahir'),
             'tanggalLahir'  => $this->request->getVar('tanggalLahir'),
             'telpAlumni'    => $this->request->getVar('telpAlumni'),
-            'alamat'        => $this->request->getVar('alamat'),
+			'alamat'        => $this->request->getVar('alamat'),
+			'statusBekerja' => $this->request->getVar('statusBekerja'),
+			'perkiraanPensiun' => $this->request->getVar('perkiraanPensiun'),
+			'jabatanTerakhir'  => $this->request->getVar('jabatanTerakhir'),
+			'aktifPNS'      => $this->request->getVar('aktifPNS'),
 		];
 
 		$this->modelAlumni->replace($data);
 
 		$query = $this->modelAlumni->bukaProfile(session('username'))->getRow();
 		$jk = $query->jenisKelamin;
+		$sb = $query->statusBekerja;
+		$ap = $query->aktifPNS;
 
-		if($jk==NULL){
-            $jk = "";
-        } elseif($jk=="L") {
+		if($jk=="L") {
             $jk = "Laki-laki";
         } else {
 			$jk = "Perempuan";
+		}
+
+		if($sb==0) {
+            $sb = "Tidak bekerja";
+        } else {
+			$sb = "Masih bekerja";
+		}
+
+		if($ap==0) {
+            $ap = "Tidak aktif sebagai PNS";
+        } else {
+			$ap = "Aktif sebagai PNS";
 		}
 		$require = [
 			'title' 		=> 'Update Profil User | Website Riset 5',
@@ -345,7 +403,11 @@ class Home extends BaseController
             'tempatLahir'   => $query->tempatLahir,
             'tanggalLahir'  => $query->tanggalLahir,
             'telpAlumni'    => $query->telpAlumni,
-            'alamat'        => $query->alamat,
+			'alamat'        => $query->alamat,
+			'statusBekerja'	=> $sb,
+			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
+			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
+			'aktifPNS'		=> $ap,
 		];
 
 		return view('pages/userInfo', $require);
@@ -359,12 +421,26 @@ class Home extends BaseController
         $kunci = $this->request->getVar('nim');
         $query = $model->bukaProfile($kunci)->getRow();
         $jk = $query->jenisKelamin;
+		$sb = $query->statusBekerja;
+		$ap = $query->aktifPNS;
 
         if($jk=='P'){
             $jk = "Perempuan";
         } else {
             $jk = "Laki-laki";
-        }
+		}
+
+		if($sb==0) {
+            $sb = "Tidak bekerja";
+        } else {
+			$sb = "Masih bekerja";
+		}
+
+		if($ap==0) {
+            $ap = "Tidak aktif sebagai PNS";
+        } else {
+			$ap = "Aktif sebagai PNS";
+		}
 
 		$data = [
 			'title' 		=> 'Profil Alumni | Website Riset 5',
@@ -375,7 +451,11 @@ class Home extends BaseController
             'tempatLahir'   => $query->tempatLahir,
             'tanggalLahir'  => $query->tanggalLahir,
             'telpAlumni'    => $query->telpAlumni,
-            'alamat'        => $query->alamat,
+			'alamat'        => $query->alamat,
+			'statusBekerja'	=> $sb,
+			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
+			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
+			'aktifPNS'		=> $ap,
 		];
 		return view('pages/profileAlumni', $data);
 	}

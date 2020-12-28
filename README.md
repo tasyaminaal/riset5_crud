@@ -4,12 +4,12 @@
 2. composer install
 3. composer update
 4. unzip myth-auth.rar di .../app/ThirdParty
-5. php spark migrate
-6. php spark migrate -all
+5. php spark migrate -all
+6. php spark migrate
 7. php spark db:seed AlumniSeeder
 8. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
-:: fyi, ini yang terbaru yaa.. kurang penyatuan webservice sama RBAC nya, serta dashboard admin
+# fyi, untuk Ela, file migration Usernya kusamain kayak punya DB
 ______________________________________________________________________________________
 # CodeIgniter 4 Application Starter
 
