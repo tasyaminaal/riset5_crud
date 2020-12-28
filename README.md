@@ -9,7 +9,7 @@
 7. php spark db:seed AlumniSeeder
 8. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
-# fyi, untuk Ela, file migration Usernya kusamain kayak punya DB
+# fyi, migration ada yang error, tapi masih bisa jalan
 ______________________________________________________________________________________
 # CodeIgniter 4 Application Starter
 

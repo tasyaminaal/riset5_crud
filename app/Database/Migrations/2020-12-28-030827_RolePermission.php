@@ -20,9 +20,9 @@ class RolePermission extends Migration
         $this->forge->addKey('idRole', TRUE);
         $this->forge->addKey('idPermission', TRUE);
 
-        // masih dalam perbaikan DB dan RBAC
-        $this->forge->addForeignKey('idRole','role','idRole','CASCADE','CASCADE');
-        $this->forge->addForeignKey('idPermission','permission','idPermission','CASCADE','CASCADE');
+		// gatau kenapa error
+		// $this->forge->addForeignKey('idRole', 'role', 'idRole', 'CASCADE', 'CASCADE');
+		// $this->forge->addForeignKey('idPermission', 'permission', 'idPermission', 'CASCADE', 'CASCADE');
 
 
 		$this->forge->createTable('rolePermission');
