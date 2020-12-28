@@ -17,11 +17,11 @@ class UserRole extends Migration
 			],
 		]);
 
-		$this->forge->addKey('username','idRole', TRUE);
+		$this->forge->addKey('username','idRole', TRUE, TRUE);
 		// gives PRIMARY KEY `userRole` (`username`,`idRole`)
 
-        //$this->forge->addForeignKey('username','user','username','CASCADE','CASCADE');
-        //$this->forge->addForeignKey('idRole','role','idRole','CASCADE','CASCADE');
+        $this->forge->addForeignKey('username','user','username','CASCADE','CASCADE');
+        $this->forge->addForeignKey('idRole','role','idRole','CASCADE','CASCADE');
         
 
 		$this->forge->createTable('userRole');
