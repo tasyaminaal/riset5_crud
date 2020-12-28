@@ -20,20 +20,17 @@ class PermissionAccess extends Migration
         $this->forge->addKey('idPermission', TRUE);
         $this->forge->addKey('idAccess', TRUE);
 
-        // di pdf tulisannya gini
-        // FOREIGN KEY idPermission REFERENCES Permission(idPermission) ON UPDATE CASCADE ON DELETE CASCADE
-        // tolong koreksinya ya kalo ini salah
-        $this->forge->addForeignKey('idPermission', 'permission', 'idPermission', 'CASCADE', 'CASCADE');
+        // masih dalam perbaikan DB dan RBAC
+        // $this->forge->addForeignKey('idPermission', 'permission', 'idPermission', 'CASCADE', 'CASCADE');
 
-        // di pdf tulisannya gini
-        // FOREIGN KEY idAccess REFERENCES Access(idAccess) ON UPDATE CASCADE ON DELETE CASCADE
-        $this->forge->addForeignKey('idAccess', 'access', 'idAccess', 'CASCADE', 'CASCADE');
+        /// masih dalam perbaikan DB dan RBAC
+        // $this->forge->addForeignKey('idAccess', 'access', 'idAccess', 'CASCADE', 'CASCADE');
 
-        $this->forge->createTable('permission_access');
+        $this->forge->createTable('permissionAccess');
     }
 
     public function down()
     {
-        $this->forge->dropTable('permission_access');
+        $this->forge->dropTable('permissionAccess');
     }
 }
