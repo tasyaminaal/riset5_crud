@@ -24,7 +24,7 @@ $visibility = 'hidden'; // bisa diisi hidden untuk menonaktifkan
                 <!-- email or username -->
                 <?php if ($config->validFields === ['email']) : ?>
                     <div class="flex w-11/12 md:w-9/12 mb-4 ">
-                        <label for="login" class="my-auto"><?= lang('Auth.email') ?>:</label>
+                        <label for="login" class="my-auto"><?= lang('Auth.email') ?>&nbsp;:</label>
                         <div class="flex-grow ml-4 ">
                             <input type="email" name="login" id="username" placeholder="<?= lang('Auth.email') ?>" autocomplete="off" class="shadow-md border-2 w-full h-10 rounded-lg px-3 py-2 focus:outline-none border-gray-200 focus:border-gray-700 placeholder-gray-700 text-sm align-middle <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>">
                         </div>
@@ -34,7 +34,7 @@ $visibility = 'hidden'; // bisa diisi hidden untuk menonaktifkan
                     </div>
                 <?php else : ?>
                     <div class="flex w-11/12 md:w-9/12 mb-4 ">
-                        <label for="login" class="my-auto"><?= lang('Auth.emailOrUsername') ?>:</label>
+                        <label for="login" class="my-auto"><?= lang('Auth.emailOrUsername') ?>&nbsp;:</label>
                         <div class="flex-grow ml-4 ">
                             <input type="text" name="login" id="username" placeholder="<?= lang('Auth.emailOrUsername') ?>" autocomplete="off" class="shadow-md border-2 w-full h-10 rounded-lg px-3 py-2 focus:outline-none border-gray-200 focus:border-gray-700 placeholder-gray-700 text-sm align-middle">
                         </div>
@@ -47,7 +47,7 @@ $visibility = 'hidden'; // bisa diisi hidden untuk menonaktifkan
 
                 <!-- password  -->
                 <div class="flex w-11/12 md:w-9/12 mb-4 ">
-                    <label for="password" class="my-auto"><?= lang('Auth.password') ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                    <label for="password" class="my-auto"><?= lang('Auth.password') ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
                     <div class="flex-grow ml-4 ">
                         <input type="password" name="password" id="password" placeholder="<?= lang('Auth.password') ?>" autocomplete="off" class="shadow-md border-2 w-full h-10 rounded-lg px-3 py-2 focus:outline-none border-gray-200 focus:border-gray-700 placeholder-gray-700 text-sm align-middle <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>">
                     </div>

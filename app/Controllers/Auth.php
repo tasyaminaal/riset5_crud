@@ -35,23 +35,32 @@ class Auth extends BaseController
 
 	public function logout()
 	{
-		$userkeycloak = new \JKD\SSO\Client\Provider\KeycloakResourceOwner();
+		$provider = new Keycloak([
+			'authServerUrl'         => 'https://sso.bps.go.id',
+			'realm'                 => 'pegawai-bps',
+			'clientId'              => '02700-dbalumni-mu1',
+			'clientSecret'          => 'e69810d0-f915-49c4-9ed1-cd9edf05436a',
+			'redirectUri'           => 'http://localhost:8080',
+			'scope' 				=> 'openid profile-pegawai'
+		]);
 
 		// logout sipadu
 		if (session()->has('id_user')) {
 			session()->remove(['id_user', 'username', 'nama', 'role']);
 			session()->setFlashdata('pesan', 'Logout berhasil!');
 			session()->setFlashdata('warna', 'success');
+
+			//logout bps
+			if (session('oauth2state')) {
+				$url_logout = $provider->getLogoutUrl();
+				return redirect()->to($url_logout);
+			}
+
+			if (logged_in()) {
+				//logout manual
+				return redirect()->to('/logout');
+			}
 		}
-
-		//logout bps
-		// $url_logout = $userkeycloak->provider->getLogoutUrl();
-		// return redirect()->to($url_logout);
-
-		if (!session()->has('id_user')) {
-			return redirect()->to('/logout');
-		}
-
 		return redirect()->to('/');
 	}
 
@@ -88,7 +97,8 @@ class Auth extends BaseController
 
 			// Untuk mendapatkan authorization code
 			$authUrl = $provider->getAuthorizationUrl();
-			$_SESSION['oauth2state'] = $provider->getState();
+			session()->set(['oauth2state' => $provider->getState()]);
+			// $_SESSION['oauth2state'] = $provider->getState();
 			header('Location: ' . $authUrl);
 			exit;
 
