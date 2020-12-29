@@ -2,14 +2,13 @@
 --------------------------------------------------------------------------------------
 1. setting env nya jadi development, serta atur database di env. rename menjadi".env"
 2. composer install
-3. composer update
-4. unzip myth-auth.rar di .../app/ThirdParty
-5. php spark migrate -all
-6. php spark migrate
-7. php spark db:seed AlumniSeeder
+3. unzip myth-auth.rar di .../app/ThirdParty
+4. php spark migrate -all
+5. php spark migrate
+6. php spark db:seed AlumniSeeder
+7. php spark db:seed LoginManualSeeder
 8. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
-# fyi, migration ada yang error, tapi masih bisa jalan
 ______________________________________________________________________________________
 # CodeIgniter 4 Application Starter
 
