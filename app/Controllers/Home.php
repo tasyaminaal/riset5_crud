@@ -290,10 +290,10 @@ class Home extends BaseController
 
 		if ($kunci) {
 			$query = $model->orderBy('nama', $direction = 'ASC')->pencarian($kunci);
-			// $jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->affectedRows()." Data";
+			$jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->countAllResults()." Data";
 		} else {
 			$query = $model->orderBy('nama', $direction = 'ASC');
-			// $jumlah = "";
+			$jumlah = "";
 		}
 
 		$data = [
@@ -301,7 +301,7 @@ class Home extends BaseController
 			'alumni' => $query->paginate(10),
 			'pager' => $model->pager,
 			'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
-			// 'jumlah' => $jumlah,
+			'jumlah' => $jumlah,
 		];
 
 		echo view('pages/search', $data);

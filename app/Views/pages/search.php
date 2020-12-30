@@ -22,8 +22,7 @@
 				</div>
 			</div>
 			<div class="col-lg-12">
-				<?php //echo $jumlah; 
-				?>
+				<?= $jumlah; ?>
 			</div>
 		</div>
 	</form>
