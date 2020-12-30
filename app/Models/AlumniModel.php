@@ -9,11 +9,6 @@ class AlumniModel extends Model
 
     protected $table = 'alumni';
 
-    public function pencarian($kunci)
-    {
-        return $this->table('alumni')->like('nama', $kunci);
-    }
-
     public function bukaProfile($kunci)
     {
         return $this->table('alumni')->getWhere(['nim' => $kunci]);
@@ -22,5 +17,9 @@ class AlumniModel extends Model
     public function getUserByNIM($nim)
     {
         return $this->builder()->where('nim', $nim)->get()->getFirstRow('array');
+    }
+    public function getSearch($field, $search)
+    {
+        return $this->table('alumni')->like($field, $search);
     }
 }

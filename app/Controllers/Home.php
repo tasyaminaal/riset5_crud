@@ -252,18 +252,6 @@ class Home extends BaseController
 
 	//--------------------------------------------------------------------
 
-	//--------------------------------------------------------------------
-
-	// dipindah ke User.PHP
-	// public function userInfo()
-	// {
-	// 	$data = [
-	// 		'title' => 'Profile | Riset 5 Website Alumni',
-	// 	];
-
-	// 	return view('pages/userinfo', $data);
-	// }
-
 	public function reset()
 	{
 		$data['title'] = 'Reset Password';
@@ -278,6 +266,8 @@ class Home extends BaseController
 		return view('reset/resetpass', $data);
 	}
 
+	//--------------------------------------------------------------------
+
 	public function search() //pencarian
 	{
 		// nyoba faker,, gakepake di controller ini
@@ -286,11 +276,13 @@ class Home extends BaseController
 
 		$pager = \Config\Services::pager();
 		$model = new \App\Models\AlumniModel;
-		$kunci = $this->request->getVar('cari');
+		$atribut  = $this->request->getVar('atribut');
+		$cari = $this->request->getVar('cari');
+		$filter = $this->request->getVar('filter');
 
-		if ($kunci) {
-			$query = $model->orderBy('nama', $direction = 'ASC')->pencarian($kunci);
-			$jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->countAllResults(false)." Data";
+		if (isset($filter) && !empty($cari)) {
+			$query = $model->orderBy('nama', $direction = 'ASC')->getSearch($atribut, $cari);
+			$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan ".$query->countAllResults(false)." Data";
 		} else {
 			$query = $model->orderBy('nama', $direction = 'ASC');
 			$jumlah = "";
@@ -306,6 +298,7 @@ class Home extends BaseController
 
 		echo view('pages/search', $data);
 	}
+	
 	//--------------------------------------------------------------------
 
 	public function profile()

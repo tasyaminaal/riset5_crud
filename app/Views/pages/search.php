@@ -15,9 +15,17 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<select class="form-select" name="atribut">
+							<option selected="selected" disabled="disabled" value="">Filter By</option>
+							<option value="nama">Nama</option>
+							<option value="nim">NIM</option>
+							<option value="angkatan">Angkatan</option>
+						</select>
+					</div>
 					<input type="text" class="form-control" name="cari" placeholder="Mencari Data Berdasarkan Nama">
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="Submit">CARI DATA</button>
+						<button class="btn btn-outline-secondary" type="Submit" name="filter" value="Go" >CARI DATA</button>
 					</div>
 				</div>
 			</div>
