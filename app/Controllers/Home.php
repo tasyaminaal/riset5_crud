@@ -290,7 +290,7 @@ class Home extends BaseController
 
 		if ($kunci) {
 			$query = $model->orderBy('nama', $direction = 'ASC')->pencarian($kunci);
-			$jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->countAllResults()." Data";
+			$jumlah = "Pencarian dengan nama <B>$kunci</B> ditemukan ".$query->countAllResults(false)." Data";
 		} else {
 			$query = $model->orderBy('nama', $direction = 'ASC');
 			$jumlah = "";
