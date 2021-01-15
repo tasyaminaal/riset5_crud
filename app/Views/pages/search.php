@@ -17,7 +17,7 @@
 				<div class="input-group mb-3">
 					<div class="input-group-append">
 						<select class="form-select" name="atribut">
-							<option selected="selected" disabled="disabled" value="">Filter By</option>
+							<option selected="selected" disabled="disabled" value="all">Filter By</option>
 							<option value="nama">Nama</option>
 							<option value="nim">NIM</option>
 							<option value="angkatan">Angkatan</option>

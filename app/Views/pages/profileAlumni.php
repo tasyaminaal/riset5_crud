@@ -48,19 +48,19 @@
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Jenis kelamin</div>
-                            <div class="col-sm-7">: <?= $jenisKelamin ?></div>
+                            <div class="col-sm-7">: <?= $jenis_kelamin ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Tempat/Tanggal lahir</div>
-                            <div class="col-sm-7">: <?= $tempatLahir ?>, <?= $tanggalLahir ?></div>
+                            <div class="col-sm-7">: <?= $tempat_lahir ?>, <?= $tanggal_lahir ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Nomor Telepon</div>
-                            <div class="col-sm-7">: <?= $telpAlumni ?></div>
+                            <div class="col-sm-7">: <?= $telp_alumni ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
@@ -72,25 +72,25 @@
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Status Bekerja</div>
-                            <div class="col-sm-7">: <?= $statusBekerja ?></div>
+                            <div class="col-sm-7">: <?= $status_bekerja ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Perkiraan Pensiun</div>
-                            <div class="col-sm-7">: <?= $perkiraanPensiun ?></div>
+                            <div class="col-sm-7">: <?= $perkiraan_pensiun ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Jabatan Terakhir</div>
-                            <div class="col-sm-7">: <?= $jabatanTerakhir ?></div>
+                            <div class="col-sm-7">: <?= $jabatan_terakhir ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Aktif PNS</div>
-                            <div class="col-sm-7">: <?= $aktifPNS ?></div>
+                            <div class="col-sm-7">: <?= $aktif_pns ?></div>
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>

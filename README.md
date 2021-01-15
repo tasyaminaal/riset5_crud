@@ -1,15 +1,25 @@
 ## Setelah Clone, jangan lupa gini kan ya ~
---------------------------------------------------------------------------------------
+
+---
+
 1. setting env nya jadi development, serta atur database di env. rename menjadi".env"
 2. composer install
 3. unzip myth-auth.rar di .../app/ThirdParty
-4. php spark migrate -all
-5. php spark migrate
-6. php spark db:seed AlumniSeeder
-7. php spark db:seed LoginManualSeeder
-8. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
+4. php spark migrate -n Alumni_DB
+5. php spark migrate -all
+6. php spark migrate -n RBAC
+7. php spark db:seed AlumniSeeder
+8. php spark db:seed LoginManualSeeder //masih gabisa,, belum penyesuaian
+9. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
-______________________________________________________________________________________
+## Catatan :
+
+1. Login Sipadu, BPS, manual belum dibenerin
+2. Seeder belum dibenerin juga
+3. Fitur Search perlu diganti dan search bar dipindah ke navigator
+
+---
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?

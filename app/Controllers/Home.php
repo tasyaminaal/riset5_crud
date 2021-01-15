@@ -87,15 +87,15 @@ class Home extends BaseController
 						'angkatan'      => $faker->numberBetween(1, 62),
 						'nama'			=> session('nama'),
 						'nim'		=> session('username'),
-						'jenisKelamin'  => $faker->randomElement(array('L', 'P')),
-						'tempatLahir'   => $faker->city,
-						'tanggalLahir'  => $faker->date('Y-m-d', 'now'),
-						'telpAlumni'    => $faker->phoneNumber,
+						'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
+						'tempat_lahir'   => $faker->city,
+						'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
+						'telp_alumni'    => $faker->phoneNumber,
 						'alamat'        => $faker->address,
-						'statusBekerja' => $faker->boolean,
-						'perkiraanPensiun' => $faker->year,
-						'jabatanTerakhir'  => $faker->jobTitle,
-						'aktifPNS'      => $faker->boolean,
+						'status_bekerja' => $faker->boolean,
+						'perkiraan_pensiun' => $faker->year,
+						'jabatan_terakhir'  => $faker->jobTitle,
+						'aktif_pns'      => $faker->boolean,
 					];
 					$this->modelAlumni->db->table('alumni')->insert($bindUser);;
 				}
@@ -123,15 +123,15 @@ class Home extends BaseController
 						'angkatan'      => $faker->numberBetween(1, 62),
 						'nama'	=> session('nama'),
 						'nim'	=> session('username'),
-						'jenisKelamin'  => $faker->randomElement(array('L', 'P')),
-						'tempatLahir'   => $faker->city,
-						'tanggalLahir'  => $faker->date('Y-m-d', 'now'),
-						'telpAlumni'    => $faker->phoneNumber,
+						'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
+						'tempat_lahir'   => $faker->city,
+						'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
+						'telp_alumni'    => $faker->phoneNumber,
 						'alamat'        => $faker->address,
-						'statusBekerja' => $faker->boolean,
-						'perkiraanPensiun' => $faker->year,
-						'jabatanTerakhir'  => $faker->jobTitle,
-						'aktifPNS'      => $faker->boolean,
+						'status_bekerja' => $faker->boolean,
+						'perkiraan_pensiun' => $faker->year,
+						'jabatan_terakhir'  => $faker->jobTitle,
+						'aktif_pns'      => $faker->boolean,
 					];
 					$this->modelAlumni->db->table('alumni')->insert($bindUser);
 				}
@@ -199,15 +199,15 @@ class Home extends BaseController
 							'angkatan'      => $faker->numberBetween(1, 62),
 							'nama'			=> session('nama'),
 							'nim'		=> session('username'),
-							'jenisKelamin'  => $faker->randomElement(array('L', 'P')),
-							'tempatLahir'   => $faker->city,
-							'tanggalLahir'  => $faker->date('Y-m-d', 'now'),
-							'telpAlumni'    => $faker->phoneNumber,
+							'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
+							'tempat_lahir'   => $faker->city,
+							'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
+							'telp_alumni'    => $faker->phoneNumber,
 							'alamat'        => $faker->address,
-							'statusBekerja' => $faker->boolean,
-							'perkiraanPensiun' => $faker->year,
-							'jabatanTerakhir'  => $faker->jobTitle,
-							'aktifPNS'      => $faker->boolean,
+							'status_bekerja' => $faker->boolean,
+							'perkiraan_pensiun' => $faker->year,
+							'jabatan_terakhir'  => $faker->jobTitle,
+							'aktif_pns'      => $faker->boolean,
 						];
 						$this->modelAlumni->db->table('alumni')->insert($bindUser);;
 					}
@@ -281,8 +281,13 @@ class Home extends BaseController
 		$filter = $this->request->getVar('filter');
 
 		if (isset($filter) && !empty($cari)) {
-			$query = $model->orderBy('nama', $direction = 'ASC')->getSearch($atribut, $cari);
-			$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan ".$query->countAllResults(false)." Data";
+			if($atribut=="all"){
+				$query = $model->orderBy('nama', $direction = 'ASC')->getAlumni($cari);
+				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan ".$query->countAllResults(false)." Data";
+			}else{
+				$query = $model->orderBy('nama', $direction = 'ASC')->getSearch($atribut, $cari);
+				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan ".$query->countAllResults(false)." Data";
+			}
 		} else {
 			$query = $model->orderBy('nama', $direction = 'ASC');
 			$jumlah = "";
@@ -309,9 +314,9 @@ class Home extends BaseController
 		$model = new AlumniModel();
 		$query = $model->bukaProfile(session('username'))->getRow();
 
-		$jk = $query->jenisKelamin;
-		$sb = $query->statusBekerja;
-		$ap = $query->aktifPNS;
+		$jk = $query->jenis_kelamin;
+		$sb = $query->status_bekerja;
+		$ap = $query->aktif_pns;
 
 		if ($jk == "L") {
 			$jk = "Laki-laki";
@@ -336,15 +341,15 @@ class Home extends BaseController
 			'angkatan'      => $query->angkatan,
 			'nama'  		=> $query->nama,
 			'nim'           => $query->nim,
-			'jenisKelamin'  => $jk,
-			'tempatLahir'   => $query->tempatLahir,
-			'tanggalLahir'  => $query->tanggalLahir,
-			'telpAlumni'    => $query->telpAlumni,
+			'jenis_kelamin'  => $jk,
+			'tempat_lahir'   => $query->tempat_lahir,
+			'tanggal_lahir'  => $query->tanggal_lahir,
+			'telp_alumni'    => $query->telp_alumni,
 			'alamat'        => $query->alamat,
-			'statusBekerja'	=> $sb,
-			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
-			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
-			'aktifPNS'		=> $ap,
+			'status_bekerja'	=> $sb,
+			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
+			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
+			'aktif_pns'		=> $ap,
 		];
 		return view('pages/userInfo', $data);
 	}
@@ -364,15 +369,15 @@ class Home extends BaseController
 			'angkatan'      => $query->angkatan,
 			'nama'  		=> $query->nama,
 			'nim'           => $query->nim,
-			'jenisKelamin'  => $query->jenisKelamin,
-			'tempatLahir'   => $query->tempatLahir,
-			'tanggalLahir'  => $query->tanggalLahir,
-			'telpAlumni'    => $query->telpAlumni,
+			'jenis_kelamin'  => $query->jenis_kelamin,
+			'tempat_lahir'   => $query->tempat_lahir,
+			'tanggal_lahir'  => $query->tanggal_lahir,
+			'telp_alumni'    => $query->telp_alumni,
 			'alamat'        => $query->alamat,
-			'statusBekerja'	=> $query->statusBekerja,
-			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
-			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
-			'aktifPNS'		=> $query->aktifPNS,
+			'status_bekerja'	=> $query->status_bekerja,
+			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
+			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
+			'aktif_pns'		=> $query->aktif_pns,
 		];
 		return view('pages/update', $data);
 	}
@@ -390,23 +395,23 @@ class Home extends BaseController
 			'nama'  		=> $this->request->getVar('nama'),
 			'nim'           => session('username'),
 			'angkatan'      => $this->request->getVar('angkatan'),
-			'jenisKelamin'  => $this->request->getVar('jenisKelamin'),
-			'tempatLahir'   => $this->request->getVar('tempatLahir'),
-			'tanggalLahir'  => $this->request->getVar('tanggalLahir'),
-			'telpAlumni'    => $this->request->getVar('telpAlumni'),
+			'jenis_kelamin'  => $this->request->getVar('jenis_kelamin'),
+			'tempat_lahir'   => $this->request->getVar('tempat_lahir'),
+			'tanggal_lahir'  => $this->request->getVar('tanggal_lahir'),
+			'telp_alumni'    => $this->request->getVar('telp_alumni'),
 			'alamat'        => $this->request->getVar('alamat'),
-			'statusBekerja' => $this->request->getVar('statusBekerja'),
-			'perkiraanPensiun' => $this->request->getVar('perkiraanPensiun'),
-			'jabatanTerakhir'  => $this->request->getVar('jabatanTerakhir'),
-			'aktifPNS'      => $this->request->getVar('aktifPNS'),
+			'status_bekerja' => $this->request->getVar('status_bekerja'),
+			'perkiraan_pensiun' => $this->request->getVar('perkiraan_pensiun'),
+			'jabatan_terakhir'  => $this->request->getVar('jabatan_terakhir'),
+			'aktif_pns'      => $this->request->getVar('aktif_pns'),
 		];
 
 		$this->modelAlumni->replace($data);
 
 		$query = $this->modelAlumni->bukaProfile(session('username'))->getRow();
-		$jk = $query->jenisKelamin;
-		$sb = $query->statusBekerja;
-		$ap = $query->aktifPNS;
+		$jk = $query->jenis_kelamin;
+		$sb = $query->status_bekerja;
+		$ap = $query->aktif_pns;
 
 		if ($jk == "L") {
 			$jk = "Laki-laki";
@@ -430,15 +435,15 @@ class Home extends BaseController
 			'nama'  		=> $query->nama,
 			'nim'           => $query->nim,
 			'angkatan'      => $query->angkatan,
-			'jenisKelamin'  => $jk,
-			'tempatLahir'   => $query->tempatLahir,
-			'tanggalLahir'  => $query->tanggalLahir,
-			'telpAlumni'    => $query->telpAlumni,
+			'jenis_kelamin'  => $jk,
+			'tempat_lahir'   => $query->tempat_lahir,
+			'tanggal_lahir'  => $query->tanggal_lahir,
+			'telp_alumni'    => $query->telp_alumni,
 			'alamat'        => $query->alamat,
-			'statusBekerja'	=> $sb,
-			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
-			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
-			'aktifPNS'		=> $ap,
+			'status_bekerja'	=> $sb,
+			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
+			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
+			'aktif_pns'		=> $ap,
 		];
 
 		return view('pages/userInfo', $require);
@@ -451,9 +456,9 @@ class Home extends BaseController
 		$model = new AlumniModel();
 		$kunci = $this->request->getVar('nim');
 		$query = $model->bukaProfile($kunci)->getRow();
-		$jk = $query->jenisKelamin;
-		$sb = $query->statusBekerja;
-		$ap = $query->aktifPNS;
+		$jk = $query->jenis_kelamin;
+		$sb = $query->status_bekerja;
+		$ap = $query->aktif_pns;
 
 		if ($jk == 'P') {
 			$jk = "Perempuan";
@@ -478,15 +483,15 @@ class Home extends BaseController
 			'nama'  		=> $query->nama,
 			'nim'           => $query->nim,
 			'angkatan'      => $query->angkatan,
-			'jenisKelamin'  => $jk,
-			'tempatLahir'   => $query->tempatLahir,
-			'tanggalLahir'  => $query->tanggalLahir,
-			'telpAlumni'    => $query->telpAlumni,
+			'jenis_kelamin'  => $jk,
+			'tempat_lahir'   => $query->tempat_lahir,
+			'tanggal_lahir'  => $query->tanggal_lahir,
+			'telp_alumni'    => $query->telp_alumni,
 			'alamat'        => $query->alamat,
-			'statusBekerja'	=> $sb,
-			'perkiraanPensiun' 	=> $query->perkiraanPensiun,
-			'jabatanTerakhir' 	=> $query->jabatanTerakhir,
-			'aktifPNS'		=> $ap,
+			'status_bekerja'	=> $sb,
+			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
+			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
+			'aktif_pns'		=> $ap,
 		];
 		return view('pages/profileAlumni', $data);
 	}

@@ -12,15 +12,15 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                                 'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
                                 'nama'          => $faker->name,
                                 'nim'           => $faker->randomNumber($nbDigits = 9, $strict = false),
-                                'jenisKelamin'  => $faker->randomElement($array = array('L', 'P')),
-                                'tempatLahir'   => $faker->city,
-                                'tanggalLahir'  => $faker->date($format = 'Y-m-d', $max = 'now'),
-                                'telpAlumni'    => $faker->phoneNumber,
+                                'jenis_kelamin'  => $faker->randomElement($array = array('L', 'P')),
+                                'tempat_lahir'   => $faker->city,
+                                'tanggal_lahir'  => $faker->date($format = 'Y-m-d', $max = 'now'),
+                                'telp_alumni'    => $faker->phoneNumber,
                                 'alamat'        => $faker->address,
-                                'statusBekerja' => $faker->boolean,
-                                'perkiraanPensiun' => $faker->year,
-                                'jabatanTerakhir'  => $faker->jobTitle,
-                                'aktifPNS'      => $faker->boolean
+                                'status_bekerja' => $faker->boolean,
+                                'perkiraan_pensiun' => $faker->year,
+                                'jabatan_terakhir'  => $faker->jobTitle,
+                                'aktif_pns'      => $faker->boolean
                         ];
                         $this->db->table('alumni')->insert($data);
                 }

@@ -58,33 +58,33 @@
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="jenisKelamin" class="col-sm-5 col-xs-6 tital ">Jenis kelamin(L/P)</label>
+                                    <label for="jenis_kelamin" class="col-sm-5 col-xs-6 tital ">Jenis kelamin(L/P)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="jenisKelamin" name="jenisKelamin" autofocus value="<?=$jenisKelamin;?>">
+                                        : <input type="text" id="jenis_kelamin" name="jenis_kelamin" autofocus value="<?=$jenis_kelamin;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="tempatLahir" class="col-sm-5 col-xs-6 tital ">Tempat lahir(50)</label>
+                                    <label for="tempat_lahir" class="col-sm-5 col-xs-6 tital ">Tempat lahir(50)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="tempatLahir" name="tempatLahir" autofocus value="<?=$tempatLahir;?>">
+                                        : <input type="text" id="tempat_lahir" name="tempat_lahir" autofocus value="<?=$tempat_lahir;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="tanggalLahir" class="col-sm-5 col-xs-6 tital ">Tanggal lahir(yyyy-mm-dd)</label>
+                                    <label for="tanggal_lahir" class="col-sm-5 col-xs-6 tital ">Tanggal lahir(yyyy-mm-dd)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="tanggalLahir" name="tanggalLahir" autofocus value="<?=$tanggalLahir;?>">
+                                        : <input type="text" id="tanggal_lahir" name="tanggal_lahir" autofocus value="<?=$tanggal_lahir;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="telpAlumni" class="col-sm-5 col-xs-6 tital ">Nomor telepon(20)</label>
+                                    <label for="telp_alumni" class="col-sm-5 col-xs-6 tital ">Nomor telepon(20)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="telpAlumni" name="telpAlumni" autofocus value="<?=$telpAlumni;?>">
+                                        : <input type="text" id="telp_alumni" name="telp_alumni" autofocus value="<?=$telp_alumni;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
@@ -98,33 +98,33 @@
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="statusBekerja" class="col-sm-5 col-xs-6 tital ">Status bekerja(0/1)</label>
+                                    <label for="status_bekerja" class="col-sm-5 col-xs-6 tital ">Status bekerja(0/1)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="statusBekerja" name="statusBekerja" autofocus value="<?=$statusBekerja;?>">
+                                        : <input type="text" id="status_bekerja" name="status_bekerja" autofocus value="<?=$status_bekerja;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="perkiraanPensiun" class="col-sm-5 col-xs-6 tital ">Tahun pensiun(yyyy)</label>
+                                    <label for="perkiraan_pensiun" class="col-sm-5 col-xs-6 tital ">Tahun pensiun(yyyy)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="perkiraanPensiun" name="perkiraanPensiun" autofocus value="<?=$perkiraanPensiun;?>">
+                                        : <input type="text" id="perkiraan_pensiun" name="perkiraan_pensiun" autofocus value="<?=$perkiraan_pensiun;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="jabatanTerakhir" class="col-sm-5 col-xs-6 tital ">Jabatan terkhir(50)</label>
+                                    <label for="jabatan_terakhir" class="col-sm-5 col-xs-6 tital ">Jabatan terkhir(50)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="jabatanTerakhir" name="jabatanTerakhir" autofocus value="<?=$jabatanTerakhir;?>">
+                                        : <input type="text" id="jabatan_terakhir" name="jabatan_terakhir" autofocus value="<?=$jabatan_terakhir;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
                                     <div class="bot-border"></div>
 
-                                    <label for="aktifPNS" class="col-sm-5 col-xs-6 tital ">Status PNS(0/1)</label>
+                                    <label for="aktif_pns" class="col-sm-5 col-xs-6 tital ">Status PNS(0/1)</label>
                                     <div class="col-sm-7 col-xs-6">
-                                        : <input type="text" id="aktifPNS" name="aktifPNS" autofocus value="<?=$aktifPNS;?>">
+                                        : <input type="text" id="aktif_pns" name="aktif_pns" autofocus value="<?=$aktif_pns;?>">
                                     </div>
 
                                     <div class="clearfix"></div>
