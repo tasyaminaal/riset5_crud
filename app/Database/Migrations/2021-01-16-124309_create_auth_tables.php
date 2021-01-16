@@ -36,6 +36,8 @@ class CreateAuthTables extends Migration
         $this->forge->addUniqueKey('email');
         $this->forge->addUniqueKey('username');
 
+        $this->forge->addForeignKey('nim', 'alumni', 'nim', 'CASCADE', 'CASCADE');
+
         $this->forge->createTable('users', true);
 
         /*
