@@ -281,7 +281,7 @@ class Home extends BaseController
 		$filter = $this->request->getVar('filter');
 
 		if (isset($filter) && !empty($cari)) {
-			if($atribut=="all"){
+			if($atribut==""){
 				$query = $model->orderBy('nama', $direction = 'ASC')->getAlumni($cari);
 				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan ".$query->countAllResults(false)." Data";
 			}else{

@@ -5,12 +5,10 @@
 1. setting env nya jadi development, serta atur database di env. rename menjadi".env"
 2. composer install
 3. unzip myth-auth.rar di .../app/ThirdParty
-4. php spark migrate -n Alumni_DB
-5. php spark migrate -all
-6. php spark migrate -n RBAC
-7. php spark db:seed AlumniSeeder
-8. php spark db:seed LoginManualSeeder //masih gabisa,, belum penyesuaian
-9. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
+4. php spark migrate
+5. php spark db:seed AlumniSeeder //cuman buat ngecek search engine
+6. php spark db:seed LoginManualSeeder //masih gabisa,, belum penyesuaian
+7. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
 ## Catatan :
 
