@@ -7,15 +7,15 @@
 3. unzip myth-auth.rar di .../app/ThirdParty
 4. php spark migrate
 5. php spark db:seed AlumniSeeder //cuman buat ngecek search engine
-6. php spark db:seed LoginManualSeeder //masih gabisa,, belum penyesuaian
+6. php spark db:seed LoginManualSeeder //cuma buat nyoba login manual
 7. php spark db:seed RBACSeeder //cuman ngecek bisa ga datanya dimasukin
 8. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
 ## Catatan :
 
-1. Login Sipadu, BPS, manual belum dibenerin
-2. Seeder belum dibenerin juga
-3. Fitur Search perlu diganti dan search bar dipindah ke navigator
+1. Login Sipadu, BPS, masih kurang
+2. Fitur Search perlu diganti dan search bar dipindah ke navigator
+3. Login manual bisa coba pake (username: Dummy, password: pororodeh123
 
 ---
 
