@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class AuthModel extends Model
 {
-    protected $table = 'auth';
+    protected $table = 'users';
     protected $allowedFields = ['id', 'username', 'nama', 'role'];
 
 
@@ -20,14 +20,9 @@ class AuthModel extends Model
         return $this->db->table('auth')->select('*')->countAllResults();
     }
 
-    public function hapusUser($username)
-    {
-        $this->db->table('auth')->delete(['username' => $username]);
-    }
-
     public function insertUser($data)
     {
-        $this->db->table('auth')->insert($data);
+        $this->builder()->insert($data);
     }
 
     public function getUserByNama($nama)

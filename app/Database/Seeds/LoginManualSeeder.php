@@ -3,22 +3,24 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
-use CodeIgniter\I18n\Time;
 
 class LoginManualSeeder extends Seeder
 {
 	public function run()
 	{
+		$now = date("Y-m-d H:i:s");
 		$data = [
-			'email'				=> 'elanuzul4@gmail.com',
-			'username'			=> '421044167',
-			//'nim'				=> 
+			'email'				=> 'dummy@stis.ac.id',
+			'username'			=> 'Dummy',
+			'nim'				=> '221810160',
+			'fullname'			=> 'Dummy_dummy',
 			'password_hash'		=> '$2y$10$yLFu3bK0s5cHqd1VLT6Eh.GjA3H2GJzwqb6o/gjrhKXTWGkMsh3IS',
-			'reset_at'			=> Time::now(),
+			//password pororodeh123
+			'reset_at'			=> $now,
 			'active'			=> 1,
 			'force_pass_reset'	=> 0,
-			'created_at'		=> Time::now(),
-			'updated_at'		=> Time::now()
+			'created_at'		=> $now,
+			'updated_at'		=> $now
 		];
 		$this->db->table('users')->insert($data);
 	}
