@@ -45,8 +45,8 @@ class Auth extends BaseController
 		]);
 
 		// logout sipadu
-		if (session()->has('id_user')) {
-			session()->remove(['id_user', 'username', 'nama', 'role']);
+		if (session()->has('nim')) {
+			session()->remove(['nim', 'nama', 'role']);
 			session()->setFlashdata('pesan', 'Logout berhasil!');
 			session()->setFlashdata('warna', 'success');
 
@@ -68,7 +68,7 @@ class Auth extends BaseController
 
 	public function sipadu()	//masuk()
 	{
-		if (session()->has('id_user'))
+		if (session()->has('nim'))
 			return redirect()->back();
 
 		$query = http_build_query([

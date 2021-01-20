@@ -6,13 +6,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <?php if (!session()->has('id_user') && !logged_in()) : ?>
+        <?php if (!session()->has('nim') && !logged_in()) : ?>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/login">Login</a>
           </li>
         <?php endif; ?>
 
-        <?php if (session()->has('id_user')) : ?>
+        <?php if (session()->has('nim')) : ?>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/home/profile">Profile</a>
           </li>
