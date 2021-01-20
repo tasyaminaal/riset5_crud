@@ -8,7 +8,8 @@
 4. php spark migrate
 5. php spark db:seed AlumniSeeder //cuman buat ngecek search engine
 6. php spark db:seed LoginManualSeeder //masih gabisa,, belum penyesuaian
-7. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
+7. php spark db:seed RBACSeeder //cuman ngecek bisa ga datanya dimasukin
+8. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
 ## Catatan :
 

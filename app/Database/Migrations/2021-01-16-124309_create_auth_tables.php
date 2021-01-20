@@ -15,10 +15,10 @@ class CreateAuthTables extends Migration
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'email'            => ['type' => 'varchar', 'constraint' => 255],
             'username'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true],
-            'nim'              => ['type' => 'varchar', 'constraint' => 9],
+            'nim'              => ['type' => 'varchar', 'constraint' => 9, 'null' =>true],
             'fullname'         => ['type' => 'varchar', 'constraint' => 255],
             'user_image'       => ['type' => 'varchar', 'constraint' => 255],
-            'password_hash'    => ['type' => 'varchar', 'constraint' => 255],
+            'password_hash'    => ['type' => 'varchar', 'constraint' => 255, 'null' =>true],
             'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'reset_at'         => ['type' => 'datetime', 'null' => true],
             'reset_expires'    => ['type' => 'datetime', 'null' => true],
@@ -36,7 +36,7 @@ class CreateAuthTables extends Migration
         $this->forge->addUniqueKey('email');
         $this->forge->addUniqueKey('username');
 
-        $this->forge->addForeignKey('nim', 'alumni', 'nim', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('nim', 'alumni', 'nim', 'SET NULL', 'CASCADE');
 
         $this->forge->createTable('users', true);
 
