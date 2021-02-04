@@ -83,8 +83,8 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
-!vendor/myth/
+vendor/*
+!vendor/myth
 
 #-------------------------
 # IDE / Development Files
