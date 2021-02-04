@@ -390,13 +390,13 @@ class Home extends BaseController
 
 	public function daftar()
 	{
-		return view('Login/daftar.php');
+		return view('login/daftar.php');
 	}
 
-	public function resetPass()
-	{
-		return view('Login/resetpass.php');
-	}
+	// public function resetPass()
+	// {
+	// 	return view('login/resetpass.php');
+	// }
 
 	public function searchAndFilter()
 	{
