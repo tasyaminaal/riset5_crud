@@ -16,16 +16,16 @@
             </div>
             <div class="flex sm:mx-4 md:mx-8 mx-8 my-1">
                 <div class="w-1/4"></div>
-                <p class="w-3/4 text-xs text-red-500" id="msg-email">Email yang anda masukkan tidak cocok</p>
+                <p class="w-3/4 text-xs text-red-500 <?php if (!session('errors.login')) : ?>hidden<?php endif; ?>" id="msg-email">Email yang anda masukkan tidak cocok</p>
             </div>
             <div class="flex sm:mx-4 md:mx-8 mx-8 my-1 h-10 relative">
                 <label for="pass" class="w-1/4 text-primary font-medium flex items-center sm:text-sm md:text-base">Kata Sandi</label>
-                <input type="password" name="password" class="input pl-2 w-3/4 border-2 rounded-lg border-gray-400 text-sm outline-none text-gray-400" id="pass" placeholder="Ketik kata sandi di sini">
+                <input type="password" name="password" class="input pl-2 w-3/4 border-2 rounded-lg border-gray-400 text-sm outline-none text-gray-400" id="password" placeholder="Ketik kata sandi di sini">
                 <i class="eyes fas fa-eye-slash absolute right-0 transform translate-y-3 -translate-x-3 cursor-pointer text-primary"></i>
             </div>
             <div class="flex sm:mx-4 md:mx-8 mx-8">
                 <div class="w-1/4"></div>
-                <p class="text-xs text-red-500" id="msg-pass">Kata sandi yang anda masukkan kurang tepat</p>
+                <p class="text-xs text-red-500 <?php if (!session('errors.password')) : ?>hidden<?php endif; ?>" id="msg-pass">Kata sandi yang anda masukkan kurang tepat</p>
             </div>
 
             <div class="flex sm:mx-4 md:mx-8 mx-8 my-3">

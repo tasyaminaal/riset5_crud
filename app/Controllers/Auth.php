@@ -40,8 +40,8 @@ class Auth extends BaseController
 	public function logout()
 	{
 		// logout sipadu dan manual
-		if (session()->has('id_users')) {
-			session()->remove(['id_users', 'nim', 'nama', 'role']);
+		if (session()->has('id_user')) {
+			session()->remove(['id_user', 'nim', 'nama', 'role']);
 			session()->setFlashdata('pesan', 'Logout berhasil!');
 			session()->setFlashdata('warna', 'success');
 
@@ -68,7 +68,7 @@ class Auth extends BaseController
 
 	public function sipadu()	//masuk()
 	{
-		if (session()->has('id_users'))
+		if (session()->has('id_user'))
 			return redirect()->back();
 
 		$query = http_build_query([
@@ -176,13 +176,13 @@ class Auth extends BaseController
 
 				$user = $this->modelAuth->getUserByUsername($hasil['profile']['nim']);
 				session()->set([
-					'id_users' => $user['id'],
+					'id_user' => $user['id'],
 					'nim' => $user['nim'],
 					'nama' => $user['fullname'],
 				]);
 
 				$ipAddress = Services::request()->getIPAddress();
-				$this->recordLoginAttempt(session('nim') . '@stis.ac.id', $ipAddress, session('id_users') ?? null, true);	//insert ke tabel auth_login untuk log login
+				$this->recordLoginAttempt(session('nim') . '@stis.ac.id', $ipAddress, session('id_user') ?? null, true);	//insert ke tabel auth_login untuk log login
 			} else {	//apabila alumni memakai akun dosen
 				echo '<script>alert(\'Silahkan gunakan akun Sipadu Mahasiswa atau akun BPS, atau hubungi admin website\')</script>';
 				die();

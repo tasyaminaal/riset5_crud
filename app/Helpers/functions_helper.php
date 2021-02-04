@@ -101,8 +101,8 @@ function role_user()
     $init = model('App\Models\admin_model');
 
     if (!$authenticate->check()) {
-        if (!session()->has('id_users')) return [];
-        $user_id = session()->get('id_users');
+        if (!session()->has('id_user')) return [];
+        $user_id = session()->get('id_user');
     } else {
         $user_id = $authenticate->id();
     }

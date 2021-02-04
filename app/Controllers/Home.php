@@ -109,12 +109,12 @@ class Home extends BaseController
 
 		// 		$user = $this->modelAuth->getUserByUsername($hasil['profile']['nim']);
 		// 		session()->set([	//set session (informasi identitas) dari tabel users
-		// 			'id_users' => $user['id'],
+		// 			'id_user' => $user['id'],
 		// 			'nim' => $user['nim'],
 		// 			'nama' => $user['fullname']
 		// 		]);
 
-		// 		$query = $this->roleModel->getRole(session('id_users'));
+		// 		$query = $this->roleModel->getRole(session('id_user'));
 		// 		$role = array();
 
 		// 		if ($query != null) {
@@ -127,10 +127,10 @@ class Home extends BaseController
 		// 		} else {
 		// 			$data = [
 		// 				'group_id'	=> 2,
-		// 				'user_id'	=> session('id_users')
+		// 				'user_id'	=> session('id_user')
 		// 			];
 		// 			$this->roleModel->insertRole($data);
-		// 			$query = $this->roleModel->getRole(session('id_users'));
+		// 			$query = $this->roleModel->getRole(session('id_user'));
 		// 			foreach ($query as $arr) {
 		// 				array_push($role, $arr->group_id);
 		// 			}
@@ -140,7 +140,7 @@ class Home extends BaseController
 		// 		}
 
 		// 		$ipAddress = Services::request()->getIPAddress();
-		// 		$this->recordLoginAttempt(session('nim') . '@stis.ac.id', $ipAddress, session('id_users') ?? null, true);	//insert ke tabel auth_login untuk log login
+		// 		$this->recordLoginAttempt(session('nim') . '@stis.ac.id', $ipAddress, session('id_user') ?? null, true);	//insert ke tabel auth_login untuk log login
 		// 	} else {	//apabila alumni memakai akun dosen
 		// 		/* KATANYA LANGSUNG ALERT AJA */
 
@@ -296,12 +296,12 @@ class Home extends BaseController
 					$hasil = $this->modelAuth->getUserByUsername($user->getUsername());
 
 					session()->set([	//set session (informasi identitas) dari tabel users
-						'id_users' => $hasil['id'],
+						'id_user' => $hasil['id'],
 						'nim' => $hasil['nim'],
 						'nama' => $hasil['fullname']
 					]);
 
-					$query = $this->roleModel->getRole(session('id_users'));
+					$query = $this->roleModel->getRole(session('id_user'));
 					$role = array();
 
 					if ($query != null) {
@@ -314,10 +314,10 @@ class Home extends BaseController
 					} else {
 						$data = [
 							'group_id'	=> 2,
-							'user_id'	=> session('id_users')
+							'user_id'	=> session('id_user')
 						];
 						$this->roleModel->insertRole($data);
-						$query = $this->roleModel->getRole(session('id_users'));
+						$query = $this->roleModel->getRole(session('id_user'));
 						foreach ($query as $arr) {
 							array_push($role, $arr->group_id);
 						}
@@ -327,7 +327,7 @@ class Home extends BaseController
 					}
 
 					$ipAddress = Services::request()->getIPAddress();
-					$this->recordLoginAttempt($hasil['email'], $ipAddress, session('id_users') ?? null, true);
+					$this->recordLoginAttempt($hasil['email'], $ipAddress, session('id_user') ?? null, true);
 
 					setcookie('login', 'yes', time() + 60, $_SERVER['SERVER_NAME']);
 
@@ -361,7 +361,7 @@ class Home extends BaseController
 			}
 		}
 
-		if (session()->has('id_users')) {
+		if (session()->has('id_user')) {
 			$data = [
 				'judulHalaman' 	=> 'Beranda WEBSIA',
 				'login'			=> 'sudah'
@@ -483,7 +483,7 @@ class Home extends BaseController
 
 	public function profile()
 	{
-		if (!session()->has('id_users') && !logged_in())
+		if (!session()->has('id_user') && !logged_in())
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -533,7 +533,7 @@ class Home extends BaseController
 
 	public function update()
 	{
-		if (!session()->has('id_users'))
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -561,7 +561,7 @@ class Home extends BaseController
 
 	public function updating()
 	{
-		if (!session()->has('id_users'))
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$this->modelAlumni = new AlumniModel();
