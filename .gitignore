@@ -84,7 +84,7 @@ phpunit
 # Composer
 #-------------------------
 vendor/*
-!vendor/myth
+!vendor/*.rar
 
 #-------------------------
 # IDE / Development Files
