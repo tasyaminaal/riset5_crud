@@ -5,15 +5,14 @@
 1. setting env nya jadi development, serta atur database di env. rename menjadi".env"
 2. composer install
 3. unzip myth.rar di .../vendor (yes all to replace all)
-4. unzip
+4. unzip public.rar di .../public (gk tau kenapa error di tampilan admin kalo gk dizip)
 5. import sql nya (migration nya masih error di dashboard admin)
 6. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
 ## Catatan :
 
-1. Login Sipadu, BPS, masih kurang
-2. Fitur Search perlu diganti dan search bar dipindah ke navigator
-3. Login manual bisa coba pake (username: Dummy, password: pororodeh123
+1. Session angkatan belum ditambahkan
+2. Login manual bisa coba pake (email: dummy@stis.ac.id, password: pororodeh123)
 
 ---
 
