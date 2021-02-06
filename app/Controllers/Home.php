@@ -420,8 +420,52 @@ class Home extends BaseController
 
 	public function searchAndFilter()
 	{
-		$data['judulHalaman'] = 'Search And Filter';
-		return view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
+		$pager = \Config\Services::pager();
+		$model = new \App\Models\AlumniModel;
+		$minAng = $this->request->getVar('min');
+		$maxAng = $this->request->getVar('max');
+		if($minAng > $maxAng){
+			$temp = $minAng;
+			$minAng = $maxAng;
+			$maxAng = $temp;
+		}
+		if($minAng!=NULL && $minAng>=$model->getMinAngkatan()[0]->angkatan ){
+			$min_angkatan  =$minAng;
+		} else {
+			$min_angkatan  = $model->getMinAngkatan()[0]->angkatan;
+		}
+		if($maxAng!=NULL && $maxAng<=$model->getMaxAngkatan()[0]->angkatan){
+			$max_angkatan  = $maxAng;
+		} else {
+			$max_angkatan  = $model->getMaxAngkatan()[0]->angkatan;
+		}
+		$cari = $this->request->getVar('cari');
+        $filter = $this->request->getVar('filter');
+
+		if (isset($filter)) {
+                $query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari,$min_angkatan,$max_angkatan);
+                if(!empty($cari)){
+                    $jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
+                } else {
+                    $jumlah = "Pencarian berhasil";
+                }
+		} else {
+			$query = $model->orderBy('nama', $direction = 'ASC');
+			$jumlah = "Pencarian belum dilakukan";
+		}
+
+		$data = [
+			'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
+			'alumni' => $query->paginate(9),
+			'pager' => $model->pager,
+			'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
+            'jumlah' => $jumlah,
+			'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
+			'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
+		];
+
+		echo view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
+	
 	}
 
 	public function profil()
@@ -463,41 +507,41 @@ class Home extends BaseController
 		return view('cobaWebsia/map');
 	}
 
-	public function search() //pencarian
-	{
-		// nyoba faker,, gakepake di controller ini
-		// $faker = \Faker\Factory::create('id_ID');
-		// dd($faker->phoneNumber);
+	// public function search() //pencarian
+	// {
+	// 	// nyoba faker,, gakepake di controller ini
+	// 	// $faker = \Faker\Factory::create('id_ID');
+	// 	// dd($faker->phoneNumber);
 
-		$pager = \Config\Services::pager();
-		$model = new \App\Models\AlumniModel;
-		$atribut  = $this->request->getVar('atribut');
-		$cari = $this->request->getVar('cari');
-		$filter = $this->request->getVar('filter');
+	// 	$pager = \Config\Services::pager();
+	// 	$model = new \App\Models\AlumniModel;
+	// 	$atribut  = $this->request->getVar('atribut');
+	// 	$cari = $this->request->getVar('cari');
+	// 	$filter = $this->request->getVar('filter');
 
-		if (isset($filter) && !empty($cari)) {
-			if ($atribut == "") {
-				$query = $model->orderBy('nama', $direction = 'ASC')->getAlumni($cari);
-				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
-			} else {
-				$query = $model->orderBy('nama', $direction = 'ASC')->getSearch($atribut, $cari);
-				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
-			}
-		} else {
-			$query = $model->orderBy('nama', $direction = 'ASC');
-			$jumlah = "";
-		}
+	// 	if (isset($filter) && !empty($cari)) {
+	// 		if ($atribut == "") {
+	// 			$query = $model->orderBy('nama', $direction = 'ASC')->getAlumni($cari);
+	// 			$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
+	// 		} else {
+	// 			$query = $model->orderBy('nama', $direction = 'ASC')->getSearch($atribut, $cari);
+	// 			$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
+	// 		}
+	// 	} else {
+	// 		$query = $model->orderBy('nama', $direction = 'ASC');
+	// 		$jumlah = "";
+	// 	}
 
-		$data = [
-			'title' => 'Pencarian Alumni | Website Riset 5',
-			'alumni' => $query->paginate(20),
-			'pager' => $model->pager,
-			'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
-			'jumlah' => $jumlah,
-		];
+	// 	$data = [
+	// 		'title' => 'Pencarian Alumni | Website Riset 5',
+	// 		'alumni' => $query->paginate(20),
+	// 		'pager' => $model->pager,
+	// 		'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
+	// 		'jumlah' => $jumlah,
+	// 	];
 
-		echo view('pages/search', $data);
-	}
+	// 	echo view('pages/search', $data);
+	// }
 
 	//--------------------------------------------------------------------
 

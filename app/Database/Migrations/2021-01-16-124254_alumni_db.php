@@ -69,8 +69,10 @@ class AlumniDB extends Migration
         // tabel tempat_kerja
         $this->forge->addField([
             'id_tempat_kerja' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'auto_increment' => true,
             ],
             'nama_instansi' => [
                 'type' => 'VARCHAR',
@@ -106,8 +108,9 @@ class AlumniDB extends Migration
                 'constraint' => '12',
             ],
             'id_tempat_kerja' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
             ],
         ]);
 
@@ -124,8 +127,10 @@ class AlumniDB extends Migration
         // tabel prestasi
         $this->forge->addField([
             'id_prestasi' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'auto_increment' => true,
             ],
             'nama_prestasi' => [
                 'type' => 'VARCHAR',
@@ -153,8 +158,10 @@ class AlumniDB extends Migration
         // tabel publikasi
         $this->forge->addField([
             'id_publikasi' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'auto_increment' => true,
             ],
             'topik' => [
                 'type' => 'VARCHAR',
@@ -189,8 +196,9 @@ class AlumniDB extends Migration
                 'constraint' => '12',
             ],
             'id_publikasi' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
             ],
         ]);
 
@@ -211,8 +219,9 @@ class AlumniDB extends Migration
                 'constraint' => '100',
             ],
             'id_publikasi' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
             ],
         ]);
 
@@ -228,8 +237,10 @@ class AlumniDB extends Migration
         // tabel pendidikan
         $this->forge->addField([
             'id_pendidikan' => [
-                'type' => 'BINARY',
-                'constraint' => '16',
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
+                'auto_increment' => true,
             ],
             'jenjang' => [
                 'type' => 'VARCHAR',

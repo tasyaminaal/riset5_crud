@@ -1,7 +1,13 @@
 <?= $this->extend('websia/layoutWebsia/templateBerandaLogin.php'); ?>
 
 <?= $this->section('content'); ?>
+<div class="flex md:flex-row flex-col justify-around lg:px-20 md:px-8 px-2 my-8">
+    <form method="GET" action="/Home/SearchAndFilter" class="form-group">
+    <input type="text" name="cari" placeholder="Masukkan kata kunci" >
+	<button class="btn btn-outline-secondary" type="Submit" name="filter" value="Go" >GO</button>
+</div>
 <!--FILTER -->
+
 <div class="flex md:flex-row flex-col justify-around lg:px-20 md:px-8 px-2 my-8">
     <div class="flex flex-col mb-4 md:mb-0 ">
 
@@ -13,21 +19,14 @@
         <!-- akhir checkbox "Filter Alumni" -->
 
         <!-- awal select "Filter Berdasarkan" -->
+        <!-- tampilan filternya kurang puas -->
         <div class="flex flex-col hidden md:mt-4 mt-2 mx-auto" id="pilihanFilterAlumni">
-            <button class="flex justify-between w-52 py-1 px-3 text-gray-500 text-sm font-paragraph font-medium border-2 border-gray-500 rounded-lg focus:outline-none focus:border-black focus:text-black" id="dropdownFilterAlumni">
-                <div id="filterBerdasarkan"> Filter Berdasarkan</div>
-                <svg class=" w-4 h-4 my-auto font-medium text-gray-500" id="tombolUpFilterAlumni" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-                <svg class="w-4 h-4 my-auto font-medium text-gray-500 hidden" id="tombolDownFilterAlumni" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-                </svg>
-            </button>
-            <div class="flex flex-col font-heading font-semibold mt-2 rounded-lg border border-gray-500 hidden" id="listFilterAlumni">
-                <div class="flex px-3 py-2 border-b border-gray-300 cursor-pointer hover:bg-gray-300 text-sm" id="daftarFilter">Nama</div>
-                <div class="px-3 py-2 border-b border-gray-300 cursor-pointer hover:bg-gray-300 text-sm" id="daftarFilter">NIM</div>
-                <div class="px-3 py-2 cursor-pointer hover:bg-gray-300 text-sm" id="daftarFilter">Angkatan</div>
-            </div>
+        <div class="input-group">
+  <span class="input-group-text">Angkatan</span>
+  <input type="text" class="form-control" name="min" placeholder="min <?= $min_angkatan ?>">
+  <input type="text" class="form-control" name="max" placeholder="max <?= $max_angkatan ?>">
+</div>
+
         </div>
         <!-- awal select "Filter Berdasarkan" -->
 
@@ -118,13 +117,16 @@
 
     <!-- awal jumlah hasil pencarian alumni  -->
     <div class="text-white mb-6 font-paragraph font-extralightt text-sm text-center">
-        Sekitar 28.899 hasil pencarian alumni
+    <!-- jumlah pencarian -->
+    <?= $jumlah; ?>
     </div>
     <!-- akhir jumlah hasil pencarian alumni  -->
 
     <div class="w-full grid md:grid-cols-3 grid-cols-2 gap-x-2 gap-y-4">
         <!-- awal card hasil pencarian alumni -->
-        <?php for ($x = 0; $x < 9; $x++) : ?>
+        <!-- Hasil pencariannya bisa diperbaiki ndak? -->
+        <?php
+				foreach ($alumni as $row) : ?>
             <div class="flex justify-center">
                 <div class="rounded-xl bg-white px-4 py-3 flex md:flex-row flex-col justify-between md:gap-x-2">
                     <div class="flex items-center">
@@ -132,16 +134,22 @@
                     </div>
                     <div class="flex items-center">
                         <div>
-                            <h2 class="font-heading text-primary lg:text-lg md:text-base text-sm font-heading font-semibold">Nama Lengkap</h2>
-                            <h3 class="font-paragraph text-primary md:text-sm text-xs font-paragraph">Atribut</h3>
+                            <h2 class="font-heading text-primary lg:text-lg md:text-base text-sm font-heading font-semibold"><?= $row['nama']; ?></h2>
+                            <h3 class="font-paragraph text-primary md:text-sm text-xs font-paragraph"><?= $row['nim']; ?></h3>
+                            <h3 class="font-paragraph text-primary md:text-sm text-xs font-paragraph"><?= $row['angkatan']; ?></h3>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endfor; ?>
+            <?php
+				endforeach; ?>
         <!-- akhir card hasil pencarian alumni -->
-
     </div>
+    <!-- Awal pagination -->
+    <!-- cara membuat paginition gimana ya? -->
+    <?= $pager->Links() ?>
+    <!-- Akhir pagination -->
+                
 
     <!-- awal tulisan "Selengkapnya" di hasil pencarian -->
     <div class="flex justify-end mt-6">
@@ -149,7 +157,7 @@
             Selengkapnya
             <img src="/img/right-off.png" class="md:w-4 md:h-4 w-3 h-3" alt="">
         </div>
-    </div>
+    </div>  
     <!-- akhir tulisan "Selengkapnya" di hasil pencarian -->
 </div>
 

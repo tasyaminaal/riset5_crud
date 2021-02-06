@@ -1,4 +1,6 @@
-<?php namespace App\Database\Migrations;
+<?php
+
+namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -91,7 +93,7 @@ class RBAC extends Migration
 		$this->forge->createTable('crud');
 
 		//================================================================== 
-        // tabel submenu_access
+		// tabel submenu_access
 		$this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'menu_access_id'          => [
@@ -121,7 +123,7 @@ class RBAC extends Migration
 		$this->forge->createTable('submenu_access');
 
 		//================================================================== 
-        // tabel groups_access
+		// tabel groups_access
 		$this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'access_group_id'          => [
@@ -134,6 +136,7 @@ class RBAC extends Migration
 				'type'           => 'INT',
 				'constraint'     => 11,
 				'unsigned'       => true,
+				'null' 			 => true,
 			],
 			'menu_access_id'          => [
 				'type'           => 'INT',
@@ -169,7 +172,7 @@ class RBAC extends Migration
 		$this->forge->addKey('target_scope_id', true);
 		//create table
 		$this->forge->createTable('table_scope');
-		
+
 		//================================================================== 
 		// tabel activity_log
 		$this->db->enableForeignKeyChecks();
@@ -205,7 +208,7 @@ class RBAC extends Migration
 				'constraint'     => '255',
 			],
 			'status'       => [
-				'type'           => 'VARCHAR',
+				'type'           => 'INT',
 				'constraint'     => '1',
 			],
 		]);
