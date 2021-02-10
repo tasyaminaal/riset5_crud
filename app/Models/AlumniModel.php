@@ -24,10 +24,10 @@ class AlumniModel extends Model
         return $this->table('alumni')->like($field, $search);
     }
 
-    public function getAlumniFilter($cari,$min_angkatan,$max_angkatan)
+    public function getAlumniFilter($cari, $min_angkatan, $max_angkatan)
     {
         $query = $this->table('alumni');
-        if(isset($cari) && !empty($cari)){
+        if (isset($cari) && !empty($cari)) {
             // $subquery = $query->like('nama', $cari)
             // ->orLike('nim', $cari)
             // ->orLike('angkatan', $cari)
@@ -53,26 +53,28 @@ class AlumniModel extends Model
             OR perkiraan_pensiun LIKE '%$cari%' 
             OR jabatan_terakhir LIKE '%$cari%' 
             OR aktif_pns LIKE '%$cari%')";
-            if(isset($min_angkatan) && isset($max_angkatan)){
+            if (isset($min_angkatan) && isset($max_angkatan)) {
                 $where = "Angkatan BETWEEN $min_angkatan AND $max_angkatan";
                 $query = $query
-                ->where($subquery)
-                ->where($where);
+                    ->where($subquery)
+                    ->where($where);
             }
         }
-        if(isset($min_angkatan) && isset($max_angkatan)){
+        if (isset($min_angkatan) && isset($max_angkatan)) {
             $where = "Angkatan BETWEEN $min_angkatan AND $max_angkatan";
             $query = $query
-            ->where($where);
+                ->where($where);
         }
         return $query;
     }
 
-    public function getMaxAngkatan(){
+    public function getMaxAngkatan()
+    {
         return $this->table('alumni')->selectMax('angkatan')->get()->getResult();
     }
 
-    public function getMinAngkatan(){
+    public function getMinAngkatan()
+    {
         return $this->table('alumni')->selectMin('angkatan')->get()->getResult();
     }
 
@@ -95,7 +97,8 @@ class AlumniModel extends Model
 
     public function getRole($user_id)
     {
-        $query = "select group_id from auth_groups_users where user_id = $user_id";
+        $query = "select name from auth_groups_users JOIN auth_groups ON group_id=id Where auth_groups_users.user_id = $user_id
+        ";
         return $this->db->query($query);
     }
 
@@ -104,7 +107,7 @@ class AlumniModel extends Model
         $query = "SELECT id_publikasi FROM publikasi";
         return $this->db->query($query);
     }
-    
+
     public function getAlumniByAngkatan($angkatan)
     {
         return $this->table('alumni')->Where('angkatan', $angkatan);

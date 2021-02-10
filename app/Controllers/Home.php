@@ -422,33 +422,33 @@ class Home extends BaseController
 	{
 		$pager = \Config\Services::pager();
 		$model = new \App\Models\AlumniModel;
-		$minAng = $this->request->getVar('min');
-		$maxAng = $this->request->getVar('max');
-		if($minAng > $maxAng){
+		$minAng = $_GET['min'];
+		$maxAng = $_GET['max'];
+		if ($minAng > $maxAng) {
 			$temp = $minAng;
 			$minAng = $maxAng;
 			$maxAng = $temp;
 		}
-		if($minAng!=NULL && $minAng>=$model->getMinAngkatan()[0]->angkatan ){
-			$min_angkatan  =$minAng;
+		if ($minAng != NULL && $minAng >= $model->getMinAngkatan()[0]->angkatan) {
+			$min_angkatan  = $minAng;
 		} else {
 			$min_angkatan  = $model->getMinAngkatan()[0]->angkatan;
 		}
-		if($maxAng!=NULL && $maxAng<=$model->getMaxAngkatan()[0]->angkatan){
+		if ($maxAng != NULL && $maxAng <= $model->getMaxAngkatan()[0]->angkatan) {
 			$max_angkatan  = $maxAng;
 		} else {
 			$max_angkatan  = $model->getMaxAngkatan()[0]->angkatan;
 		}
-		$cari = $this->request->getVar('cari');
-        $filter = $this->request->getVar('filter');
+		$cari = $_GET['cari'];
+		$filter = $_GET['filter'];
 
 		if (isset($filter)) {
-                $query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari,$min_angkatan,$max_angkatan);
-                if(!empty($cari)){
-                    $jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
-                } else {
-                    $jumlah = "Pencarian berhasil";
-                }
+			$query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
+			if (!empty($cari)) {
+				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
+			} else {
+				$jumlah = "Pencarian berhasil";
+			}
 		} else {
 			$query = $model->orderBy('nama', $direction = 'ASC');
 			$jumlah = "Pencarian belum dilakukan";
@@ -458,14 +458,13 @@ class Home extends BaseController
 			'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
 			'alumni' => $query->paginate(9),
 			'pager' => $model->pager,
-			'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
-            'jumlah' => $jumlah,
+			'page'  => $_GET['page'] ? $_GET['page'] : 1,
+			'jumlah' => $jumlah,
 			'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
 			'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
 		];
 
 		echo view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
-	
 	}
 
 	public function profil()
@@ -555,24 +554,24 @@ class Home extends BaseController
 	}
 
 	public function rekomendasi()
-    {
-        $model = new AlumniModel();
+	{
+		$model = new AlumniModel();
 
-        $query = $model->getAlumniByAngkatan($model->bukaProfile(session('nim'))->getRow()->angkatan);
+		$query = $model->getAlumniByAngkatan($model->bukaProfile(session('nim'))->getRow()->angkatan);
 
-        $data = [
-            'judulHalaman'  => 'Rekomendasi',
-            'alumni'          => $query->orderBy('nama', $direction='asc')->get()->getResult(),
-            'jumlah'        => $query->countAllResults(false)
-        ];
+		$data = [
+			'judulHalaman'  => 'Rekomendasi',
+			'alumni'          => $query->orderBy('nama', $direction = 'asc')->get()->getResult(),
+			'jumlah'        => $query->countAllResults(false)
+		];
 
-        return view('websia/kontenWebsia/userProfile/rekomendasi', $data);
-    }
+		return view('websia/kontenWebsia/userProfile/rekomendasi', $data);
+	}
 
 	public function profilAlumni()
 	{
 		$model = new AlumniModel();
-		$kunci = $this->request->getVar('nim');
+		$kunci = $_GET['nim'];
 		$query1 = $model->bukaProfile($kunci)->getRow();
 		//query1 isinya :
 		//  'angkatan'      
@@ -676,9 +675,9 @@ class Home extends BaseController
 
 	// 	$pager = \Config\Services::pager();
 	// 	$model = new \App\Models\AlumniModel;
-	// 	$atribut  = $this->request->getVar('atribut');
-	// 	$cari = $this->request->getVar('cari');
-	// 	$filter = $this->request->getVar('filter');
+	// 	$atribut  = $_GET['atribut'];
+	// 	$cari = $_GET['cari'];
+	// 	$filter = $_GET['filter'];
 
 	// 	if (isset($filter) && !empty($cari)) {
 	// 		if ($atribut == "") {
@@ -697,7 +696,7 @@ class Home extends BaseController
 	// 		'title' => 'Pencarian Alumni | Website Riset 5',
 	// 		'alumni' => $query->paginate(20),
 	// 		'pager' => $model->pager,
-	// 		'page'  => $this->request->getVar('page') ? $this->request->getVar('page') : 1,
+	// 		'page'  => $_GET['page'] ? $_GET['page'] : 1,
 	// 		'jumlah' => $jumlah,
 	// 	];
 
@@ -792,18 +791,18 @@ class Home extends BaseController
 		$this->modelAlumni = new AlumniModel();
 
 		$data = [
-			'nama'  		=> $this->request->getVar('nama'),
+			'nama'  		=> $_GET['nama'],
 			'nim'           => session('nim'),
-			'angkatan'      => $this->request->getVar('angkatan'),
-			'jenis_kelamin'  => $this->request->getVar('jenis_kelamin'),
-			'tempat_lahir'   => $this->request->getVar('tempat_lahir'),
-			'tanggal_lahir'  => $this->request->getVar('tanggal_lahir'),
-			'telp_alumni'    => $this->request->getVar('telp_alumni'),
-			'alamat'        => $this->request->getVar('alamat'),
-			'status_bekerja' => $this->request->getVar('status_bekerja'),
-			'perkiraan_pensiun' => $this->request->getVar('perkiraan_pensiun'),
-			'jabatan_terakhir'  => $this->request->getVar('jabatan_terakhir'),
-			'aktif_pns'      => $this->request->getVar('aktif_pns'),
+			'angkatan'      => $_GET['angkatan'],
+			'jenis_kelamin'  => $_GET['jenis_kelamin'],
+			'tempat_lahir'   => $_GET['tempat_lahir'],
+			'tanggal_lahir'  => $_GET['tanggal_lahir'],
+			'telp_alumni'    => $_GET['telp_alumni'],
+			'alamat'        => $_GET['alamat'],
+			'status_bekerja' => $_GET['status_bekerja'],
+			'perkiraan_pensiun' => $_GET['perkiraan_pensiun'],
+			'jabatan_terakhir'  => $_GET['jabatan_terakhir'],
+			'aktif_pns'      => $_GET['aktif_pns'],
 		];
 
 		$this->modelAlumni->replace($data);
@@ -854,7 +853,7 @@ class Home extends BaseController
 	// public function profileAlumni()
 	// {
 	// 	$model = new AlumniModel();
-	// 	$kunci = $this->request->getVar('nim');
+	// 	$kunci = $_GET['nim'];
 	// 	$query = $model->bukaProfile($kunci)->getRow();
 	// 	$jk = $query->jenis_kelamin;
 	// 	$sb = $query->status_bekerja;
