@@ -26,6 +26,22 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 ];
                 $this->db->table('alumni')->insert($data);
 
+                $data = [
+                        'angkatan'           => $faker->numberBetween($min = 1, $max = 62),
+                        'nama'               => "Mochamad Izza Zulfikar Sya'roni",
+                        'nim'                => "221810422",
+                        'jenis_kelamin'      => $faker->randomElement($array = array('L', 'P')),
+                        'tempat_lahir'       => $faker->city,
+                        'tanggal_lahir'      => $faker->date($format = 'Y-m-d', $max = 'now'),
+                        'telp_alumni'        => $faker->phoneNumber,
+                        'alamat'             => $faker->address,
+                        'status_bekerja'     => $faker->boolean,
+                        'perkiraan_pensiun'  => $faker->year,
+                        'jabatan_terakhir'   => $faker->jobTitle,
+                        'aktif_pns'          => $faker->boolean
+                ];
+                $this->db->table('alumni')->insert($data);
+
                 for ($i = 0; $i < 100; $i++) {
                         $data = [
                                 'angkatan'      => $faker->numberBetween($min = 1, $max = 62),
