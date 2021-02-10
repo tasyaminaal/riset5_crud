@@ -73,10 +73,12 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 ];
                 $this->db->table('alumni_tempat_kerja')->insert($data);
 
-                for ($i = 0; $i < 100; $i++) {
+                $model = new \App\Models\AlumniModel();
+                $alumni = $model->get()->getResult();
+                foreach ($alumni as $row) {
                         $data = [
-                                'nim'             => $this->db->query("SELECT nim FROM alumni WHERE nim NOT IN(SELECT nim from alumni_tempat_kerja) ORDER BY rand() limit 1")->getResult()[0]->nim,
-                                'id_tempat_kerja' => $this->db->query("SELECT id_tempat_kerja FROM tempat_kerja WHERE id_tempat_kerja NOT IN(SELECT id_tempat_kerja from alumni_tempat_kerja) ORDER BY rand() limit 1")->getResult()[0]->id_tempat_kerja,
+                                'nim'             => $row->nim,
+                                'id_tempat_kerja' => $model->query("SELECT id_tempat_kerja FROM tempat_kerja ORDER BY rand() limit 1")->getResult()[0]->id_tempat_kerja,
                         ];
                         $this->db->table('alumni_tempat_kerja')->insert($data);
                 }
@@ -89,11 +91,13 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 ];
                 $this->db->table('prestasi')->insert($data);
 
-                for ($i = 0; $i < 100; $i++) {
+                $model = new \App\Models\AlumniModel();
+                $alumni = $model->get()->getResult();
+                foreach ($alumni as $row) {
                         $data = [
                                 'nama_prestasi'  => $faker->word,
                                 'tahun_prestasi' => $faker->year,
-                                'nim'             => $this->db->query("SELECT nim FROM alumni ORDER BY rand() limit 1")->getResult()[0]->nim,
+                                'nim'             => $row->nim,
                         ];
                         $this->db->table('prestasi')->insert($data);
                 }
@@ -126,10 +130,12 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 ];
                 $this->db->table('alumni_publikasi')->insert($data);
 
-                for ($i = 0; $i < 99; $i++) {
+                $model = new \App\Models\AlumniModel();
+                $alumni = $model->get()->getResult();
+                foreach ($alumni as $row) {
                         $data = [
-                                'nim'            => $this->db->query("SELECT nim FROM alumni WHERE nim NOT IN(SELECT nim from alumni_publikasi) ORDER BY rand() limit 1")->getResult()[0]->nim,
-                                'id_publikasi'    => $this->db->query("SELECT id_publikasi FROM publikasi WHERE id_publikasi NOT IN(SELECT id_publikasi from alumni_publikasi) ORDER BY rand() limit 1")->getResult()[0]->id_publikasi,
+                                'nim'            => $row->nim,
+                                'id_publikasi'    => $this->db->query("SELECT id_publikasi FROM publikasi ORDER BY rand() limit 1")->getResult()[0]->id_publikasi,
                         ];
                         $this->db->table('alumni_publikasi')->insert($data);
                 }
@@ -141,10 +147,12 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 ];
                 $this->db->table('author')->insert($data);
 
-                for ($i = 0; $i < 99; $i++) {
+                $model = new \App\Models\AlumniModel();
+                $publikasi = $model->getPublikasi()->getResult();
+                foreach ($publikasi as $row) {
                         $data = [
                                 'author'          => $faker->unique()->sentence($nbWords = 2, $variableNbWords = true),
-                                'id_publikasi'    => $this->db->query("SELECT id_publikasi FROM publikasi WHERE id_publikasi NOT IN(SELECT id_publikasi from alumni_publikasi) ORDER BY rand() limit 1")->getResult()[0]->id_publikasi,
+                                'id_publikasi'    => $row->id_publikasi,
                         ];
                         $this->db->table('author')->insert($data);
                 }
@@ -161,7 +169,9 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 ];
                 $this->db->table('pendidikan')->insert($data);
 
-                for ($i = 0; $i < 100; $i++) {
+                $model = new \App\Models\AlumniModel();
+                $alumni = $model->get()->getResult();
+                foreach ($alumni as $row) {
                         $data = [
                                 'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
                                 'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
@@ -169,7 +179,7 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                                 'tahun_lulus' => $faker->year,
                                 'tahun_masuk' => $faker->year,
                                 'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                                'nim'             => $this->db->query("SELECT nim FROM alumni ORDER BY rand() limit 1")->getResult()[0]->nim,
+                                'nim'             => $row->nim,
                         ];
                         $this->db->table('pendidikan')->insert($data);
                 }

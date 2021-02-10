@@ -470,16 +470,176 @@ class Home extends BaseController
 
 	public function profil()
 	{
-		// ganti status ='user' atau 'bukan user' sesuai pengakses, user itu untuk melihat profil diri sendiri, sedangkan bukan user untuk melihat profil orang lain
-		$data['status'] = 'user';
-		$data['judulHalaman'] = 'User Profile';
+		if (!session()->has('id_users') && !logged_in())
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		//query1 isinya :
+		//  'angkatan'      
+		// 	'nama'  		
+		// 	'nim'           
+		// 	'jenis_kelamin'  
+		// 	'tempat_lahir'   
+		// 	'tanggal_lahir'  
+		// 	'telp_alumni'    
+		// 	'alamat'        
+		// 	'status_bekerja'	
+		// 	'perkiraan_pensiun' 	
+		// 	'jabatan_terakhir' 
+		// 	'aktif_pns'		
+		$query2 = $model->getTempatKerja(session('nim'))->getRow();
+		//query2 isinya :
+		// 'id_tempat_kerja'	
+		// 'nama_instansi'
+		// 'alamat_instansi'
+		// 'telp_instansi'
+		// 'email_instansi'
+		// 'faks_instansi'
+		$query3 = $model->getRole(session('id_user'))->getResult();
+		// dd($query3);
+		//query3 isinya array role
+		$query4 = $model->getAlumniByAngkatan($query1->angkatan);
+		//query4 angkatan
+
+		$status = 'user';
+		$jk = $query1->jenis_kelamin;
+		$sb = $query1->status_bekerja;
+		$ap = $query1->aktif_pns;
+
+
+
+		if ($jk == "L") {
+			$jk = "Laki-laki";
+		} else {
+			$jk = "Perempuan";
+		}
+
+		if ($sb == 0) {
+			$sb = "Tidak bekerja";
+		} else {
+			$sb = "Masih bekerja";
+		}
+
+		if ($ap == 0) {
+			$ap = "Tidak aktif sebagai PNS";
+		} else {
+			$ap = "Aktif sebagai PNS";
+		}
+
+		$data = [
+			'status'		=> $status,
+			'judulHalaman' 		=> 'Profil User | Website Riset 5',
+			'angkatan'      => $query1->angkatan,
+			'nama'  		=> $query1->nama,
+			'nim'           => $query1->nim,
+			'jenis_kelamin'  => $jk,
+			'tempat_lahir'   => $query1->tempat_lahir,
+			'tanggal_lahir'  => $query1->tanggal_lahir,
+			'telp_alumni'    => $query1->telp_alumni,
+			'alamat'        => $query1->alamat,
+			'status_bekerja'	=> $sb,
+			'perkiraan_pensiun' 	=> $query1->perkiraan_pensiun,
+			'jabatan_terakhir' 	=> $query1->jabatan_terakhir,
+			'aktif_pns'		=> $ap,
+			'nama_instansi'	=> $query2->nama_instansi,
+			'alamat_instansi' => $query2->alamat_instansi,
+			'telp_instansi' => $query2->telp_instansi,
+			'email_instansi' => $query2->email_instansi,
+			'faks_instansi' => $query2->faks_instansi,
+			'role' => $query3,
+			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
+		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
 	}
 
 	public function rekomendasi()
+    {
+        $model = new AlumniModel();
+
+        $query = $model->getAlumniByAngkatan($model->bukaProfile(session('nim'))->getRow()->angkatan);
+
+        $data = [
+            'judulHalaman'  => 'Rekomendasi',
+            'alumni'          => $query->orderBy('nama', $direction='asc')->get()->getResult(),
+            'jumlah'        => $query->countAllResults(false)
+        ];
+
+        return view('websia/kontenWebsia/userProfile/rekomendasi', $data);
+    }
+
+	public function profilAlumni()
 	{
-		$data['judulHalaman'] = 'Rekomendasi';
-		return view('websia/kontenWebsia/userProfile/rekomendasi', $data);
+		$model = new AlumniModel();
+		$kunci = $this->request->getVar('nim');
+		$query1 = $model->bukaProfile($kunci)->getRow();
+		//query1 isinya :
+		//  'angkatan'      
+		// 	'nama'  		
+		// 	'nim'           
+		// 	'jenis_kelamin'  
+		// 	'tempat_lahir'   
+		// 	'tanggal_lahir'  
+		// 	'telp_alumni'    
+		// 	'alamat'        
+		// 	'status_bekerja'	
+		// 	'perkiraan_pensiun' 	
+		// 	'jabatan_terakhir' 
+		// 	'aktif_pns'		
+		$query2 = $model->getTempatKerja($kunci)->getRow();
+		//query2 isinya :
+		// 'id_tempat_kerja'	
+		// 'nama_instansi'
+		// 'alamat_instansi'
+		// 'telp_instansi'
+		// 'email_instansi'
+		// 'faks_instansi'
+		$status = 'bukan user';
+		$jk = $query1->jenis_kelamin;
+		$sb = $query1->status_bekerja;
+		$ap = $query1->aktif_pns;
+
+
+		if ($jk == "L") {
+			$jk = "Laki-laki";
+		} else {
+			$jk = "Perempuan";
+		}
+
+		if ($sb == 0) {
+			$sb = "Tidak bekerja";
+		} else {
+			$sb = "Masih bekerja";
+		}
+
+		if ($ap == 0) {
+			$ap = "Tidak aktif sebagai PNS";
+		} else {
+			$ap = "Aktif sebagai PNS";
+		}
+
+		$data = [
+			'status'		=> $status,
+			'judulHalaman' 		=> 'Profil User | Website Riset 5',
+			'angkatan'      => $query1->angkatan,
+			'nama'  		=> $query1->nama,
+			'nim'           => $query1->nim,
+			'jenis_kelamin'  => $jk,
+			'tempat_lahir'   => $query1->tempat_lahir,
+			'tanggal_lahir'  => $query1->tanggal_lahir,
+			'telp_alumni'    => $query1->telp_alumni,
+			'alamat'        => $query1->alamat,
+			'status_bekerja'	=> $sb,
+			'perkiraan_pensiun' 	=> $query1->perkiraan_pensiun,
+			'jabatan_terakhir' 	=> $query1->jabatan_terakhir,
+			'aktif_pns'		=> $ap,
+			'nama_instansi'	=> $query2->nama_instansi,
+			'alamat_instansi' => $query2->alamat_instansi,
+			'telp_instansi' => $query2->telp_instansi,
+			'email_instansi' => $query2->email_instansi,
+			'faks_instansi' => $query2->faks_instansi
+		];
+		return view('websia/kontenWebsia/userProfile/userProfile', $data);
 	}
 
 	public function galeriFoto()
@@ -545,53 +705,53 @@ class Home extends BaseController
 
 	//--------------------------------------------------------------------
 
-	public function profile()
-	{
-		if (!session()->has('id_user') && !logged_in())
-			return redirect()->to('/');
+	// public function profile()
+	// {
+	// 	if (!session()->has('id_user') && !logged_in())
+	// 		return redirect()->to('/');
 
-		$model = new AlumniModel();
-		$query = $model->bukaProfile(session('nim'))->getRow();
+	// 	$model = new AlumniModel();
+	// 	$query = $model->bukaProfile(session('nim'))->getRow();
 
-		$jk = $query->jenis_kelamin;
-		$sb = $query->status_bekerja;
-		$ap = $query->aktif_pns;
+	// 	$jk = $query->jenis_kelamin;
+	// 	$sb = $query->status_bekerja;
+	// 	$ap = $query->aktif_pns;
 
-		if ($jk == "L") {
-			$jk = "Laki-laki";
-		} else {
-			$jk = "Perempuan";
-		}
+	// 	if ($jk == "L") {
+	// 		$jk = "Laki-laki";
+	// 	} else {
+	// 		$jk = "Perempuan";
+	// 	}
 
-		if ($sb == 0) {
-			$sb = "Tidak bekerja";
-		} else {
-			$sb = "Masih bekerja";
-		}
+	// 	if ($sb == 0) {
+	// 		$sb = "Tidak bekerja";
+	// 	} else {
+	// 		$sb = "Masih bekerja";
+	// 	}
 
-		if ($ap == 0) {
-			$ap = "Tidak aktif sebagai PNS";
-		} else {
-			$ap = "Aktif sebagai PNS";
-		}
+	// 	if ($ap == 0) {
+	// 		$ap = "Tidak aktif sebagai PNS";
+	// 	} else {
+	// 		$ap = "Aktif sebagai PNS";
+	// 	}
 
-		$data = [
-			'title' 		=> 'Profil User | Website Riset 5',
-			'angkatan'      => $query->angkatan,
-			'nama'  		=> $query->nama,
-			'nim'           => $query->nim,
-			'jenis_kelamin'  => $jk,
-			'tempat_lahir'   => $query->tempat_lahir,
-			'tanggal_lahir'  => $query->tanggal_lahir,
-			'telp_alumni'    => $query->telp_alumni,
-			'alamat'        => $query->alamat,
-			'status_bekerja'	=> $sb,
-			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
-			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
-			'aktif_pns'		=> $ap,
-		];
-		return view('pages/userInfo', $data);
-	}
+	// 	$data = [
+	// 		'title' 		=> 'Profil User | Website Riset 5',
+	// 		'angkatan'      => $query->angkatan,
+	// 		'nama'  		=> $query->nama,
+	// 		'nim'           => $query->nim,
+	// 		'jenis_kelamin'  => $jk,
+	// 		'tempat_lahir'   => $query->tempat_lahir,
+	// 		'tanggal_lahir'  => $query->tanggal_lahir,
+	// 		'telp_alumni'    => $query->telp_alumni,
+	// 		'alamat'        => $query->alamat,
+	// 		'status_bekerja'	=> $sb,
+	// 		'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
+	// 		'jabatan_terakhir' 	=> $query->jabatan_terakhir,
+	// 		'aktif_pns'		=> $ap,
+	// 	];
+	// 	return view('pages/userInfo', $data);
+	// }
 
 	//--------------------------------------------------------------------
 
@@ -690,50 +850,50 @@ class Home extends BaseController
 
 	//--------------------------------------------------------------------
 
-	public function profileAlumni()
-	{
-		$model = new AlumniModel();
-		$kunci = $this->request->getVar('nim');
-		$query = $model->bukaProfile($kunci)->getRow();
-		$jk = $query->jenis_kelamin;
-		$sb = $query->status_bekerja;
-		$ap = $query->aktif_pns;
+	// public function profileAlumni()
+	// {
+	// 	$model = new AlumniModel();
+	// 	$kunci = $this->request->getVar('nim');
+	// 	$query = $model->bukaProfile($kunci)->getRow();
+	// 	$jk = $query->jenis_kelamin;
+	// 	$sb = $query->status_bekerja;
+	// 	$ap = $query->aktif_pns;
 
-		if ($jk == 'P') {
-			$jk = "Perempuan";
-		} else {
-			$jk = "Laki-laki";
-		}
+	// 	if ($jk == 'P') {
+	// 		$jk = "Perempuan";
+	// 	} else {
+	// 		$jk = "Laki-laki";
+	// 	}
 
-		if ($sb == 0) {
-			$sb = "Tidak bekerja";
-		} else {
-			$sb = "Masih bekerja";
-		}
+	// 	if ($sb == 0) {
+	// 		$sb = "Tidak bekerja";
+	// 	} else {
+	// 		$sb = "Masih bekerja";
+	// 	}
 
-		if ($ap == 0) {
-			$ap = "Tidak aktif sebagai PNS";
-		} else {
-			$ap = "Aktif sebagai PNS";
-		}
+	// 	if ($ap == 0) {
+	// 		$ap = "Tidak aktif sebagai PNS";
+	// 	} else {
+	// 		$ap = "Aktif sebagai PNS";
+	// 	}
 
-		$data = [
-			'title' 		=> 'Profil Alumni | Website Riset 5',
-			'nama'  		=> $query->nama,
-			'nim'           => $query->nim,
-			'angkatan'      => $query->angkatan,
-			'jenis_kelamin'  => $jk,
-			'tempat_lahir'   => $query->tempat_lahir,
-			'tanggal_lahir'  => $query->tanggal_lahir,
-			'telp_alumni'    => $query->telp_alumni,
-			'alamat'        => $query->alamat,
-			'status_bekerja'	=> $sb,
-			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
-			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
-			'aktif_pns'		=> $ap,
-		];
-		return view('pages/profileAlumni', $data);
-	}
+	// 	$data = [
+	// 		'title' 		=> 'Profil Alumni | Website Riset 5',
+	// 		'nama'  		=> $query->nama,
+	// 		'nim'           => $query->nim,
+	// 		'angkatan'      => $query->angkatan,
+	// 		'jenis_kelamin'  => $jk,
+	// 		'tempat_lahir'   => $query->tempat_lahir,
+	// 		'tanggal_lahir'  => $query->tanggal_lahir,
+	// 		'telp_alumni'    => $query->telp_alumni,
+	// 		'alamat'        => $query->alamat,
+	// 		'status_bekerja'	=> $sb,
+	// 		'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
+	// 		'jabatan_terakhir' 	=> $query->jabatan_terakhir,
+	// 		'aktif_pns'		=> $ap,
+	// 	];
+	// 	return view('pages/profileAlumni', $data);
+	// }
 
 	//--------------------------------------------------------------------
 

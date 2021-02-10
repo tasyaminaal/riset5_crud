@@ -129,6 +129,7 @@
 				foreach ($alumni as $row) : ?>
             <div class="flex justify-center">
                 <div class="rounded-xl bg-white px-4 py-3 flex md:flex-row flex-col justify-between md:gap-x-2">
+                <a href="/Home/profilAlumni?nim=<?=$row['nim']?>" target="_new">
                     <div class="flex items-center">
                         <img src="/img/avatar.png" class="lg:w-20 w-16 mx-auto" alt="">
                     </div>
@@ -139,6 +140,7 @@
                             <h3 class="font-paragraph text-primary md:text-sm text-xs font-paragraph"><?= $row['angkatan']; ?></h3>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
             <?php

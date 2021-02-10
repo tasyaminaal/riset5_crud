@@ -86,7 +86,6 @@
                                     <a href="/home/galeriWisuda" class="menu text-white hover:text-secondary hover:border-opacity-70 py-2 px-3 text-left -mb-2 -mx-3 transiton duration-300"> GALERI WISUDA </a>
                                 </div>
                             </div> <!-- </a> -->
-
                             <!-- Navbar admin -->
                             <?php if (in_array("1", session('role'))) : ?>
                                 <a href="/admin">

@@ -18,10 +18,12 @@ class AlumniModel extends Model
     {
         return $this->builder()->where('nim', $nim)->get()->getFirstRow('array');
     }
+
     public function getSearch($field, $search)
     {
         return $this->table('alumni')->like($field, $search);
     }
+
     public function getAlumniFilter($cari,$min_angkatan,$max_angkatan)
     {
         $query = $this->table('alumni');
@@ -72,5 +74,39 @@ class AlumniModel extends Model
 
     public function getMinAngkatan(){
         return $this->table('alumni')->selectMin('angkatan')->get()->getResult();
+    }
+
+    public function getTempatKerja($nim)
+    {
+        $query = "select tempat_kerja.id_tempat_kerja, 
+        tempat_kerja.nama_instansi,
+        tempat_kerja.alamat_instansi,
+        tempat_kerja.telp_instansi,
+        tempat_kerja.faks_instansi,
+        tempat_kerja.email_instansi,
+        alumni_tempat_kerja.nim, 
+        alumni_tempat_kerja.id_tempat_kerja 
+        FROM tempat_kerja, alumni_tempat_kerja 
+        WHERE 
+        tempat_kerja.id_tempat_kerja = alumni_tempat_kerja.id_tempat_kerja 
+        AND alumni_tempat_kerja.nim = '$nim'";
+        return $this->db->query($query);
+    }
+
+    public function getRole($user_id)
+    {
+        $query = "select group_id from auth_groups_users where user_id = $user_id";
+        return $this->db->query($query);
+    }
+
+    public function getPublikasi()
+    {
+        $query = "SELECT id_publikasi FROM publikasi";
+        return $this->db->query($query);
+    }
+    
+    public function getAlumniByAngkatan($angkatan)
+    {
+        return $this->table('alumni')->Where('angkatan', $angkatan);
     }
 }
