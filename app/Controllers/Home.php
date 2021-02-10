@@ -72,21 +72,51 @@ class Home extends BaseController
 
 				// binding session dengan database (insert data ke tabel alumni kalau belum terdaftar di tabel alumni) 
 				if ($this->modelAlumni->getUserByNIM($user['nim']) == NULL) {
-					$bindUser = [
-						'angkatan'      	=> $faker->numberBetween(1, 62),
-						'nama'				=> $user['nama'],
-						'nim'				=> $user['nim'],
-						'jenis_kelamin'		=> $faker->randomElement(array('L', 'P')),
-						'tempat_lahir'  	=> $faker->city,
-						'tanggal_lahir' 	=> $faker->date('Y-m-d', 'now'),
-						'telp_alumni'   	=> $faker->phoneNumber,
-						'alamat'        	=> $faker->address,
-						'status_bekerja'	=> $faker->boolean,
-						'perkiraan_pensiun' => $faker->year,
-						'jabatan_terakhir'  => $faker->jobTitle,
-						'aktif_pns'      	=> $faker->boolean,
+					$data = [
+						'angkatan'           => $faker->numberBetween($min = 1, $max = 62),
+						'nama'               => $user['nama'],
+						'nim'                => $user['nim'],
+						'jenis_kelamin'      => $faker->randomElement($array = array('L', 'P')),
+						'tempat_lahir'       => $faker->city,
+						'tanggal_lahir'      => $faker->date($format = 'Y-m-d', $max = 'now'),
+						'telp_alumni'        => $faker->phoneNumber,
+						'alamat'             => $faker->address,
+						'status_bekerja'     => $faker->boolean,
+						'perkiraan_pensiun'  => $faker->year,
+						'jabatan_terakhir'   => $faker->jobTitle,
+						'aktif_pns'          => $faker->boolean
 					];
-					$this->modelAlumni->db->table('alumni')->insert($bindUser);;
+					$this->modelAlumni->db->table('alumni')->insert($data);
+
+					$data = [
+						'nim'             => $user['nim'],
+						'id_tempat_kerja' => $faker->numberBetween($min = 1, $max = 100),
+					];
+					$this->modelAlumni->db->table('alumni_tempat_kerja')->insert($data);
+
+					$data = [
+						'nama_prestasi'  => "Beuhh juara apaan ajg",
+						'tahun_prestasi' => $faker->year,
+						'nim'            => $user['nim'],
+					];
+					$this->modelAlumni->db->table('prestasi')->insert($data);
+
+					$data = [
+						'nim'             => $user['nim'],
+						'id_publikasi'    => $faker->numberBetween($min = 1, $max = 100),
+					];
+					$this->modelAlumni->db->table('alumni_publikasi')->insert($data);
+
+					$data = [
+						'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
+						'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+						'program_studi' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+						'tahun_lulus' => $faker->year,
+						'tahun_masuk' => $faker->year,
+						'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+						'nim'             => $user['nim'],
+					];
+					$this->modelAlumni->db->table('pendidikan')->insert($data);
 				}
 
 				//insert new user sipadu (mahasiswa)
