@@ -452,8 +452,16 @@ class Home extends BaseController
 	{
 		$pager = \Config\Services::pager();
 		$model = new \App\Models\AlumniModel;
-		$minAng = $_GET['min'];
-		$maxAng = $_GET['max'];
+		if (isset($_GET['min']))
+			$minAng = $_GET['min'];
+		else
+			$minAng = $model->getMinAngkatan()[0]->angkatan;
+
+		if (isset($_GET['max']))
+			$maxAng = $_GET['max'];
+		else
+			$maxAng = $model->getMaxAngkatan()[0]->angkatan;
+
 		if ($minAng > $maxAng) {
 			$temp = $minAng;
 			$minAng = $maxAng;
@@ -469,6 +477,7 @@ class Home extends BaseController
 		} else {
 			$max_angkatan  = $model->getMaxAngkatan()[0]->angkatan;
 		}
+
 		$cari = $_GET['cari'];
 		$filter = $_GET['filter'];
 
@@ -488,7 +497,7 @@ class Home extends BaseController
 			'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
 			'alumni' => $query->paginate(9),
 			'pager' => $model->pager,
-			'page'  => $_GET['page'] ? $_GET['page'] : 1,
+			'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
 			'jumlah' => $jumlah,
 			'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
 			'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
