@@ -97,8 +97,7 @@ class AlumniModel extends Model
 
     public function getRole($user_id)
     {
-        $query = "select name from auth_groups_users JOIN auth_groups ON group_id=id Where auth_groups_users.user_id = $user_id
-        ";
+        $query = "select name from auth_groups_users JOIN auth_groups ON group_id=id Where auth_groups_users.user_id = $user_id";
         return $this->db->query($query);
     }
 
