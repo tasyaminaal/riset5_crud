@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/all.css">
     <link rel="stylesheet" href="/css/add_style.css">
     <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/jquery-confirm.min.css">
     <script type="text/javascript" src="/js/jquery.js"></script>
     <title><?= $judul; ?></title>
 
@@ -211,6 +212,7 @@
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script src="/js/aos.js"></script>
     <script type="text/javascript" src="/js/footer.js"></script>
+    <script type="text/javascript" src="/js/jquery-confirm.min.js"></script>
     <script>
         AOS.init();
     </script>

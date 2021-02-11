@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/css/add_style.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
-    <script type="text/javascript" src="/js/jquery.js"></script>
+    <link rel="stylesheet" href="/css/jquery-confirm.min.css">
+    <!--<script type="text/javascript" src="/js/jquery.js"></script>-->
     <title>Web Service | SIA</title>
 </head>
 
@@ -115,6 +116,7 @@
     <!-- END FOOTER -->
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script type="text/javascript" src="/js/footer.js"></script>
+    <script type="text/javascript" src="/js/jquery-confirm.min.js"></script>
 </body>
 
-</html>y
+</html>

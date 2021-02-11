@@ -73,7 +73,35 @@ class Webservice extends BaseController
 
 		$this->model->addApp($data);
 
-		return redirect()->to('/Webservice');
+		return redirect()->to('/Webservice/proyek');
+	}
+
+	public function delete()//delete or cancel  project
+	{
+		$id = $this->request->getPost('id_app');
+		$id_token = $this->model->getTokenId($id)->getRow()->id_token;
+		
+		$this->model->deleteToken($id_token);
+		$this->model->deleteApp($id);
+		echo json_encode('data sukses dihapus');
+	}
+
+	public function profilDeveloper()
+	{
+		$data['judul'] = 'Profil Web Service | SIA';
+		return view('webservice/kontenWebservice/profilDeveloper/profilDeveloper.php', $data);
+	}
+
+	public function editBiodata()
+	{
+		$data['judul'] = 'Edit Profil | SIA';
+		return view('webservice/kontenWebservice/profilDeveloper/editBiodataWS.php', $data);
+	}
+
+	public function editAkun()
+	{
+		$data['judul'] = 'Edit Profil | SIA';
+		return view('webservice/kontenWebservice/profilDeveloper/editAkunWS.php', $data);
 	}
 
 	//--------------------------------------------------------------------

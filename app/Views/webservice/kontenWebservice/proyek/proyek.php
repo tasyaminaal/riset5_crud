@@ -7,7 +7,11 @@
     <a href="/webservice/buatProyek"
         class="flex justify-center md:w-40 w-36 md:px-3 md:py-2 px-1 py-1 lg:mt-12 mt-4 mb-8 rounded-lg border-gray shadow-lg tracking-wider cursor-pointer hover:bg-gray-100">
         <div class="flex gap-x-2 items-center justify-center">
-            <i class="fa md:fa-lg fa-plus text-secondary"></i>
+            <svg class="text-secondary w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                    clip-rule="evenodd" />
+            </svg>
             <div class="font-heading font-semibold md:text-base text-sm">Buat Proyek</div>
         </div>
     </a>
@@ -41,6 +45,8 @@
             <div
                 class="detail text-white py-1 w-20 text-center mr-1 cursor-pointer transform hover:scale-105 duration-150 outline-none notchoose">
                 DETAIL</div>
+            <a data-id="<?php echo $data['id'] ?>"
+                class="delete-project text-white bg-red-500 py-1 w-20 text-center mr-1 cursor-pointer transform hover:scale-105 duration-150 outline-none">CANCEL</a>
         </div>
         <div class="sm:mx-3 mx-2">
             <div class="flex mt-3 mb-2">
@@ -61,6 +67,10 @@
             <div class="flex mx-3 mt-3 mb-2">
                 <p class="w-1/4 text-primary text-sm font-bold">Deskripsi</p>
                 <p id="deskripsi<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
+            </div>
+            <div class="flex mx-3 mt-3 mb-2">
+                <p class="w-1/4 text-primary text-sm font-bold">Redirect URL</p>
+                <p id="redirek<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
             </div>
             <div class="flex mx-3 pb-4">
                 <p class="w-1/4 text-primary text-sm font-bold">Cakupan Data</p>

@@ -1,9 +1,10 @@
 <?php
-if ($login == 'sudah') {
+/*if ($login == 'sudah') {
     echo $this->extend('webservice/layoutWebservice/templateWebserviceLogin.php');
 } else if ($login == 'belum') {
     echo $this->extend('webservice/layoutWebservice/templateWebservice.php');
-}
+}*/
+echo $this->extend('webservice/layoutWebservice/templateWebserviceLogin.php');
 echo $this->section('content');
 ?>
 

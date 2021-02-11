@@ -128,3 +128,5 @@ nb-configuration.xml
 
 public/*
 !public/public.rar
+!public/css.rar
+!public/js.rar
