@@ -6,6 +6,7 @@
     <div class="w-full xl:mr-40 md:mr-10 mr-4 items-center sm:flex hidden">
         <img src="/img/login.png" alt="gambar login" class="">
     </div>
+
     <div class="w-full">
         <form method="POST" action="<?= route_to('login') ?>" class="py-8 rounded-3xl shadow-2xl flex flex-col">
             <?= csrf_field(); ?>
@@ -16,7 +17,14 @@
             </div>
             <div class="flex sm:mx-4 md:mx-8 mx-8 my-1">
                 <div class="w-1/4"></div>
-                <p class="w-3/4 text-xs text-red-500 <?php if (!session('errors.login')) : ?>hidden<?php endif; ?>" id="msg-email">Email yang anda masukkan tidak cocok</p>
+                <p class="w-3/4 text-xs text-red-500 
+                    <?php if (session('error') == "Unable to log you in. Please check your credentials.") : ?> 
+                        is-invalid
+                    <?php else : ?> 
+                        hidden
+                    <?php endif; ?>" id="msg-email">
+                    Email yang anda masukkan tidak cocok
+                </p>
             </div>
             <div class="flex sm:mx-4 md:mx-8 mx-8 my-1 h-10 relative">
                 <label for="pass" class="w-1/4 text-primary font-medium flex items-center sm:text-sm md:text-base">Kata Sandi</label>
@@ -25,7 +33,14 @@
             </div>
             <div class="flex sm:mx-4 md:mx-8 mx-8">
                 <div class="w-1/4"></div>
-                <p class="text-xs text-red-500 <?php if (!session('errors.password')) : ?>hidden<?php endif; ?>" id="msg-pass">Kata sandi yang anda masukkan kurang tepat</p>
+                <p class="text-xs text-red-500 
+                    <?php if (session('error') == "Unable to log you in. Please check your password.") : ?> 
+                        is-invalid
+                    <?php else : ?> 
+                        hidden
+                    <?php endif; ?>" id="msg-email">
+                    Kata sandi yang anda masukkan kurang tepat
+                </p>
             </div>
 
             <div class="flex sm:mx-4 md:mx-8 mx-8 my-3">
