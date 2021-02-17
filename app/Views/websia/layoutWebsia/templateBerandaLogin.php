@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/output.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
-    <!-- <link rel="stylesheet" href="/css/tambahan.css"> -->
     <link rel="stylesheet" href="/css/swiper-bundle.css">
     <link rel="stylesheet" href="/css/img-viewer.css">
     <script src="/js/swiper-bundle.js"></script>
@@ -51,63 +50,70 @@
 <!-- CATATAN: Font Cabin belum bisa dipakai, kayaknya ada salah waktu konfigurasi di Tailwind nya, coba bantu cek lagi ya guys! Sama font Poppins nya masih tebel banget, gabisa diganti jenis ketebalannya... -->
 
 <body>
+    <!-- tombol kembali ke atas -->
+    <button onclick="topFunction()" id="onTopBtn" title="Kembali ke Atas" class="hidden fixed bottom-5 right-8 w-10 h-10 p-1 cursor-pointer rounded-full border-none focus:outline-none z-50 bg-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white mx-auto" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+            <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+        </svg>
+    </button>
+
     <!-- HEADER -->
-    <div class="w-full fixed  z-10 bg-cover bg-no-repeat bg-left" style="background-image: url(/img/bgHeader.png)" id="navbar">
+    <div class="navbar w-full fixed z-10 bg-cover bg-no-repeat bg-left transition duration-700 ease-out" style="background-image: url(/img/bgHeader.png)" id="navbar">
         <header>
-            <div class="flex flex-col ">
+            <div class="flex flex-col">
                 <div class="flex items-center justify-between px-6 pt-3 ">
                     <div class="">
                         <div class="flex">
                             <a href="<?= base_url(); ?>">
                                 <img src="/img/logoSIA.png" class=" z-50 md:w-16 w-10" alt="">
                             </a>
-                            <div class="md:px-3 px-2 my-auto md:text-2xl text-lg text-white font-heading font-light z-50">
-                                Sistem Informasi Alumni
+                            <div class="md:px-3 px-2 my-auto text-white z-50">
+                                <p class="font-heading text-lg md:text-2xl font-semibold">Sistem Informasi Alumni</p>
+                                <p class="font-heading md:text-xs font-normal hidden md:block -mt-1.5">Akademi Ilmu Statistik - Sekolah Tinggi Ilmu Statistik - Politeknik Statistika STIS</p>
                             </div>
                         </div>
                         <div class="font-paragraph hidden md:flex items-end justify-start pt-1">
                             <a href="<?= base_url(); ?>">
-                                <div class="text-white hover:text-secondary ml-1 p-3 menu px-5 transition-colors duration-300">
+                                <div class="nav-menu transition-colors duration-300 <?= ($active == 'beranda') ? 'active' : ''; ?>">
                                     BERANDA
                                 </div>
                             </a>
                             <a href="/home/profil">
-                                <div class="text-white hover:text-secondary ml-1 p-3 menu px-5 transition-colors duration-300">
+                                <div class="nav-menu transition-colors duration-300 <?= ($active == 'profil') ? 'active' : ''; ?>">
                                     PROFIL
                                 </div>
                             </a>
-                            <div class="dropdown">
-                                <div class="text-white hover:text-secondary ml-1 p-3 menu px-5 cursor-pointer transition-colors duration-300">
+                            <div class="dropdown menuGaleri">
+                                <div class="nav-menu cursor-pointer transition-colors duration-300 <?= ($active == 'galeri') ? 'active' : ''; ?>">
                                     GALERI
                                 </div>
-                                <div class="dropdown-content">
-                                    <a href="/home/galeriFoto" class="menu text-white hover:text-secondary -mt-2 -mx-3 hover:border-opacity-70 py-2 px-3 text-left border-b-2 border-blue-400 transiton duration-300"> GALERI FOTO </a>
-                                    <a href="/home/galeriVideo" class="menu text-white hover:text-secondary -mx-3 hover:border-opacity-70 py-2 px-3 text-left border-b-2 border-blue-400 transiton duration-300"> GALERI VIDEO </a>
-                                    <a href="/home/galeriWisuda" class="menu text-white hover:text-secondary hover:border-opacity-70 py-2 px-3 text-left -mb-2 -mx-3 transiton duration-300"> GALERI WISUDA </a>
+                                <div class="dropdown-content ml-1 w-max text-sm">
+                                    <a href="/home/galeriFoto" class="bg-primaryDark hover:bg-primary text-white hover:text-secondary text-left w-full px-2 border-b-2 border-primary transition duration-300"> Galeri Kenangan Alumni </a>
+                                    <a href="/home/galeriVideo" class="bg-primaryDark hover:bg-primary text-white hover:text-secondary text-left w-full px-2 border-b-2 border-primary transition duration-300"> Galeri Video Kegiatan HAISTIS </a>
+                                    <a href="/home/galeriWisuda" class="bg-primaryDark hover:bg-primary text-white hover:text-secondary text-left w-full px-2 transition duration-300"> Galeri Video Wisuda AIS/STIS/Polstat STIS </a>
                                 </div>
-                            </div> <!-- </a> -->
+                            </div>
                             <!-- Navbar admin -->
                             <?php if (in_array("1", session('role'))) : ?>
                                 <a href="/admin">
-                                    <div class="text-white hover:text-secondary ml-1 p-3 menu px-5 transition-colors duration-300">
+                                    <div class="nav-menu transition-colors duration-300 <?= ($active == 'admin') ? 'active' : ''; ?>">
                                         ADMIN
                                     </div>
                                 </a>
                             <?php endif; ?>
-
-                            <div class="flex items-end text-sm relative text-white ml-1  p-3 cari">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="absolute h-5 w-5 text-white">
+                            <div class="flex items-end text-sm relative text-white ml-1 p-1 bg-primaryLight cursor-pointer transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="absolute h-5 w-5 m-1 text-white">
                                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                                 </svg>
-                                <form method="GET" action="/home/searchAndFilter">
-                                    <input type="text" placeholder="|  CARI" name="cari" class="placeholder-white bg-transparent ml-6 font-paragraph">
+                                <form action="/searchAndFilter" method="get">
+                                    <input type="text" name="kata_kunci" placeholder="|  CARI" class="placeholder-white bg-transparent focus:outline-none ml-6 font-paragraph p-1">
                                     <button name="filter" value="Go">
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="flex my-auto">
-                        <a href="/auth/logout" class="font-paragraph font-medium items-center hidden md:flex md:px-5 md:mt-4 md:-mb-14 md:shadow-sm md:text-base  md:text-white md:bg-secondary hover:bg-secondaryhover transition-colors duration-200 hover:rounded">
+                        <a href="/auth/logout" class="font-paragraph font-medium items-center hidden md:flex md:h-9 md:px-5 md:mt-3.5 md:-mb-14 md:shadow-sm md:text-base  md:text-white md:bg-secondary hover:bg-secondaryhover transition-colors duration-200 hover:rounded">
                             KELUAR
                         </a>
                         <div class="">
@@ -122,25 +128,41 @@
 
                 <div class="md:hidden">
                     <div class="flex flex-col hidden w-full border-t border-b border-white py-2 font-paragraph" id="menu">
-                        <div class="text-white text-xs text-center mt-1 px-2 py-2  w-11/12 mx-auto border-b border-white ">
+                        <div class="nav-menu-relative px-2 py-2 <?= ($active == 'beranda') ? 'active' : ''; ?>">
                             <a href="<?= base_url(); ?>">BERANDA </a>
                         </div>
-                        <div class="text-white text-xs text-center mt-1 px-2 py-2  w-11/12 mx-auto border-b border-white">
+                        <div class="nav-menu-relative px-2 py-2 <?= ($active == 'profil') ? 'active' : ''; ?>">
                             <a href="/home/profil"> PROFIL</a>
                         </div>
-                        <div class="text-white text-xs text-center mt-1 px-2 py-2  w-11/12 mx-auto border-b border-white">
-                            <a href="/home/galeri"> GALERI</a>
+                        <div class="flex flex-col">
+                            <div class="nav-menu-relative flex px-2 py-2 <?= ($active == 'galeri') ? 'active' : ''; ?>" id="galeri">
+                                <div class="mx-auto">
+                                    GALERI
+                                    <svg class="inline w-4 h-4 my-auto ml-1" fill="none" id="downGaleri" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                    <svg class="inline w-4 h-4 my-auto ml-1 hidden" fill="currentColor" id="upGaleri" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex flex-col hidden" id="listGaleri">
+                                <a href="/home/galeriFoto" class="nav-menu-relative py-2"> Galeri Kenangan Alumni </a>
+                                <a href="/home/galeriVideo" class="nav-menu-relative py-2"> Galeri Video Kegiatan HAISSTIS </a>
+                                <a href="/home/galeriWisuda" class="nav-menu-relative py-2"> Galeri Video Wisuda AIS/STIS/Polstat STIS </a>
+                            </div>
                         </div>
-                        <div class="text-white text-xs text-center mt-1 px-2 py-2  w-11/12 mx-auto border-b border-white">
-                            <a href="/admin"> ADMIN</a>
-                        </div>
-
-                        <div class="flex  justify-center text-sm relative text-white p-3 cari mt-1 px-2 py-2 w-11/12 mx-auto border-b border-white">
+                        <?php if (in_array("1", session('role'))) : ?>
+                            <div class="nav-menu-relative px-2 py-2">
+                                <a href="/admin"> ADMIN</a>
+                            </div>
+                        <?php endif; ?>
+                        <div class="flex  justify-center text-sm relative text-white p-3 cari mt-1 px-2">
                             <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" id="tombolCari" class="absolute -ml-12 h-5 w-5 text-white">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
-                            <form action="/home/searchAndFilter">
-                                <input type="text" placeholder="|  CARI" id="inputCari" class="placeholder-white bg-transparent ml-6 text-xs text-center w-2/3 outline-none ">
+                            <form action="/searchAndFilter" method="get">
+                                <input type="text" name="kata_kunci" placeholder="    |  CARI" id="inputCari" class="placeholder-white bg-transparent ml-6 text-xs text-center w-2/3 outline-none ">
                             </form>
                         </div>
                         <div class=" mt-1 px-2 py-2 w-11/12 mx-auto font-medium bg-secondary hover:bg-secondaryhover transition-colors duration-200 text-xs text-center text-white ">
@@ -149,10 +171,11 @@
                     </div>
                 </div>
 
+
             </div>
         </header>
     </div>
-    <div class="w-full md:h-32 h-12 bg-primary">
+    <div class="w-full md:h-28 h-12 bg-primary">
         <!-- Codingan Navbar Taruh Sini juga buat semacam marginnya -->
     </div>
     <!-- END HEADER -->
@@ -164,18 +187,17 @@
     <!-- END CONTENT PAGE -->
 
     <!-- FOOTER -->
-    <div class="bg-primary w-full mt-8 pt-6 pb-3 lg:px-20 md:px-8 px-2 ">
-        <div class="flex flex-col md:flex-row md:justify-around lg:text-base text-sm ">
-
+    <div class="bg-primary w-full  pt-6 pb-3 lg:px-20 md:px-8 px-3 ">
+        <div class="flex flex-col md:flex-row md:justify-around md:text-sm text-xs">
             <!-- awal footer stis -->
             <div class="flex items-center gap-x-2 mx-auto md:mx-0">
                 <div class="w-36 md:w-auto">
                     <a href="https://stis.ac.id/"><img class="lg:w-24 lg:h-24 w-20 h-20" src="/img/STISlogo.png" alt=""></a>
                 </div>
                 <div class="text-white font-heading">
-                    <h3>Jalan Otto Iskandardinatta</h3>
-                    <h3>64C Jakarta 13330</h3>
-                    <h3>08967xxxxx</h3>
+                    <h3>Jl. Otto Iskandardinata No.64C Jakarta 13330</h3>
+                    <h3>Telp. (021) 8191437, 8508812</h3>
+                    <h3>Fax. (021) 8197577</h3>
                     <div class="flex gap-x-2 mt-2">
                         <a href="https://www.facebook.com/PolstatSTIS/"><img class="lg:h-6 h-4" src="/img/facebook.png" alt=""></a>
                         <a href="https://www.youtube.com/channel/UCwmpr4lmrApoGRpq4TcmsvA"><img class="lg:h-6 h-4" src="/img/youtube.png" alt=""></a>
@@ -190,9 +212,9 @@
             <div class="flex items-center mt-4 gap-x-2 md:mt-0 mx-auto md:mx-0">
                 <a href="https://haisstis.org/"><img class="lg:h-24 h-20 w-36 lg:w-auto" src="/img/logo_haisstis1.png" alt=""></a>
                 <div class="text-white font-heading">
-                    <h3>Jalan Otto Iskandardinatta</h3>
-                    <h3>64C Jakarta 13330</h3>
-                    <h3>08967xxxxx</h3>
+                    <h3>Jl. Otto Iskandardinata No.64C Jakarta 13330</h3>
+                    <h3>Telp. (021) 8191437, 8508812</h3>
+                    <h3>Fax. (021) 8197577</h3>
                     <div class="flex gap-x-2 mt-2">
                         <a href=""><img class="lg:h-6 h-4" src="/img/facebook.png" alt=""></a>
                         <a href=""><img class="lg:h-6 h-4" src="/img/youtube.png" alt=""></a>
@@ -204,8 +226,11 @@
             <!-- akhir footer haistis -->
 
             <!-- awal link ke webservice  -->
-            <div class="text-white font-heading mx-auto md:mx-0 mt-4 md:mt-0">
-                <a href="/webservice/">
+            <div class="flex flex-col text-white font-heading mx-auto md:mx-5 mt-4 md:mt-0">
+                <a href="/websia/" class="mb-2 hover:text-secondary">
+                    <h3>Website PKL60</h3>
+                </a>
+                <a href="/webservice/" class="hover:text-secondary">
                     <h3>Webservice(API)</h3>
                 </a>
             </div>
@@ -213,8 +238,15 @@
 
         </div>
 
-        <hr class="text-white mt-2 border-2">
-        <h2 class="text-white text-center mt-3">Copyright &copy; PKL 60 Riset 5</h2>
+        <div class="flex items-center mt-4">
+            <div class="flex-grow">
+                <hr class="text-white bg-white border my-auto">
+            </div>
+
+
+        </div>
+
+        <h2 class="text-white text-sm text-center mt-1">Copyright &copy; PKL 60 Riset 5</h2>
     </div>
     <!-- END FOOTER -->
 </body>
@@ -224,5 +256,7 @@
     AOS.init();
 </script>
 <script type="text/javascript" src="/js/navbar.js"></script>
+<script type="text/javascript" src="/js/onTopBtn.js"></script>
+<script type="text/javascript" src="/js/footer.js"></script>
 
 </html>

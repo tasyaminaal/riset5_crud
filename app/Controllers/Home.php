@@ -414,6 +414,7 @@ class Home extends BaseController
 		if (session()->has('id_user')) {
 			$data = [
 				'judulHalaman' 	=> 'Beranda WEBSIA',
+				'active' 		=> 'beranda',
 				'login'			=> 'sudah'
 			];
 		} else {
@@ -569,6 +570,7 @@ class Home extends BaseController
 		$data = [
 			'status'		=> $status,
 			'judulHalaman' 		=> 'Profil User | Website Riset 5',
+			'active' 		=> 'profil',
 			'angkatan'      => $query1->angkatan,
 			'nama'  		=> $query1->nama,
 			'nim'           => $query1->nim,
@@ -600,6 +602,7 @@ class Home extends BaseController
 
 		$data = [
 			'judulHalaman'  => 'Rekomendasi',
+			'active' 		=> 'profil',
 			'alumni'          => $query->orderBy('nama', $direction = 'asc')->get()->getResult(),
 			'jumlah'        => $query->countAllResults(false)
 		];
@@ -660,6 +663,7 @@ class Home extends BaseController
 		$data = [
 			'status'		=> $status,
 			'judulHalaman' 		=> 'Profil User | Website Riset 5',
+			'active' 		=> 'profil',
 			'angkatan'      => $query1->angkatan,
 			'nama'  		=> $query1->nama,
 			'nim'           => $query1->nim,
@@ -684,12 +688,14 @@ class Home extends BaseController
 	public function galeriFoto()
 	{
 		$data['judulHalaman'] = 'Galeri Kenangan Alumni';
+		$data['active'] = 'galeri';
 		return view('websia/kontenWebsia/galeri/galeriAlumni', $data);
 	}
 
 	public function galeriVideo()
 	{
 		$data['judulHalaman'] = 'Galeri Video Kegiatan Alumni';
+		$data['active'] = 'galeri';
 		$data['login'] = 'sudah';
 		return view('kontenWebsia/galeri/galeriVidAlumni', $data);
 	}
@@ -697,6 +703,7 @@ class Home extends BaseController
 	public function galeriWisuda()
 	{
 		$data['judulHalaman'] = 'Galeri Video Wisuda';
+		$data['active'] = 'galeri';
 		$data['login'] = 'sudah';
 		return view('kontenWebsia/galeri/galeriWisuda', $data);
 	}

@@ -39,24 +39,36 @@
 </head>
 
 <body class="flex min-h-screen flex-col w-screen overflow-x-hidden font-paragraph">
+    <!-- tombol kembali ke atas -->
+    <button onclick="topFunction()" id="onTopBtn" title="Kembali ke Atas" class="hidden fixed bottom-5 right-8 w-10 h-10 p-1 cursor-pointer rounded-full border-none focus:outline-none z-50 bg-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white mx-auto" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+            <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+        </svg>
+    </button>
+
     <!-- HEADER -->
-    <header class="bg-primary sm:py-4 py-3 md:px-12 sm:px-8 px-4 w-full navbar fixed z-50">
-        <div class="lingkaran-luar" id="kiri">
+    <div class="bg-primary md:px-12 sm:px-8 px-4 w-full navbar fixed z-10" style="background-image: url(/img/bgHeaderWS.png)">
+        <!-- <div class="lingkaran-luar" id="kiri">
             <div class="lingkaran-dalam"></div>
-        </div>
-        <div class="flex justify-between">
+        </div> -->
+        <div class="flex justify-between sm:my-2 my-1">
             <div class="font-heading flex items-center sm:gap-x-6 gap-x-3 z-10">
                 <a href="<?= base_url(); ?>">
-                    <img src="/img/logoSIA.png" class="xl:w-16 lg:w-14 md:w-12 w-8" alt="">
+                    <img src="/img/logoSIA.png" class=" z-50 md:w-16 w-10" alt="">
                 </a>
-                <h1 class="judulApi text-white xl:text-2xl lg:text-xl md:text-base text-sm font-light">WEB SERVICE SISTEM INFORMASI ALUMNI</h1>
+                <div class="md:px-3 px-2 my-auto text-white z-50">
+                    <p class="font-heading text-lg md:text-2xl font-semibold">Webservice Sistem Informasi Alumni</p>
+                    <p class="font-heading md:text-xs font-normal hidden md:block -mt-1.5">Akademi Ilmu Statistik - Sekolah Tinggi Ilmu Statistik - Politeknik Statistika STIS</p>
+                </div>
             </div>
             <div id="nav" class="hidden sm:flex sm:items-center z-10">
                 <ul class="flex lg:gap-x-6 md:gap-x-4 gap-x-2 relative">
-                    <li class="bg-secondary text-white py-1.5 sm:w-20 md:w-24 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300 relative">API
-                        <i class="fa fa-caret-down"></i>
-                        <ul class="text-secondary absolute top-11 left-0 overflow-hidden transition-all max-h-0 bg-white duration-300">
-
+                    <li class="bg-secondary text-white py-1.5 sm:w-20 md:w-24 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300 relative">
+                        API
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        <ul class="text-secondary absolute top-9 -left-0.5 overflow-hidden transition-all max-h-0 bg-white duration-300 menuWebService">
                             <a href="/webservice/">
                                 <li class="list hover:text-white py-1.5 text-left border-2 border-secondary transiton duration-300 px-3">BERANDA</li>
                             </a>
@@ -69,7 +81,7 @@
                         </ul>
                     </li>
 
-                    <a href="/webservice/profilDeveloper">
+                    <a href="/webservice/profil">
                         <li class="bg-secondary text-white py-1.5 sm:w-20 md:w-24 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">PROFIL</li>
                     </a>
                     <a href="/logout">
@@ -78,23 +90,25 @@
                 </ul>
             </div>
 
-            <button type="button" class="block text-white hover:text-gray-200 focus:text-gray-200 sm:hidden" id="hamburgerApi">
-                <svg class="w-8 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
-        <div class="lingkaran-luar" id="kanan">
-            <div class="lingkaran-dalam"></div>
-        </div>
 
-        <div class="sm:hidden hidden transform translate-y-3" id="menuApi">
-            <div class="menu  border-t border-b flex justify-center">
+            <svg id="hamburgerApi" class="w-8 fill-current block text-white hover:text-gray-200 focus:text-gray-200 sm:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+
+        </div>
+        <!-- <div class="lingkaran-luar" id="kanan">
+            <div class="lingkaran-dalam"></div>
+        </div> -->
+
+        <div class="sm:hidden hidden menuWebService navbar" id="menuApi">
+            <div class="menu border-t border-b flex justify-center">
                 <ul class="w-min" id="navmobile">
                     <li class="cursor-pointer flex justify-center text-white py-1">
-                        <div class="bg-secondary w-28 flex justify-center hover:bg-white hover:text-secondary py-0.5">API<i class="fa fa-caret-down transform translate-y-1 translate-x-1"></i></div>
+                        <div class="bg-secondary w-28 flex justify-center hover:bg-white hover:text-secondary py-0.5">API<svg xmlns="http://www.w3.org/2000/svg" class="w-4 inline" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg></div>
                     </li>
-                    <ul class="transform -translate-y-0.5 text-white w-screen flex flex-col items-center hidden top-o right-0">
+                    <ul class="transform -translate-y-0.5 text-white w-screen flex flex-col items-center hidden z-20 block">
                         <a href="/webservice/">
                             <li class="list m-auto hover:text-white bg-white text-center text-secondary text-sm py-0.5 w-44 border-b-2 border-gray-500">BERANDA</li>
                         </a>
@@ -102,14 +116,14 @@
                             <li class="list m-auto hover:text-white bg-white text-center text-secondary text-sm py-0.5 w-44 border-b-2 border-gray-500">DOKUMENTASI</li>
                         </a>
                         <a href="/webservice/proyek">
-                            <li class="list m-auto hover:text-white bg-white text-center text-secondary text-sm py-0.5 w-44 border-b-2 border-gray-500">PROYEK</li>
+                            <li class="list m-auto hover:text-white bg-white text-center text-secondary text-sm py-0.5 w-44 border-gray-500">PROYEK</li>
                         </a>
                     </ul>
                 </ul>
             </div>
             <div class="menu border-b flex justify-center">
                 <ul class="w-min">
-                    <a href="#">
+                    <a href="/webservice/profil">
                         <li class="cursor-pointer flex justify-center text-white py-1">
                             <div class="bg-secondary w-28 flex justify-center hover:bg-white hover:text-secondary py-0.5">PROFIL</div>
                         </li>
@@ -127,10 +141,10 @@
             </div>
         </div>
 
-    </header>
+    </div>
     <!-- END HEADER -->
 
-    <div class="w-full bg-primary w-full lg:h-24 md:h-20 h-12">
+    <div class="w-full bg-primary w-full lg:h-16 md:h-16 h-10">
     </div>
 
     <!-- CONTENT PAGE DI SINI -->
@@ -141,7 +155,7 @@
 
     <!-- FOOTER -->
     <div class="bg-primary w-full mt-8 pt-6 pb-3 lg:px-20 md:px-8 px-3">
-        <div class="flex flex-col md:flex-row md:justify-around md:text-sm text-xs">
+        <div class="flex flex-col md:flex-row md:justify-around text-xs">
 
             <!-- awal footer stis -->
             <div class="flex items-center gap-x-2 mx-auto md:mx-0">
@@ -149,9 +163,9 @@
                     <a href="https://stis.ac.id/"><img class="lg:w-24 lg:h-24 w-20 h-20" src="/img/STISlogo.png" alt=""></a>
                 </div>
                 <div class="text-white font-heading">
-                    <h3>Jalan Otto Iskandardinatta</h3>
-                    <h3>64C Jakarta 13330</h3>
-                    <h3>08967xxxxx</h3>
+                    <h3>Jl. Otto Iskandardinata No.64C Jakarta 13330</h3>
+                    <h3>Telp. (021) 8191437, 8508812</h3>
+                    <h3>Fax. (021) 8197577</h3>
                     <div class="flex gap-x-2 mt-2">
                         <a href="https://www.facebook.com/PolstatSTIS/"><img class="lg:h-6 h-4" src="/img/facebook.png" alt=""></a>
                         <a href="https://www.youtube.com/channel/UCwmpr4lmrApoGRpq4TcmsvA"><img class="lg:h-6 h-4" src="/img/youtube.png" alt=""></a>
@@ -166,9 +180,9 @@
             <div class="flex items-center mt-4 gap-x-2 md:mt-0 mx-auto md:mx-0">
                 <a href="https://haisstis.org/"><img class="lg:h-24 h-20 w-36 lg:w-auto" src="/img/logo_haisstis1.png" alt=""></a>
                 <div class="text-white font-heading">
-                    <h3>Jalan Otto Iskandardinatta</h3>
-                    <h3>64C Jakarta 13330</h3>
-                    <h3>08967xxxxx</h3>
+                    <h3>Jl. Otto Iskandardinata No.64C Jakarta 13330</h3>
+                    <h3>Telp. (021) 8191437, 8508812</h3>
+                    <h3>Fax. (021) 8197577</h3>
                     <div class="flex gap-x-2 mt-2">
                         <a href=""><img class="lg:h-6 h-4" src="/img/facebook.png" alt=""></a>
                         <a href=""><img class="lg:h-6 h-4" src="/img/youtube.png" alt=""></a>
@@ -180,13 +194,12 @@
             <!-- akhir footer haistis -->
 
             <!-- awal link ke webservice  -->
-            <div class="flex flex-col text-white font-heading mx-auto md:mx-0 mt-4 md:mt-0">
-                <a href="/websia/" class="mb-4">
-                    <h3>Website PKL60</h3>
+            <div class="flex flex-col text-white font-heading mx-auto md:mx-5 mt-4 md:mt-0">
+                <a href="/websia/" class="mb-2 hover:text-secondary">
+                    <h3>Website SIA</h3>
                 </a>
-
-                <a href="/webservice/">
-                    <h3>Webservice(API)</h3>
+                <a href="/webservice/" class="hover:text-secondary">
+                    <h3>Website PKL60</h3>
                 </a>
             </div>
             <!-- akhir link ke webservice  -->
@@ -195,24 +208,18 @@
 
         <div class="flex items-center mt-2">
             <div class="flex-grow">
-                <hr class="text-white border-2 my-auto">
-            </div>
-            <div class="flex-grow-0">
-                <div class="flex items-center w-8 h-8 rounded-full bg-secondary cursor-pointer" id="upPage">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white mx-auto" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                        <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
-                    </svg>
-                </div>
+                <hr class="text-white bg-white border my-auto">
             </div>
         </div>
 
-        <h2 class="text-white text-center mt-3">Copyright &copy; PKL 60 Riset 5</h2>
+        <h2 class="text-white text-sm text-center mt-1">Copyright &copy; PKL 60 Riset 5</h2>
     </div>
     <!-- END FOOTER -->
+    <script type="text/javascript" src="/js/onTopBtn.js"></script>
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script src="/js/aos.js"></script>
     <script type="text/javascript" src="/js/footer.js"></script>
-    <script type="text/javascript" src="/js/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="/js/editProfil.js"></script>
     <script>
         AOS.init();
     </script>
