@@ -75,7 +75,7 @@ if ($status == 'bukan user') {
             <span class="font-heading flex justify-start px-3 md:px-0 text-base text-left mb-5 md:mb-2">
                 <img class="my-2 mt-2 mr-0 md:mr-2 ml-1 md:ml-0 w-6 h-6 md:w-6 float-left" src="/img/icon/maps_flag.png" alt="">
                 <!-- Lokasi tempat tinggal -->
-                <p class="font-heading my-2 mt-2"> Jl Gading Griya Lestari Bl Y-1, DKI Jakarta </p>
+                <p class="font-heading my-2 mt-2"> <?= $alumni->alamat ?> </p>
             </span>
             <!-- Awal media sosial dan telepon -->
             <?php 
