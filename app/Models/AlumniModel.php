@@ -78,7 +78,7 @@ class AlumniModel extends Model
         return $this->table('alumni')->selectMin('angkatan')->get()->getResult();
     }
 
-    public function getTempatKerja($nim)
+    public function getTempatKerjaByNIM($nim)
     {
         $query = "select tempat_kerja.id_tempat_kerja, 
         tempat_kerja.nama_instansi,
@@ -101,9 +101,57 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    public function getPublikasi()
+    public function getIdPublikasi()
     {
         $query = "SELECT id_publikasi FROM publikasi";
+        return $this->db->query($query);
+    }
+    
+    public function getPendidikanByNIM($nim)
+    {
+        $query = "SELECT * FROM pendidikan WHERE nim = $nim";
+        return $this->db->query($query);
+    }
+
+    public function getCountPendidikanByNIM($nim)
+    {
+        $query = "SELECT COUNT(*) FROM pendidikan WHERE nim = $nim";
+        return $this->db->query($query);
+    }
+
+    public function getPrestasiByNIM($nim)
+    {
+        $query = "SELECT * FROM prestasi WHERE nim = $nim";
+        return $this->db->query($query);
+    }
+
+    public function getCountPrestasiByNIM($nim)
+    {
+        $query = "SELECT COUNT(*) FROM prestasi WHERE nim = $nim";
+        return $this->db->query($query);
+    }
+
+    public function getPublikasiByNIM($nim)
+    {
+        $query = "SELECT * FROM alumni_publikasi JOIN publikasi ON alumni_publikasi.id_publikasi=publikasi.id_publikasi WHERE alumni_publikasi.nim = $nim";
+        return $this->db->query($query);
+    }
+
+    public function getCountPublikasiByNIM($nim)
+    {
+        $query = "SELECT COUNT(*) FROM alumni_publikasi JOIN publikasi ON alumni_publikasi.id_publikasi=publikasi.id_publikasi WHERE alumni_publikasi.nim = $nim";
+        return $this->db->query($query);
+    }
+
+    public function getUsersById($id)
+    {
+        $query = "SELECT * FROM users WHERE id = $id";
+        return $this->db->query($query);
+    }
+
+    public function getUsersByNIM($nim)
+    {
+        $query = "SELECT * FROM users WHERE nim = $nim";
         return $this->db->query($query);
     }
 

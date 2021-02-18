@@ -78,7 +78,7 @@
                                     BERANDA
                                 </div>
                             </a>
-                            <a href="/home/profil">
+                            <a href="/Home/profil">
                                 <div class="nav-menu transition-colors duration-300 <?= ($active == 'profil') ? 'active' : ''; ?>">
                                     PROFIL
                                 </div>
@@ -105,8 +105,8 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="absolute h-5 w-5 m-1 text-white">
                                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                                 </svg>
-                                <form action="/searchAndFilter" method="get">
-                                    <input type="text" name="kata_kunci" placeholder="|  CARI" class="placeholder-white bg-transparent focus:outline-none ml-6 font-paragraph p-1">
+                                <form action="/Home/searchAndFilter" method="get">
+                                    <input type="text" name="cari" placeholder="|  CARI" class="placeholder-white bg-transparent focus:outline-none ml-6 font-paragraph p-1">
                                     <button name="filter" value="Go">
                                 </form>
                             </div>
@@ -132,7 +132,7 @@
                             <a href="<?= base_url(); ?>">BERANDA </a>
                         </div>
                         <div class="nav-menu-relative px-2 py-2 <?= ($active == 'profil') ? 'active' : ''; ?>">
-                            <a href="/home/profil"> PROFIL</a>
+                            <a href="/Home/profil"> PROFIL</a>
                         </div>
                         <div class="flex flex-col">
                             <div class="nav-menu-relative flex px-2 py-2 <?= ($active == 'galeri') ? 'active' : ''; ?>" id="galeri">
@@ -161,8 +161,8 @@
                             <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" id="tombolCari" class="absolute -ml-12 h-5 w-5 text-white">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
-                            <form action="/searchAndFilter" method="get">
-                                <input type="text" name="kata_kunci" placeholder="    |  CARI" id="inputCari" class="placeholder-white bg-transparent ml-6 text-xs text-center w-2/3 outline-none ">
+                            <form action="/Home/searchAndFilter" method="get">
+                                <input type="text" name="cari" placeholder="    |  CARI" id="inputCari" class="placeholder-white bg-transparent ml-6 text-xs text-center w-2/3 outline-none ">
                             </form>
                         </div>
                         <div class=" mt-1 px-2 py-2 w-11/12 mx-auto font-medium bg-secondary hover:bg-secondaryhover transition-colors duration-200 text-xs text-center text-white ">

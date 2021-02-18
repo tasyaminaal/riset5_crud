@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 <div class="flex md:flex-row flex-col justify-around lg:px-20 md:px-8 px-2 my-8">
-    <form method="GET" action="/Home/SearchAndFilter" class="form-group">
+    <form method="GET" action="/Home/searchAndFilter" class="form-group">
     <input type="text" name="cari" placeholder="Masukkan kata kunci" >
 	<button class="btn btn-outline-secondary" type="Submit" name="filter" value="Go" >GO</button>
 </div>

@@ -164,7 +164,7 @@ class AlumniSeeder extends \CodeIgniter\Database\Seeder
                 $this->db->table('author')->insert($data);
 
                 $model = new \App\Models\AlumniModel();
-                $publikasi = $model->getPublikasi()->getResult();
+                $publikasi = $model->getIdPublikasi()->getResult();
                 foreach ($publikasi as $row) {
                         $data = [
                                 'author'          => $faker->unique()->sentence($nbWords = 2, $variableNbWords = true),

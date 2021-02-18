@@ -496,6 +496,7 @@ class Home extends BaseController
 
 		$data = [
 			'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
+			'active' => 'cari',
 			'alumni' => $query->paginate(9),
 			'pager' => $model->pager,
 			'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
@@ -510,37 +511,62 @@ class Home extends BaseController
 	public function profil()
 	{
 		if (!session()->has('id_user') && !logged_in())
-			// return redirect()->to('/');
-			return dd(session()->get());
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
-		//query1 isinya :
-		//  'angkatan'      
-		// 	'nama'  		
-		// 	'nim'           
-		// 	'jenis_kelamin'  
-		// 	'tempat_lahir'   
-		// 	'tanggal_lahir'  
-		// 	'telp_alumni'    
-		// 	'alamat'        
-		// 	'status_bekerja'	
-		// 	'perkiraan_pensiun' 	
-		// 	'jabatan_terakhir' 
-		// 	'aktif_pns'		
-		$query2 = $model->getTempatKerja(session('nim'))->getRow();
-		//query2 isinya :
+		//isi :
+		// 'angkatan'      
+		// 'nama' 	
+		// 'nim'           
+		// 'jenis_kelamin'  
+		// 'tempat_lahir'   
+		// 'tanggal_lahir'  
+		// 'telp_alumni'    
+		// 'alamat'        
+		// 'status_bekerja'	
+		// 'perkiraan_pensiun'
+		// 'jabatan_terakhir' 
+		// 'aktif_pns'		
+		
+		$query2 = $model->getTempatKerjaByNIM(session('nim'))->getRow();
+		//isi :
 		// 'id_tempat_kerja'	
 		// 'nama_instansi'
 		// 'alamat_instansi'
 		// 'telp_instansi'
 		// 'email_instansi'
 		// 'faks_instansi'
+
 		$query3 = $model->getRole(session('id_user'))->getResult();
-		// dd($query3);
-		//query3 isinya array role
+		//isi :
+		// name
+
 		$query4 = $model->getAlumniByAngkatan($query1->angkatan);
-		//query4 angkatan
+		//isi :
+		// pencarian rekomendasi
+
+		$query5 = $model->getPrestasiByNIM(session('nim'))->getResult();
+		//isi :
+		// 'id_prestasi'
+		// 'nama_prestasi'
+		// 'nim'
+		// 'tahun_prestasi'
+
+		$query6 = $model->getPendidikanByNIM(session('nim'))->getResult();
+		//isi :
+		// 'id_pendidikan'
+		// 'jenjang'
+		// 'judul_tulisan'
+		// 'nim'
+		// 'program_studi'
+		// 'tahun_lulus'
+		// 'tahun_masuk'
+		// 'universitas'
+
+		$query7 = $model->getUsersById(session('id_user'))->getRow();
+		//isi :
+		// 'email'
 
 		$status = 'user';
 		$jk = $query1->jenis_kelamin;
@@ -571,24 +597,15 @@ class Home extends BaseController
 			'status'		=> $status,
 			'judulHalaman' 		=> 'Profil User | Website Riset 5',
 			'active' 		=> 'profil',
-			'angkatan'      => $query1->angkatan,
-			'nama'  		=> $query1->nama,
-			'nim'           => $query1->nim,
+			'alumni'      => $query1,
 			'jenis_kelamin'  => $jk,
-			'tempat_lahir'   => $query1->tempat_lahir,
-			'tanggal_lahir'  => $query1->tanggal_lahir,
-			'telp_alumni'    => $query1->telp_alumni,
-			'alamat'        => $query1->alamat,
 			'status_bekerja'	=> $sb,
-			'perkiraan_pensiun' 	=> $query1->perkiraan_pensiun,
-			'jabatan_terakhir' 	=> $query1->jabatan_terakhir,
 			'aktif_pns'		=> $ap,
-			'nama_instansi'	=> $query2->nama_instansi,
-			'alamat_instansi' => $query2->alamat_instansi,
-			'telp_instansi' => $query2->telp_instansi,
-			'email_instansi' => $query2->email_instansi,
-			'faks_instansi' => $query2->faks_instansi,
+			'tempat_kerja'	=> $query2,
 			'role' => $query3,
+			'prestasi' => $query5,
+			'pendidikan' => $query6,
+			'user' => $query7,
 			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
@@ -615,32 +632,59 @@ class Home extends BaseController
 		$model = new AlumniModel();
 		$kunci = $_GET['nim'];
 		$query1 = $model->bukaProfile($kunci)->getRow();
-		//query1 isinya :
-		//  'angkatan'      
-		// 	'nama'  		
-		// 	'nim'           
-		// 	'jenis_kelamin'  
-		// 	'tempat_lahir'   
-		// 	'tanggal_lahir'  
-		// 	'telp_alumni'    
-		// 	'alamat'        
-		// 	'status_bekerja'	
-		// 	'perkiraan_pensiun' 	
-		// 	'jabatan_terakhir' 
-		// 	'aktif_pns'		
-		$query2 = $model->getTempatKerja($kunci)->getRow();
-		//query2 isinya :
+		//isi :
+		// 'angkatan'      
+		// 'nama' 	
+		// 'nim'           
+		// 'jenis_kelamin'  
+		// 'tempat_lahir'   
+		// 'tanggal_lahir'  
+		// 'telp_alumni'    
+		// 'alamat'        
+		// 'status_bekerja'	
+		// 'perkiraan_pensiun'
+		// 'jabatan_terakhir' 
+		// 'aktif_pns'		
+		
+		$query2 = $model->getTempatKerjaByNIM($kunci)->getRow();
+		//isi :	
 		// 'id_tempat_kerja'	
 		// 'nama_instansi'
 		// 'alamat_instansi'
 		// 'telp_instansi'
 		// 'email_instansi'
 		// 'faks_instansi'
+
+		$query4 = $model->getAlumniByAngkatan($query1->angkatan);
+		//isi :
+		// pencarian rekomendasi
+
+		$query5 = $model->getPrestasiByNIM($kunci)->getResult();
+		//isi :
+		// 'id_prestasi'
+		// 'nama_prestasi'
+		// 'nim'
+		// 'tahun_prestasi'
+
+		$query6 = $model->getPendidikanByNIM($kunci)->getResult();
+		//isi :
+		// 'id_pendidikan'
+		// 'jenjang'
+		// 'judul_tulisan'
+		// 'nim'
+		// 'program_studi'
+		// 'tahun_lulus'
+		// 'tahun_masuk'
+		// 'universitas'
+
+		$query7 = $model->getUsersByNIM($kunci)->getRow();
+		//isi :
+		// 'email'
+
 		$status = 'bukan user';
 		$jk = $query1->jenis_kelamin;
 		$sb = $query1->status_bekerja;
 		$ap = $query1->aktif_pns;
-
 
 		if ($jk == "L") {
 			$jk = "Laki-laki";
@@ -664,26 +708,233 @@ class Home extends BaseController
 			'status'		=> $status,
 			'judulHalaman' 		=> 'Profil User | Website Riset 5',
 			'active' 		=> 'profil',
-			'angkatan'      => $query1->angkatan,
-			'nama'  		=> $query1->nama,
-			'nim'           => $query1->nim,
+			'alumni'      => $query1,
 			'jenis_kelamin'  => $jk,
-			'tempat_lahir'   => $query1->tempat_lahir,
-			'tanggal_lahir'  => $query1->tanggal_lahir,
-			'telp_alumni'    => $query1->telp_alumni,
-			'alamat'        => $query1->alamat,
 			'status_bekerja'	=> $sb,
-			'perkiraan_pensiun' 	=> $query1->perkiraan_pensiun,
-			'jabatan_terakhir' 	=> $query1->jabatan_terakhir,
 			'aktif_pns'		=> $ap,
-			'nama_instansi'	=> $query2->nama_instansi,
-			'alamat_instansi' => $query2->alamat_instansi,
-			'telp_instansi' => $query2->telp_instansi,
-			'email_instansi' => $query2->email_instansi,
-			'faks_instansi' => $query2->faks_instansi
+			'tempat_kerja'	=> $query2,
+			'prestasi' => $query5,
+			'pendidikan' => $query6,
+			'user' => $query7,
+			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
 	}
+
+	public function editProfil()
+    {
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query = $model->bukaProfile(session('nim'));
+
+		// dd($query->getRow()->alamat);
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'alumni'      => $query->getRow(),
+			'email'	=> $model->db->table('users')->where('id',session('id_user'))->get()->getRow('email'),
+		];
+        return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
+    }
+
+	public function updateProfil()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query1 = $model->bukaProfile(session('nim'))->getRow();
+
+		$data = [
+			'angkatan'      => $query1->angkatan,
+			'nama'  		=> $_POST['nama'],
+			'nim'           => session('nim'),
+			'jenis_kelamin'  => $_POST['jenis_kelamin'],
+			'tempat_lahir'   => $query1->tempat_lahir,
+			'tanggal_lahir'  => $query1->tanggal_lahir,
+			'telp_alumni'    => $_POST['telp_alumni'],
+			'alamat'        => $_POST['alamat'],
+			'status_bekerja' => $_POST['status_bekerja'],
+			'perkiraan_pensiun' => $_POST['perkiraan_pensiun'],
+			'jabatan_terakhir'  => $_POST['jabatan_terakhir'],
+			'aktif_pns'      => $_POST['aktif_pns'],
+		];
+
+		$model->db->table('alumni')->set($data)->where('nim',session('nim'))->update();
+
+		$query2 = $model->bukaProfile(session('nim'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'alumni'=> $query2->getRow(),
+			'email'	=> $model->db->table('users')->where('id',session('id_user'))->get()->getRow('email'),
+		];
+        return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
+	}
+
+    public function editPendidikan()
+    {
+        if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query = $model->getPendidikanByNIM(session('nim'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'pendidikan'      => $query->getResult(),
+			'jumlah' => $model->getCountPendidikanByNIM(session('nim'))
+		];
+        return view('websia/kontenWebsia/editProfile/editPendidikan.php', $data);
+    }
+	// belum bikin
+	// public function updatePendidikan()
+	// {}
+
+    public function editTempatKerja()
+    {
+        if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query = $model->getTempatKerjaByNIM(session('nim'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'tempat_kerja'      => $query->getRow(),
+		];
+        return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
+    }
+
+	// salahh masihan
+	public function updateTempatKerja()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$kunci = $model->getTempatKerjaByNIM(session('nim'))->getRow()->id_tempat_kerja;
+
+		$data = [
+			'nama_instansi'      => $_POST['nama_instansi'],
+			'alamat_instansi'  		=> $_POST['alamat_instansi'],
+			'telp_instansi'  => $_POST['telp_instansi'],
+			'faks_instansi'   => $_POST['faks_instansi'],
+			'email_instansi'  => $_POST['email_instansi'],
+		];
+
+		$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja',$kunci)->update();
+
+		$query = $model->getTempatKerjaByNIM(session('nim'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'tempat_kerja'=> $query->getRow(),
+		];
+        return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
+	}
+
+    public function editPrestasi()
+    {
+        if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query = $model->getPrestasiByNIM(session('nim'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'prestasi'      => $query->getResult(),
+			'jumlah' => $model->getCountPrestasiByNIM(session('nim'))
+		];
+
+        return view('websia/kontenWebsia/editProfile/editPrestasi.php', $data);
+    }
+	// belum bikin
+	// public function updatePrestasi()
+	// {}
+
+    public function editPublikasi()
+    {
+        if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query = $model->getPublikasiByNIM(session('nim'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'prestasi'      => $query->getResult(),
+			'jumlah' => $model->getCountPublikasiByNIM(session('nim'))
+		];
+
+        return view('websia/kontenWebsia/editProfile/editPublikasi.php', $data);
+    }
+	// belum bikin
+	// public function updatePublikasi()
+	// {}
+
+    public function editAkun()
+    {
+        if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query = $model->getUsersById(session('id_user'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'user'      => $query->getRow(),
+		];
+
+        return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
+    }
+
+	public function updateAkun()
+    {
+        if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		// belum tahu nih cara validasi ginian
+		if($_POST['passbaru'] == $_POST['ulangpassbaru']){
+			$data = [
+				'username'      => $_POST['username'],
+				'password_hash' => password_hash($_POST['passbaru'], PASSWORD_DEFAULT),
+			];
+			
+			$model->db->table('users')->set($data)->where('id',session('id_user'))->update();
+		}
+
+		$query = $model->getUsersByNIM(session('id_user'));
+
+		$data = [
+			'judulHalaman' => 'Edit Profil',
+			'login' => 'sudah',
+			'active' 		=> 'profil',
+			'username'      => $query->getRow()->username,
+		];
+
+        return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
+    }
 
 	public function galeriFoto()
 	{
@@ -712,236 +963,4 @@ class Home extends BaseController
 	{
 		return view('cobaWebsia/map');
 	}
-
-	// public function search() //pencarian
-	// {
-	// 	// nyoba faker,, gakepake di controller ini
-	// 	// $faker = \Faker\Factory::create('id_ID');
-	// 	// dd($faker->phoneNumber);
-
-	// 	$pager = \Config\Services::pager();
-	// 	$model = new \App\Models\AlumniModel;
-	// 	$atribut  = $_GET['atribut'];
-	// 	$cari = $_GET['cari'];
-	// 	$filter = $_GET['filter'];
-
-	// 	if (isset($filter) && !empty($cari)) {
-	// 		if ($atribut == "") {
-	// 			$query = $model->orderBy('nama', $direction = 'ASC')->getAlumni($cari);
-	// 			$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
-	// 		} else {
-	// 			$query = $model->orderBy('nama', $direction = 'ASC')->getSearch($atribut, $cari);
-	// 			$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
-	// 		}
-	// 	} else {
-	// 		$query = $model->orderBy('nama', $direction = 'ASC');
-	// 		$jumlah = "";
-	// 	}
-
-	// 	$data = [
-	// 		'title' => 'Pencarian Alumni | Website Riset 5',
-	// 		'alumni' => $query->paginate(20),
-	// 		'pager' => $model->pager,
-	// 		'page'  => $_GET['page'] ? $_GET['page'] : 1,
-	// 		'jumlah' => $jumlah,
-	// 	];
-
-	// 	echo view('pages/search', $data);
-	// }
-
-	//--------------------------------------------------------------------
-
-	// public function profile()
-	// {
-	// 	if (!session()->has('id_user') && !logged_in())
-	// 		return redirect()->to('/');
-
-	// 	$model = new AlumniModel();
-	// 	$query = $model->bukaProfile(session('nim'))->getRow();
-
-	// 	$jk = $query->jenis_kelamin;
-	// 	$sb = $query->status_bekerja;
-	// 	$ap = $query->aktif_pns;
-
-	// 	if ($jk == "L") {
-	// 		$jk = "Laki-laki";
-	// 	} else {
-	// 		$jk = "Perempuan";
-	// 	}
-
-	// 	if ($sb == 0) {
-	// 		$sb = "Tidak bekerja";
-	// 	} else {
-	// 		$sb = "Masih bekerja";
-	// 	}
-
-	// 	if ($ap == 0) {
-	// 		$ap = "Tidak aktif sebagai PNS";
-	// 	} else {
-	// 		$ap = "Aktif sebagai PNS";
-	// 	}
-
-	// 	$data = [
-	// 		'title' 		=> 'Profil User | Website Riset 5',
-	// 		'angkatan'      => $query->angkatan,
-	// 		'nama'  		=> $query->nama,
-	// 		'nim'           => $query->nim,
-	// 		'jenis_kelamin'  => $jk,
-	// 		'tempat_lahir'   => $query->tempat_lahir,
-	// 		'tanggal_lahir'  => $query->tanggal_lahir,
-	// 		'telp_alumni'    => $query->telp_alumni,
-	// 		'alamat'        => $query->alamat,
-	// 		'status_bekerja'	=> $sb,
-	// 		'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
-	// 		'jabatan_terakhir' 	=> $query->jabatan_terakhir,
-	// 		'aktif_pns'		=> $ap,
-	// 	];
-	// 	return view('pages/userInfo', $data);
-	// }
-
-	//--------------------------------------------------------------------
-
-	public function update()
-	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-
-		$model = new AlumniModel();
-		$query = $model->bukaProfile(session('nim'))->getRow();
-
-		$data = [
-			'title' 		=> 'Update Profil User | Website Riset 5',
-			'angkatan'      => $query->angkatan,
-			'nama'  		=> $query->nama,
-			'nim'           => $query->nim,
-			'jenis_kelamin'  => $query->jenis_kelamin,
-			'tempat_lahir'   => $query->tempat_lahir,
-			'tanggal_lahir'  => $query->tanggal_lahir,
-			'telp_alumni'    => $query->telp_alumni,
-			'alamat'        => $query->alamat,
-			'status_bekerja'	=> $query->status_bekerja,
-			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
-			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
-			'aktif_pns'		=> $query->aktif_pns,
-		];
-		return view('pages/update', $data);
-	}
-
-	//--------------------------------------------------------------------
-
-	public function updating()
-	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-
-		$this->modelAlumni = new AlumniModel();
-
-		$data = [
-			'nama'  		=> $_GET['nama'],
-			'nim'           => session('nim'),
-			'angkatan'      => $_GET['angkatan'],
-			'jenis_kelamin'  => $_GET['jenis_kelamin'],
-			'tempat_lahir'   => $_GET['tempat_lahir'],
-			'tanggal_lahir'  => $_GET['tanggal_lahir'],
-			'telp_alumni'    => $_GET['telp_alumni'],
-			'alamat'        => $_GET['alamat'],
-			'status_bekerja' => $_GET['status_bekerja'],
-			'perkiraan_pensiun' => $_GET['perkiraan_pensiun'],
-			'jabatan_terakhir'  => $_GET['jabatan_terakhir'],
-			'aktif_pns'      => $_GET['aktif_pns'],
-		];
-
-		$this->modelAlumni->replace($data);
-
-		$query = $this->modelAlumni->bukaProfile(session('nim'))->getRow();
-		$jk = $query->jenis_kelamin;
-		$sb = $query->status_bekerja;
-		$ap = $query->aktif_pns;
-
-		if ($jk == "L") {
-			$jk = "Laki-laki";
-		} else {
-			$jk = "Perempuan";
-		}
-
-		if ($sb == 0) {
-			$sb = "Tidak bekerja";
-		} else {
-			$sb = "Masih bekerja";
-		}
-
-		if ($ap == 0) {
-			$ap = "Tidak aktif sebagai PNS";
-		} else {
-			$ap = "Aktif sebagai PNS";
-		}
-		$require = [
-			'title' 		=> 'Update Profil User | Website Riset 5',
-			'nama'  		=> $query->nama,
-			'nim'           => $query->nim,
-			'angkatan'      => $query->angkatan,
-			'jenis_kelamin'  => $jk,
-			'tempat_lahir'   => $query->tempat_lahir,
-			'tanggal_lahir'  => $query->tanggal_lahir,
-			'telp_alumni'    => $query->telp_alumni,
-			'alamat'        => $query->alamat,
-			'status_bekerja'	=> $sb,
-			'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
-			'jabatan_terakhir' 	=> $query->jabatan_terakhir,
-			'aktif_pns'		=> $ap,
-		];
-
-		return view('pages/userInfo', $require);
-	}
-
-	//--------------------------------------------------------------------
-
-	// public function profileAlumni()
-	// {
-	// 	$model = new AlumniModel();
-	// 	$kunci = $_GET['nim'];
-	// 	$query = $model->bukaProfile($kunci)->getRow();
-	// 	$jk = $query->jenis_kelamin;
-	// 	$sb = $query->status_bekerja;
-	// 	$ap = $query->aktif_pns;
-
-	// 	if ($jk == 'P') {
-	// 		$jk = "Perempuan";
-	// 	} else {
-	// 		$jk = "Laki-laki";
-	// 	}
-
-	// 	if ($sb == 0) {
-	// 		$sb = "Tidak bekerja";
-	// 	} else {
-	// 		$sb = "Masih bekerja";
-	// 	}
-
-	// 	if ($ap == 0) {
-	// 		$ap = "Tidak aktif sebagai PNS";
-	// 	} else {
-	// 		$ap = "Aktif sebagai PNS";
-	// 	}
-
-	// 	$data = [
-	// 		'title' 		=> 'Profil Alumni | Website Riset 5',
-	// 		'nama'  		=> $query->nama,
-	// 		'nim'           => $query->nim,
-	// 		'angkatan'      => $query->angkatan,
-	// 		'jenis_kelamin'  => $jk,
-	// 		'tempat_lahir'   => $query->tempat_lahir,
-	// 		'tanggal_lahir'  => $query->tanggal_lahir,
-	// 		'telp_alumni'    => $query->telp_alumni,
-	// 		'alamat'        => $query->alamat,
-	// 		'status_bekerja'	=> $sb,
-	// 		'perkiraan_pensiun' 	=> $query->perkiraan_pensiun,
-	// 		'jabatan_terakhir' 	=> $query->jabatan_terakhir,
-	// 		'aktif_pns'		=> $ap,
-	// 	];
-	// 	return view('pages/profileAlumni', $data);
-	// }
-
-	//--------------------------------------------------------------------
-
-
 }
