@@ -237,179 +237,179 @@ class Home extends BaseController
 			die();
 		}
 
-		// processing login sso bps
-		if (isset($_GET['code']) && $_GET['code']) {
-			$provider = new Keycloak([
-				'authServerUrl'         => 'https://sso.bps.go.id',
-				'realm'                 => 'pegawai-bps',
-				'clientId'              => '02700-dbalumni-mu1',
-				'clientSecret'          => 'e69810d0-f915-49c4-9ed1-cd9edf05436a',
-				'redirectUri'           => 'http://localhost:8080',
-				'scope' 				=> 'openid profile-pegawai'
-			]);
+		// // processing login sso bps
+		// if (isset($_GET['code']) && $_GET['code']) {
+		// 	$provider = new Keycloak([
+		// 		'authServerUrl'         => 'https://sso.bps.go.id',
+		// 		'realm'                 => 'pegawai-bps',
+		// 		'clientId'              => '02700-dbalumni-mu1',
+		// 		'clientSecret'          => 'e69810d0-f915-49c4-9ed1-cd9edf05436a',
+		// 		'redirectUri'           => 'http://localhost:8080',
+		// 		'scope' 				=> 'openid profile-pegawai'
+		// 	]);
 
-			if (empty($_GET['state']) || ($_GET['state'] !== session('oauth2state'))) {
+		// 	if (empty($_GET['state']) || ($_GET['state'] !== session('oauth2state'))) {
 
-				session()->remove('oauth2state');
-				exit('Invalid state');
-			} else {
+		// 		session()->remove('oauth2state');
+		// 		exit('Invalid state');
+		// 	} else {
 
-				$provider = new Keycloak([
-					'authServerUrl'         => 'https://sso.bps.go.id',
-					'realm'                 => 'pegawai-bps',
-					'clientId'              => '02700-dbalumni-mu1',
-					'clientSecret'          => 'e69810d0-f915-49c4-9ed1-cd9edf05436a',
-					'redirectUri'           => 'http://localhost:8080',
-					'scope' 				=> 'openid profile-pegawai'
-				]);
+		// 		$provider = new Keycloak([
+		// 			'authServerUrl'         => 'https://sso.bps.go.id',
+		// 			'realm'                 => 'pegawai-bps',
+		// 			'clientId'              => '02700-dbalumni-mu1',
+		// 			'clientSecret'          => 'e69810d0-f915-49c4-9ed1-cd9edf05436a',
+		// 			'redirectUri'           => 'http://localhost:8080',
+		// 			'scope' 				=> 'openid profile-pegawai'
+		// 		]);
 
-				// get token
-				try {
-					$token = $provider->getAccessToken('authorization_code', [
-						'code' => $_GET['code']
-					]);
-				} catch (Exception $e) {
-					exit('Gagal mendapatkan akses token : ' . $e->getMessage());
-				}
+		// 		// get token
+		// 		try {
+		// 			$token = $provider->getAccessToken('authorization_code', [
+		// 				'code' => $_GET['code']
+		// 			]);
+		// 		} catch (Exception $e) {
+		// 			exit('Gagal mendapatkan akses token : ' . $e->getMessage());
+		// 		}
 
-				try {
-					$user = $provider->getResourceOwner($token);
+		// 		try {
+		// 			$user = $provider->getResourceOwner($token);
 
 
-					// var_dump($user->toArray());	//cek result sso-bps
-					// die();
+		// 			// var_dump($user->toArray());	//cek result sso-bps
+		// 			// die();
 
-					$curl = curl_init();
-					curl_setopt_array($curl, [
-						CURLOPT_RETURNTRANSFER => 1,
-						CURLOPT_URL => "https://pbd.bps.go.id/simpeg_api/pkl_stis_2021",
-						CURLOPT_POST => 1,
-						CURLOPT_POSTFIELDS => [
-							'apiKey'	=> "0smUjhQHo2SMu2MJkcJmgEmEkv4qAfCvTW8PwnQQ724=",
-							'kategori'	=> "get_riwayat_pendidikan",
-							'nipbps'	=> $user->getNip()
-						]
-					]);
-					curl_setopt($curl, CURLOPT_FRESH_CONNECT, TRUE);
+		// 			$curl = curl_init();
+		// 			curl_setopt_array($curl, [
+		// 				CURLOPT_RETURNTRANSFER => 1,
+		// 				CURLOPT_URL => "https://pbd.bps.go.id/simpeg_api/pkl_stis_2021",
+		// 				CURLOPT_POST => 1,
+		// 				CURLOPT_POSTFIELDS => [
+		// 					'apiKey'	=> "0smUjhQHo2SMu2MJkcJmgEmEkv4qAfCvTW8PwnQQ724=",
+		// 					'kategori'	=> "get_riwayat_pendidikan",
+		// 					'nipbps'	=> $user->getNip()
+		// 				]
+		// 			]);
+		// 			curl_setopt($curl, CURLOPT_FRESH_CONNECT, TRUE);
 
-					$result = curl_exec($curl);
-					curl_close($curl);
-					$hasil = json_decode($result);
+		// 			$result = curl_exec($curl);
+		// 			curl_close($curl);
+		// 			$hasil = json_decode($result);
 
-					if (isset($hasil->pesan)) {
-						echo "data tidak ditemukan";
-					} else {
-						$riwayat_pendidikan = array();
-						foreach ($hasil as $data)
-							array_push($riwayat_pendidikan, $data->Nama_Instansi_Pendidikan);
-						if (in_array('Akademi Ilmu Statistik', $riwayat_pendidikan) || in_array('Sekolah Tinggi Ilmu Statistik', $riwayat_pendidikan) || in_array('Politeknin Statistika STIS', $riwayat_pendidikan)) {
+		// 			if (isset($hasil->pesan)) {
+		// 				echo "data tidak ditemukan";
+		// 			} else {
+		// 				$riwayat_pendidikan = array();
+		// 				foreach ($hasil as $data)
+		// 					array_push($riwayat_pendidikan, $data->Nama_Instansi_Pendidikan);
+		// 				if (in_array('Akademi Ilmu Statistik', $riwayat_pendidikan) || in_array('Sekolah Tinggi Ilmu Statistik', $riwayat_pendidikan) || in_array('Politeknin Statistika STIS', $riwayat_pendidikan)) {
 
-							// binding session dengan database
-							if ($this->modelAlumni->getUserByNIM($user->getNip()) == NULL) {
-								$bindUser = [
-									'angkatan'      => $faker->numberBetween(1, 62),
-									'nama'			=> $user->getName(),
-									'nim'			=> $user->getNip(),
-									'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
-									'tempat_lahir'   => $faker->city,
-									'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
-									'telp_alumni'    => $faker->phoneNumber,
-									'alamat'        => $faker->address,
-									'status_bekerja' => $faker->boolean,
-									'perkiraan_pensiun' => $faker->year,
-									'jabatan_terakhir'  => $faker->jobTitle,
-									'aktif_pns'      => $faker->boolean,
-								];
-								$this->modelAlumni->db->table('alumni')->insert($bindUser);
-							}
+		// 					// binding session dengan database
+		// 					if ($this->modelAlumni->getUserByNIM($user->getNip()) == NULL) {
+		// 						$bindUser = [
+		// 							'angkatan'      => $faker->numberBetween(1, 62),
+		// 							'nama'			=> $user->getName(),
+		// 							'nim'			=> $user->getNip(),
+		// 							'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
+		// 							'tempat_lahir'   => $faker->city,
+		// 							'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
+		// 							'telp_alumni'    => $faker->phoneNumber,
+		// 							'alamat'        => $faker->address,
+		// 							'status_bekerja' => $faker->boolean,
+		// 							'perkiraan_pensiun' => $faker->year,
+		// 							'jabatan_terakhir'  => $faker->jobTitle,
+		// 							'aktif_pns'      => $faker->boolean,
+		// 						];
+		// 						$this->modelAlumni->db->table('alumni')->insert($bindUser);
+		// 					}
 
-							if ($this->modelAuth->getUserByUsername($user->getUsername()) == NULL) {
-								$now = date("Y-m-d H:i:s");
-								$data = [
-									'email'				=> $user->getEmail(),
-									'username'			=> $user->getUsername(),
-									'nim'				=> $user->getNip(),
-									'fullname'			=> $user->getName(),
-									'password_hash'		=> null,
-									'reset_at'			=> null,
-									'active'			=> 1,
-									'force_pass_reset'	=> 0,
-									'created_at'		=> $now,
-									'updated_at'		=> $now
-								];
-								$this->modelAuth->insertUser($data);
-							}
+		// 					if ($this->modelAuth->getUserByUsername($user->getUsername()) == NULL) {
+		// 						$now = date("Y-m-d H:i:s");
+		// 						$data = [
+		// 							'email'				=> $user->getEmail(),
+		// 							'username'			=> $user->getUsername(),
+		// 							'nim'				=> $user->getNip(),
+		// 							'fullname'			=> $user->getName(),
+		// 							'password_hash'		=> null,
+		// 							'reset_at'			=> null,
+		// 							'active'			=> 1,
+		// 							'force_pass_reset'	=> 0,
+		// 							'created_at'		=> $now,
+		// 							'updated_at'		=> $now
+		// 						];
+		// 						$this->modelAuth->insertUser($data);
+		// 					}
 
-							$hasil = $this->modelAuth->getUserByUsername($user->getUsername());
+		// 					$hasil = $this->modelAuth->getUserByUsername($user->getUsername());
 
-							session()->set([	//set session (informasi identitas) dari tabel users
-								'id_user' => $hasil['id'],
-								'nim' => $hasil['nim'],
-								'nama' => $hasil['fullname']
-							]);
+		// 					session()->set([	//set session (informasi identitas) dari tabel users
+		// 						'id_user' => $hasil['id'],
+		// 						'nim' => $hasil['nim'],
+		// 						'nama' => $hasil['fullname']
+		// 					]);
 
-							$query = $this->roleModel->getRole(session('id_user'));
-							$role = array();
+		// 					$query = $this->roleModel->getRole(session('id_user'));
+		// 					$role = array();
 
-							if ($query != null) {
-								foreach ($query as $arr) {
-									array_push($role, $arr->group_id);
-								}
-								session()->set([
-									'role' => $role
-								]);
-							} else {
-								$data = [
-									'group_id'	=> 2,
-									'user_id'	=> session('id_user')
-								];
-								$this->roleModel->insertRole($data);
-								$query = $this->roleModel->getRole(session('id_user'));
-								foreach ($query as $arr) {
-									array_push($role, $arr->group_id);
-								}
-								session()->set([
-									'role' => $role
-								]);
-							}
+		// 					if ($query != null) {
+		// 						foreach ($query as $arr) {
+		// 							array_push($role, $arr->group_id);
+		// 						}
+		// 						session()->set([
+		// 							'role' => $role
+		// 						]);
+		// 					} else {
+		// 						$data = [
+		// 							'group_id'	=> 2,
+		// 							'user_id'	=> session('id_user')
+		// 						];
+		// 						$this->roleModel->insertRole($data);
+		// 						$query = $this->roleModel->getRole(session('id_user'));
+		// 						foreach ($query as $arr) {
+		// 							array_push($role, $arr->group_id);
+		// 						}
+		// 						session()->set([
+		// 							'role' => $role
+		// 						]);
+		// 					}
 
-							$ipAddress = Services::request()->getIPAddress();
-							$this->recordLoginAttempt($hasil['email'], $ipAddress, session('id_user') ?? null, true);
+		// 					$ipAddress = Services::request()->getIPAddress();
+		// 					$this->recordLoginAttempt($hasil['email'], $ipAddress, session('id_user') ?? null, true);
 
-							setcookie('login', 'yes', time() + 60, $_SERVER['SERVER_NAME']);
+		// 					setcookie('login', 'yes', time() + 60, $_SERVER['SERVER_NAME']);
 
-							session()->setFlashdata('pesan', 'Login berhasil. Hai, <b>' . session('username') . '!</b>');
-							session()->setFlashdata('warna', 'success');
-							echo '<script>window.close();</script>';
+		// 					session()->setFlashdata('pesan', 'Login berhasil. Hai, <b>' . session('username') . '!</b>');
+		// 					session()->setFlashdata('warna', 'success');
+		// 					echo '<script>window.close();</script>';
 
-							die();
-						} else
-							echo "Bukan Alumni";
-					}
+		// 					die();
+		// 				} else
+		// 					echo "Bukan Alumni";
+		// 			}
 
-					// echo "Id : " . $user->getId();
-					// echo "Nama : " . $user->getName();
-					// echo "Nama Depan: " . $user->getnamaDepan();
-					// echo "Nama Belakang: " . $user->getnamaBelakang();
-					// echo "E-Mail : " . $user->getEmail();
-					// echo "Username : " . $user->getUsername();
-					// echo "NIP : " . $user->getNip();
-					// echo "NIP Baru : " . $user->getNipBaru();
-					// echo "Kode Organisasi : " . $user->getKodeOrganisasi();
-					// echo "Kode Provinsi : " . $user->getKodeProvinsi();
-					// echo "Kode Kabupaten : " . $user->getKodeKabupaten();
-					// echo "Alamat Kantor : " . $user->getAlamatKantor();
-					// echo "Provinsi : " . $user->getProvinsi();
-					// echo "Kabupaten : " . $user->getKabupaten();
-					// echo "Golongan : " . $user->getGolongan();
-					// echo "Jabatan : " . $user->getJabatan();
-					// echo "Foto : " . $user->getUrlFoto();
-					// echo "Eselon : " . $user->getEselon();
-				} catch (Exception $e) {
-					exit('Gagal Mendapatkan Data Pengguna: ' . $e->getMessage());
-				}
-			}
-		}
+		// 			// echo "Id : " . $user->getId();
+		// 			// echo "Nama : " . $user->getName();
+		// 			// echo "Nama Depan: " . $user->getnamaDepan();
+		// 			// echo "Nama Belakang: " . $user->getnamaBelakang();
+		// 			// echo "E-Mail : " . $user->getEmail();
+		// 			// echo "Username : " . $user->getUsername();
+		// 			// echo "NIP : " . $user->getNip();
+		// 			// echo "NIP Baru : " . $user->getNipBaru();
+		// 			// echo "Kode Organisasi : " . $user->getKodeOrganisasi();
+		// 			// echo "Kode Provinsi : " . $user->getKodeProvinsi();
+		// 			// echo "Kode Kabupaten : " . $user->getKodeKabupaten();
+		// 			// echo "Alamat Kantor : " . $user->getAlamatKantor();
+		// 			// echo "Provinsi : " . $user->getProvinsi();
+		// 			// echo "Kabupaten : " . $user->getKabupaten();
+		// 			// echo "Golongan : " . $user->getGolongan();
+		// 			// echo "Jabatan : " . $user->getJabatan();
+		// 			// echo "Foto : " . $user->getUrlFoto();
+		// 			// echo "Eselon : " . $user->getEselon();
+		// 		} catch (Exception $e) {
+		// 			exit('Gagal Mendapatkan Data Pengguna: ' . $e->getMessage());
+		// 		}
+		// 	}
+		// }
 
 		if (session()->has('id_user')) {
 			$data = [
@@ -528,7 +528,7 @@ class Home extends BaseController
 		// 'perkiraan_pensiun'
 		// 'jabatan_terakhir' 
 		// 'aktif_pns'		
-		
+
 		$query2 = $model->getTempatKerjaByNIM(session('nim'))->getRow();
 		//isi :
 		// 'id_tempat_kerja'	
@@ -646,7 +646,7 @@ class Home extends BaseController
 		// 'perkiraan_pensiun'
 		// 'jabatan_terakhir' 
 		// 'aktif_pns'		
-		
+
 		$query2 = $model->getTempatKerjaByNIM($kunci)->getRow();
 		//isi :	
 		// 'id_tempat_kerja'	
@@ -723,7 +723,7 @@ class Home extends BaseController
 	}
 
 	public function editProfil()
-    {
+	{
 		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
@@ -738,8 +738,8 @@ class Home extends BaseController
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
 		];
-        return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
+	}
 
 	public function updateProfil()
 	{
@@ -764,7 +764,7 @@ class Home extends BaseController
 			'aktif_pns'      => $_POST['aktif_pns'],
 		];
 
-		$model->db->table('alumni')->set($data)->where('nim',session('nim'))->update();
+		$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
 
 		$query2 = $model->bukaProfile(session('nim'));
 
@@ -772,14 +772,14 @@ class Home extends BaseController
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
 			'active' 		=> 'profil',
-			'alumni'=> $query2->getRow(),
+			'alumni' => $query2->getRow(),
 		];
-        return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
+		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
 	}
 
-    public function editPendidikan()
-    {
-        if (!session()->has('id_user'))
+	public function editPendidikan()
+	{
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -792,15 +792,15 @@ class Home extends BaseController
 			'pendidikan'      => $query->getResult(),
 			'jumlah' => $model->getCountPendidikanByNIM(session('nim'))
 		];
-        return view('websia/kontenWebsia/editProfile/editPendidikan.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editPendidikan.php', $data);
+	}
 	// belum bikin
 	// public function updatePendidikan()
 	// {}
 
-    public function editTempatKerja()
-    {
-        if (!session()->has('id_user'))
+	public function editTempatKerja()
+	{
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -812,8 +812,8 @@ class Home extends BaseController
 			'active' 		=> 'profil',
 			'tempat_kerja'      => $query->getRow(),
 		];
-        return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
+	}
 
 	// salahh masihan
 	public function updateTempatKerja()
@@ -832,7 +832,7 @@ class Home extends BaseController
 			'email_instansi'  => $_POST['email_instansi'],
 		];
 
-		$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja',$kunci)->update();
+		$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja', $kunci)->update();
 
 		$query = $model->getTempatKerjaByNIM(session('nim'));
 
@@ -840,14 +840,14 @@ class Home extends BaseController
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
 			'active' 		=> 'profil',
-			'tempat_kerja'=> $query->getRow(),
+			'tempat_kerja' => $query->getRow(),
 		];
-        return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
+		return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
 	}
 
-    public function editPrestasi()
-    {
-        if (!session()->has('id_user'))
+	public function editPrestasi()
+	{
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -861,15 +861,15 @@ class Home extends BaseController
 			'jumlah' => $model->getCountPrestasiByNIM(session('nim'))
 		];
 
-        return view('websia/kontenWebsia/editProfile/editPrestasi.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editPrestasi.php', $data);
+	}
 	// belum bikin
 	// public function updatePrestasi()
 	// {}
 
-    public function editPublikasi()
-    {
-        if (!session()->has('id_user'))
+	public function editPublikasi()
+	{
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -883,15 +883,15 @@ class Home extends BaseController
 			'jumlah' => $model->getCountPublikasiByNIM(session('nim'))
 		];
 
-        return view('websia/kontenWebsia/editProfile/editPublikasi.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editPublikasi.php', $data);
+	}
 	// belum bikin
 	// public function updatePublikasi()
 	// {}
 
-    public function editAkun()
-    {
-        if (!session()->has('id_user'))
+	public function editAkun()
+	{
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
@@ -904,23 +904,23 @@ class Home extends BaseController
 			'user'      => $query->getRow(),
 		];
 
-        return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
+	}
 
 	public function updateAkun()
-    {
-        if (!session()->has('id_user'))
+	{
+		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		// belum tahu nih cara validasi ginian
-		if($_POST['passbaru'] == $_POST['ulangpassbaru']){
+		if ($_POST['passbaru'] == $_POST['ulangpassbaru']) {
 			$data = [
 				'username'      => $_POST['username'],
 				'password_hash' => password_hash($_POST['passbaru'], PASSWORD_DEFAULT),
 			];
-			
-			$model->db->table('users')->set($data)->where('id',session('id_user'))->update();
+
+			$model->db->table('users')->set($data)->where('id', session('id_user'))->update();
 		}
 
 		$query = $model->getUsersByNIM(session('id_user'));
@@ -932,8 +932,8 @@ class Home extends BaseController
 			'username'      => $query->getRow()->username,
 		];
 
-        return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
-    }
+		return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
+	}
 
 	public function galeriFoto()
 	{
