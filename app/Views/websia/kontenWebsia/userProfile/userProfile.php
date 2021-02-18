@@ -35,12 +35,12 @@ if ($status == 'bukan user') {
                 if ($status == 'bukan user') {
                 } else if ($status == 'user') { ?>
                     <?php foreach ($role as $row) : ?>
-                        <?php if($row->name == 'Developer'){
-                }else{?>
-                        <span class="font-paragraph text-xs inline-block bg-gray-300 mb-1 py-1 px-2 md:px-3 lg:px-4 rounded-lg text-primary align-middle uppercase"><?= $row->name; ?></span>
-                    <?php }
-                endforeach;
-            }?>
+                        <?php if ($row->name == 'Developer') {
+                        } else { ?>
+                            <span class="font-paragraph text-xs inline-block bg-gray-300 mb-1 py-1 px-2 md:px-3 lg:px-4 rounded-lg text-primary align-middle uppercase"><?= $row->name; ?></span>
+                <?php }
+                    endforeach;
+                } ?>
 
             </div>
             <!-- tempat dan tanggal lahir -->
@@ -68,7 +68,13 @@ if ($status == 'bukan user') {
             </p>
         </div>
         <!-- Akhir Deskripsi user profile -->
-        <div class="space-x-3 lg:space-x-2 flex justify-center lg:justify-start md:py-6 px-8 md:px-0">
+        <div class="md:pl-5 lg:pl-6">
+            <p class="font-heading text-primary text-xs px-5 md:px-0 mt-6">Lokasi Tempat Tinggal Saat Ini</p>
+            <span class="font-heading flex justify-start px-3 md:px-0 text-base text-left mb-5 md:mb-2">
+                <img class="my-2 mt-2 mr-0 md:mr-2 ml-1 md:ml-0 w-6 h-6 md:w-6 float-left" src="/img/icon/maps_flag.png" alt="">
+                <!-- Lokasi tempat tinggal -->
+                <p class="font-heading my-2 mt-2"> Jl Gading Griya Lestari Bl Y-1, DKI Jakarta </p>
+            </span>
             <!-- Awal media sosial dan telepon -->
             <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <div class="w-1/2">
@@ -96,48 +102,48 @@ if ($status == 'bukan user') {
                     </div>
                 </div>
             </div>
-            <!--  Akhir media sosial dan telepon -->
+            <!--  Akhir media sosial-->
         </div>
     </div>
 </div>
 <!-- Akhir User Profile-->
 
-    <!-- Awal Rekomendasi -->
-    <div class="bg-primary py-8 md:py-4 lg:px-20 md:px-8 px-2">
-        <div class="static md:w-full md:px-2 md:py-8 pb-4">
-            <div class="md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
-                <!-- link ini mengarah ke halaman tampilan semua rekomendasi -->
-                <div class="invisible sm:visible">
-                    <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/Home/rekomendasi">
-                        Lihat Semua Rekomendasi
-                        <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
-                    </a>
-                </div>
-                <h2 class="font-heading mb-6 text-xl inline-block">Alumni yang mungkin Anda kenal</h2>
-            </div>
-            <div class="holder mx-auto w-11/12 md:w-full lg:w-11/12 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-0 lg:gap-x-8" data-aos="zoom-in">
-                <?php foreach ($rekomendasi as $row) :  ?>
-                    <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
-                        <a href="/Home/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
-                            <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
-                            <div class="desc p-2">
-                                <span class="title font-heading font-bold text-primary block cursor-pointer text-center"><?= $row->nama; ?></span>
-                                <!-- <span class="description font-paragraph text-primary text-center text-base block pt-2 border-gray-400 mb-0"><?= $row->nim; ?></span> -->
-                                <span class="description font-paragraph text-primary text-center text-base block py-0 border-gray-400 mb-0">Angkatan <?= $row->angkatan; ?></span>
-                                <!-- <a class="block bg-gray-300 font-paragraph text-primary text-sm text-center py-1 px-3 my-4 mx-auto rounded-lg w-full cursor-pointer border-gray-300 hover:bg-gray-400 hover:border-opacity-70 transition-colors duration-300" href="/profil">Lihat Profil</a> -->
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="visible sm:invisible">
-                <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/Home/rekomendasi">
+<!-- Awal Rekomendasi -->
+<div class="bg-primary py-8 md:py-4 lg:px-20 md:px-8 px-2">
+    <div class="static md:w-full md:px-2 md:py-8 pb-4">
+        <div class="md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
+            <!-- link ini mengarah ke halaman tampilan semua rekomendasi -->
+            <div class="invisible sm:visible">
+                <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/Home/rekomendasi">
                     Lihat Semua Rekomendasi
                     <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
                 </a>
             </div>
+            <h2 class="font-heading mb-6 text-xl inline-block">Alumni yang mungkin Anda kenal</h2>
+        </div>
+        <div class="holder mx-auto w-11/12 md:w-full lg:w-11/12 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-0 lg:gap-x-8" data-aos="zoom-in">
+            <?php foreach ($rekomendasi as $row) :  ?>
+                <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
+                    <a href="/Home/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
+                        <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
+                        <div class="desc p-2">
+                            <span class="title font-heading font-bold text-primary block cursor-pointer text-center"><?= $row->nama; ?></span>
+                            <!-- <span class="description font-paragraph text-primary text-center text-base block pt-2 border-gray-400 mb-0"><?= $row->nim; ?></span> -->
+                            <span class="description font-paragraph text-primary text-center text-base block py-0 border-gray-400 mb-0">Angkatan <?= $row->angkatan; ?></span>
+                            <!-- <a class="block bg-gray-300 font-paragraph text-primary text-sm text-center py-1 px-3 my-4 mx-auto rounded-lg w-full cursor-pointer border-gray-300 hover:bg-gray-400 hover:border-opacity-70 transition-colors duration-300" href="/profil">Lihat Profil</a> -->
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="visible sm:invisible">
+            <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/Home/rekomendasi">
+                Lihat Semua Rekomendasi
+                <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
+            </a>
         </div>
     </div>
+</div>
 <!-- Akhir Rekomendasi -->
 
 <!-- Atribut pada section ini belum ditentukan -->
@@ -176,7 +182,7 @@ if ($status == 'bukan user') {
 <div class="w-full my-8 lg:px-20 md:px-8 px-2">
     <h3 class="font-heading font-bold text-xl text-secondary">Riwayat Prestasi</h3>
     <div class="md:shadow-lg lg:shadow-xl rounded-2xl px-0 py-1 md:px-5 md:py-5 lg:mx-14 lg:p-8 mb-1 md:mt-3">
-    <?php foreach ($prestasi as $row) : ?>
+        <?php foreach ($prestasi as $row) : ?>
             <div class="flex justify-between px-3 font-heading text-primary mt-2 md:mt-2 lg:mt-3">
                 <div class=""><span class="text-black"><?= $row->nama_prestasi; ?></span> </div>
                 <div class="font-bold"><?= $row->tahun_prestasi; ?></div>
