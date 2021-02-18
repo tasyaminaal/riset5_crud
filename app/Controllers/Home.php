@@ -480,32 +480,33 @@ class Home extends BaseController
 		}
 
 		$cari = $_GET['cari'];
-		$filter = $_GET['filter'];
-
-		if (isset($filter)) {
 			$query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
 			if (!empty($cari)) {
-				$jumlah = "Pencarian dengan kata <B>$cari</B> ditemukan " . $query->countAllResults(false) . " Data";
+				$jumlah = "Sekitar " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
 			} else {
-				$jumlah = "Pencarian berhasil";
+				$jumlah = "Memuat " . $query->countAllResults(false) . " data alumni.";
 			}
-		} else {
-			$query = $model->orderBy('nama', $direction = 'ASC');
-			$jumlah = "Pencarian belum dilakukan";
-		}
+		if ($query->countAllResults(false) == 0) {
+			$data = [
+				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
+				'active' => '',
+			];
 
-		$data = [
-			'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
-			'active' => 'cari',
-			'alumni' => $query->paginate(9),
-			'pager' => $model->pager,
-			'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
-			'jumlah' => $jumlah,
-			'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
-			'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
-		];
+            return view('websia/kontenWebsia/searchAndFilter/searchKosong', $data);
+        } else {
+			$data = [
+				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
+				'active' => '',
+				'alumni' => $query->paginate(9),
+				'pager' => $model->pager,
+				'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
+				'jumlah' => $jumlah,
+				'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
+				'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
+			];
 
-		echo view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
+            return view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
+        }
 	}
 
 	public function profil()
@@ -621,8 +622,9 @@ class Home extends BaseController
 		$data = [
 			'judulHalaman'  => 'Rekomendasi',
 			'active' 		=> 'rekomendasi',
-			'alumni'          => $query->orderBy('nama', $direction = 'asc')->get()->getResult(),
-			'jumlah'        => $query->countAllResults(false)
+			'jumlah'        => $query->countAllResults(false),
+			'alumni'          => $query->orderBy('nama', $direction = 'asc')->paginate(16),
+			'pager'		=> $query->orderBy('nama', $direction = 'asc')->pager
 		];
 
 		return view('websia/kontenWebsia/userProfile/rekomendasi', $data);
@@ -656,7 +658,7 @@ class Home extends BaseController
 		// 'email_instansi'
 		// 'faks_instansi'
 
-		$query4 = $model->getAlumniByAngkatan($query1->angkatan);
+		$query4 = $model->getAlumniByAngkatan($model->bukaProfile(session('nim'))->getRow()->angkatan);
 		//isi :
 		// pencarian rekomendasi
 

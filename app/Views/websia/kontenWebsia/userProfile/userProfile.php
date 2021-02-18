@@ -49,7 +49,9 @@ if ($status == 'bukan user') {
                 <!-- Angkatan -->
                 Angkatan <span class="text-primary">ke-<?= $alumni->angkatan; ?> </span><br />
                 <!-- Akademi Ilmu Statistik / STIS/ POLSTAT STIS  ========>  Harusnya diatur di BE -->
-                Sekolah Tinggi Ilmu Satistik <br />
+                <?php foreach($pendidikan as $row){
+                    echo $row->instansi;?> <br />
+                <?php } ?>
                 <!-- NIM -->
                 NIM <span class="text-primary"><?= $alumni->nim; ?></span>
             </p>
@@ -70,29 +72,51 @@ if ($status == 'bukan user') {
         <!-- Akhir Deskripsi user profile -->
         <div class="space-x-3 lg:space-x-2 flex justify-center lg:justify-start md:py-6 px-8 md:px-0">
             <!-- Awal media sosial dan telepon -->
+            <?php 
+            if($alumni->email ==""){
+                $email = "belum terisi";
+            } else {
+                $email = $alumni->email;
+            }
+            if($alumni->fb ==""){
+                $fb = "belum terisi";
+            } else {
+                $fb = $alumni->fb;
+            }
+            if($alumni->twitter ==""){
+                $twitter = "belum terisi";
+            } else {
+                $twitter = $alumni->twitter;
+            }
+            if($alumni->ig ==""){
+                $ig = "belum terisi";
+            } else {
+                $ig = $alumni->ig;
+            }
+        ?>
             <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <div class="w-1/2">
                     <!-- Email -->
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/message.png" alt="" class="float-left w-5">
-                        <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $alumni->email ?></span>
+                        <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $email ?></span>
                     </div>
                     <!-- Facebook -->
                     <div class="inline-block flex flex-row">
                         <img src="/img/icon/facebook.png" alt="" class="float-left ml-1 w-2 h-4">
-                        <span class="font-heading text-xs text-primary text-center flex items-center ml-3 md:ml-4">belum ada</span>
+                        <span class="font-heading text-xs text-primary text-center flex items-center ml-3 md:ml-4"><?= $fb ?></span>
                     </div>
                 </div>
                 <div class="w-1/2 ml-2">
                     <!-- Twitter -->
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/twitter.png" alt="" class="float-left w-4 w-4">
-                        <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3">belum ada</span>
+                        <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3"><?= $twitter ?></span>
                     </div>
                     <!-- Instagram -->
                     <div class="inline-block flex flex-row">
                         <img src="/img/icon/instagram.png" alt="" class="float-left w-4">
-                        <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3">belum ada</span>
+                        <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3"><?= $ig ?></span>
                     </div>
                 </div>
             </div>
@@ -146,25 +170,52 @@ if ($status == 'bukan user') {
     <h3 class="font-heading font-bold text-xl text-secondary">Informasi Instansi</h3>
     <div class="md:shadow-lg lg:shadow-xl rounded-2xl px-3 py-3 md:px-7 md:py-5 lg:mx-14 lg:py-8 lg:px-11 md:mt-3">
         <div class="font-heading">
+        <?php 
+            if($tempat_kerja->nama_instansi ==""){
+                $nama_instansi = "belum terisi";
+            } else {
+                $nama_instansi = $tempat_kerja->nama_instansi;
+            }
+            if($tempat_kerja->telp_instansi ==""){
+                $telp_instansi = "belum terisi";
+            } else {
+                $telp_instansi = $tempat_kerja->telp_instansi;
+            }
+            if($tempat_kerja->faks_instansi ==""){
+                $faks_instansi = "belum terisi";
+            } else {
+                $faks_instansi = $tempat_kerja->faks_instansi;
+            }
+            if($tempat_kerja->email_instansi ==""){
+                $email_instansi = "belum terisi";
+            } else {
+                $email_instansi = $tempat_kerja->email_instansi;
+            }
+            if($tempat_kerja->alamat_instansi ==""){
+                $alamat_instansi = "belum terisi";
+            } else {
+                $alamat_instansi = $tempat_kerja->alamat_instansi;
+            }
+        ?>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Instansi :</div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->nama_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $nama_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Alamat : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->alamat_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $alamat_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Telp : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->telp_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $telp_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Faks : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->faks_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $faks_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Email : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->email_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $email_instansi ?></div>
             </div>
         </div>
     </div>
@@ -206,13 +257,45 @@ if ($status == 'bukan user') {
                     </thead>
                     <tbody>
                         <?php foreach ($pendidikan as $row) : ?>
+                        <?php 
+                        if($row->jenjang ==""){
+                            $jenjang = "belum terisi";
+                        } else {
+                            $jenjang = $row->jenjang;
+                        }
+                        if($row->instansi ==""){
+                            $instansi = "belum terisi";
+                        } else {
+                            $instansi = $row->instansi;
+                        }
+                        if($row->program_studi ==""){
+                            $program_studi = "belum terisi";
+                        } else {
+                            $program_studi = $row->program_studi;
+                        }
+                        if($row->tahun_masuk =="0000"){
+                            $tahun_masuk = "belum terisi";
+                        } else {
+                            $tahun_masuk = $row->tahun_masuk;
+                        }
+                        if($row->tahun_lulus =="0000"){
+                            $tahun_lulus = "belum terisi";
+                        } else {
+                            $tahun_lulus = $row->tahun_lulus;
+                        }
+                        if($row->judul_tulisan ==""){
+                            $judul_tulisan = "belum terisi";
+                        } else {
+                            $judul_tulisan = $row->judul_tulisan;
+                        }
+                        ?>
                             <tr>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->jenjang; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->instansi; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->program_studi; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->tahun_masuk; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->tahun_lulus; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->judul_tulisan; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $jenjang; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $instansi; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $program_studi; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $tahun_masuk; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $tahun_lulus; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $judul_tulisan; ?></td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
