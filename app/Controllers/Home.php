@@ -616,10 +616,11 @@ class Home extends BaseController
 		$model = new AlumniModel();
 
 		$query = $model->getAlumniByAngkatan($model->bukaProfile(session('nim'))->getRow()->angkatan);
+		// dd($query->orderBy('nama', $direction = 'asc')->get()->getResult());
 
 		$data = [
 			'judulHalaman'  => 'Rekomendasi',
-			'active' 		=> 'profil',
+			'active' 		=> 'rekomendasi',
 			'alumni'          => $query->orderBy('nama', $direction = 'asc')->get()->getResult(),
 			'jumlah'        => $query->countAllResults(false)
 		];
@@ -736,7 +737,6 @@ class Home extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
-			'email'	=> $model->db->table('users')->where('id',session('id_user'))->get()->getRow('email'),
 		];
         return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
     }
@@ -754,7 +754,7 @@ class Home extends BaseController
 			'nama'  		=> $_POST['nama'],
 			'nim'           => session('nim'),
 			'jenis_kelamin'  => $_POST['jenis_kelamin'],
-			'tempat_lahir'   => $query1->tempat_lahir,
+			'tempat_lahir'   => $_POST['tempat_lahir'],
 			'tanggal_lahir'  => $query1->tanggal_lahir,
 			'telp_alumni'    => $_POST['telp_alumni'],
 			'alamat'        => $_POST['alamat'],
@@ -773,7 +773,6 @@ class Home extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'alumni'=> $query2->getRow(),
-			'email'	=> $model->db->table('users')->where('id',session('id_user'))->get()->getRow('email'),
 		];
         return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
 	}

@@ -64,7 +64,7 @@ if ($alumni->aktif_pns == '1') {
                 <div class="md:grid md:grid-cols-2 md:gap-x-4">
                     <div>
                         <label for="tempat_lahir" class="font-medium">Tempat Lahir:</label>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->tempat_lahir ?></div>
+                        <input type="text" name="tempat_lahir" id="tempatlahir" class="inputForm" value="<?= $alumni->tempat_lahir; ?>">
                     </div>
                     <div>
                         <label for="tanggal_lahir" class="font-medium">Tanggal Lahir:</label>
@@ -76,7 +76,7 @@ if ($alumni->aktif_pns == '1') {
                         <label for="telp_alumni" class="font-medium">No. Telepon:</label>
                         <input type="text" name="telp_alumni" id="notelepon" class="inputForm" value="<?= $alumni->telp_alumni; ?>">
                         <label for="email" class="font-medium">Email:</label>
-                        <div class="text-black font-heading font-normal mb-2"><?= $email ?></div>
+                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->email ?></div>
                     </div>
                 </div>
                 <label for="alamat" class="font-medium">Alamat:</label>
@@ -115,7 +115,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="instagram" class="font-medium">Instagram</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="instagram" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" placeholder="Username Instagram">
+                                <input type="text" name="instagram" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?=$alumni->ig;?>">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
@@ -123,7 +123,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="twitter" class="font-medium">Twitter</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" placeholder="Username Twitter">
+                                <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?=$alumni->twitter;?>">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
@@ -131,7 +131,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="facebook" class="font-medium">Facebook</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="facebook" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" placeholder="Nama Akun Facebook">
+                                <input type="text" name="facebook" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?=$alumni->fb;?>">
                             </div>
                         </div>
                     </div>

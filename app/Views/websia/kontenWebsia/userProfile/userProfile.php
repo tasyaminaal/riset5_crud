@@ -75,7 +75,7 @@ if ($status == 'bukan user') {
                     <!-- Email -->
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/message.png" alt="" class="float-left w-5">
-                        <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $user->email ?></span>
+                        <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $alumni->email ?></span>
                     </div>
                     <!-- Facebook -->
                     <div class="inline-block flex flex-row">
@@ -208,7 +208,7 @@ if ($status == 'bukan user') {
                         <?php foreach ($pendidikan as $row) : ?>
                             <tr>
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->jenjang; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->universitas; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->instansi; ?></td>
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->program_studi; ?></td>
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->tahun_masuk; ?></td>
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->tahun_lulus; ?></td>

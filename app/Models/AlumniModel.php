@@ -110,6 +110,7 @@ class AlumniModel extends Model
     public function getPendidikanByNIM($nim)
     {
         $query = "SELECT * FROM pendidikan WHERE nim = $nim";
+        $query = "SELECT * FROM pendidikan JOIN pendidikan_tinggi ON pendidikan.id_pendidikan=pendidikan_tinggi.id_pendidikan WHERE pendidikan.nim = $nim";
         return $this->db->query($query);
     }
 
