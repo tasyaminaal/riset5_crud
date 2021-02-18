@@ -20,7 +20,7 @@ class Home extends BaseController
 		$this->roleModel = new \App\Models\RoleModel();
 		$faker = \Faker\Factory::create('id_ID');
 
-		// // processing data sipadu
+		// processing data sipadu
 		if (isset($_REQUEST['code']) && $_REQUEST['code']) {
 
 			$curl_status = curl_init();
@@ -73,50 +73,22 @@ class Home extends BaseController
 				// binding session dengan database (insert data ke tabel alumni kalau belum terdaftar di tabel alumni) 
 				if ($this->modelAlumni->getUserByNIM($user['nim']) == NULL) {
 					$data = [
+						'nim'                => $user['nim'],
 						'angkatan'           => $faker->numberBetween($min = 1, $max = 62),
 						'nama'               => $user['nama'],
-						'nim'                => $user['nim'],
 						'jenis_kelamin'      => $faker->randomElement($array = array('L', 'P')),
 						'tempat_lahir'       => $faker->city,
 						'tanggal_lahir'      => $faker->date($format = 'Y-m-d', $max = 'now'),
 						'telp_alumni'        => $faker->phoneNumber,
+						'email'              => $user['nim'] . "@stis.ac.id",
 						'alamat'             => $faker->address,
 						'status_bekerja'     => $faker->boolean,
 						'perkiraan_pensiun'  => $faker->year,
 						'jabatan_terakhir'   => $faker->jobTitle,
-						'aktif_pns'          => $faker->boolean
+						'aktif_pns'          => $faker->boolean,
+						'nip_bps'            => $user['nim']
 					];
 					$this->modelAlumni->db->table('alumni')->insert($data);
-
-					$data = [
-						'nim'             => $user['nim'],
-						'id_tempat_kerja' => $faker->numberBetween($min = 1, $max = 100),
-					];
-					$this->modelAlumni->db->table('alumni_tempat_kerja')->insert($data);
-
-					$data = [
-						'nama_prestasi'  => "Beuhh juara apaan ajg",
-						'tahun_prestasi' => $faker->year,
-						'nim'            => $user['nim'],
-					];
-					$this->modelAlumni->db->table('prestasi')->insert($data);
-
-					$data = [
-						'nim'             => $user['nim'],
-						'id_publikasi'    => $faker->numberBetween($min = 1, $max = 100),
-					];
-					$this->modelAlumni->db->table('alumni_publikasi')->insert($data);
-
-					$data = [
-						'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
-						'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-						'program_studi' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-						'tahun_lulus' => $faker->year,
-						'tahun_masuk' => $faker->year,
-						'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
-						'nim'             => $user['nim'],
-					];
-					$this->modelAlumni->db->table('pendidikan')->insert($data);
 				}
 
 				//insert new user sipadu (mahasiswa)
@@ -173,56 +145,6 @@ class Home extends BaseController
 				$this->recordLoginAttempt(session('nim') . '@stis.ac.id', $ipAddress, session('id_user') ?? null, true);	//insert ke tabel auth_login untuk log login
 			} else {	//apabila alumni memakai akun dosen
 				/* KATANYA LANGSUNG ALERT AJA */
-
-				// $user = $hasil['profile'];
-
-				// session()->set([
-				// 	'username' => $user['username'],
-				// 	'nim'	=> "0",
-				// 	'nama' => $user['nama'],
-				// 	'role' => $user['role']
-				// ]);
-
-				// $ipAddress = Services::request()->getIPAddress();
-				// $this->recordLoginAttempt(session('username'), $ipAddress, session('nim') ?? null, true);
-
-				// // binding session dengan database
-				// if ($this->modelAlumni->getUserByNIM(session('username')) == NULL) {
-				// 	$bindUser = [
-				// 		'angkatan'      => $faker->numberBetween(1, 62),
-				// 		'nama'	=> session('nama'),
-				// 		'nim'	=> session('nim'),
-				// 		'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
-				// 		'tempat_lahir'   => $faker->city,
-				// 		'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
-				// 		'telp_alumni'    => $faker->phoneNumber,
-				// 		'alamat'        => $faker->address,
-				// 		'status_bekerja' => $faker->boolean,
-				// 		'perkiraan_pensiun' => $faker->year,
-				// 		'jabatan_terakhir'  => $faker->jobTitle,
-				// 		'aktif_pns'      => $faker->boolean,
-				// 	];
-				// 	$this->modelAlumni->db->table('alumni')->insert($bindUser);
-				// }
-
-				// //insert new user sipadu (dosen)
-				// if ($this->modelAuth->getUserByUsername($hasil['profile']['nim']) == NULL) {
-				// 	$now = date("Y-m-d H:i:s");
-				// 	$data = [
-				// 		'email'				=> session('username') . "@stis.ac.id",
-				// 		'username'			=> session('nim'),
-				// 		'nim'				=> session('nim'),
-				// 		'fullname'			=> session('nama'),
-				// 		'password_hash'		=> null,
-				// 		'reset_at'			=> null,
-				// 		'active'			=> 1,
-				// 		'force_pass_reset'	=> 0,
-				// 		'created_at'		=> $now,
-				// 		'updated_at'		=> $now
-				// 	];
-				// 	$this->modelAuth->insertUser($data);
-				// }
-
 				// session()->setFlashdata('pesan', 'Silahkan gunakan akun Sipadu Mahasiswa atau akun BPS, atau hubungi admin website');
 				echo '<script>alert(\'Silahkan gunakan akun Sipadu Mahasiswa atau akun BPS, atau hubungi admin website\')</script>';
 				die();
@@ -275,8 +197,7 @@ class Home extends BaseController
 		// 		try {
 		// 			$user = $provider->getResourceOwner($token);
 
-
-		// 			// var_dump($user->toArray());	//cek result sso-bps
+		// 			// dd(var_dump($user->toArray()));	//cek result sso-bps
 		// 			// die();
 
 		// 			$curl = curl_init();
@@ -306,21 +227,25 @@ class Home extends BaseController
 
 		// 					// binding session dengan database
 		// 					if ($this->modelAlumni->getUserByNIM($user->getNip()) == NULL) {
-		// 						$bindUser = [
-		// 							'angkatan'      => $faker->numberBetween(1, 62),
-		// 							'nama'			=> $user->getName(),
-		// 							'nim'			=> $user->getNip(),
-		// 							'jenis_kelamin'  => $faker->randomElement(array('L', 'P')),
-		// 							'tempat_lahir'   => $faker->city,
-		// 							'tanggal_lahir'  => $faker->date('Y-m-d', 'now'),
-		// 							'telp_alumni'    => $faker->phoneNumber,
-		// 							'alamat'        => $faker->address,
-		// 							'status_bekerja' => $faker->boolean,
-		// 							'perkiraan_pensiun' => $faker->year,
-		// 							'jabatan_terakhir'  => $faker->jobTitle,
-		// 							'aktif_pns'      => $faker->boolean,
+
+		// 						$data = [
+		// 							'nim'                => $user->getNip(),
+		// 							'angkatan'           => $faker->numberBetween($min = 1, $max = 62),
+		// 							'nama'               => $user->getName(),
+		// 							'jenis_kelamin'      => $faker->randomElement($array = array('L', 'P')),
+		// 							'tempat_lahir'       => $faker->city,
+		// 							'tanggal_lahir'      => $faker->date($format = 'Y-m-d', $max = 'now'),
+		// 							'telp_alumni'        => $faker->phoneNumber,
+		// 							'email'              => $user->getEmail(),
+		// 							'alamat'             => $faker->address,
+		// 							'status_bekerja'     => $faker->boolean,
+		// 							'perkiraan_pensiun'  => $faker->year,
+		// 							'jabatan_terakhir'   => $faker->jobTitle,
+		// 							'aktif_pns'          => $faker->boolean,
+		// 							'nip'				 => $user->getNipBaru(),
+		// 							'nip_bps'            => $user->getNip()
 		// 						];
-		// 						$this->modelAlumni->db->table('alumni')->insert($bindUser);
+		// 						$this->modelAlumni->db->table('alumni')->insert($data);
 		// 					}
 
 		// 					if ($this->modelAuth->getUserByUsername($user->getUsername()) == NULL) {
