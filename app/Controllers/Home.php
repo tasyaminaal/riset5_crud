@@ -420,6 +420,7 @@ class Home extends BaseController
 		} else {
 			$data = [
 				'judulHalaman' 	=> 'Beranda WEBSIA',
+				'active' 		=> '',
 				'login'			=> 'belum'
 			];
 		}
@@ -496,6 +497,7 @@ class Home extends BaseController
 
 		$data = [
 			'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
+			'active' 		=> '',
 			'alumni' => $query->paginate(9),
 			'pager' => $model->pager,
 			'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
@@ -811,6 +813,7 @@ class Home extends BaseController
 
 		$data = [
 			'title' 		=> 'Update Profil User | Website Riset 5',
+			'active' 		=> 'profil',
 			'angkatan'      => $query->angkatan,
 			'nama'  		=> $query->nama,
 			'nim'           => $query->nim,
@@ -837,6 +840,7 @@ class Home extends BaseController
 		$this->modelAlumni = new AlumniModel();
 
 		$data = [
+			'active' 		=> 'profil',
 			'nama'  		=> $_GET['nama'],
 			'nim'           => session('nim'),
 			'angkatan'      => $_GET['angkatan'],
@@ -877,6 +881,7 @@ class Home extends BaseController
 		}
 		$require = [
 			'title' 		=> 'Update Profil User | Website Riset 5',
+			'active' 		=> 'profil',
 			'nama'  		=> $query->nama,
 			'nim'           => $query->nim,
 			'angkatan'      => $query->angkatan,
