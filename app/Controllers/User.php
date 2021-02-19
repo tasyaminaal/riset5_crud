@@ -10,7 +10,7 @@ class User extends BaseController
 	public function __construct()
 	{
 		if (!session()->has('id_user'))
-			echo '<script>window.location.replace("' . base_url() . '");</script>';
+			echo '<script>window.location.replace("' . base_url('login') . '");</script>';
 
 		if (session()->has('role'))
 			if (!in_array("2", session('role')))

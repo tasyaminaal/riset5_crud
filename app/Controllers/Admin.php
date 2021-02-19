@@ -26,6 +26,9 @@ class Admin extends BaseController
 
 	public function __construct()
 	{
+		if (!session()->has('id_user'))
+			echo '<script>window.location.replace("' . base_url('login') . '");</script>';
+
 		$this->form_validation = \Config\Services::validation();
 		$this->session = service('session');
 
