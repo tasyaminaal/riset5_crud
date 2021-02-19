@@ -407,10 +407,11 @@ class Home extends BaseController
 		$cari = $_GET['cari'];
 			$query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
 			if (!empty($cari)) {
-				$jumlah = "Sekitar " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
+				$jumlah = "Terdapat " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
 			} else {
 				$jumlah = "Memuat " . $query->countAllResults(false) . " data alumni.";
 			}
+
 		if ($query->countAllResults(false) == 0) {
 			$data = [
 				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
@@ -422,14 +423,15 @@ class Home extends BaseController
 			$data = [
 				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
 				'active' => '',
-				'alumni' => $query->paginate(9),
+				'cari' => $cari,
+				'alumni1' => $query->paginate(5),
+				'alumni2' => $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan)->get()->getResult(),
 				'pager' => $model->pager,
 				'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
 				'jumlah' => $jumlah,
 				'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
 				'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
 			];
-
             return view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
         }
 	}

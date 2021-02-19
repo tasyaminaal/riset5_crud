@@ -55,7 +55,7 @@
 
                 <!-- Awal Input Filter "Prodi" Untuk Alumni  -->
                 <div class="mb-1 px-4 hidden listAngkatan">
-                    <input type="text" placeholder="Masukkan angkatan" class="placeholder-gray-300 text-primary font-paragraph text-xs px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
+                    <input type="text" placeholder="Masukkan angkatan" id="cariAngkatan" class="placeholder-gray-300 text-primary font-paragraph text-xs px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
                 </div>
                 <!-- Akhir Input Filter "Prodi" Untuk Alumni  -->
 

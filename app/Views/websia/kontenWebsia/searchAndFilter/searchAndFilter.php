@@ -25,65 +25,64 @@
             <div class="flex-grow" id="hasilPencarian">
                 <!-- Catatan : jika hasil tidak ada, bisa isi id="hasilPencarian" dengan coding yang ada pada searchKosong.php  -->
 
-                <!-- HASIL PENCARIAN ALUMNI -->
-                <div class="md:ml-12 mx-3 mt-2" >
+<!-- HASIL PENCARIAN ALUMNI -->
+        <div class="md:ml-12 mx-3 mt-2" >
                     <div id="cariAlumni">
-                        <h1 class="text-secondary font-heading text-2xl font-bold">ALUMNI</h1>
+                    <h1 class="text-secondary font-heading text-2xl font-bold">ALUMNI</h1>
 
-                        <!-- awal jumlah hasil pencarian alumni  -->
-                        <div class="text-primary md:mb-6 mb-2 font-paragraph font-extralight text-sm" >
-                            <?= $jumlah; ?>
-                        </div>
-                        <hr class="md:my-4 my-2 border-2 border-gray-400">
-                        <!-- akhir jumlah hasil pencarian alumni  -->
+<!-- awal jumlah hasil pencarian alumni  -->
+<div id="jumlahAlumni" class="text-primary md:mb-6 mb-2 font-paragraph font-extralight text-sm" >
+    <?= $jumlah; ?>
+</div>
+<hr class="md:my-4 my-2 border-2 border-gray-400">
+<!-- akhir jumlah hasil pencarian alumni  -->
 
-                        <!-- Awal DAFTAR HASIL PENCARIAN ALUMNI -->
+<!-- Awal DAFTAR HASIL PENCARIAN ALUMNI -->
+<div id="filterAlumni">
+<?php foreach ($alumni1 as $row) : ?>
+        <!-- Awal Card Alumni -->
+        <a href="/Home/profilAlumni?nim=<?=$row['nim']?>">
+            <div class="mx-2">
+                <div class="flex gap-x-4">
+                    <div class="flex items-center">
+                        <img src="/img/avatar.png" class="lg:w-18 w-12 mx-auto" alt="">
+                    </div>
+                    <div class="flex items-center">
                         <div>
-                        <?php foreach ($alumni as $row) : ?>
-                                <!-- Awal Card Alumni -->
-                                <a href="/Home/profilAlumni?nim=<?=$row['nim']?>">
-                                    <div class="mx-2">
-                                        <div class="flex gap-x-4">
-                                            <div class="flex items-center">
-                                                <img src="/img/avatar.png" class="lg:w-18 w-12 mx-auto" alt="">
-                                            </div>
-                                            <div class="flex items-center">
-                                                <div>
-                                                    <!-- Awal Nama Alumni -->
-                                                    <h2 class="md:text-lg font-heading text-primary font-semibold"><?= $row['nama']; ?></h2>
-                                                    <!-- Akhir Nama Alumni -->
+                            <!-- Awal Nama Alumni -->
+                            <h2 class="md:text-lg font-heading text-primary font-semibold"><?= $row['nama']; ?></h2>
+                            <!-- Akhir Nama Alumni -->
 
-                                                    <!-- Awal Atribut Alumni -->
-                                                    <div class="md:text-sm text-xs font-paragraph text-primary">Angkatan <?= $row['angkatan']; ?></div>
-                                                    <!-- Akhir Atribut Alumni -->
+                            <!-- Awal Atribut Alumni -->
+                            <div class="md:text-sm text-xs font-paragraph text-primary">Angkatan <?= $row['angkatan']; ?></div>
+                            <!-- Akhir Atribut Alumni -->
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <!-- Akhir Card Alumni -->
-
-                                <hr class="my-4 border-gray-400">
-                            <?php endforeach; ?>
-                            <hr class="-my-4 border-2 border-gray-400">
                         </div>
-
-                        <!-- awal tulisan "Selengkapnya" di hasil pencarian -->
-                        <div class="flex justify-end mt-12">
-                            <div class="flex bg-secondary text-white rounded-full md:py-2 py-1 md:px-3 px-2 items-center gap-x-2 cursor-pointer md:text-sm text-xs">
-                                Selengkapnya
-                                <img src="/img/right-off.png" class="md:w-4 md:h-4 w-3 h-3 my-auto" alt="">
-                            </div>
-                        </div>
-                        <!-- akhir tulisan "Selengkapnya" di hasil pencarian -->
-
-                        <!-- Akhir DAFTAR HASIL PENCARIAN ALUMNI -->
-
                     </div>
                 </div>
-                <!-- AKHIR HASIL PENCARIAN ALUMNI -->
+            </div>
+        </a>
+        <!-- Akhir Card Alumni -->
 
+        <hr class="my-4 border-gray-400">
+    <?php endforeach; ?>
+    <hr class="-my-4 border-2 border-gray-400">
+</div>
+
+<!-- awal tulisan "Selengkapnya" di hasil pencarian -->
+<div class="flex justify-end mt-12">
+    <div class="flex bg-secondary text-white rounded-full md:py-2 py-1 md:px-3 px-2 items-center gap-x-2 cursor-pointer md:text-sm text-xs">
+        Selengkapnya
+        <img src="/img/right-off.png" class="md:w-4 md:h-4 w-3 h-3 my-auto" alt="">
+    </div>
+</div>
+<!-- akhir tulisan "Selengkapnya" di hasil pencarian -->
+
+<!-- Akhir DAFTAR HASIL PENCARIAN ALUMNI -->
+                    </div>
+                </div>
+<!-- AKHIR HASIL PENCARIAN ALUMNI -->
+                
                 <!-- HASIL PENCARIAN BERITA -->
                 <div class="md:ml-12 mx-3 mt-2">
                     <div>
@@ -154,6 +153,30 @@
 
 </div>
 
-
+<script>
+$("#cariAngkatan").keyup(function(){
+let data1 = <?php echo json_encode($alumni1) ?>;
+let data2 = <?php echo json_encode($alumni2) ?>;
+let jumlah = 0;
+let input = $("#cariAngkatan").val();
+let string ="";
+let string2="";
+    data2.map((item, index)=>{
+        if (input==""){
+            jumlah++
+            string =string+"<a href='/Home/profilAlumni?nim="+item.nim+"><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>"+item.nama+"</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan "+item.angkatan+"</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>"
+            string2 = "Terdapat "+jumlah+" alumni dengan kata kunci `<B><?= $cari; ?></B>` ditemukan."
+        }
+        if (input==item.angkatan){
+            jumlah++
+            string =string+"<a href='/Home/profilAlumni?nim="+item.nim+"><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>"+item.nama+"</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan "+item.angkatan+"</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>"
+            string2 = "Terdapat "+jumlah+" alumni dengan kata kunci `<B><?= $cari; ?></B>` dan angkatan = "+input+" ditemukan."
+        }
+    });
+string = string+"<hr class='-my-4 border-2 border-gray-400'>"
+$("#jumlahAlumni").html(string2);
+$("#filterAlumni").html(string);
+});
+</script>
 <script type="text/javascript" src="/js/search.js"></script>
 <?= $this->endSection(); ?>
