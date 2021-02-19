@@ -409,7 +409,6 @@ class Home extends BaseController
 	// 	return view('login/resetpass.php');
 	// }
 
-
 	public function galeriFoto()
 	{
 		$data['judulHalaman'] = 'Galeri Kenangan Alumni';
