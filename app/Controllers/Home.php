@@ -409,29 +409,6 @@ class Home extends BaseController
 	// 	return view('login/resetpass.php');
 	// }
 
-	public function galeriFoto()
-	{
-		$data['judulHalaman'] = 'Galeri Kenangan Alumni';
-		$data['active'] = 'galeri';
-		return view('websia/kontenWebsia/galeri/galeriAlumni', $data);
-	}
-
-	public function galeriVideo()
-	{
-		$data['judulHalaman'] = 'Galeri Video Kegiatan Alumni';
-		$data['active'] = 'galeri';
-		$data['login'] = 'sudah';
-		return view('kontenWebsia/galeri/galeriVidAlumni', $data);
-	}
-
-	public function galeriWisuda()
-	{
-		$data['judulHalaman'] = 'Galeri Video Wisuda';
-		$data['active'] = 'galeri';
-		$data['login'] = 'sudah';
-		return view('kontenWebsia/galeri/galeriWisuda', $data);
-	}
-
 	public function coba()
 	{
 		return view('cobaWebsia/map');
