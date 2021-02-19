@@ -89,6 +89,23 @@ class Home extends BaseController
 						'nip_bps'            => $user['nim']
 					];
 					$this->modelAlumni->db->table('alumni')->insert($data);
+
+					$data = [
+						'nim'             => $user['nim'],
+						'id_tempat_kerja' => $faker->numberBetween($min = 1, $max = 100),
+					];
+					$this->modelAlumni->db->table('alumni_tempat_kerja')->insert($data);
+
+					// $data = [
+					// 	'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
+					// 	'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+					// 	'program_studi' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+					// 	'tahun_lulus' => $faker->year,
+					// 	'tahun_masuk' => $faker->year,
+					// 	'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+					// 	'nim'             => $user['nim'],
+					// ];
+					// $this->modelAlumni->db->table('pendidikan')->insert($data);
 				}
 
 				//insert new user sipadu (mahasiswa)
@@ -237,7 +254,7 @@ class Home extends BaseController
 		// 							'tanggal_lahir'      => $faker->date($format = 'Y-m-d', $max = 'now'),
 		// 							'telp_alumni'        => $faker->phoneNumber,
 		// 							'email'              => $user->getEmail(),
-		// 							'alamat'             => $faker->address,
+		// 							'alamat'             => $user->getKabupaten() . ', ' . $user->getProvinsi(),
 		// 							'status_bekerja'     => $faker->boolean,
 		// 							'perkiraan_pensiun'  => $faker->year,
 		// 							'jabatan_terakhir'   => $faker->jobTitle,
@@ -246,6 +263,23 @@ class Home extends BaseController
 		// 							'nip_bps'            => $user->getNip()
 		// 						];
 		// 						$this->modelAlumni->db->table('alumni')->insert($data);
+
+		// 						$data = [
+		// 							'nim'             => $user->getNip(),
+		// 							'id_tempat_kerja' => $faker->numberBetween($min = 1, $max = 100),
+		// 						];
+		// 						$this->modelAlumni->db->table('alumni_tempat_kerja')->insert($data);
+
+		// 						// $data = [
+		// 						// 	'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
+		// 						// 	'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+		// 						// 	'program_studi' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+		// 						// 	'tahun_lulus' => $faker->year,
+		// 						// 	'tahun_masuk' => $faker->year,
+		// 						// 	'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
+		// 						// 	'nim'             => $user['nim'],
+		// 						// ];
+		// 						// $this->modelAlumni->db->table('pendidikan')->insert($data);
 		// 					}
 
 		// 					if ($this->modelAuth->getUserByUsername($user->getUsername()) == NULL) {
@@ -255,6 +289,7 @@ class Home extends BaseController
 		// 							'username'			=> $user->getUsername(),
 		// 							'nim'				=> $user->getNip(),
 		// 							'fullname'			=> $user->getName(),
+		// 							'user_image'		=> $user->getUrlFoto(),
 		// 							'password_hash'		=> null,
 		// 							'reset_at'			=> null,
 		// 							'active'			=> 1,
