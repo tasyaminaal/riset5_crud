@@ -79,22 +79,22 @@
 
                 </div>
                 <ul>
-                    <a href="/Home/editProfil">
+                    <a href="/User/editProfil">
                         <li id="profil" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'profil') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Biodata</li>
                     </a>
-                    <a href="/Home/editPendidikan">
+                    <a href="/User/editPendidikan">
                         <li id="pendidikan" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'pendidikan') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Pendidikan</li>
                     </a>
-                    <a href="/Home/editTempatKerja">
+                    <a href="/User/editTempatKerja">
                         <li id="tempatkerja" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'tempatKerja') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Tempat Kerja</li>
                     </a>
-                    <a href="/Home/editPrestasi">
+                    <a href="/User/editPrestasi">
                         <li id="prestasi" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'prestasi') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Prestasi</li>
                     </a>
-                    <a href="/Home/editPublikasi">
+                    <a href="/User/editPublikasi">
                         <li id="publikasi" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'publikasi') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Publikasi</li>
                     </a>
-                    <a href="/Home/editAkun">
+                    <a href="/User/editAkun">
                         <li id="akun" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'akun') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Akun</li>
                     </a>
                 </ul>

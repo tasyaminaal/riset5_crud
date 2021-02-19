@@ -26,12 +26,12 @@
                 <!-- Catatan : jika hasil tidak ada, bisa isi id="hasilPencarian" dengan coding yang ada pada searchKosong.php  -->
 
                 <!-- HASIL PENCARIAN ALUMNI -->
-                <div class="md:ml-12 mx-3 mt-2" >
+                <div class="md:ml-12 mx-3 mt-2">
                     <div id="cariAlumni">
                         <h1 class="text-secondary font-heading text-2xl font-bold">ALUMNI</h1>
 
                         <!-- awal jumlah hasil pencarian alumni  -->
-                        <div class="text-primary md:mb-6 mb-2 font-paragraph font-extralight text-sm" >
+                        <div class="text-primary md:mb-6 mb-2 font-paragraph font-extralight text-sm">
                             <?= $jumlah; ?>
                         </div>
                         <hr class="md:my-4 my-2 border-2 border-gray-400">
@@ -39,9 +39,9 @@
 
                         <!-- Awal DAFTAR HASIL PENCARIAN ALUMNI -->
                         <div>
-                        <?php foreach ($alumni as $row) : ?>
+                            <?php foreach ($alumni as $row) : ?>
                                 <!-- Awal Card Alumni -->
-                                <a href="/Home/profilAlumni?nim=<?=$row['nim']?>">
+                                <a href="/User/profilAlumni?nim=<?= $row['nim'] ?>">
                                     <div class="mx-2">
                                         <div class="flex gap-x-4">
                                             <div class="flex items-center">

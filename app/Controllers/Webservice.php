@@ -15,7 +15,7 @@ class Webservice extends BaseController
 
 		if (session()->has('role'))
 			if (!in_array("4", session('role')))
-				redirect()->to('/');
+				echo '<script>window.location.replace("' . base_url() . '");</script>';
 
 		$this->model = new WebserviceModel();
 	}

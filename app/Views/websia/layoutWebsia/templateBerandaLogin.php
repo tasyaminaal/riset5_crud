@@ -78,7 +78,7 @@
                                     BERANDA
                                 </div>
                             </a>
-                            <a href="/Home/profil">
+                            <a href="/User/profil">
                                 <div class="nav-menu transition-colors duration-300 <?= ($active == 'profil') ? 'active' : ''; ?>">
                                     PROFIL
                                 </div>
@@ -131,7 +131,7 @@
                             <a href="<?= base_url(); ?>">BERANDA </a>
                         </div>
                         <div class="nav-menu-relative px-2 py-2 <?= ($active == 'profil') ? 'active' : ''; ?>">
-                            <a href="/Home/profil"> PROFIL</a>
+                            <a href="/User/profil"> PROFIL</a>
                         </div>
                         <div class="flex flex-col">
                             <div class="nav-menu-relative flex px-2 py-2 <?= ($active == 'galeri') ? 'active' : ''; ?>" id="galeri">

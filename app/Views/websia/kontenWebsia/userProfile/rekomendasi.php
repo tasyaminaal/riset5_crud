@@ -6,12 +6,12 @@
 <!-- Awal Rekomendasi -->
 <div class="my-8 pt-0 lg:px-20 md:px-8 px-2">
     <div class="static md:w-full md:px-2 md:py-8 pb-4">
-        <h2 class="font-heading font-semibold text-xl mb-8">Terdapat <?=$jumlah?> alumni yang mungkin Anda kenal</h2>
+        <h2 class="font-heading font-semibold text-xl mb-8">Terdapat <?= $jumlah ?> alumni yang mungkin Anda kenal</h2>
         <div class="holder mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8 ">
             <?php foreach ($alumni as $row) :  ?>
                 <!-- 1 card -->
                 <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
-                    <a href="/Home/profilAlumni?nim=<?= $row['nim'] ?>" target="_new">
+                    <a href="/User/profilAlumni?nim=<?= $row['nim'] ?>" target="_new">
                         <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
                         <!-- <div class="font-paragraph absolute top-0 right-0 bg-secondary m-3 text-white p-1 px-2 text-xs font-bold rounded">59</div> -->
                         <div class="desc p-2">
@@ -29,7 +29,7 @@
                 Selengkapnya
                 <img src="/img/icon/panah_kanan.png" alt="" class="float-right pl-2">
             </a>
-            <a class="float-left bg-secondary font-paragraph text-sm text-white text-center py-2 px-3 mx-auto rounded-full cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300" href="/Home/profil">
+            <a class="float-left bg-secondary font-paragraph text-sm text-white text-center py-2 px-3 mx-auto rounded-full cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300" href="/User/profil">
                 <img src="/img/icon/panah_kiri.png" alt="" class="float-left pr-2">
                 Kembali
             </a>

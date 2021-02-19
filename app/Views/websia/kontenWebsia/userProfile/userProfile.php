@@ -24,7 +24,7 @@ if ($status == 'bukan user') {
                 </div>
             </div>
             <!-- Tombol edit profil yang ketika di klik akan mengarah ke halaman edit profil -->
-            <a class="block bg-secondary text-white text-center py-1 md:py-2 px-4 mx-auto rounded-full w-24 md:w-32 cursor-pointer hover:bg-secondaryhover transition-colors duration-300 <?= $tombolEdit ?>" href="/Home/editProfil">Edit Profil</a>
+            <a class="block bg-secondary text-white text-center py-1 md:py-2 px-4 mx-auto rounded-full w-24 md:w-32 cursor-pointer hover:bg-secondaryhover transition-colors duration-300 <?= $tombolEdit ?>" href="/User/editProfil">Edit Profil</a>
         </div>
         <div class="md:w-3/5 justify-center mx-auto items-center text-center md:text-left object-center md:px-8 md:py-6">
             <!-- nama alumni -->
@@ -49,8 +49,8 @@ if ($status == 'bukan user') {
                 <!-- Angkatan -->
                 Angkatan <span class="text-primary">ke-<?= $alumni->angkatan; ?> </span><br />
                 <!-- Akademi Ilmu Statistik / STIS/ POLSTAT STIS  ========>  Harusnya diatur di BE -->
-                <?php foreach($pendidikan as $row){
-                    echo $row->instansi;?> <br />
+                <?php foreach ($pendidikan as $row) {
+                    echo $row->instansi; ?> <br />
                 <?php } ?>
                 <!-- NIM -->
                 NIM <span class="text-primary"><?= $alumni->nim; ?></span>
@@ -78,28 +78,28 @@ if ($status == 'bukan user') {
                 <p class="font-heading my-2 mt-2"> <?= $alumni->alamat ?> </p>
             </span>
             <!-- Awal media sosial dan telepon -->
-            <?php 
-            if($alumni->email ==""){
+            <?php
+            if ($alumni->email == "") {
                 $email = "belum terisi";
             } else {
                 $email = $alumni->email;
             }
-            if($alumni->fb ==""){
+            if ($alumni->fb == "") {
                 $fb = "belum terisi";
             } else {
                 $fb = $alumni->fb;
             }
-            if($alumni->twitter ==""){
+            if ($alumni->twitter == "") {
                 $twitter = "belum terisi";
             } else {
                 $twitter = $alumni->twitter;
             }
-            if($alumni->ig ==""){
+            if ($alumni->ig == "") {
                 $ig = "belum terisi";
             } else {
                 $ig = $alumni->ig;
             }
-        ?>
+            ?>
             <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <div class="w-1/2">
                     <!-- Email -->
@@ -138,7 +138,7 @@ if ($status == 'bukan user') {
         <div class="md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
             <!-- link ini mengarah ke halaman tampilan semua rekomendasi -->
             <div class="invisible sm:visible">
-                <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/Home/rekomendasi">
+                <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/User/rekomendasi">
                     Lihat Semua Rekomendasi
                     <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
                 </a>
@@ -148,7 +148,7 @@ if ($status == 'bukan user') {
         <div class="holder mx-auto w-11/12 md:w-full lg:w-11/12 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-0 lg:gap-x-8" data-aos="zoom-in">
             <?php foreach ($rekomendasi as $row) :  ?>
                 <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
-                    <a href="/Home/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
+                    <a href="/User/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
                         <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
                         <div class="desc p-2">
                             <span class="title font-heading font-bold text-primary block cursor-pointer text-center"><?= $row->nama; ?></span>
@@ -161,7 +161,7 @@ if ($status == 'bukan user') {
             <?php endforeach; ?>
         </div>
         <div class="visible sm:invisible">
-            <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/Home/rekomendasi">
+            <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/User/rekomendasi">
                 Lihat Semua Rekomendasi
                 <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
             </a>
@@ -176,33 +176,33 @@ if ($status == 'bukan user') {
     <h3 class="font-heading font-bold text-xl text-secondary">Informasi Instansi</h3>
     <div class="md:shadow-lg lg:shadow-xl rounded-2xl px-3 py-3 md:px-7 md:py-5 lg:mx-14 lg:py-8 lg:px-11 md:mt-3">
         <div class="font-heading">
-        <?php 
-            if($tempat_kerja->nama_instansi ==""){
+            <?php
+            if ($tempat_kerja->nama_instansi == "") {
                 $nama_instansi = "belum terisi";
             } else {
                 $nama_instansi = $tempat_kerja->nama_instansi;
             }
-            if($tempat_kerja->telp_instansi ==""){
+            if ($tempat_kerja->telp_instansi == "") {
                 $telp_instansi = "belum terisi";
             } else {
                 $telp_instansi = $tempat_kerja->telp_instansi;
             }
-            if($tempat_kerja->faks_instansi ==""){
+            if ($tempat_kerja->faks_instansi == "") {
                 $faks_instansi = "belum terisi";
             } else {
                 $faks_instansi = $tempat_kerja->faks_instansi;
             }
-            if($tempat_kerja->email_instansi ==""){
+            if ($tempat_kerja->email_instansi == "") {
                 $email_instansi = "belum terisi";
             } else {
                 $email_instansi = $tempat_kerja->email_instansi;
             }
-            if($tempat_kerja->alamat_instansi ==""){
+            if ($tempat_kerja->alamat_instansi == "") {
                 $alamat_instansi = "belum terisi";
             } else {
                 $alamat_instansi = $tempat_kerja->alamat_instansi;
             }
-        ?>
+            ?>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Instansi :</div>
                 <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $nama_instansi ?></div>
@@ -263,38 +263,38 @@ if ($status == 'bukan user') {
                     </thead>
                     <tbody>
                         <?php foreach ($pendidikan as $row) : ?>
-                        <?php 
-                        if($row->jenjang ==""){
-                            $jenjang = "belum terisi";
-                        } else {
-                            $jenjang = $row->jenjang;
-                        }
-                        if($row->instansi ==""){
-                            $instansi = "belum terisi";
-                        } else {
-                            $instansi = $row->instansi;
-                        }
-                        if($row->program_studi ==""){
-                            $program_studi = "belum terisi";
-                        } else {
-                            $program_studi = $row->program_studi;
-                        }
-                        if($row->tahun_masuk =="0000"){
-                            $tahun_masuk = "belum terisi";
-                        } else {
-                            $tahun_masuk = $row->tahun_masuk;
-                        }
-                        if($row->tahun_lulus =="0000"){
-                            $tahun_lulus = "belum terisi";
-                        } else {
-                            $tahun_lulus = $row->tahun_lulus;
-                        }
-                        if($row->judul_tulisan ==""){
-                            $judul_tulisan = "belum terisi";
-                        } else {
-                            $judul_tulisan = $row->judul_tulisan;
-                        }
-                        ?>
+                            <?php
+                            if ($row->jenjang == "") {
+                                $jenjang = "belum terisi";
+                            } else {
+                                $jenjang = $row->jenjang;
+                            }
+                            if ($row->instansi == "") {
+                                $instansi = "belum terisi";
+                            } else {
+                                $instansi = $row->instansi;
+                            }
+                            if ($row->program_studi == "") {
+                                $program_studi = "belum terisi";
+                            } else {
+                                $program_studi = $row->program_studi;
+                            }
+                            if ($row->tahun_masuk == "0000") {
+                                $tahun_masuk = "belum terisi";
+                            } else {
+                                $tahun_masuk = $row->tahun_masuk;
+                            }
+                            if ($row->tahun_lulus == "0000") {
+                                $tahun_lulus = "belum terisi";
+                            } else {
+                                $tahun_lulus = $row->tahun_lulus;
+                            }
+                            if ($row->judul_tulisan == "") {
+                                $judul_tulisan = "belum terisi";
+                            } else {
+                                $judul_tulisan = $row->judul_tulisan;
+                            }
+                            ?>
                             <tr>
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $jenjang; ?></td>
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $instansi; ?></td>

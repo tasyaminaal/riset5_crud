@@ -3,7 +3,7 @@
 <?= $this->section('contentEdit'); ?>
 <div class="shadow-2xl rounded-3xl">
     <div class="p-6 font-paragraph text-primary lg:min-h-screen">
-        <form action="/Home/editTempatKerja" method="POST" id="formEditTempatKerja">
+        <form action="/User/editTempatKerja" method="POST" id="formEditTempatKerja">
             <label for="nama" class="font-medium">Nama Instansi:</label>
             <input type="text" name="nama" id="nama" class="inputForm" placeholder="Nama Instansi">
             <label for="alamat" class="font-medium">Alamat Instansi:</label>

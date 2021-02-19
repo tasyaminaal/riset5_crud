@@ -37,7 +37,7 @@ if ($alumni->aktif_pns == '1') {
             </div>
         </div>
         <div class="col-span-2 md:mt-6 ml-6 mr-6">
-            <form action="/Home/updateProfil" method="POST" class="font-paragraph text-primary" id="formEditBiodata">
+            <form action="/User/updateProfil" method="POST" class="font-paragraph text-primary" id="formEditBiodata">
                 <label for="nama" class="font-medium">Nama:</label>
                 <input type="text" name="nama" id="nama" class="inputForm text-black" value="<?= $alumni->nama; ?>">
                 <div class="grid grid-cols-2 gap-x-4">
@@ -57,7 +57,7 @@ if ($alumni->aktif_pns == '1') {
                             <label class="font-heading text-sm text-gray-500 font-medium jk_label"><input type="radio" name="jenis_kelamin" id="lakilaki" value="L" class="cursor-pointer jk_radio mr-2 mt-2" <?= $centangL; ?>>Laki-laki</label>
                         </div>
                         <div class="flex items-center">
-                            <label class="font-heading text-sm text-gray-500 font-medium jk_label"><input type="radio" name="jenis_kelamin" id="perempuan" value="P" class="cursor-pointer jk_radio mr-2 mt-2" <?= $centangP; ?> >Perempuan</label>
+                            <label class="font-heading text-sm text-gray-500 font-medium jk_label"><input type="radio" name="jenis_kelamin" id="perempuan" value="P" class="cursor-pointer jk_radio mr-2 mt-2" <?= $centangP; ?>>Perempuan</label>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ if ($alumni->aktif_pns == '1') {
                             <label class="font-heading text-sm text-gray-500 font-medium sb_label"><input type="radio" name="status_bekerja" id="bekerja" value="1" class="cursor-pointer sb_radio mr-2 mt-2" <?= $centang1; ?>>Bekerja</label>
                         </div>
                         <div class="flex items-center">
-                            <label class="font-heading text-sm text-gray-500 font-medium sb_label"><input type="radio" name="status_bekerja" id="tidakbekerja" value="0" class="cursor-pointer sb_radio mr-2 mt-2" <?= $centang0; ?> >Tidak Bekerja</label>
+                            <label class="font-heading text-sm text-gray-500 font-medium sb_label"><input type="radio" name="status_bekerja" id="tidakbekerja" value="0" class="cursor-pointer sb_radio mr-2 mt-2" <?= $centang0; ?>>Tidak Bekerja</label>
                         </div>
                     </div>
                     <div class="mr-2">
@@ -115,7 +115,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="instagram" class="font-medium">Instagram</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="instagram" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?=$alumni->ig;?>">
+                                <input type="text" name="instagram" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?= $alumni->ig; ?>">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
@@ -123,7 +123,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="twitter" class="font-medium">Twitter</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?=$alumni->twitter;?>">
+                                <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?= $alumni->twitter; ?>">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
@@ -131,7 +131,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="facebook" class="font-medium">Facebook</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="facebook" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?=$alumni->fb;?>">
+                                <input type="text" name="facebook" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg" value="<?= $alumni->fb; ?>">
                             </div>
                         </div>
                     </div>
