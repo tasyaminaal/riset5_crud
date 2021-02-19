@@ -56,10 +56,11 @@ class User extends BaseController
 		$cari = $_GET['cari'];
 		$query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
 		if (!empty($cari)) {
-			$jumlah = "Sekitar " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
+			$jumlah = "Terdapat " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
 		} else {
 			$jumlah = "Memuat " . $query->countAllResults(false) . " data alumni.";
 		}
+
 		if ($query->countAllResults(false) == 0) {
 			$data = [
 				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
@@ -71,20 +72,23 @@ class User extends BaseController
 			$data = [
 				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
 				'active' => '',
-				'alumni' => $query->paginate(9),
+				'cari' => $cari,
+				'alumni1' => $query->paginate(5),
+				'alumni2' => $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan)->get()->getResult(),
 				'pager' => $model->pager,
 				'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
 				'jumlah' => $jumlah,
 				'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
 				'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
 			];
-
 			return view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
 		}
 	}
 
 	public function profil()
 	{
+		if (!session()->has('id_user') && !logged_in())
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
@@ -298,6 +302,8 @@ class User extends BaseController
 
 	public function editProfil()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->bukaProfile(session('nim'));
@@ -315,6 +321,8 @@ class User extends BaseController
 
 	public function updateProfil()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
@@ -349,6 +357,8 @@ class User extends BaseController
 
 	public function editPendidikan()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getPendidikanByNIM(session('nim'));
@@ -368,6 +378,8 @@ class User extends BaseController
 
 	public function editTempatKerja()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getTempatKerjaByNIM(session('nim'));
@@ -384,6 +396,8 @@ class User extends BaseController
 	// salahh masihan
 	public function updateTempatKerja()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$kunci = $model->getTempatKerjaByNIM(session('nim'))->getRow()->id_tempat_kerja;
@@ -411,6 +425,8 @@ class User extends BaseController
 
 	public function editPrestasi()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getPrestasiByNIM(session('nim'));
@@ -431,6 +447,8 @@ class User extends BaseController
 
 	public function editPublikasi()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getPublikasiByNIM(session('nim'));
@@ -451,6 +469,8 @@ class User extends BaseController
 
 	public function editAkun()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getUsersById(session('id_user'));
@@ -467,6 +487,8 @@ class User extends BaseController
 
 	public function updateAkun()
 	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		// belum tahu nih cara validasi ginian
