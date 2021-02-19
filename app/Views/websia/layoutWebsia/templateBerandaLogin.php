@@ -107,7 +107,6 @@
                                 </svg>
                                 <form action="/Home/searchAndFilter" method="get">
                                     <input type="text" name="cari" placeholder="|  CARI" class="placeholder-white bg-transparent focus:outline-none ml-6 font-paragraph p-1">
-                                    <button name="filter" value="Go">
                                 </form>
                             </div>
                         </div>

@@ -35,12 +35,12 @@ if ($status == 'bukan user') {
                 if ($status == 'bukan user') {
                 } else if ($status == 'user') { ?>
                     <?php foreach ($role as $row) : ?>
-                        <?php if($row->name == 'Developer'){
-                }else{?>
-                        <span class="font-paragraph text-xs inline-block bg-gray-300 mb-1 py-1 px-2 md:px-3 lg:px-4 rounded-lg text-primary align-middle uppercase"><?= $row->name; ?></span>
-                    <?php }
-                endforeach;
-            }?>
+                        <?php if ($row->name == 'Developer') {
+                        } else { ?>
+                            <span class="font-paragraph text-xs inline-block bg-gray-300 mb-1 py-1 px-2 md:px-3 lg:px-4 rounded-lg text-primary align-middle uppercase"><?= $row->name; ?></span>
+                <?php }
+                    endforeach;
+                } ?>
 
             </div>
             <!-- tempat dan tanggal lahir -->
@@ -49,7 +49,9 @@ if ($status == 'bukan user') {
                 <!-- Angkatan -->
                 Angkatan <span class="text-primary">ke-<?= $alumni->angkatan; ?> </span><br />
                 <!-- Akademi Ilmu Statistik / STIS/ POLSTAT STIS  ========>  Harusnya diatur di BE -->
-                Sekolah Tinggi Ilmu Satistik <br />
+                <?php foreach($pendidikan as $row){
+                    echo $row->instansi;?> <br />
+                <?php } ?>
                 <!-- NIM -->
                 NIM <span class="text-primary"><?= $alumni->nim; ?></span>
             </p>
@@ -68,76 +70,104 @@ if ($status == 'bukan user') {
             </p>
         </div>
         <!-- Akhir Deskripsi user profile -->
-        <div class="space-x-3 lg:space-x-2 flex justify-center lg:justify-start md:py-6 px-8 md:px-0">
+        <div class="md:pl-5 lg:pl-6">
+            <p class="font-heading text-primary text-xs px-5 md:px-0 mt-6">Lokasi Tempat Tinggal Saat Ini</p>
+            <span class="font-heading flex justify-start px-3 md:px-0 text-base text-left mb-5 md:mb-2">
+                <img class="my-2 mt-2 mr-0 md:mr-2 ml-1 md:ml-0 w-6 h-6 md:w-6 float-left" src="/img/icon/maps_flag.png" alt="">
+                <!-- Lokasi tempat tinggal -->
+                <p class="font-heading my-2 mt-2"> <?= $alumni->alamat ?> </p>
+            </span>
             <!-- Awal media sosial dan telepon -->
+            <?php 
+            if($alumni->email ==""){
+                $email = "belum terisi";
+            } else {
+                $email = $alumni->email;
+            }
+            if($alumni->fb ==""){
+                $fb = "belum terisi";
+            } else {
+                $fb = $alumni->fb;
+            }
+            if($alumni->twitter ==""){
+                $twitter = "belum terisi";
+            } else {
+                $twitter = $alumni->twitter;
+            }
+            if($alumni->ig ==""){
+                $ig = "belum terisi";
+            } else {
+                $ig = $alumni->ig;
+            }
+        ?>
             <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <div class="w-1/2">
                     <!-- Email -->
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/message.png" alt="" class="float-left w-5">
-                        <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $alumni->email ?></span>
+                        <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $email ?></span>
                     </div>
                     <!-- Facebook -->
                     <div class="inline-block flex flex-row">
                         <img src="/img/icon/facebook.png" alt="" class="float-left ml-1 w-2 h-4">
-                        <span class="font-heading text-xs text-primary text-center flex items-center ml-3 md:ml-4">belum ada</span>
+                        <span class="font-heading text-xs text-primary text-center flex items-center ml-3 md:ml-4"><?= $fb ?></span>
                     </div>
                 </div>
                 <div class="w-1/2 ml-2">
                     <!-- Twitter -->
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/twitter.png" alt="" class="float-left w-4 w-4">
-                        <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3">belum ada</span>
+                        <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3"><?= $twitter ?></span>
                     </div>
                     <!-- Instagram -->
                     <div class="inline-block flex flex-row">
                         <img src="/img/icon/instagram.png" alt="" class="float-left w-4">
-                        <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3">belum ada</span>
+                        <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3"><?= $ig ?></span>
                     </div>
                 </div>
             </div>
-            <!--  Akhir media sosial dan telepon -->
+            <!--  Akhir media sosial-->
         </div>
     </div>
 </div>
 <!-- Akhir User Profile-->
 
-    <!-- Awal Rekomendasi -->
-    <div class="bg-primary py-8 md:py-4 lg:px-20 md:px-8 px-2">
-        <div class="static md:w-full md:px-2 md:py-8 pb-4">
-            <div class="md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
-                <!-- link ini mengarah ke halaman tampilan semua rekomendasi -->
-                <div class="invisible sm:visible">
-                    <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/Home/rekomendasi">
-                        Lihat Semua Rekomendasi
-                        <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
-                    </a>
-                </div>
-                <h2 class="font-heading mb-6 text-xl inline-block">Alumni yang mungkin Anda kenal</h2>
-            </div>
-            <div class="holder mx-auto w-11/12 md:w-full lg:w-11/12 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-0 lg:gap-x-8" data-aos="zoom-in">
-                <?php foreach ($rekomendasi as $row) :  ?>
-                    <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
-                        <a href="/Home/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
-                            <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
-                            <div class="desc p-2">
-                                <span class="title font-heading font-bold text-primary block cursor-pointer text-center"><?= $row->nama; ?></span>
-                                <!-- <span class="description font-paragraph text-primary text-center text-base block pt-2 border-gray-400 mb-0"><?= $row->nim; ?></span> -->
-                                <span class="description font-paragraph text-primary text-center text-base block py-0 border-gray-400 mb-0">Angkatan <?= $row->angkatan; ?></span>
-                                <!-- <a class="block bg-gray-300 font-paragraph text-primary text-sm text-center py-1 px-3 my-4 mx-auto rounded-lg w-full cursor-pointer border-gray-300 hover:bg-gray-400 hover:border-opacity-70 transition-colors duration-300" href="/profil">Lihat Profil</a> -->
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="visible sm:invisible">
-                <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/Home/rekomendasi">
+<!-- Awal Rekomendasi -->
+<div class="bg-primary py-8 md:py-4 lg:px-20 md:px-8 px-2">
+    <div class="static md:w-full md:px-2 md:py-8 pb-4">
+        <div class="md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
+            <!-- link ini mengarah ke halaman tampilan semua rekomendasi -->
+            <div class="invisible sm:visible">
+                <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/Home/rekomendasi">
                     Lihat Semua Rekomendasi
                     <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
                 </a>
             </div>
+            <h2 class="font-heading mb-6 text-xl inline-block">Alumni yang mungkin Anda kenal</h2>
+        </div>
+        <div class="holder mx-auto w-11/12 md:w-full lg:w-11/12 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-0 lg:gap-x-8" data-aos="zoom-in">
+            <?php foreach ($rekomendasi as $row) :  ?>
+                <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
+                    <a href="/Home/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
+                        <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
+                        <div class="desc p-2">
+                            <span class="title font-heading font-bold text-primary block cursor-pointer text-center"><?= $row->nama; ?></span>
+                            <!-- <span class="description font-paragraph text-primary text-center text-base block pt-2 border-gray-400 mb-0"><?= $row->nim; ?></span> -->
+                            <span class="description font-paragraph text-primary text-center text-base block py-0 border-gray-400 mb-0">Angkatan <?= $row->angkatan; ?></span>
+                            <!-- <a class="block bg-gray-300 font-paragraph text-primary text-sm text-center py-1 px-3 my-4 mx-auto rounded-lg w-full cursor-pointer border-gray-300 hover:bg-gray-400 hover:border-opacity-70 transition-colors duration-300" href="/profil">Lihat Profil</a> -->
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="visible sm:invisible">
+            <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/Home/rekomendasi">
+                Lihat Semua Rekomendasi
+                <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
+            </a>
         </div>
     </div>
+</div>
 <!-- Akhir Rekomendasi -->
 
 <!-- Atribut pada section ini belum ditentukan -->
@@ -146,25 +176,52 @@ if ($status == 'bukan user') {
     <h3 class="font-heading font-bold text-xl text-secondary">Informasi Instansi</h3>
     <div class="md:shadow-lg lg:shadow-xl rounded-2xl px-3 py-3 md:px-7 md:py-5 lg:mx-14 lg:py-8 lg:px-11 md:mt-3">
         <div class="font-heading">
+        <?php 
+            if($tempat_kerja->nama_instansi ==""){
+                $nama_instansi = "belum terisi";
+            } else {
+                $nama_instansi = $tempat_kerja->nama_instansi;
+            }
+            if($tempat_kerja->telp_instansi ==""){
+                $telp_instansi = "belum terisi";
+            } else {
+                $telp_instansi = $tempat_kerja->telp_instansi;
+            }
+            if($tempat_kerja->faks_instansi ==""){
+                $faks_instansi = "belum terisi";
+            } else {
+                $faks_instansi = $tempat_kerja->faks_instansi;
+            }
+            if($tempat_kerja->email_instansi ==""){
+                $email_instansi = "belum terisi";
+            } else {
+                $email_instansi = $tempat_kerja->email_instansi;
+            }
+            if($tempat_kerja->alamat_instansi ==""){
+                $alamat_instansi = "belum terisi";
+            } else {
+                $alamat_instansi = $tempat_kerja->alamat_instansi;
+            }
+        ?>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Instansi :</div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->nama_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $nama_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Alamat : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->alamat_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $alamat_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Telp : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->telp_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $telp_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Faks : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->faks_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $faks_instansi ?></div>
             </div>
             <div class="flex items-start">
                 <div class="font-bold text-primary w-3/12 md:w-2/12 lg:w-1/12 lg:pb-2">Email : </div>
-                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $tempat_kerja->email_instansi ?></div>
+                <div class="w-9/12 md:w-10/12 lg:w-11/12 lg:ml-5"><?= $email_instansi ?></div>
             </div>
         </div>
     </div>
@@ -176,7 +233,7 @@ if ($status == 'bukan user') {
 <div class="w-full my-8 lg:px-20 md:px-8 px-2">
     <h3 class="font-heading font-bold text-xl text-secondary">Riwayat Prestasi</h3>
     <div class="md:shadow-lg lg:shadow-xl rounded-2xl px-0 py-1 md:px-5 md:py-5 lg:mx-14 lg:p-8 mb-1 md:mt-3">
-    <?php foreach ($prestasi as $row) : ?>
+        <?php foreach ($prestasi as $row) : ?>
             <div class="flex justify-between px-3 font-heading text-primary mt-2 md:mt-2 lg:mt-3">
                 <div class=""><span class="text-black"><?= $row->nama_prestasi; ?></span> </div>
                 <div class="font-bold"><?= $row->tahun_prestasi; ?></div>
@@ -206,13 +263,45 @@ if ($status == 'bukan user') {
                     </thead>
                     <tbody>
                         <?php foreach ($pendidikan as $row) : ?>
+                        <?php 
+                        if($row->jenjang ==""){
+                            $jenjang = "belum terisi";
+                        } else {
+                            $jenjang = $row->jenjang;
+                        }
+                        if($row->instansi ==""){
+                            $instansi = "belum terisi";
+                        } else {
+                            $instansi = $row->instansi;
+                        }
+                        if($row->program_studi ==""){
+                            $program_studi = "belum terisi";
+                        } else {
+                            $program_studi = $row->program_studi;
+                        }
+                        if($row->tahun_masuk =="0000"){
+                            $tahun_masuk = "belum terisi";
+                        } else {
+                            $tahun_masuk = $row->tahun_masuk;
+                        }
+                        if($row->tahun_lulus =="0000"){
+                            $tahun_lulus = "belum terisi";
+                        } else {
+                            $tahun_lulus = $row->tahun_lulus;
+                        }
+                        if($row->judul_tulisan ==""){
+                            $judul_tulisan = "belum terisi";
+                        } else {
+                            $judul_tulisan = $row->judul_tulisan;
+                        }
+                        ?>
                             <tr>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->jenjang; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->instansi; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->program_studi; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->tahun_masuk; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->tahun_lulus; ?></td>
-                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $row->judul_tulisan; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $jenjang; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $instansi; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $program_studi; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $tahun_masuk; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $tahun_lulus; ?></td>
+                                <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $judul_tulisan; ?></td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>

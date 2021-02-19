@@ -28,30 +28,23 @@ class AlumniModel extends Model
     {
         $query = $this->table('alumni');
         if (isset($cari) && !empty($cari)) {
-            // $subquery = $query->like('nama', $cari)
-            // ->orLike('nim', $cari)
-            // ->orLike('angkatan', $cari)
-            // ->orLike('jenis_kelamin', $cari)
-            // ->orLike('tempat_lahir', $cari)
-            // ->orLike('tanggal_lahir', $cari)
-            // ->orLike('jenis_kelamin', $cari)
-            // ->orLike('telp_alumni', $cari)
-            // ->orLike('alamat', $cari)
-            // ->orLike('status_bekerja', $cari)
-            // ->orLike('perkiraan_pensiun', $cari)
-            // ->orLike('jabatan_terakhir', $cari)
-            // ->orLike('aktif_pns', $cari)
-            // ->getCompiledSelect();
             $subquery = "(nim LIKE '%$cari%' 
             OR nama LIKE '%$cari%' 
-            OR jenis_kelamin LIKE '%$cari%' 
+            OR jenis_kelamin LIKE '%$cari%'
+            OR tempat_lahir LIKE '%$cari%'  
             OR tanggal_lahir LIKE '%$cari%' 
             OR jenis_kelamin LIKE '%$cari%' 
             OR telp_alumni LIKE '%$cari%' 
+            OR email LIKE '%$cari%' 
             OR alamat LIKE '%$cari%' 
             OR status_bekerja LIKE '%$cari%' 
             OR perkiraan_pensiun LIKE '%$cari%' 
-            OR jabatan_terakhir LIKE '%$cari%' 
+            OR jabatan_terakhir LIKE '%$cari%'
+            OR ig LIKE '%$cari%' 
+            OR fb LIKE '%$cari%'  
+            OR twitter LIKE '%$cari%' 
+            OR nip LIKE '%$cari%' 
+            OR nip_bps LIKE '%$cari%' 
             OR aktif_pns LIKE '%$cari%')";
             if (isset($min_angkatan) && isset($max_angkatan)) {
                 $where = "Angkatan BETWEEN $min_angkatan AND $max_angkatan";
@@ -109,7 +102,6 @@ class AlumniModel extends Model
     
     public function getPendidikanByNIM($nim)
     {
-        $query = "SELECT * FROM pendidikan WHERE nim = $nim";
         $query = "SELECT * FROM pendidikan JOIN pendidikan_tinggi ON pendidikan.id_pendidikan=pendidikan_tinggi.id_pendidikan WHERE pendidikan.nim = $nim";
         return $this->db->query($query);
     }
