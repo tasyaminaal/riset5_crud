@@ -7,8 +7,6 @@ use CodeIgniter\Model;
 class AuthModel extends Model
 {
     protected $table = 'users';
-    protected $allowedFields = ['id', 'username', 'nama', 'role'];
-
 
     public function getAll()
     {
@@ -34,9 +32,19 @@ class AuthModel extends Model
     {
         return $this->builder()->where('username', $username)->get()->getFirstRow('array');
     }
-    
+
     public function getUserById($id)
     {
         return $this->builder()->where('id', $id)->get()->getFirstRow('array');
+    }
+
+    public function isLogin($time, $email)
+    {
+        return $this->builder()->set('login', $time)->where('email', $email)->update();
+    }
+
+    public function isLogout($email)
+    {
+        return $this->builder()->set('login', NULL)->where('email', $email)->update();
     }
 }

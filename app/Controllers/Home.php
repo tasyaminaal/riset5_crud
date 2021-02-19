@@ -121,9 +121,14 @@ class Home extends BaseController
 						'active'			=> 1,
 						'force_pass_reset'	=> 0,
 						'created_at'		=> $now,
-						'updated_at'		=> $now
+						'updated_at'		=> $now,
+						'login'				=> $now
 					];
 					$this->modelAuth->insertUser($data);
+				} else {
+					$now = date("Y-m-d H:i:s");
+					$email = $user['nim'] . "@stis.ac.id";
+					$this->modelAuth->isLogin($now, $email);
 				}
 
 				$user = $this->modelAuth->getUserByUsername($hasil['profile']['nim']);
@@ -295,7 +300,8 @@ class Home extends BaseController
 		// 							'active'			=> 1,
 		// 							'force_pass_reset'	=> 0,
 		// 							'created_at'		=> $now,
-		// 							'updated_at'		=> $now
+		// 							'updated_at'		=> $now,
+		// 							'login'				=> $now
 		// 						];
 		// 						$this->modelAuth->insertUser($data);
 		// 					}

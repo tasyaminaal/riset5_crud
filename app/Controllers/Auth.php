@@ -41,6 +41,11 @@ class Auth extends BaseController
 	{
 		// logout sipadu dan manual
 		if (session()->has('id_user')) {
+			$auth = new \App\Models\AuthModel();
+
+			$user = $auth->getUserById(session('id_user'));
+			$auth->isLogout($user['email']);
+
 			session()->remove(['id_user', 'nim', 'nama', 'role']);
 			session()->setFlashdata('pesan', 'Logout berhasil!');
 			session()->setFlashdata('warna', 'success');
