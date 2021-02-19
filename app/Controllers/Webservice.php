@@ -10,20 +10,21 @@ class Webservice extends BaseController
 {
 	public function __construct()
 	{
+		if (!session()->has('id_user'))
+			echo '<script>window.location.replace("' . base_url() . '");</script>';
+
+		if (session()->has('role'))
+			if (!in_array("4", session('role')))
+				redirect()->to('/');
+
 		$this->model = new WebserviceModel();
 	}
 
 	public function index()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		//user id didapat dari sessiom
 		$uid = session('id_user');
-
 
 		$data = [
 			'login' => 'sudah',
@@ -35,11 +36,6 @@ class Webservice extends BaseController
 
 	public function dokumentasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$data['judul'] = 'Dokumentasi Web Service | SIA';
 		return view('webservice/kontenWebservice/dokumentasi/dokumentasi.php', $data);
@@ -47,11 +43,6 @@ class Webservice extends BaseController
 
 	public function proyek()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		//user id dapat dari session
 		$uid = session('id_user');
@@ -67,11 +58,6 @@ class Webservice extends BaseController
 
 	public function buatProyek()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$data['judul'] = 'Proyek Web Service | SIA';
 		$data['scope_app'] = $this->model->getScope()->getResultArray();
@@ -80,11 +66,6 @@ class Webservice extends BaseController
 
 	public function insertProyek()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$time = new Time('now');
 
@@ -109,11 +90,6 @@ class Webservice extends BaseController
 
 	public function delete() //delete or cancel  project
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$id = $this->request->getPost('id_app');
 		$id_token = $this->model->getTokenId($id)->getRow()->id_token;
@@ -125,11 +101,6 @@ class Webservice extends BaseController
 
 	public function profilDeveloper()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$data['judul'] = 'Profil Web Service | SIA';
 		return view('webservice/kontenWebservice/profilDeveloper/profilDeveloper.php', $data);
@@ -137,11 +108,6 @@ class Webservice extends BaseController
 
 	public function editBiodata()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$data['judul'] = 'Edit Profil | SIA';
 		return view('webservice/kontenWebservice/profilDeveloper/editBiodataWS.php', $data);
@@ -149,11 +115,6 @@ class Webservice extends BaseController
 
 	public function editAkun()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-		if (!in_array("4", session('role'))) {
-			return redirect()->to('/');
-		}
 
 		$data['judul'] = 'Edit Profil | SIA';
 		return view('webservice/kontenWebservice/profilDeveloper/editAkunWS.php', $data);
