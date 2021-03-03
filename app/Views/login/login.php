@@ -49,22 +49,22 @@
                 </p>
             </div>
 
-            <div class="flex sm:mx-4 md:mx-8 mx-8 my-3">
+            <div class="flex lg:mx-8 sm:mx-6 mx-3 my-3">
                 <div class="w-1/4"></div>
                 <div class="w-3/4 flex justify-between">
-                    <div>
-                        <input type="checkbox" class="cursor-pointer">
-                        <label for="check" id="remember" class="text-sm cursor-pointer hover:text-blue-600 text-primary font-medium">Ingat saya</label>
+                    <div class="transform -translate-y-1">
+                        <input type="checkbox" class="cursor-pointer transform translate-y-0.5 sm:w-5 w-3">
+                        <label for="check" id="remember" class="sm:text-sm text-xs cursor-pointer hover:text-blue-600 text-primary font-medium select-none">Ingat saya</label>
                     </div>
-                    <a href="<?= route_to('forgot') ?>" class="text-sm cursor-pointer text-secondary font-medium hover:text-yellow-700">Lupa kata sandi?</a>
+                    <a href="<?= route_to('forgot') ?>" class="sm:text-sm text-xs cursor-pointer text-secondary font-medium hover:text-yellow-700">Lupa kata sandi?</a>
                 </div>
             </div>
 
-            <div class="flex justify-center sm:mx-4 md:mx-8 mx-8 my-4">
+            <div class="flex justify-center lg:mx-8 sm:mx-6 mx-3 my-4">
                 <input type="submit" class="tombol w-full shadow-2xl h-10 rounded-2xl text-base outline-none border-none cursor-pointer text-white duration-300" value="Kirim">
             </div>
 
-            <div class="sm:mx-4 md:mx-8 mx-8 flex mt-2 mb-6">
+            <div class="lg:mx-8 sm:mx-6 mx-3 flex mt-2 mb-6">
                 <hr class="border border-primary w-1/4 transform translate-y-2">
                 <p class="flex justify-center text-sm text-primary w-1/2 font-medium cursor-default">atau masuk dengan</p>
                 <hr class="border border-primary w-1/4 transform translate-y-2">
@@ -113,7 +113,6 @@
                 }
             </script>
             <!-- login with BPS -->
-
             <p class="text-center mt-6 text-primary mb-4 font-medium cursor-default">Akun belum terdaftar? <span><a href="/home/daftar" class="text-secondary hover:text-yellow-700 font-medium">Daftar</a></span></p>
         </form>
     </div>

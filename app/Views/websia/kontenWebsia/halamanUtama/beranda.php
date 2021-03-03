@@ -76,7 +76,7 @@ if ($login == 'belum') {
         <!-- Awal Jumlah Alumni AIS/STIS/Polstat STIS II-->
         <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/bulat.png)" data-aos="zoom-in">
             <div class="text-primary md:text-6xl text-3xl font-bold md:mb-4 mb-2 font-heading">38.578</div>
-            <div class="text-gray-500 text-sm font-semibold text-center font-paragraph">Lulusan SITS</div>
+            <div class="text-gray-500 text-sm font-semibold text-center font-paragraph">Lulusan STIS</div>
         </div>
         <!-- Akhir Jumlah Alumni AIS/STIS/Polstat STIS II-->
 
