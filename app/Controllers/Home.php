@@ -395,6 +395,7 @@ class Home extends BaseController
 		} else {
 			$data = [
 				'judulHalaman' 	=> 'Beranda WEBSIA',
+				'active' 		=> '',
 				'login'			=> 'belum'
 			];
 		}

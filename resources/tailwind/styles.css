@@ -10,10 +10,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* supaya auto pake font open-sans */
-body {
+/* supaya auto pake font cabin */
+/* body {
   @apply font-paragraph;
-}
+} */
 
 /* ini menu navbar saat di desktop */
 .nav-menu {
