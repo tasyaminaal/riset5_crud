@@ -94,7 +94,7 @@
 
             <!-- awal link ke webservice  -->
             <div class="flex flex-col text-white font-heading mx-auto md:mx-5 mt-4 md:mt-0">
-                <a href="/websia/" class="mb-2 hover:text-secondary">
+                <a href="/" class="mb-2 hover:text-secondary">
                     <h3>Website PKL60</h3>
                 </a>
                 <a href="/webservice/" class="hover:text-secondary">

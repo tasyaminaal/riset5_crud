@@ -86,7 +86,7 @@
 
             <!-- awal link ke webservice  -->
             <div class="flex flex-col text-white font-heading mx-auto md:mx-0 mt-4 md:mt-0">
-                <a href="/websia/" class="mb-4">
+                <a href="/" class="mb-4">
                     <h3>Website PKL60</h3>
                 </a>
 
