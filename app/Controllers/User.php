@@ -53,7 +53,11 @@ class User extends BaseController
 			$max_angkatan  = $model->getMaxAngkatan()[0]->angkatan;
 		}
 
-		$cari = $_GET['cari'];
+		if (isset($_GET['cari']))
+			$cari = $_GET['cari'];
+		else
+			$cari = "";
+
 		$query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
 		if (!empty($cari)) {
 			$jumlah = "Terdapat " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
