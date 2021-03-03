@@ -20,7 +20,7 @@ class Home extends BaseController
 		$this->roleModel = new \App\Models\RoleModel();
 		$faker = \Faker\Factory::create('id_ID');
 
-		// processing data sipadu
+		// processing login sso bps
 		if (session('oauth2state') != NULL) {
 			if (isset($_GET['code']) && $_GET['code']) {
 				$provider = new Keycloak([
@@ -224,7 +224,7 @@ class Home extends BaseController
 			}
 		}
 
-		// processing login sso bps
+		// processing data sipadu
 		else {
 			if (isset($_REQUEST['code']) && $_REQUEST['code']) {
 
