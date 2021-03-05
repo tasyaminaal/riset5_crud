@@ -31,7 +31,13 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-
+$routes->get('/developer', 'Webservice::index');
+$routes->get('/developer/edit/biodata', 'Webservice::editBiodata');
+$routes->get('/developer/edit/akun', 'Webservice::editAkun');
+$routes->get('/developer/proyek', 'Webservice::proyek');
+$routes->get('/developer/buatProyek', 'Webservice::buatProyek');
+$routes->get('/developer/profil', 'Webservice::profilDeveloper');
+$routes->get('/developer/dokumentasi', 'Webservice::dokumentasi');
 // $routes->get('/register', 'Home::register');
 // $routes->get('/register/success', 'Home::registerSuccess');
 // $routes->get('/reset/lama', 'Home::reset');

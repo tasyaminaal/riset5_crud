@@ -110,6 +110,7 @@ class Webservice extends BaseController
 	{
 
 		$data['judul'] = 'Edit Profil | SIA';
+		$data['active'] = 'biodataDev';
 		return view('webservice/kontenWebservice/profilDeveloper/editBiodataWS.php', $data);
 	}
 
@@ -117,6 +118,7 @@ class Webservice extends BaseController
 	{
 
 		$data['judul'] = 'Edit Profil | SIA';
+		$data['active'] = 'akunDev';
 		return view('webservice/kontenWebservice/profilDeveloper/editAkunWS.php', $data);
 	}
 
