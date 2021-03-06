@@ -65,7 +65,7 @@
                     <div class="">
                         <div class="flex">
                             <a href="<?= base_url(); ?>">
-                                <img src="/img/logoSIA.png" class=" z-50 md:w-16 w-10" alt="">
+                                <img src="/img/logo/logoSIA.png" class=" z-50 md:w-16 w-10" alt="">
                             </a>
                             <div class="md:px-3 px-2 my-auto text-white z-50">
                                 <p class="font-heading text-lg md:text-2xl font-semibold">Sistem Informasi Alumni</p>
@@ -191,7 +191,7 @@
             <!-- awal footer stis -->
             <div class="flex items-center gap-x-2 mx-auto md:mx-0">
                 <div class="w-36 md:w-auto">
-                    <a href="https://stis.ac.id/"><img class="lg:w-24 lg:h-24 w-20 h-20" src="/img/STISlogo.png" alt=""></a>
+                    <a href="https://stis.ac.id/"><img class="lg:w-24 lg:h-24 w-20 h-20" src="/img/logo/STISlogo.png" alt=""></a>
                 </div>
                 <div class="text-white font-heading">
                     <h3>Jl. Otto Iskandardinata No.64C Jakarta 13330</h3>
@@ -209,7 +209,7 @@
 
             <!-- awal footer haistis -->
             <div class="flex items-center mt-4 gap-x-2 md:mt-0 mx-auto md:mx-0">
-                <a href="https://haisstis.org/"><img class="lg:h-24 h-20 w-36 lg:w-auto" src="/img/logo_haisstis1.png" alt=""></a>
+                <a href="https://haisstis.org/"><img class="lg:h-24 h-20 w-36 lg:w-auto" src="/img/logo/logo_haisstis1.png" alt=""></a>
                 <div class="text-white font-heading">
                     <h3>Jl. Otto Iskandardinata No.64C Jakarta 13330</h3>
                     <h3>Telp. (021) 8191437, 8508812</h3>
