@@ -2,19 +2,31 @@
 
 <?= $this->section('contentEdit'); ?>
 
+<style>
+    .formEdit {
+        background-color: #F9F9F9;
+    }
+</style>
+
 <div class="w-full bg-white min-h-screen" id="pagePrestasi">
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
+        <!-- start tabel prestasi -->
         <table class="w-full sm:text-sm text-xs rounded-3xl shadow-2xl md:shadow-none font-paragraph">
+            <!-- start nama kolom tabel prestasi -->
             <thead class="formEdit">
                 <tr>
                     <th class="pt-4 pb-1 rounded-tl-3xl">No</th>
                     <th class="pt-4 pb-1">Nama Prestasi</th>
                     <th class="pt-3 pb-1">
                         <div class="flex justify-center">
-                            <span class="mr-3">Tahun</span>
-                            <div class="select-none cursor-pointer flex flex-col justify-center sort">
-                                <i class="fas fa-caret-up text-gray-400"></i>
-                                <i class="fas fa-caret-down text-gray-400 transform -translate-y-2"></i>
+                            <span class="mr-2">Tahun</span>
+                            <div class="sort select-none cursor-pointer flex flex-col justify-center gap-y-1">
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4L4 0L8 4H0Z" fill="#B0BAC9" />
+                                </svg>
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L4 4L8 0H0Z" fill="#B0BAC9" />
+                                </svg>
                             </div>
                         </div>
                     </th>
@@ -26,6 +38,9 @@
                     <td colspan="2"></td>
                 </tr>
             </thead>
+            <!-- end nama kolom tabel prestasi -->
+
+            <!-- start isi tabel prestasi -->
             <tbody>
                 <tr class="border-t-2 border-b-2 bg-white">
                     <td class="text-center py-3">1</td>
@@ -92,14 +107,16 @@
                 </tr>
                 <tr class="formEdit">
                     <td colspan="8" class="border-b-2">
-                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 my-2 tambahPrestasi">TAMBAH</div>
+                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 my-2 tambahPrestasi">TAMBAH</div>
                     </td>
                 </tr>
                 <tr class="h-5 formEdit">
                     <td colspan="8" class="rounded-b-3xl"></td>
                 </tr>
             </tbody>
+            <!-- end isi tabel prestasi -->
         </table>
+        <!-- end tabel prestasi -->
     </div>
 
 </div>

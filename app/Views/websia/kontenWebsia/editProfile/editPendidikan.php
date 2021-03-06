@@ -1,69 +1,58 @@
 <?= $this->extend('websia/kontenWebsia/editProfile/layoutEdit.php'); ?>
 
 <?= $this->section('contentEdit'); ?>
+<style>
+    .formEdit {
+        background-color: #F9F9F9;
+    }
+</style>
 
 <div class="w-full bg-white min-h-screen" id="pagePendidikan">
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
+        <!-- start tabel pendidikan-->
         <table class="w-full sm:text-sm text-xs rounded-3xl shadow-2xl md:shadow-none font-paragraph">
+            <!-- start nama kolom tabel pendidikan-->
             <thead class="formEdit">
                 <tr>
-                    <th class="pt-4 lg:px-3 md:px-2 px-1 pb-1">No</th>
-                    <th class="pt-4 lg:px-2 px-1 pb-1">Jenjang</th>
-                    <th class="pt-4 lg:px-2 px-1 pb-1">Universitas</th>
-                    <th class="pt-4 lg:px-2 px-1 pb-1">Program Studi</th>
-                    <th class="pt-4 pb-1 pl-1">
+                    <th class="pt-4 lg:px-3 md:px-2 px-1 pb-1 w-1/12">No</th>
+                    <th class="pt-4 lg:px-2 px-1 pb-1 w-1/12">Jenjang</th>
+                    <th class="pt-4 lg:px-2 px-1 pb-1 w-2/12">Universitas</th>
+                    <th class="pt-4 lg:px-2 px-1 pb-1 w-2/12">Program Studi</th>
+                    <th class="pt-4 pb-1 pl-1 w-1/12">
                         <div class="flex">
                             <span class="mr-1">Tahun Masuk</span>
-                            <div class="select-none cursor-pointer flex flex-col justify-center sort text-gray-400">
-                                <i class="fas fa-caret-up"></i>
-                                <i class="fas fa-caret-down transform -translate-y-2"></i>
+                            <div class="sort select-none cursor-pointer flex flex-col justify-center gap-y-1">
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4L4 0L8 4H0Z" fill="#B0BAC9" />
+                                </svg>
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L4 4L8 0H0Z" fill="#B0BAC9" />
+                                </svg>
                             </div>
 
                         </div>
-
-
                     </th>
-                    <th class="pt-4 pb-1 pl-1">
+                    <th class="pt-4 pb-1 pl-1 w-1/12">
                         <div class="flex">
                             <span class="mr-1">Tahun Lulus</span>
-                            <div class="select-none cursor-pointer flex flex-col justify-center sort text-gray-400">
-                                <i class="fas fa-caret-up"></i>
-                                <i class="fas fa-caret-down transform -translate-y-2"></i>
+                            <div class="sort select-none cursor-pointer flex flex-col justify-center gap-y-1">
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4L4 0L8 4H0Z" fill="#B0BAC9" />
+                                </svg>
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L4 4L8 0H0Z" fill="#B0BAC9" />
+                                </svg>
                             </div>
                         </div>
 
                     </th>
-                    <th class="pt-4 lg:px-2 px-1 pb-1">Judul Tulisan</th>
-                    <th class="pt-4 lg:px-2 px-1 pb-1">Aksi</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="text-sm px-2">
-                        <span>All</span>
-                        <span class="select-none cursor-pointer float-right sort text-gray-400">
-                            <i class="fas fa-caret-up transform -translate-y-1 translate-x-3"></i>
-                            <i class="fas fa-caret-down transform translate-y-1"></i>
-                        </span>
-                    </td>
-                    <td class="text-sm px-2">
-                        <span>All</span>
-                        <span class="select-none cursor-pointer float-right sort text-gray-400">
-                            <i class="fas fa-caret-up transform -translate-y-1 translate-x-3"></i>
-                            <i class="fas fa-caret-down transform translate-y-1"></i>
-                        </span>
-                    </td>
-                    <td class="text-sm px-2">
-                        <span>All</span>
-                        <span class="select-none cursor-pointer float-right sort text-gray-400">
-                            <i class="fas fa-caret-up transform -translate-y-1 translate-x-3"></i>
-                            <i class="fas fa-caret-down transform translate-y-1"></i>
-                        </span>
-                    </td>
-                    <td colspan="2"></td>
-                    <td class="flex justify-center"><input type="text" name="cariTulisan" id="cariTulisan" placeholder="Cari" class="w-11/12 focus:outline-none focus:ring rounded-md md:px-2 px-0.5 text-gray-400 formEdit mb-3"></td>
-                    <td></td>
+                    <th class="pt-4 lg:px-2 px-1 pb-1 w-3/12">Judul Tulisan</th>
+                    <th class="pt-4 pr-4 pb-1 w-1/12">Aksi</th>
                 </tr>
             </thead>
+            <!-- end nama kolom tabel pendidikan-->
+
+            <!-- start isi tabel pendidikan-->
             <tbody>
                 <tr class="border-t-2 border-b-2 bg-white">
                     <td class="text-center py-3">1</td>
@@ -74,7 +63,7 @@
                     <td>2003</td>
                     <td>Enkripsi</td>
                     <td>
-                        <div class="flex justify-center">
+                        <div class="flex justify-center pl-1 pr-3">
                             <div class="editPendidikan cursor-pointer mr-1"><svg class="lg:w-5 lg:h-5 w-4 h-4" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.1536 9.99923C15.6928 9.99923 15.3203 10.3726 15.3203 10.8325V17.4992C15.3203 17.9584 14.9469 18.3325 14.487 18.3325H2.82031C2.36026 18.3325 1.98703 17.9584 1.98703 17.4992V5.83252C1.98703 5.37338 2.36026 4.99924 2.82031 4.99924H9.48702C9.94783 4.99924 10.3203 4.62585 10.3203 4.16595C10.3203 3.7059 9.94783 3.33252 9.48702 3.33252H2.82031C1.44198 3.33252 0.320312 4.45419 0.320312 5.83252V17.4992C0.320312 18.8775 1.44198 19.9992 2.82031 19.9992H14.487C15.8653 19.9992 16.987 18.8775 16.987 17.4992V10.8325C16.987 10.3717 16.6144 9.99923 16.1536 9.99923Z" fill="black" />
                                     <path d="M8.13522 9.24029C8.07693 9.29858 8.03771 9.37273 8.02108 9.45269L7.43194 12.3995C7.40447 12.536 7.44781 12.6769 7.54607 12.7761C7.62527 12.8552 7.73193 12.8977 7.84118 12.8977C7.86773 12.8977 7.89535 12.8952 7.92281 12.8894L10.8687 12.3003C10.9503 12.2835 11.0245 12.2444 11.082 12.186L17.6753 5.59268L14.7294 2.64697L8.13522 9.24029Z" fill="black" />
@@ -99,7 +88,7 @@
                     <td>2004</td>
                     <td>Perjuangan Indonesia Melawan Belanda dan Jepang yang Sangat Menyakitkan</td>
                     <td>
-                        <div class="flex justify-center">
+                        <div class="flex justify-center pl-1 pr-3">
                             <div class="editPendidikan cursor-pointer mr-1"><svg class="lg:w-5 lg:h-5 w-4 h-4" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.1536 9.99923C15.6928 9.99923 15.3203 10.3726 15.3203 10.8325V17.4992C15.3203 17.9584 14.9469 18.3325 14.487 18.3325H2.82031C2.36026 18.3325 1.98703 17.9584 1.98703 17.4992V5.83252C1.98703 5.37338 2.36026 4.99924 2.82031 4.99924H9.48702C9.94783 4.99924 10.3203 4.62585 10.3203 4.16595C10.3203 3.7059 9.94783 3.33252 9.48702 3.33252H2.82031C1.44198 3.33252 0.320312 4.45419 0.320312 5.83252V17.4992C0.320312 18.8775 1.44198 19.9992 2.82031 19.9992H14.487C15.8653 19.9992 16.987 18.8775 16.987 17.4992V10.8325C16.987 10.3717 16.6144 9.99923 16.1536 9.99923Z" fill="black" />
                                     <path d="M8.13522 9.24029C8.07693 9.29858 8.03771 9.37273 8.02108 9.45269L7.43194 12.3995C7.40447 12.536 7.44781 12.6769 7.54607 12.7761C7.62527 12.8552 7.73193 12.8977 7.84118 12.8977C7.86773 12.8977 7.89535 12.8952 7.92281 12.8894L10.8687 12.3003C10.9503 12.2835 11.0245 12.2444 11.082 12.186L17.6753 5.59268L14.7294 2.64697L8.13522 9.24029Z" fill="black" />
@@ -124,7 +113,7 @@
                     <td>2005</td>
                     <td>Robotika</td>
                     <td>
-                        <div class="flex justify-center">
+                        <div class="flex justify-center pl-1 pr-3">
                             <div class="editPendidikan cursor-pointer mr-1"><svg class="lg:w-5 lg:h-5 w-4 h-4" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16.1536 9.99923C15.6928 9.99923 15.3203 10.3726 15.3203 10.8325V17.4992C15.3203 17.9584 14.9469 18.3325 14.487 18.3325H2.82031C2.36026 18.3325 1.98703 17.9584 1.98703 17.4992V5.83252C1.98703 5.37338 2.36026 4.99924 2.82031 4.99924H9.48702C9.94783 4.99924 10.3203 4.62585 10.3203 4.16595C10.3203 3.7059 9.94783 3.33252 9.48702 3.33252H2.82031C1.44198 3.33252 0.320312 4.45419 0.320312 5.83252V17.4992C0.320312 18.8775 1.44198 19.9992 2.82031 19.9992H14.487C15.8653 19.9992 16.987 18.8775 16.987 17.4992V10.8325C16.987 10.3717 16.6144 9.99923 16.1536 9.99923Z" fill="black" />
                                     <path d="M8.13522 9.24029C8.07693 9.29858 8.03771 9.37273 8.02108 9.45269L7.43194 12.3995C7.40447 12.536 7.44781 12.6769 7.54607 12.7761C7.62527 12.8552 7.73193 12.8977 7.84118 12.8977C7.86773 12.8977 7.89535 12.8952 7.92281 12.8894L10.8687 12.3003C10.9503 12.2835 11.0245 12.2444 11.082 12.186L17.6753 5.59268L14.7294 2.64697L8.13522 9.24029Z" fill="black" />
@@ -142,14 +131,16 @@
                 </tr>
                 <tr class="formEdit">
                     <td colspan="8" class="border-b-2">
-                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 my-2 tambahPendidikan">TAMBAH</div>
+                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 my-2 tambahPendidikan">TAMBAH</div>
                     </td>
                 </tr>
                 <tr class="h-5 formEdit">
                     <td colspan="8" class="rounded-b-3xl"></td>
                 </tr>
             </tbody>
+            <!-- end isi tabel pendidikan-->
         </table>
+        <!-- end tabel pendidikan-->
     </div>
 
 
