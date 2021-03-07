@@ -102,7 +102,7 @@
                                 <!-- Awal Card Berita  -->
                                 <a href="">
                                     <div class="flex px-2 md:flex-row flex-col md:gap-x-4 gap-x-0 items-center">
-                                        <img src="/img/sampel.jpeg" alt="" class="md:w-48 md:h-36 w-full h-52 ">
+                                        <img src="/img/sampel.jpeg" alt="" class="md:w-48 w-full gambarBerita">
                                         <div class="flex-grow">
                                             <div class="flex flex-col">
 
@@ -179,4 +179,5 @@
     });
 </script>
 <script type="text/javascript" src="/js/search.js"></script>
+<script type="text/javascript" src="/js/berita.js"></script>
 <?= $this->endSection(); ?>

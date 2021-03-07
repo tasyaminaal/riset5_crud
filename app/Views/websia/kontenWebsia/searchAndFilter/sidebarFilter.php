@@ -1,8 +1,8 @@
 <div class="md:relative fixed flex flex-col bg-primary rounded-r md:h-auto h-full sidebarSearch">
 
-    <div class="flex md:px-4 px-2 py-1 justify-between bg-primaryHover">
-        <div class="md:text-xl text-base my-auto font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
-        <svg class="md:w-6 w-4 fill-current text-secondary cursor-pointer hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div class="flex md:px-5 px-2 py-2 justify-between bg-primaryHover items-center">
+        <div class="md:text-2xl text-base font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
+        <svg class="md:w-7 w-4 fill-current text-secondary cursor-pointer hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </div>
@@ -32,9 +32,30 @@
 
                 <!-- Awal List Filter "Prodi" Untuk Alumni  -->
                 <div class="flex flex-col font-paragraph mb-1 px-3 hidden listProdi">
-                    <div class="text-xs text-white cursor-pointer py-1 px-1 hover:bg-primaryDark rounded-lg" id="namaProdi">DIII Statistika</div>
-                    <div class="text-xs text-white cursor-pointer py-1 px-1 hover:bg-primaryDark rounded-lg" id="namaProdi">DIV Statistika</div>
-                    <div class="text-xs text-white cursor-pointer py-1 px-1 hover:bg-primaryDark rounded-lg" id="namaProdi">DIV Komputasi Statistik</div>
+
+                    <div class="flex items-center justify-between text-white cursor-pointer  py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                        <div class="text-xs w-full">DIII Statistika</div>
+
+                        <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+
+                    <div class="flex items-center justify-between text-white cursor-pointer  py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                        <div class="text-xs w-full">DIV Statistika</div>
+
+                        <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+
+                    <div class="flex items-center justify-between text-white cursor-pointer  py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                        <div class="text-xs w-full">DIV Komputasi Statistik</div>
+
+                        <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
                 </div>
                 <!-- Akhir List Filter "Prodi" Untuk Alumni  -->
 
@@ -55,7 +76,13 @@
 
                 <!-- Awal Input Filter "Prodi" Untuk Alumni  -->
                 <div class="mb-1 px-4 hidden listAngkatan">
-                    <input type="text" placeholder="Masukkan angkatan" id="cariAngkatan" class="placeholder-gray-300 text-primary font-paragraph text-xs px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
+                    <div class="flex w-full outline-none rounded-lg items-center">
+                        <input type="text" placeholder="Angkatan 60" class="w-full placeholder-gray-300 text-primary outline-none focus:ring-2 focus:ring-secondary font-paragraph text-xs px-2 py-1 font-paragraph rounded-lg">
+
+                        <svg class="w-3 h-3 text-primary stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
                 </div>
                 <!-- Akhir Input Filter "Prodi" Untuk Alumni  -->
 
@@ -75,21 +102,27 @@
                 </div>
 
                 <div class="flex flex-col mb-1 px-4 hidden listTempatKerja">
-                    <div class="flex justify-between mb-1 cursor-pointer" id="BPS">
+                    <div class="flex justify-between mb-1 cursor-pointer BPS">
                         <div class="text-white text-xs font-heading">BPS</div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary onBPS" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
                             <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
                         </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden offBPS" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden offBPS" id="offBPS" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
                             <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
                         </svg>
                     </div>
 
                     <!-- Awal Input Filter "Tempat Kerja BPS" Untuk Alumni  -->
-                    <input type="text" placeholder="BPS RI/Provinsi/kota" class="placeholder-gray-300 text-primary font-paragraph text-xs px-2 py-1 outline-none mb-2 focus:ring-2 focus:ring-secondary font-paragraph rounded-lg inputBPS">
+                    <div class="flex w-full outline-none rounded-lg items-center mb-2 text-primary inputBPS">
+                        <input type="text" placeholder="BPS RI/Provinsi/kota" class="w-full placeholder-gray-300 font-paragraph text-xs px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
+
+                        <svg class="w-3 h-3 text-primary stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
                     <!-- Awal Input Filter "Tempat Kerja BPS" Untuk Alumni  -->
 
-                    <div class="flex justify-between mb-1 cursor-pointer" id="Lainnya">
+                    <div class="flex justify-between mb-1 cursor-pointer Lainnya">
                         <div class="text-white text-xs font-heading">Lainnya</div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden onLainnya" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
                             <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
@@ -100,7 +133,13 @@
                     </div>
 
                     <!-- Awal Input Filter "Tempat Kerja Lainnya" Untuk Alumni  -->
-                    <input type="text" placeholder="Institusi/Perusahaan Lain" class="placeholder-gray-300 text-xs font-paragraph text-gray-300 px-2 py-1 outline-none mb-1 focus:ring-2 focus:ring-secondary font-paragraph rounded-lg inputTempatKerjaLainnya">
+                    <div class="flex w-full outline-none rounded-lg items-center mb-1 text-gray-300 inputTempatKerjaLainnya">
+                        <input type="text" placeholder="Institusi/Perusahaan Lain" class="w-full placeholder-gray-300 text-xs font-paragraph px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
+
+                        <svg class="w-3 h-3 text-primary stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
                     <!-- Awal Input Filter "Tempat Kerja Lainnya" Untuk Alumni  -->
 
                 </div>
@@ -135,11 +174,23 @@
                     <div class="flex justify-between gap-x-1 mb-2">
 
                         <!-- Awal Input Filter "Rentang Waktu Awal" Untuk Berita  -->
-                        <input type="text" placeholder="Awal" class="placeholder-gray-300 text-xs font-paragraph text-primary px-2 py-1 outline-none mb-1 focus:ring-2 focus:ring-secondary font-paragraph rounded-lg w-1/2 inputTahunAwal">
+                        <div class="flex w-1/2 outline-none rounded-lg items-center mb-1 text-primary inputTahunAwal">
+                            <input type="text" placeholder="Awal" class="placeholder-gray-300 text-xs font-paragraph px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg w-full">
+
+                            <svg class="w-3 h-3 stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
                         <!-- Akhir Input Filter "Rentang Waktu Awal" Untuk Berita  -->
 
                         <!-- Awal Input Filter "Rentang Waktu Akhir" Untuk Berita  -->
-                        <input type="text" placeholder="Akhir" class="placeholder-gray-300 text-xs font-paragraph text-primary px-2 py-1 outline-none mb-1 focus:ring-2 focus:ring-secondary font-paragraph rounded-lg w-1/2 inputTahunAkhir">
+                        <div class="flex w-1/2 outline-none rounded-lg items-center mb-1 text-primary  inputTahunAkhir">
+                            <input type="text" placeholder="Akhir" class="placeholder-gray-300 text-xs font-paragraph px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg w-full">
+
+                            <svg class="w-3 h-3 stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
                         <!-- Akhir Input Filter "Rentang Waktu Akhir" Untuk Berita  -->
 
                     </div>
