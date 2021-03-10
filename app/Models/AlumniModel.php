@@ -152,4 +152,31 @@ class AlumniModel extends Model
     {
         return $this->table('alumni')->Where('angkatan', $angkatan);
     }
+
+    // FOR API REQUEST
+    public function getUserApi($nim = false){
+        if ($nim === false) {
+            $sql = "SELECT alumni.nama, alumni.nim , users.username FROM alumni JOIN users ON alumni.nim = users.nim";
+
+            return $this->db->query($sql);
+        } else {
+            $sql = "SELECT alumni.nama, alumni.nim , users.username FROM alumni JOIN users ON alumni.nim = users.nim AND alumni.nim =?";
+
+            return $this->db->query($sql,[$nim]);
+        }
+        
+    }
+
+    public function getDetailUserApi($nim = false){
+        if ($nim === false) {
+            $sql = "SELECT angkatan, nama, nim, jenis_kelamin, status_bekerja, jabatan_terakhir, aktif_pns FROM alumni";
+
+            return $this->db->query($sql);
+        } else {
+            $sql = "SELECT angkatan, nama, nim, jenis_kelamin, status_bekerja, jabatan_terakhir, aktif_pns FROM alumni WHERE nim =?";
+
+            return $this->db->query($sql,[$nim]);
+        }
+    }
+
 }

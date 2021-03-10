@@ -68,10 +68,10 @@
                 <p class="w-1/4 text-primary text-sm font-bold">Deskripsi</p>
                 <p id="deskripsi<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
             </div>
-            <div class="flex mx-3 mt-3 mb-2">
+            <!-- <div class="flex mx-3 mt-3 mb-2">
                 <p class="w-1/4 text-primary text-sm font-bold">Redirect URL</p>
                 <p id="redirek<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
-            </div>
+            </div> -->
             <div class="flex mx-3 pb-4">
                 <p class="w-1/4 text-primary text-sm font-bold">Cakupan Data</p>
                 <p id="scope<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>

@@ -1,8 +1,8 @@
 <?php
-
 namespace App\Controllers;
-
-class Api extends BaseController
+use App\Models\AlumniModel;
+use CodeIgniter\RESTful\ResourceController;
+class Api extends ResourceController
 {
 	public function index() //project list + form create
 	{
@@ -44,15 +44,38 @@ class Api extends BaseController
 
 	//--------------------------------------------------------------------
 
-	public function create() //membuat project baru
+	public function user($data = false) //user:profile
 	{
+		$init = new AlumniModel();
+
+		if ($data===false) {
+			$alumni = $init->getUserApi()->getResult();
+
+			return $this->respond($alumni, 200);
+	
+		} else {
+			$alumni = $init->getUserApi($data)->getResult();
+
+			return $this->respond($alumni, 200);
+		}
+
 	}
 
 	//--------------------------------------------------------------------
 
 
-	public function update()
+	public function alumni($data = false) //alumni:profile
 	{
+		$init = new AlumniModel();
+		if ($data===false) {
+			$alumni = $init->getDetailUserApi()->getResult();
+
+			return $this->respond($alumni, 200);
+		} else {
+			$alumni = $init->getDetailUserApi($data)->getResult();
+
+			return $this->respond($alumni, 200);
+		}
 	}
 
 	//--------------------------------------------------------------------
