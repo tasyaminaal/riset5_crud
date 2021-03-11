@@ -128,5 +128,7 @@ nb-configuration.xml
 
 public/*
 !public/public.rar
-!public/css.rar
-!public/js.rar
+
+# tailwind
+/public/vendor/tailwind/node_modules
+/public/vendor/tailwind/package-lock.json
