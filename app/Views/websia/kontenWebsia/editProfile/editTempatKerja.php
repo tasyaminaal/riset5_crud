@@ -10,8 +10,26 @@
             <div>
                 <div id="adainstansi" class="block">
                     <label for="namainstansi" class="font-medium">Nama Instansi:</label>
-                    <input type="text" name="namainstansi" id="namainstansi" class="inputForm" placeholder="Ketikkan nama instansi di sini">
-                    <select name="hasilinstansi" id="hasilinstansi" class="inputForm" multiple></select>
+                    <input list="daftarInstansi" name="instansi" id="instansi" placeholder="Masukkan nama instansi" class="inputForm">
+                    <datalist id="daftarInstansi" class="font-paragraph">
+                        <option value="BPS Republik Indonesia"></option>
+                        <option value="BPS Provinsi DKI Jakarta"></option>
+                        <option value="BPS Kota Jakarta Timur"></option>
+                        <option value="BPS Kabupaten Magelang"></option>
+                        <option value="BPS Kabupaten Humbang Hasundutan"></option>
+                        <option value="BPS Provinsi Lampung"></option>
+                        <option value="BPS Provinsi Sumatera Utara"></option>
+                        <option value="BPS Provinsi Kalimantan Barat"></option>
+                        <option value="BPS Provinsi Jawa Tengah"></option>
+                        <option value="BPS Provinsi Jawa Timur"></option>
+                        <option value="BPS Provinsi Jawa Barat"></option>
+                        <option value="BPS Provinsi Banten"></option>
+                        <option value="BPS Provinsi Bali"></option>
+                        <option value="BPS Provinsi Nusa Tenggara Timur"></option>
+                        <option value="BPS Provinsi Nusa Tenggara Barat"></option>
+                        <option value="BPS Kabupaten Tapanuli Selatan"></option>
+                        <option value="BPS Kabupaten Musi Banyu Asin"></option>
+                    </datalist>
                     <div class="flex gap-x-2 items-center">
                         <div>
                             Jika nama instansi Anda tidak terdaftar pada daftar di atas, tambahkan instansi Anda di sini:
