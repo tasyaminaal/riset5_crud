@@ -258,5 +258,7 @@
 <script type="text/javascript" src="/js/onTopBtn.js"></script>
 <script type="text/javascript" src="/js/footer.js"></script>
 <script type="text/javascript" src="/js/editProfil.js"></script>
+<script type="text/javascript" src="/js/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/js/showMore.js"></script>
 
 </html>
