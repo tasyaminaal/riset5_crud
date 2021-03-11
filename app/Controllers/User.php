@@ -312,7 +312,7 @@ class User extends BaseController
 		$model = new AlumniModel();
 		$query = $model->bukaProfile(session('nim'));
 
-		// dd($query->getRow()->alamat);
+		// dd($query->getRow());
 
 		$data = [
 			'judulHalaman' => 'Edit Profil',
@@ -333,17 +333,21 @@ class User extends BaseController
 
 		$data = [
 			'angkatan'      => $query1->angkatan,
-			'nama'  		=> $_POST['nama'],
+			'nama'  		=> $query1->nama,
 			'nim'           => session('nim'),
-			'jenis_kelamin'  => $_POST['jenis_kelamin'],
-			'tempat_lahir'   => $_POST['tempat_lahir'],
+			'jenis_kelamin'  => $query1->jenis_kelamin,
+			'tempat_lahir'   => $query1->tempat_lahir,
 			'tanggal_lahir'  => $query1->tanggal_lahir,
 			'telp_alumni'    => $_POST['telp_alumni'],
+			'email'			=> $_POST['email'],
 			'alamat'        => $_POST['alamat'],
 			'status_bekerja' => $_POST['status_bekerja'],
-			'perkiraan_pensiun' => $_POST['perkiraan_pensiun'],
+			'perkiraan_pensiun' => $query1->perkiraan_pensiun,
 			'jabatan_terakhir'  => $_POST['jabatan_terakhir'],
 			'aktif_pns'      => $_POST['aktif_pns'],
+			'ig'			=> $_POST['ig'],
+			'fb'			=> $_POST['fb'],
+			'twitter'		=> $_POST['twitter'],
 		];
 
 		$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
@@ -366,13 +370,14 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->getPendidikanByNIM(session('nim'));
+		// dd($query->getResult());
 
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'pendidikan'      => $query->getResult(),
-			'jumlah' => $model->getCountPendidikanByNIM(session('nim'))
+			// 'jumlah' => $model->getCountPendidikanByNIM(session('nim'))
 		];
 		return view('websia/kontenWebsia/editProfile/editPendidikan.php', $data);
 	}
@@ -387,45 +392,48 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->getTempatKerjaByNIM(session('nim'));
-
+		$listtk = $model->getTempatKerja()->getResult();
+		// dd($listtk);
+		// dd($query->getRow());
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'tempat_kerja'      => $query->getRow(),
+			'list'		=> $listtk,
 		];
 		return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
 	}
 
 	// salahh masihan
-	public function updateTempatKerja()
-	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
+	// public function updateTempatKerja()
+	// {
+	// 	if (!session()->has('id_user'))
+	// 		return redirect()->to('/');
 
-		$model = new AlumniModel();
-		$kunci = $model->getTempatKerjaByNIM(session('nim'))->getRow()->id_tempat_kerja;
+	// 	$model = new AlumniModel();
+	// 	$kunci = $model->getTempatKerjaByNIM(session('nim'))->getRow()->id_tempat_kerja;
 
-		$data = [
-			'nama_instansi'      => $_POST['nama_instansi'],
-			'alamat_instansi'  		=> $_POST['alamat_instansi'],
-			'telp_instansi'  => $_POST['telp_instansi'],
-			'faks_instansi'   => $_POST['faks_instansi'],
-			'email_instansi'  => $_POST['email_instansi'],
-		];
+	// 	$data = [
+	// 		'nama_instansi'      => $_POST['nama_instansi'],
+	// 		'alamat_instansi'  		=> $_POST['alamat_instansi'],
+	// 		'telp_instansi'  => $_POST['telp_instansi'],
+	// 		'faks_instansi'   => $_POST['faks_instansi'],
+	// 		'email_instansi'  => $_POST['email_instansi'],
+	// 	];
 
-		$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja', $kunci)->update();
+	// 	$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja', $kunci)->update();
 
-		$query = $model->getTempatKerjaByNIM(session('nim'));
+	// 	$query = $model->getTempatKerjaByNIM(session('nim'));
 
-		$data = [
-			'judulHalaman' => 'Edit Profil',
-			'login' => 'sudah',
-			'active' 		=> 'profil',
-			'tempat_kerja' => $query->getRow(),
-		];
-		return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
-	}
+	// 	$data = [
+	// 		'judulHalaman' => 'Edit Profil',
+	// 		'login' => 'sudah',
+	// 		'active' 		=> 'profil',
+	// 		'tempat_kerja' => $query->getRow(),
+	// 	];
+	// 	return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
+	// }
 
 	public function editPrestasi()
 	{
@@ -435,12 +443,14 @@ class User extends BaseController
 		$model = new AlumniModel();
 		$query = $model->getPrestasiByNIM(session('nim'));
 
+		// dd($query->getResult());
+
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'prestasi'      => $query->getResult(),
-			'jumlah' => $model->getCountPrestasiByNIM(session('nim'))
+			// 'jumlah' => $model->getCountPrestasiByNIM(session('nim'))
 		];
 
 		return view('websia/kontenWebsia/editProfile/editPrestasi.php', $data);
@@ -457,12 +467,14 @@ class User extends BaseController
 		$model = new AlumniModel();
 		$query = $model->getPublikasiByNIM(session('nim'));
 
+		// dd($query->getResult());
+
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
 			'active' 		=> 'profil',
-			'prestasi'      => $query->getResult(),
-			'jumlah' => $model->getCountPublikasiByNIM(session('nim'))
+			'publikasi'      => $query->getResult(),
+			// 'jumlah' => $model->getCountPublikasiByNIM(session('nim'))
 		];
 
 		return view('websia/kontenWebsia/editProfile/editPublikasi.php', $data);
@@ -478,6 +490,7 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->getUsersById(session('id_user'));
+		// dd($query->getRow());
 
 		$data = [
 			'judulHalaman' => 'Edit Profil',
@@ -495,10 +508,11 @@ class User extends BaseController
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
+
 		// belum tahu nih cara validasi ginian
 		if ($_POST['passbaru'] == $_POST['ulangpassbaru']) {
 			$data = [
-				'username'      => $_POST['username'],
+				'email'      => $_POST['email'],
 				'password_hash' => password_hash($_POST['passbaru'], PASSWORD_DEFAULT),
 			];
 
@@ -506,6 +520,7 @@ class User extends BaseController
 		}
 
 		$query = $model->getUsersByNIM(session('id_user'));
+
 
 		$data = [
 			'judulHalaman' => 'Edit Profil',
