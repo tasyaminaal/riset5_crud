@@ -78,30 +78,16 @@ if ($alumni->aktif_pns == '1') {
                 <label for="alamat" class="font-medium">Alamat:</label>
                 <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Jl. Terwilen Margodadi, Seyegan, Kregolan, Margomulyo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55561" class="inputForm resize-none"></textarea>
                 <div class="lg:w-1/2 lg:mr-4">
-                    <label for="statusbekerja" class="font-medium">Status Bekerja:</label>
-                    <div class="grid grid-cols-2 gap-x-2 mb-2">
-                        <div class="flex items-center">
-                            <label class="font-heading text-sm text-gray-500 font-medium sb_label cursor-pointer"><input type="radio" name="statusbekerja" id="bekerja" value="bekerja" class="cursor-pointer sb_radio mr-2">Bekerja</label>
-                        </div>
-                        <div class="flex items-center">
-                            <label class="font-heading text-sm text-gray-500 font-medium sb_label cursor-pointer"><input type="radio" name="statusbekerja" id="tidakbekerja" value="tidakbekerja" class="cursor-pointer sb_radio mr-2">Tidak Bekerja</label>
-                        </div>
-                    </div>
+                    <div class="font-medium">Status Bekerja:</div>
+                    <div class="text-black font-heading font-normal mb-2">Bekerja</div>
                     <div class="mr-2">
                         <div class="font-medium">Perkiraan Tahun Pensiun:</div>
                         <div class="text-black font-heading font-normal mb-2">2056</div>
-                        <label for="jabatan" class="font-medium">Jabatan Terakhir:</label>
-                        <input type="text" name="jabatan" id="jabatan" class="inputForm" placeholder="Jabatan terakhir">
+                        <div class="font-medium">Jabatan Terakhir:</div>
+                        <div class="text-black font-heading font-normal mb-2">Kepala BPS</div>
                     </div>
-                    <label for="pns" class="font-medium">Aktif PNS:</label>
-                    <div class="grid grid-cols-2 gap-x-2 mb-2">
-                        <div class="flex items-center">
-                            <label class="font-heading text-sm text-gray-500 font-medium sp_label cursor-pointer"><input type="radio" name="statuspns" id="aktif" value="aktif" class="cursor-pointer sp_radio mr-2">Aktif</label>
-                        </div>
-                        <div class="flex items-center">
-                            <label class="font-heading text-sm text-gray-500 font-medium sp_label cursor-pointer"><input type="radio" name="statuspns" id="tidakaktif" value="tidakaktif" class="cursor-pointer sp_radio mr-2">Tidak Aktif</label>
-                        </div>
-                    </div>
+                    <div class="font-medium">Aktif PNS:</div>
+                    <div class="text-black font-heading font-normal mb-2">Aktif</div>
                 </div>
                 <div>
                     <div class="font-medium mb-2">Akun Media Sosial:</div>
