@@ -32,11 +32,6 @@
                     </th>
                     <th class="pt-3 pb-1 rounded-tr-3xl">Aksi</th>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td class="flex justify-center"><input type="text" name="cariPrestasi" id="cariPrestasi" placeholder="Cari" class="w-11/12 focus:outline-none focus:ring rounded-md md:px-2 px-0.5 text-gray-400 formEdit mb-3"></td>
-                    <td colspan="2"></td>
-                </tr>
             </thead>
             <!-- end nama kolom tabel prestasi -->
 
