@@ -20,7 +20,10 @@ module.exports = {
       },
       spacing: {
         '18': '4.5rem',
-      }
+      },
+      padding: {
+        '22': '5.5rem',
+       }
     },
   },
   variants: {
