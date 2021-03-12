@@ -14,7 +14,6 @@ module.exports = {
         secondary: "#FFAA00",
         secondaryhover: "#FFBB34",
         success: "#54AC00",
-        successLight: "#B1FF66",
         successHover: "#458E00",
       },
       fontFamily: {

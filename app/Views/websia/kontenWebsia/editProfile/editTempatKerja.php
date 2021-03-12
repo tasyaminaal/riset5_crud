@@ -4,16 +4,16 @@
 <div class="shadow-2xl rounded-3xl mb-8">
     <div class="p-6 font-paragraph text-primary lg:min-h-screen">
         <!-- start form edit tempat kerja -->
-        <form action="/User/updateTempatKerja" method="POST" id="formEditTempatKerja">
-            <!-- note: belum ada action -->
-            <!-- kalau nama instansi ada di database -->
-            <div>
+        <!-- kalau nama instansi ada di database -->
+        <div>
+            <form action="/User/updateTempatKerja" method="POST" id="formEditTempatKerja">
+                <!-- note: belum ada action -->
                 <div id="adainstansi" class="block">
                     <label for="namainstansi" class="font-medium">Nama Instansi:</label>
                     <input list="daftarInstansi" name="nama_instansi" id="instansi" placeholder="Masukkan nama instansi" value="<?= $tempat_kerja->nama_instansi ?>" class="inputForm">
                     <datalist id="daftarInstansi" class="font-paragraph">
                         <?php foreach ($list as $row) : ?>
-                        <option data-value="<?= $row->id_tempat_kerja ?>"><?= $row->nama_instansi ?></option>
+                            <option data-value="<?= $row->id_tempat_kerja ?>"><?= $row->nama_instansi ?></option>
                         <?php endforeach; ?>
                     </datalist>
                     <input type="hidden" name="id_tempat_kerja" id="instansi-hidden">
@@ -23,10 +23,16 @@
                         </div>
                         <div class="bg-primary text-white rounded-full py-1 px-3 text-center cursor-pointer hover:bg-primaryHover transition-colors duration-300 my-2 tambahInstansi">TAMBAH</div>
                     </div>
+                    <div class="flex justify-end md:mb-6 mt-12">
+                        <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer focus:outline-none" id="submitTempatKerja">
+                    </div>
                 </div>
-            </div>
-            <!-- kalau nama instansi ga ada di database -->
-            <div class="hidden" id="lainnya">
+            </form>
+        </div>
+        <!-- kalau nama instansi ga ada di database -->
+
+        <div class="hidden" id="lainnya">
+            <form action="" method="POST" id="formTambahInstansi">
                 <div class="flex gap-x-2 items-center mb-4">
                     <div>
                         Cari instansi Anda pada daftar instansi:
@@ -45,33 +51,33 @@
                     <label for="email" class="font-medium">Email:</label>
                     <input type="text" name="email_instansi" id="email" class="inputForm" placeholder="Masukkan email instansi">
                 </div>
-            </div>
-            <div class="flex justify-end md:mb-6 mt-12">
-                <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer focus:outline-none" id="submitTempatKerja">
-            </div>
-        </form>
+                <div class="flex justify-end md:mb-6 mt-12">
+                    <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer focus:outline-none" id="tambahTempatKerja">
+                </div>
+            </form>
+        </div>
         <!-- end form edit tempat kerja -->
     </div>
 </div>
 
 <script>
-document.querySelector('input[list]').addEventListener('input', function(e) {
-    var input = e.target,
-        list = input.getAttribute('list'),
-        options = document.querySelectorAll('#' + list + ' option'),
-        hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
-        inputValue = input.value;
+    document.querySelector('input[list]').addEventListener('input', function(e) {
+        var input = e.target,
+            list = input.getAttribute('list'),
+            options = document.querySelectorAll('#' + list + ' option'),
+            hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+            inputValue = input.value;
 
-    hiddenInput.value = inputValue;
+        hiddenInput.value = inputValue;
 
-    for(var i = 0; i < options.length; i++) {
-        var option = options[i];
+        for (var i = 0; i < options.length; i++) {
+            var option = options[i];
 
-        if(option.innerText === inputValue) {
-            hiddenInput.value = option.getAttribute('data-value');
-            break;
+            if (option.innerText === inputValue) {
+                hiddenInput.value = option.getAttribute('data-value');
+                break;
+            }
         }
-    }
-});
+    });
 </script>
 <?= $this->endSection(); ?>
