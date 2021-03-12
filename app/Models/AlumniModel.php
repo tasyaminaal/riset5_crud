@@ -197,4 +197,10 @@ class AlumniModel extends Model
         $query = "DELETE FROM prestasi WHERE id_prestasi= $id";
         return $this->db->query($query);
     }
+
+    public function deletePendidikanById($id)
+    {
+        $query = "DELETE FROM pendidikan WHERE id_pendidikan= $id";
+        return $this->db->query($query);
+    }
 }

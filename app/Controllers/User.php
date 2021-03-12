@@ -448,7 +448,6 @@ class User extends BaseController
 		return redirect()->to(base_url('User/editPendidikan'));
 	}
 
-	// BELUM TAU CARA SAMBUNGIN SAMA VIEW NYA```````````````````````````````````````````````````
 	public function deletePendidikan()
 	{
 		if (!session()->has('id_user'))
@@ -561,7 +560,6 @@ class User extends BaseController
 		return redirect()->to(base_url('User/editPrestasi'));
 	}
 
-	// BELUM TAU CARA SAMBUNGIN SAMA VIEW NYA````````````````````````````````````
 	public function deletePrestasi()
 	{
 		if (!session()->has('id_user'))
