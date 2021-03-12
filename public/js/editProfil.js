@@ -60,8 +60,9 @@ $('.updateFotoProfil').click(function () {
                 <div class="p-2 bg-gray-100 rounded-b-2xl px-6">
                 <form action="/User/updateFotoProfil" method="POST" class="font-paragraph text-primary mt-4" >
                 <input type="file" name="file_upload" value="" >
-                <input type="submit" value="UNGGAH" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitUnggahFoto">
+                <button class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitUnggahFoto">UNGGAH</button>
                 </form>
+                </div>
                 </div>
             </div>
          </div>
@@ -89,25 +90,25 @@ $('.updateFotoProfil').click(function () {
             }, 400);
         })
 
-        $('#submitUnggahFoto').click(function (){
-            $('#formUnggahFoto').remove()
-                $('body').prepend(`
-                <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
-                <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
-                    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-                    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Foto Profil Berhasil Diubah</p>
-                </div>
-            </div>
-                `)
-                $('#updateSucces').children().first().removeClass('hidden')
-                setTimeout(function () {
-                    $('#updateSucces').children().first().removeClass('opacity-0')
-                }, 10);
-                setTimeout(function () {
-                    $('#updateSucces').remove()
-                }, 1000);
+        // $('#submitUnggahFoto').click(function (){
+        //     $('#formUnggahFoto').remove()
+        //         $('body').prepend(`
+        //         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
+        //         <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
+        //             <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+        //             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Foto Profil Berhasil Diubah</p>
+        //         </div>
+        //     </div>
+        //         `)
+        //         $('#updateSucces').children().first().removeClass('hidden')
+        //         setTimeout(function () {
+        //             $('#updateSucces').children().first().removeClass('opacity-0')
+        //         }, 10);
+        //         setTimeout(function () {
+        //             $('#updateSucces').remove()
+        //         }, 1000);
                 
-        })
+        // })
     })
 
     $('#hapusFoto').click(function () {
@@ -155,24 +156,24 @@ $('.updateFotoProfil').click(function () {
     })
 })
 
-$('#submitBiodata').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalBiodata'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
-</div>
-    </div>
-`)
+// $('#submitBiodata').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalBiodata'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
+// </div>
+//     </div>
+// `)
 
-    $('#modalBiodata').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalBiodata').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditBiodata').submit()
-    }, 700);
-})
+//     $('#modalBiodata').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalBiodata').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditBiodata').submit()
+//     }, 700);
+// })
 // akhir js edit biodata
 
 // awal js sorting
@@ -262,23 +263,23 @@ function formPendidikan(id, jenjang, univ, studi, masuk, lulus, tulisan) {
         }
     })
 
-    $('#backPendidikan').prev().click(function (e) {
-        e.preventDefault()
-        $('#formEditPendidikan').children().first().addClass('hidden')
-        $('#formEditPendidikan').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Disimpan</p>
-        </div>
-        `)
-        $('#formEditPendidikan').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formEditPendidikan').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formEditPendidikan').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
+    // $('#backPendidikan').prev().click(function (e) {
+    //     e.preventDefault()
+    //     $('#formEditPendidikan').children().first().addClass('hidden')
+    //     $('#formEditPendidikan').prepend(`
+    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Disimpan</p>
+    //     </div>
+    //     `)
+    //     $('#formEditPendidikan').children().first().removeClass('hidden')
+    //     setTimeout(function () {
+    //         $('#formEditPendidikan').children().first().removeClass('opacity-0')
+    //     }, 10);
+    //     setTimeout(function () {
+    //         $('#formEditPendidikan').children().eq(1).children().eq(1).submit()
+    //     }, 700);
+    // })
 
     $('#editId').val(id);
     $('#editJenjang').val(jenjang);
@@ -358,23 +359,23 @@ $('.tambahPendidikan').click(function () {
         }
     })
 
-    $('#backPendidikan').prev().click(function (e) {
-        e.preventDefault()
-        $('#formTambahPendidikan').children().first().addClass('hidden')
-        $('#formTambahPendidikan').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Ditambahkan</p>
-        </div>
-        `)
-        $('#formTambahPendidikan').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formTambahPendidikan').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formTambahPendidikan').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
+    // $('#backPendidikan').prev().click(function (e) {
+    //     e.preventDefault()
+    //     $('#formTambahPendidikan').children().first().addClass('hidden')
+    //     $('#formTambahPendidikan').prepend(`
+    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Ditambahkan</p>
+    //     </div>
+    //     `)
+    //     $('#formTambahPendidikan').children().first().removeClass('hidden')
+    //     setTimeout(function () {
+    //         $('#formTambahPendidikan').children().first().removeClass('opacity-0')
+    //     }, 10);
+    //     setTimeout(function () {
+    //         $('#formTambahPendidikan').children().eq(1).children().eq(1).submit()
+    //     }, 700);
+    // })
 
 })
 
@@ -424,6 +425,25 @@ $('.hapusPendidikan').click(function () {
 
 
 // awal js edit tempat kerja
+document.querySelector('input[list]').addEventListener('input', function(e) {
+    var input = e.target,
+        list = input.getAttribute('list'),
+        options = document.querySelectorAll('#' + list + ' option'),
+        hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+        inputValue = input.value;
+
+    hiddenInput.value = inputValue;
+
+    for (var i = 0; i < options.length; i++) {
+        var option = options[i];
+
+        if (option.innerText === inputValue) {
+            hiddenInput.value = option.getAttribute('data-value');
+            break;
+        }
+    }
+});
+
 $('.tambahInstansi').click(function () {
     if ($('#lainnya').hasClass('hidden')) {
         $('#lainnya').removeClass('hidden')
@@ -444,41 +464,41 @@ $('.kembaliInstansi').click(function () {
     }
 });
 
-$('#submitTempatKerja').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Disimpan</p>
-</div>
-    </div>
-`)
-    $('#modalTempatKerja').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalTempatKerja').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditTempatKerja').submit()
-    }, 700);
-})
+// $('#submitTempatKerja').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Disimpan</p>
+// </div>
+//     </div>
+// `)
+//     $('#modalTempatKerja').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalTempatKerja').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditTempatKerja').submit()
+//     }, 700);
+// })
 
-$('#tambahTempatKerja').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Ditambahkan</p>
-</div>
-    </div>
-`)
-    $('#modalTempatKerja').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalTempatKerja').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditTempatKerja').submit()
-    }, 700);
-})
+// $('#tambahTempatKerja').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Ditambahkan</p>
+// </div>
+//     </div>
+// `)
+//     $('#modalTempatKerja').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalTempatKerja').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditTempatKerja').submit()
+//     }, 700);
+// })
 // akhir js edit tempat kerja
 
 
@@ -538,23 +558,23 @@ function formPrestasi(id, prestasi, tahun) {
         }
     })
 
-    $('#backPrestasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formEditPrestasi').children().first().addClass('hidden')
-        $('#formEditPrestasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Disimpan</p>
-        </div>
-        `)
-        $('#formEditPrestasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formEditPrestasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formEditPrestasi').children().eq(1).children().eq(1).submit()
-        }, 800);
-    })
+    // $('#backPrestasi').prev().click(function (e) {
+    //     e.preventDefault()
+    //     $('#formEditPrestasi').children().first().addClass('hidden')
+    //     $('#formEditPrestasi').prepend(`
+    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Disimpan</p>
+    //     </div>
+    //     `)
+    //     $('#formEditPrestasi').children().first().removeClass('hidden')
+    //     setTimeout(function () {
+    //         $('#formEditPrestasi').children().first().removeClass('opacity-0')
+    //     }, 10);
+    //     setTimeout(function () {
+    //         $('#formEditPrestasi').children().eq(1).children().eq(1).submit()
+    //     }, 800);
+    // })
 
     $('#editId').val(id);
     $('#editPrestasi').val(prestasi);
@@ -615,23 +635,23 @@ $('.tambahPrestasi').click(function () {
         }
     })
 
-    $('#backPrestasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formTambahPrestasi').children().first().addClass('hidden')
-        $('#formTambahPrestasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Ditambahkan</p>
-        </div>
-        `)
-        $('#formTambahPrestasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formTambahPrestasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formTambahPrestasi').children().eq(1).children().eq(1).submit()
-        }, 800);
-    })
+    // $('#backPrestasi').prev().click(function (e) {
+    //     e.preventDefault()
+    //     $('#formTambahPrestasi').children().first().addClass('hidden')
+    //     $('#formTambahPrestasi').prepend(`
+    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Ditambahkan</p>
+    //     </div>
+    //     `)
+    //     $('#formTambahPrestasi').children().first().removeClass('hidden')
+    //     setTimeout(function () {
+    //         $('#formTambahPrestasi').children().first().removeClass('opacity-0')
+    //     }, 10);
+    //     setTimeout(function () {
+    //         $('#formTambahPrestasi').children().eq(1).children().eq(1).submit()
+    //     }, 800);
+    // })
 })
 
 $('.hapusPrestasi').click(function () {
@@ -742,23 +762,23 @@ function formPublikasi(id, topik, publisher, tanggal, deskripsi) {
         }
     })
 
-    $('#backPublikasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formEditPublikasi').children().first().addClass('hidden')
-        $('#formEditPublikasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Disimpan</p>
-        </div>
-        `)
-        $('#formEditPublikasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formEditPublikasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formEditPublikasi').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
+    // $('#backPublikasi').prev().click(function (e) {
+    //     e.preventDefault()
+    //     $('#formEditPublikasi').children().first().addClass('hidden')
+    //     $('#formEditPublikasi').prepend(`
+    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Disimpan</p>
+    //     </div>
+    //     `)
+    //     $('#formEditPublikasi').children().first().removeClass('hidden')
+    //     setTimeout(function () {
+    //         $('#formEditPublikasi').children().first().removeClass('opacity-0')
+    //     }, 10);
+    //     setTimeout(function () {
+    //         $('#formEditPublikasi').children().eq(1).children().eq(1).submit()
+    //     }, 700);
+    // })
 
     $('#editId').val(id);
     $('#editTopik').val(topik);
@@ -830,23 +850,23 @@ $('.tambahPublikasi').click(function () {
         }
     })
 
-    $('#backPublikasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formTambahPublikasi').children().first().addClass('hidden')
-        $('#formTambahPublikasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Ditambahkan</p>
-        </div>
-        `)
-        $('#formTambahPublikasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formTambahPublikasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formTambahPublikasi').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
+    // $('#backPublikasi').prev().click(function (e) {
+    //     e.preventDefault()
+    //     $('#formTambahPublikasi').children().first().addClass('hidden')
+    //     $('#formTambahPublikasi').prepend(`
+    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Ditambahkan</p>
+    //     </div>
+    //     `)
+    //     $('#formTambahPublikasi').children().first().removeClass('hidden')
+    //     setTimeout(function () {
+    //         $('#formTambahPublikasi').children().first().removeClass('opacity-0')
+    //     }, 10);
+    //     setTimeout(function () {
+    //         $('#formTambahPublikasi').children().eq(1).children().eq(1).submit()
+    //     }, 700);
+    // })
 
 })
 
@@ -895,24 +915,24 @@ $('.hapusPublikasi').click(function () {
 // akhir js edit publikasi
 
 // awal js edit akun
-$('#submitAkun').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalAkun'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Akun Berhasil Diperbarui</p>
-</div>
-    </div>
-`)
+// $('#submitAkun').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalAkun'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Akun Berhasil Diperbarui</p>
+// </div>
+//     </div>
+// `)
 
-    $('#modalAkun').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalAkun').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditAkun').submit()
-    }, 700);
-})
+//     $('#modalAkun').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalAkun').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditAkun').submit()
+//     }, 700);
+// })
 // akhir js edit akun
 
 // awal js edit biodata webservice

@@ -78,4 +78,48 @@
 
 </div>
 
+<!-- dialog box edit prestasi -->
+<!-- kalau mau ngecek hilangin kelas hidden sama opacity-0 nya-->
+
+<!-- BERHASIL edit prestasi -->
+<div id="berhasilEditPrestasi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <p class="sm:text-base text-sm font-heading font-bold text-success">Prestasi Berhasil Disimpan</p>
+        </div>
+    </div>
+</div>
+
+<!-- GAGAL edit prestasi -->
+<div id="gagalEditPrestasi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #FF7474;">
+            <img src="/img/icon/warning.png" class="h-5 mr-2">
+            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Prestasi Tidak Berhasil Disimpan</p>
+        </div>
+    </div>
+</div>
+
+<!-- BERHASIL tambah prestasi -->
+<div id="berhasilTambahPrestasi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <p class="sm:text-base text-sm font-heading font-bold text-success">Pretasi Berhasil Ditambahkan</p>
+        </div>
+    </div>
+</div>
+
+<!-- GAGAL tambah prestasi -->
+<div id="gagalTambahPrestasi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #FF7474;">
+            <img src="/img/icon/warning.png" class="h-5 mr-2">
+            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Prestasi Tidak Berhasil Ditambahkan</p>
+        </div>
+    </div>
+</div>
+
+<!-- end dialog box-->
 <?= $this->endSection(); ?>

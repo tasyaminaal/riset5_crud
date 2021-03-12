@@ -60,24 +60,48 @@
     </div>
 </div>
 
-<script>
-    document.querySelector('input[list]').addEventListener('input', function(e) {
-        var input = e.target,
-            list = input.getAttribute('list'),
-            options = document.querySelectorAll('#' + list + ' option'),
-            hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
-            inputValue = input.value;
+<!-- dialog box edit tempat kerja -->
+<!-- kalau mau ngecek hilangin kelas hidden sama opacity-0 nya-->
 
-        hiddenInput.value = inputValue;
+<!-- BERHASIL edit instansi -->
+<div id="berhasilEditInstansi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <p class="sm:text-base text-sm font-heading font-bold text-success">Tempat Kerja Berhasil Disimpan</p>
+        </div>
+    </div>
+</div>
 
-        for (var i = 0; i < options.length; i++) {
-            var option = options[i];
+<!-- GAGAL edit instansi -->
+<div id="gagalEditInstansi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #FF7474;">
+            <img src="/img/icon/warning.png" class="h-5 mr-2">
+            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Tempat Kerja Tidak Berhasil Disimpan</p>
+        </div>
+    </div>
+</div>
 
-            if (option.innerText === inputValue) {
-                hiddenInput.value = option.getAttribute('data-value');
-                break;
-            }
-        }
-    });
-</script>
+<!-- BERHASIL tambah instansi -->
+<div id="berhasilTambahInstansi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <p class="sm:text-base text-sm font-heading font-bold text-success">Tempat Kerja Berhasil Ditambahkan</p>
+        </div>
+    </div>
+</div>
+
+<!-- GAGAL tambah instansi -->
+<div id="gagalTambahInstansi">
+    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        <div class="duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #FF7474;">
+            <img src="/img/icon/warning.png" class="h-5 mr-2">
+            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Tempat Kerja Tidak Berhasil Ditambahkan</p>
+        </div>
+    </div>
+</div>
+
+<!-- end dialog box-->
 <?= $this->endSection(); ?>
