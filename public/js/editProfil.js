@@ -3,10 +3,10 @@ $('.updateFotoProfil').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditFoto'>
         <div class="hidden opacity-0 duration-700 transition-all md:w-1/4 w-2/3 bg-gray bg-opacity-0"> 
-        <div class="bg-primary py-2.5 px-6 rounded-t-2xl flex items-center justify-center text-secondary text-sm border-t-2 border-l-2 border-r-2 border-gray-300">
+        <div class="bg-primary py-2.5 px-6 rounded-t-2xl flex items-center justify-center text-secondary text-sm">
             <p class="font-bold font-heading">Ubah Foto Profil</p>
         </div>
-        <div class="bg-gray-100 rounded-b-2xl border-2 border-gray-300">
+        <div class="bg-gray-100 rounded-b-2xl">
             <ul class="text-center font-heading font-bold text-sm text-primaryx">
                 <li id='unggahFoto' class="p-2.5 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300">Unggah Foto</li>
                 <li class="p-2.5 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300" id="hapusFoto">Hapus Foto</li>
@@ -118,7 +118,7 @@ $('.updateFotoProfil').click(function () {
                 <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
                     <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus foto profil Anda?</p>
                     <div class="text-white flex justify-end">
-                        <div class="buttonBatal text-black hover:text-gray-600 font-bold rounded-2xl border border-black hover:border-gray-600 w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
                         <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
                     </div>
                 </div>
@@ -385,7 +385,7 @@ $('.hapusPendidikan').click(function () {
             <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
                 <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
                 <div class="text-white flex justify-end">
-                    <div class="buttonBatal text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all" style="background-color: #54AC00; ">BATAL</div>
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
                     <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
                 </div>
             </div>
@@ -615,6 +615,49 @@ $('.tambahPrestasi').click(function () {
         }, 800);
     })
 })
+
+$('.hapusPrestasi').click(function () {
+    $('body').prepend(`
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data prestasi ini?</p>
+                <div class="text-white flex justify-end">
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                    <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `)
+    $('#formHapus').children().first().removeClass('hidden')
+    setTimeout(function () {
+        $('#formHapus').children().first().removeClass('opacity-0')
+    }, 10);
+
+    $('.buttonBatal').click(function () {
+        $('#formHapus').children().first().addClass('opacity-0')
+        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+            $('#formHapus').children().first().addClass('hidden')
+        });
+        setTimeout(function () {
+            $('#formHapus').remove()
+        }, 400);
+    })
+
+    var modal = document.getElementById('formHapus')
+    $(window).click(function (e) {
+        if (e.target === modal) {
+            $('#formHapus').children().first().addClass('opacity-0')
+            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formHapus').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formHapus').remove()
+            }, 400);
+        }
+    })
+})
 // akhir js edit prestasi
 
 // awal js edit publikasi
@@ -789,6 +832,48 @@ $('.tambahPublikasi').click(function () {
 
 })
 
+$('.hapusPublikasi').click(function () {
+    $('body').prepend(`
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data publikasi ini?</p>
+                <div class="text-white flex justify-end">
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                    <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `)
+    $('#formHapus').children().first().removeClass('hidden')
+    setTimeout(function () {
+        $('#formHapus').children().first().removeClass('opacity-0')
+    }, 10);
+
+    $('.buttonBatal').click(function () {
+        $('#formHapus').children().first().addClass('opacity-0')
+        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+            $('#formHapus').children().first().addClass('hidden')
+        });
+        setTimeout(function () {
+            $('#formHapus').remove()
+        }, 400);
+    })
+
+    var modal = document.getElementById('formHapus')
+    $(window).click(function (e) {
+        if (e.target === modal) {
+            $('#formHapus').children().first().addClass('opacity-0')
+            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formHapus').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formHapus').remove()
+            }, 400);
+        }
+    })
+})
 // akhir js edit publikasi
 
 // awal js edit akun

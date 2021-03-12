@@ -13,8 +13,9 @@ module.exports = {
         primaryLight: "#307BB1",
         secondary: "#FFAA00",
         secondaryhover: "#FFBB34",
-        success: "#B1FF66",
-        successHover: "#54AC00",
+        success: "#54AC00",
+        successLight: "#B1FF66",
+        successHover: "#458E00",
       },
       fontFamily: {
         heading: ['Poppins'],

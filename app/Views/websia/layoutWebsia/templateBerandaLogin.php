@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/aos.css" />
     <link rel="stylesheet" href="/css/leaflet.css">
     <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/output.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
     <link rel="stylesheet" href="/css/swiper-bundle.css">
     <link rel="stylesheet" href="/css/img-viewer.css">
