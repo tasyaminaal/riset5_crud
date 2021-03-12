@@ -25,7 +25,7 @@ if ($alumni->aktif_pns == '1') {
         <!-- start foto profil -->
         <div class="p-6">
             <div class="flex justify-center">
-                <img src="/img/fotoProfil/<?=$alumni->foto_profil?>" alt="" class="mb-6 md:w-48 md:h-48 w-28 h-28 rounded-full">
+                <img src="/img/fotoProfil/<?= $alumni->foto_profil ?>" alt="" class="mb-6 md:w-48 md:h-48 w-28 h-28 rounded-full">
             </div>
             <div class="flex justify-center">
                 <button class="updateFotoProfil bg-secondary rounded-full font-paragraph text-white px-3 py-1 hover:bg-secondaryhover lg:text-base text-sm focus:outline-none">Ubah foto profil</button>
@@ -71,17 +71,23 @@ if ($alumni->aktif_pns == '1') {
                 </div>
                 <label for="alamat" class="font-medium">Alamat:</label>
                 <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none"><?= $alumni->alamat ?></textarea>
-                <div class="lg:w-1/2 lg:mr-4">
-                    <div class="font-medium">Status Bekerja:</div>
-                    <div class="text-black font-heading font-normal mb-2"><?= $status_bekerja ?></div>
-                    <div class="mr-2">
-                        <div class="font-medium">Perkiraan Tahun Pensiun:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
-                        <div class="font-medium">Jabatan Terakhir:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->jabatan_terakhir ?></div>
+                <div class="grid grid-cols-2 gap-x-4">
+                    <div>
+                        <div class="font-medium">Status Bekerja:</div>
+                        <div class="text-black font-heading font-normal mb-2"><?= $status_bekerja ?></div>
                     </div>
-                    <div class="font-medium">Aktif PNS:</div>
-                    <div class="text-black font-heading font-normal mb-2"><?= $aktif_pns ?></div>
+                    <div>
+                        <div class="font-medium">Aktif PNS:</div>
+                        <div class="text-black font-heading font-normal mb-2"><?= $aktif_pns ?></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-medium">Jabatan Terakhir:</div>
+                    <div class="text-black font-heading font-normal mb-2"><?= $alumni->jabatan_terakhir ?></div>
+                </div>
+                <div>
+                    <div class="font-medium">Perkiraan Tahun Pensiun:</div>
+                    <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
                 </div>
                 <div>
                     <div class="font-medium mb-2">Akun Media Sosial:</div>
@@ -91,7 +97,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="instagram" class="font-medium">Instagram</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                            <input type="text" name="ig" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Instagram tanpa memakai ( @ )" value="<?= $alumni->ig ?>">
+                                <input type="text" name="ig" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Instagram tanpa memakai (@)" value="<?= $alumni->ig ?>">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
@@ -99,7 +105,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="twitter" class="font-medium">Twitter</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                            <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Twitter" value="<?= $alumni->twitter ?>">
+                                <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Twitter" value="<?= $alumni->twitter ?>">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
@@ -107,7 +113,7 @@ if ($alumni->aktif_pns == '1') {
                                 <label for="facebook" class="font-medium">Facebook</label>
                             </div>
                             <div class="md:w-3/4 w-2/3">
-                            <input type="text" name="fb" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Nama Akun Facebook" value="<?= $alumni->fb ?>">
+                                <input type="text" name="fb" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Nama Akun Facebook" value="<?= $alumni->fb ?>">
                             </div>
                         </div>
                     </div>
