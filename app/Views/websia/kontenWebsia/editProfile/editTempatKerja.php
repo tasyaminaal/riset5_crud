@@ -4,32 +4,19 @@
 <div class="shadow-2xl rounded-3xl mb-8">
     <div class="p-6 font-paragraph text-primary lg:min-h-screen">
         <!-- start form edit tempat kerja -->
-        <form action="" method="POST" id="formEditTempatKerja">
+        <form action="/User/updateTempatKerja" method="POST" id="formEditTempatKerja">
             <!-- note: belum ada action -->
             <!-- kalau nama instansi ada di database -->
             <div>
                 <div id="adainstansi" class="block">
                     <label for="namainstansi" class="font-medium">Nama Instansi:</label>
-                    <input list="daftarInstansi" name="instansi" id="instansi" placeholder="Masukkan nama instansi" class="inputForm">
+                    <input list="daftarInstansi" name="nama_instansi" id="instansi" placeholder="Masukkan nama instansi" value="<?= $tempat_kerja->nama_instansi ?>" class="inputForm">
                     <datalist id="daftarInstansi" class="font-paragraph">
-                        <option value="BPS Republik Indonesia"></option>
-                        <option value="BPS Provinsi DKI Jakarta"></option>
-                        <option value="BPS Kota Jakarta Timur"></option>
-                        <option value="BPS Kabupaten Magelang"></option>
-                        <option value="BPS Kabupaten Humbang Hasundutan"></option>
-                        <option value="BPS Provinsi Lampung"></option>
-                        <option value="BPS Provinsi Sumatera Utara"></option>
-                        <option value="BPS Provinsi Kalimantan Barat"></option>
-                        <option value="BPS Provinsi Jawa Tengah"></option>
-                        <option value="BPS Provinsi Jawa Timur"></option>
-                        <option value="BPS Provinsi Jawa Barat"></option>
-                        <option value="BPS Provinsi Banten"></option>
-                        <option value="BPS Provinsi Bali"></option>
-                        <option value="BPS Provinsi Nusa Tenggara Timur"></option>
-                        <option value="BPS Provinsi Nusa Tenggara Barat"></option>
-                        <option value="BPS Kabupaten Tapanuli Selatan"></option>
-                        <option value="BPS Kabupaten Musi Banyu Asin"></option>
+                        <?php foreach ($list as $row) : ?>
+                        <option data-value="<?= $row->id_tempat_kerja ?>"><?= $row->nama_instansi ?></option>
+                        <?php endforeach; ?>
                     </datalist>
+                    <input type="hidden" name="id_tempat_kerja" id="instansi-hidden">
                     <div class="flex gap-x-2 items-center">
                         <div>
                             Jika nama instansi Anda tidak terdaftar pada daftar di atas, tambahkan instansi Anda di sini:
@@ -47,16 +34,16 @@
                     <div class="bg-primary text-white rounded-full py-1 px-3 text-center cursor-pointer hover:bg-primaryHover transition-colors duration-300 my-2 kembaliInstansi">DAFTAR INSTANSI</div>
                 </div>
                 <label for="nama" class="font-medium">Nama Instansi:</label>
-                <input type="text" name="nama" id="nama" class="inputForm" placeholder="Nama Instansi">
+                <input type="text" name="nama_instansi" id="nama" class="inputForm" placeholder="Masukkan nama Instansi">
                 <label for="alamat" class="font-medium">Alamat Instansi:</label>
-                <textarea type="text" name="alamat" id="alamat" class="inputForm resize-none" placeholder="Jl. Terwilen Margodadi, Segeyan, Kregolan, Margomulyo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55561"></textarea>
+                <textarea type="text" name="alamat_instansi" id="alamat" class="inputForm resize-none" placeholder="Masukkan alamat instansi"></textarea>
                 <div class="md:w-1/2 w-full">
                     <label for="telepon" class="font-medium">No Telepon Instansi:</label>
-                    <input type="text" name="telepon" id="telepon" class="inputForm" placeholder="082233445566">
+                    <input type="text" name="telp_instansi" id="telepon" class="inputForm" placeholder="Masukkan telepon instansi">
                     <label for="faks" class="font-medium">Faks Instansi:</label>
-                    <input type="text" name="faks" id="faks" class="inputForm" placeholder="082233445566">
+                    <input type="text" name="faks_instansi" id="faks" class="inputForm" placeholder="Masukkan faks instansi">
                     <label for="email" class="font-medium">Email:</label>
-                    <input type="text" name="email" id="email" class="inputForm" placeholder="iniemail@stis.ac.id">
+                    <input type="text" name="email_instansi" id="email" class="inputForm" placeholder="Masukkan email instansi">
                 </div>
             </div>
             <div class="flex justify-end md:mb-6 mt-12">
@@ -66,4 +53,25 @@
         <!-- end form edit tempat kerja -->
     </div>
 </div>
+
+<script>
+document.querySelector('input[list]').addEventListener('input', function(e) {
+    var input = e.target,
+        list = input.getAttribute('list'),
+        options = document.querySelectorAll('#' + list + ' option'),
+        hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+        inputValue = input.value;
+
+    hiddenInput.value = inputValue;
+
+    for(var i = 0; i < options.length; i++) {
+        var option = options[i];
+
+        if(option.innerText === inputValue) {
+            hiddenInput.value = option.getAttribute('data-value');
+            break;
+        }
+    }
+});
+</script>
 <?= $this->endSection(); ?>

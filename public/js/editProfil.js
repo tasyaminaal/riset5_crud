@@ -47,6 +47,14 @@ $('.updateFotoProfil').click(function () {
 
     $('#unggahFoto').click(function () {
         $('#formEditFoto').remove()
+        // $('body').prepend(`
+        // <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
+        // <form action="/User/updateFotoProfil" method="POST" class="font-paragraph text-primary" id="formEditBiodata">
+        // <input type="file" name="file_upload" value=""/>
+        // <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitBiodata">
+        // </form>
+        // </div>
+        // `)
         $('body').prepend(`
         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
         <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
@@ -147,7 +155,7 @@ $(".sort").click(function () {
 // akhir js sorting
 
 // awal js edit pendidikan
-function edit(id, jenjang, univ, studi, masuk, lulus, tulisan) {
+function formPendidikan(id, jenjang, univ, studi, masuk, lulus, tulisan) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formEditPendidikan'>
         <div class="hidden opacity-0 duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
@@ -157,26 +165,26 @@ function edit(id, jenjang, univ, studi, masuk, lulus, tulisan) {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
             </div>
-            <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
-                <input type="hidden" name="id_edit" id="editId">
+            <form action="/User/updatePendidikan" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+                <input type="hidden" name="id_pendidikan" id="editId">
                 <label for="editJenjang" class="text-primary font-medium mt-2">Jenjang:</label>
-                <input type="text" placeholder="Nama Jenjang" class="inputForm" name="editJenjang" id="editJenjang">
+                <input type="text" placeholder="Masukkan nama Jenjang" class="inputForm" name="jenjang" id="editJenjang">
                 <label for="editUniversitas" class="text-primary font-medium">Universitas:</label>
-                <input type="text" placeholder="Nama Universitas" class="inputForm" name="editUniversitas" id="editUniversitas">
+                <input type="text" placeholder="Masukkan nama Universitas" class="inputForm" name="instansi" id="editUniversitas">
                 <label for="editStudi" class="text-primary font-medium">Program Studi:</label>
-                <input type="text" placeholder="Nama Program Studi" class="inputForm" name="editStudi" id="editStudi">
+                <input type="text" placeholder="Masukkan nama Program Studi" class="inputForm" name="program_studi" id="editStudi">
                 <div class="flex">
                     <div class="flex flex-col mr-8 w-1/3">
                         <label for="editMasuk" class="text-primary font-medium">Tahun Masuk:</label>
-                        <input type="number" name="editMasuk" id="editMasuk" min="1950" max="2100" class="inputForm">
+                        <input type="number" name="tahun_masuk" id="editMasuk" min="1950" max="2100" class="inputForm">
                     </div>
                     <div class="flex flex-col w-1/3">
                         <label for="editLulus" class="text-primary font-medium">Tahun Lulus:</label>
-                        <input type="number" name="editLulus" id="editLulus" min="1950" max="2100" class="inputForm">
+                        <input type="number" name="tahun_lulus" id="editLulus" min="1950" max="2100" class="inputForm">
                     </div>
                 </div>
                 <label for="editTulisan" class="text-primary font-medium">Judul Tulisan:</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="inputForm" placeholder="Gadget Paling Top Untuk Digunakan Sehari-Hari"></textarea>
+                <textarea name="judul_tulisan" id="editTulisan" rows="2" class="inputForm" placeholder="Masukkan judul tulisan"></textarea>
                 <div class="flex justify-end my-4">
                     <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
                     <input type="button" value="KEMBALI" class="closePendidikan bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPendidikan'>
@@ -254,25 +262,25 @@ $('.tambahPendidikan').click(function () {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
             </div>
-            <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+            <form action="/User/addPendidikan" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
                 <label for="editJenjang" class="text-primary font-medium mt-2">Jenjang:</label>
-                <input type="text" placeholder="Nama Jenjang" class="inputForm" name="editJenjang" id="editJenjang">
+                <input type="text" placeholder="Masukkan nama Jenjang" class="inputForm" name="jenjang" id="editJenjang">
                 <label for="editUniversitas" class="text-primary font-medium">Universitas:</label>
-                <input type="text" placeholder="Nama Universitas" class="inputForm" name="editUniversitas" id="editUniversitas">
+                <input type="text" placeholder="Masukkan nama Universitas" class="inputForm" name="instansi" id="editUniversitas">
                 <label for="editStudi" class="text-primary font-medium">Program Studi:</label>
-                <input type="text" placeholder="Nama Program Studi" class="inputForm" name="editStudi" id="editStudi">
+                <input type="text" placeholder="Masukkan nama Program Studi" class="inputForm" name="program_studi" id="editStudi">
                 <div class="flex">
                     <div class="flex flex-col mr-8 w-1/3">
                         <label for="editMasuk" class="text-primary font-medium">Tahun Masuk:</label>
-                        <input type="number" name="editMasuk" id="editMasuk" placeholder="1973" min="1950" max="2100" class="inputForm">
+                        <input type="number" name="tahun_masuk" id="editMasuk" placeholder="1973" min="1950" max="2100" class="inputForm">
                     </div>
                     <div class="flex flex-col w-1/3">
                         <label for="editLulus" class="text-primary font-medium">Tahun Lulus:</label>
-                        <input type="number" name="editLulus" id="editLulus" placeholder="1977" min="1950" max="2100" class="inputForm">
+                        <input type="number" name="tahun_lulus" id="editLulus" placeholder="1977" min="1950" max="2100" class="inputForm">
                     </div>
                 </div>
                 <label for="editTulisan" class="text-primary font-medium">Judul Tulisan:</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Gadget Paling Top Untuk Digunakan Sehari-Hari"></textarea>
+                <textarea name="judul_tulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Masukkan judul tulisan"></textarea>
                 <div class="flex justify-end my-4">
                     <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
                     <input type="button" value="KEMBALI" class="closePendidikan bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPendidikan'>
@@ -365,7 +373,6 @@ $('#submitTempatKerja').click(function () {
 </div>
     </div>
 `)
-
     $('#modalTempatKerja').children().first().removeClass('hidden')
     setTimeout(function () {
         $('#modalTempatKerja').children().first().removeClass('opacity-0')
@@ -378,7 +385,7 @@ $('#submitTempatKerja').click(function () {
 
 
 // awal js edit prestasi
-$('.editPrestasi').click(function () {
+function formPrestasi(id, prestasi, tahun) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditPrestasi'>
         <div class="hidden opacity-0 duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0 font-paragraph">
@@ -388,12 +395,13 @@ $('.editPrestasi').click(function () {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
         </div>
-        <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
-            <label for="editJenjang" class="text-primary font-medium mt-2">Nama Prestasi:</label>
-            <input type="text" placeholder="Nama Prestasi" class="inputForm" name="editJenjang" id="editJenjang">
+        <form action="/User/updatePrestasi" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+            <label for="editPrestasi" class="text-primary font-medium mt-2">Nama Prestasi:</label>
+            <input type="hidden" name="id_prestasi" id="editId">
+            <input type="text" placeholder="Masukkan nama Prestasi" class="inputForm" name="nama_prestasi" id="editPrestasi">
             <div class="sm:w-2/5 w-1/2">
-                <label for="editMasuk" class="text-primary font-medium">Tahun:</label>
-                <input type="number" name="editTahun" id="editTahun" placeholder="1980" min="1950" max="2100" class="inputForm">
+                <label for="editTahun" class="text-primary font-medium">Tahun:</label>
+                <input type="number" name="tahun_prestasi" id="editTahun" placeholder="1980" min="1950" max="2100" class="inputForm">
             </div>
             <div class="flex justify-end my-4">
                 <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
@@ -449,7 +457,11 @@ $('.editPrestasi').click(function () {
             $('#formEditPrestasi').children().eq(1).children().eq(1).submit()
         }, 800);
     })
-})
+
+    $('#editId').val(id);
+    $('#editPrestasi').val(prestasi);
+    $('#editTahun').val(tahun);
+}
 
 $('.tambahPrestasi').click(function () {
     $('body').prepend(`
@@ -461,12 +473,12 @@ $('.tambahPrestasi').click(function () {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
         </div>
-        <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+        <form action="/User/addPrestasi" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
             <label for="editJenjang" class="text-primary font-medium mt-2">Nama Prestasi:</label>
-            <input type="text" placeholder="Nama Prestasi" class="inputForm" name="editJenjang" id="editJenjang">
+            <input type="text" placeholder="Masukkan nama Prestasi" class="inputForm" name="nama_prestasi" id="editPrestasi">
             <div class="sm:w-2/5 w-1/2">
                 <label for="editMasuk" class="text-primary font-medium">Tahun:</label>
-                <input type="number" name="editTahun" id="editTahun" placeholder="1980" min="1950" max="2100" class="inputForm">
+                <input type="number" name="tahun_prestasi" id="editTahun" placeholder="1980" min="1950" max="2100" class="inputForm">
             </div>
             <div class="flex justify-end my-4">
                 <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
@@ -526,7 +538,7 @@ $('.tambahPrestasi').click(function () {
 // akhir js edit prestasi
 
 // awal js edit publikasi
-$('.editPublikasi').click(function () {
+function formPublikasi(id, topik, publisher, tanggal, deskripsi) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formEditPublikasi'>
         <div class="hidden opacity-0 duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
@@ -537,18 +549,19 @@ $('.editPublikasi').click(function () {
                         </svg>
             </div>
             <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+                <input type="hidden" name="id_edit" id="editId">
                 <label for="editTopik" class="text-primary font-medium mt-2">Topik:</label>
-                <input type="text" placeholder="Topik Publikasi" class="inputForm" name="editTopik" id="editTopik">
+                <input type="text" placeholder="Masukkan topik Publikasi" class="inputForm" name="topik" id="editTopik">
                 <label for="editPublisher" class="text-primary font-medium">Publisher:</label>
-                <input type="text" placeholder="Nama Publisher" class="inputForm" name="editPublisher" id="editPublisher">
+                <input type="text" placeholder="Masukkan nama Publisher" class="inputForm" name="publisher" id="editPublisher">
                 <div class="flex">
                     <div class="flex flex-col mr-8 sm:w-1/3 w-1/2">
                         <label for="editMasuk" class="text-primary font-medium">Tanggal Publikasi:</label>
-                        <input type="date" class="cursor-pointer inputForm" name="editMasuk" id="editMasuk">
+                        <input type="date" class="cursor-pointer inputForm" name="tanggal_disahkan" id="editTanggal">
                     </div>
                 </div>
                 <label for="editTulisan" class="text-primary font-medium">Deskripsi:</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Penggunaan Jutsu Air dalam mengatasi Permasalahan Banjir yang Sering Terjadi di Wilayah Pemukiman Rawan Longsor"></textarea>
+                <textarea name="deskripsi" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Masukkan deskripsi publikasi"></textarea>
                 <div class="flex justify-end my-8">
                     <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
                     <input type="button" value="KEMBALI" class="closePublikasi bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPublikasi'>
@@ -606,7 +619,13 @@ $('.editPublikasi').click(function () {
         }, 700);
     })
 
-})
+    $('#editId').val(id);
+    $('#editTopik').val(topik);
+    $('#editPublisher').val(publisher);
+    $('#editTanggal').val(tanggal);
+    $('#editTulisan').val(deskripsi);
+
+}
 
 $('.tambahPublikasi').click(function () {
     $('body').prepend(`
@@ -620,17 +639,17 @@ $('.tambahPublikasi').click(function () {
             </div>
             <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
                 <label for="editTopik" class="text-primary font-medium mt-2">Topik:</label>
-                <input type="text" placeholder="Topik Publikasi" class="inputForm" name="editTopik" id="editTopik">
+                <input type="text" placeholder="Masukkan topik Publikasi" class="inputForm" name="topik" id="editTopik">
                 <label for="editPublisher" class="text-primary font-medium">Publisher:</label>
-                <input type="text" placeholder="Nama Publisher" class="inputForm" name="editPublisher" id="editPublisher">
+                <input type="text" placeholder="Masukkan nama Publisher" class="inputForm" name="publisher" id="editPublisher">
                 <div class="flex">
                     <div class="flex flex-col mr-8 sm:w-1/3 w-1/2">
                         <label for="editMasuk" class="text-primary font-medium">Tanggal Publikasi:</label>
-                        <input type="date" class="cursor-pointer inputForm" name="editMasuk" id="editMasuk">
+                        <input type="date" class="cursor-pointer inputForm" name="tanggal_disahkan" id="editMasuk">
                     </div>
                 </div>
                 <label for="editTulisan" class="text-primary font-medium">Deskripsi:</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Penggunaan Jutsu Air dalam mengatasi Permasalahan Banjir yang Sering Terjadi di Wilayah Pemukiman Rawan Longsor"></textarea>
+                <textarea name="deskripsi" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Masukkan deskripsi publikasi"></textarea>
                 <div class="flex justify-end my-8">
                     <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
                     <input type="button" value="KEMBALI" class="closePublikasi bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPublikasi'>

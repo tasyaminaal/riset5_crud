@@ -19,7 +19,7 @@ if ($status == 'bukan user') {
             <div class="flex flex-wrap justify-center">
                 <div class="w-2/3 sm:w-full px-4">
                     <!-- syarat foto disini harus persegi (solusi : object fit) -->
-                    <img src="https://demos.creative-tim.com/tailwindcss-starter-project/_next/static/images/team-1-800x800-fa5a7ac2c81a43925586ea85f2fea332.jpg" alt="..." class="rounded-full max-w-full h-auto align-middle border-none" />
+                    <img src="/img/fotoProfil/<?=$alumni->foto_profil?>" alt="..." class="rounded-full max-w-full h-auto align-middle border-none" />
                     <!-- <img src="/img/tes/download.jpg" alt="..." class="shadow rounded-full max-w-full h-auto align-middle border-none" /> -->
                 </div>
             </div>
@@ -44,7 +44,7 @@ if ($status == 'bukan user') {
 
             </div>
             <!-- tempat dan tanggal lahir -->
-            <p class="font-heading text-primary text-center md:text-left text-sm mb-5 md:mb-3 lg:mb-5"><?= $alumni->tempat_lahir ?>, <?= DATE("d-m-Y", strtotime($alumni->tanggal_lahir)); ?></p>
+            <p class="font-heading text-primary text-center md:text-left text-sm mb-5 md:mb-3 lg:mb-5"><?= $alumni->tempat_lahir ?>, <?= DATE("d M Y", strtotime($alumni->tanggal_lahir)); ?></p>
             <p class="font-heading text-center md:text-left text-base mb-5 md:mb-3 lg:mb-5">
                 <!-- Angkatan -->
                 Angkatan <span class="text-primary">ke-<?= $alumni->angkatan; ?> </span><br />

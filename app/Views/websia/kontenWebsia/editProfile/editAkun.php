@@ -4,11 +4,11 @@
 <div class="shadow-2xl rounded-3xl mb-8">
     <div class="p-6 font-paragraph text-primary lg:min-h-screen">
         <!-- start form edit akun -->
-        <form action="" method="POST" id="formEditAkun">
+        <form action="#" method="POST" id="formEditAkun">
             <!-- tambahin form actionnya ya -->
             <div class="md:w-1/2 w-full">
                 <div class="font-medium">Email:</div>
-                <div class="text-black font-heading font-normal mb-2">iniemail@stis.ac.id</div>
+                <div class="text-black font-heading font-normal mb-2"><?= $user->email ?></div>
                 <label for="passbaru" class="font-medium">Kata Sandi Baru:</label>
                 <input type="password" name="passbaru" id="passbaru" class="inputForm" placeholder="🞄🞄🞄🞄🞄🞄🞄🞄">
                 <label for="ulangpassbaru" class="font-medium">Ketik Ulang Kata Sandi Baru:</label>

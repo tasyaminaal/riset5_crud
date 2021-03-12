@@ -5,9 +5,8 @@
 1. setting env nya jadi development, serta atur database di env. rename menjadi".env"
 2. composer install
 3. unzip myth.rar di .../vendor (yes all to replace all)
-4. unzip public.rar di .../public (gk tau kenapa error di tampilan admin kalo gk dizip)
-5. import sql nya (migration nya masih error di dashboard admin)
-6. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
+4. import sql nya (migration nya masih error di dashboard admin)
+5. Siap digunakan. php spark serve, jangan lupa nyalakan mysql pada xampp
 
 ## Catatan :
 

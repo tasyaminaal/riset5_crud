@@ -24,6 +24,12 @@ class AlumniModel extends Model
         return $this->table('alumni')->like($field, $search);
     }
 
+    public function getUser($id)
+    {
+        $query = "SELECT * FROM users WHERE id = $id";
+        return $this->db->query($query);
+    }
+
     public function getAlumniFilter($cari, $min_angkatan, $max_angkatan)
     {
         $query = $this->table('alumni');
@@ -184,5 +190,11 @@ class AlumniModel extends Model
 
             return $this->db->query($sql, [$nim]);
         }
+    }
+
+    public function deletePrestasiById($id)
+    {
+        $query = "DELETE FROM prestasi WHERE id_prestasi= $id";
+        return $this->db->query($query);
     }
 }
