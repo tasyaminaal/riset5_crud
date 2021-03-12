@@ -50,19 +50,19 @@ $('.updateFotoProfil').click(function () {
         $('body').prepend(`
          <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id="formUnggahFoto">
             <div>
-            <div class="bg-primary py-4 px-6 rounded-t-2xl flex items-center justify-between text-secondary text-xl">
-                <p class="font-heading font-bold">Unggah Foto</p>
-                <svg class="closeUnggah lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-            </div>
-            <div>
-                <div class="p-2 bg-gray-100 rounded-b-2xl px-6">
-                <form action="/User/updateFotoProfil" method="POST" class="font-paragraph text-primary mt-4" >
-                <input type="file" name="file_upload" value="" >
-                <button class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitUnggahFoto">UNGGAH</button>
-                </form>
+                <div class="bg-primary py-4 px-6 rounded-t-2xl flex items-center justify-between text-secondary text-xl">
+                    <p class="font-heading font-bold">Unggah Foto</p>
+                    <svg class="closeUnggah lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
                 </div>
+                <div>
+                    <div class="p-2 bg-gray-100 rounded-b-2xl px-6">
+                        <form action="/User/updateFotoProfil" method="POST" enctype="multipart/form-data" class="font-paragraph text-primary mt-4" >
+                        <input type="file" name="file_upload">
+                        <button class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitUnggahFoto">UNGGAH</button>
+                        </form>
+                    </div>
                 </div>
             </div>
          </div>

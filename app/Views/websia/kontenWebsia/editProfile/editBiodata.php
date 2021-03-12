@@ -130,25 +130,29 @@ if ($alumni->aktif_pns == '1') {
 <!-- dialog box di edit biodata -->
 <!-- kalau mau ngecek hilangin kelas hidden sama opacity-0 nya-->
 
+<?php if(!session()->getFlashdata('pesan')){
+
+} elseif (session()->getFlashdata('pesan')=="Berhasil"){?>
 <!-- BERHASIL ubah foto -->
 <div id="berhasilUpdateFoto">
-    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
         <div class=" duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
             <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
             <p class="sm:text-base text-sm font-heading font-bold text-success">Foto Profil Berhasil Diubah</p>
         </div>
     </div>
 </div>
-
+<?php }else{?>
 <!-- GAGAL ubah foto -->
 <div id="gagalUpdateFoto">
-    <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
         <div class="duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #FF7474;">
             <img src="/img/icon/warning.png" class="h-5 mr-2">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Foto Profil Tidak Berhasil Diubah</p>
+            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Foto Profil Tidak Berhasil Diubah : <?= $error ?></p>
         </div>
     </div>
 </div>
+<?php } ?>
 
 <!-- BERHASIL update biodata -->
 <div id="berhasilUpdateBiodata">

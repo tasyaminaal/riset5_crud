@@ -319,6 +319,7 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
+			'error'		=> session()->getFlashdata('pesan'),
 		];
 		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
 	}
@@ -333,25 +334,25 @@ class User extends BaseController
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
 
 		$validated = $this->validate([
-            'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/gif,image/png]|max_size[file_upload,4096]'
+            'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/png]|max_size[file_upload,2048]'
         ]);
-  
+
         if ($validated == FALSE) {
-             
+			session()->setFlashdata('pesan', 'Format atau ukuran file tidak sesuai.');
             // Kembali ke function index supaya membawa data uploads dan validasi
-            return redirect()->to(base_url('User/editProfil'));;
+            return redirect()->to(base_url('User/editProfil'));
  
         } else {
 			$avatar = $this->request->getFile('file_upload');
-			dd($avatar->getName());
-            $avatar->move(ROOTPATH.'img/fotoProfil/');
+            $avatar->move(ROOTPATH.'/public/img/fotoProfil/');
  
             $data = [
                 'foto_profil' => $avatar->getName()
             ];
      
             $model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
-            return redirect()->to(base_url('User/editProfil'))->with('success', 'Upload successfully'); 
+			session()->setFlashdata('pesan', 'Berhasil');
+            return redirect()->to(base_url('User/editProfil')); 
         }
 	}
 
