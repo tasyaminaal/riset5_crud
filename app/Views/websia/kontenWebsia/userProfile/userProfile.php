@@ -100,7 +100,7 @@ if ($status == 'bukan user') {
                 $ig = $alumni->ig;
             }
             ?>
-            <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
+            <div class="md:space-x-4 flex flex-row items-start justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <div class="w-1/2">
                     <!-- Email -->
                     <div class="inline-block mb-2 flex flex-row">
@@ -252,15 +252,15 @@ if ($status == 'bukan user') {
     <div class="lg:px-16">
         <div class="md:shadow-lg lg:shadow-xl rounded-3xl w-full mx-auto mt-5">
             <div class="overflow-x-scroll md:overflow-x-hidden">
-                <table class="table-auto font-paragraph text-black  ">
+                <table class="table-fixed font-paragraph text-black">
                     <thead>
                         <tr>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 rounded-tl-xl lg:rounded-tl-3xl text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-0 py-2 md:py-3 lg:py-4">Jenjang Pendidikan</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-32 py-2 md:py-3 lg:py-4">Univeristas</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-14 py-2 md:py-3 lg:py-4">Program Studi</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-3 py-2 md:py-3 lg:py-4">Tahun Masuk</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-3 py-2 md:py-3 lg:py-4">Tahun Lulus</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 rounded-tr-xl lg:rounded-tr-3xl text-sm text-left pl-3 pr-32 md:pr-24 lg:pr-80 lg:pl-5 py-2 md:py-3 lg:py-4">Judul Tulisan</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 rounded-tl-xl lg:rounded-tl-3xl text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Jenjang Pendidikan</th>
+                            <th class="w-2/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Univeristas</th>
+                            <th class="w-2/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Program Studi</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Tahun Masuk</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Tahun Lulus</th>
+                            <th class="w-3/12 bg-gray-100 border-b-2 border-gray-200 rounded-tr-xl lg:rounded-tr-3xl text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Judul Tulisan</th>
                         </tr>
                     </thead>
                     <tbody>
