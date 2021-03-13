@@ -160,7 +160,7 @@ class AlumniModel extends Model
 
             return $this->db->query($sql);
         } else {
-            $sql = "SELECT alumni.nama, alumni.nim , users.username FROM alumni JOIN users ON alumni.nim = users.nim AND alumni.nim =?";
+            $sql = "SELECT alumni.nama AS fullname, alumni.nim , users.username FROM alumni JOIN users ON alumni.nim = users.nim AND alumni.nim =?";
 
             return $this->db->query($sql,[$nim]);
         }
