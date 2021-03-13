@@ -159,7 +159,7 @@
 
 <script>
     let x;
-    let string = "<a href='/User/profilAlumni?nim={nim}><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>{nama}</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan {akt}</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>";
+    let string = "<a href='/User/profilAlumni?nim={nim}'><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>{nama}</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan {akt}</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>";
 
     function search($cari = null) {
         if (x) window.clearTimeout(x);
