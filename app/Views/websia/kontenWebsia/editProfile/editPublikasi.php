@@ -2,20 +2,32 @@
 
 <?= $this->section('contentEdit'); ?>
 
+<style>
+    .formEdit {
+        background-color: #F9F9F9;
+    }
+</style>
+
 <div class="w-full bg-white min-h-screen" id="pagePublikasi">
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
+        <!-- start tabel publikasi -->
         <table class="w-full sm:text-sm text-xs rounded-3xl shadow-2xl md:shadow-none font-paragraph">
+            <!-- start nama kolom tabel publikasi -->
             <thead class="formEdit">
                 <tr>
                     <th class="pt-4 lg:px-3 md:px-2 px-1 pb-1 rounded-tl-3xl">No</th>
                     <th class="pt-4 lg:px-2 px-1 pb-1">Topik</th>
                     <th class="pt-4 lg:px-2 px-1 pb-1">Publisher</th>
                     <th class="pt-4 pb-1 pl-1">
-                        <div class="flex">
-                            <span class="mr-1">Tanggal Publikasi</span>
-                            <div class="select-none cursor-pointer flex flex-col justify-center sort text-gray-400">
-                                <i class="fas fa-caret-up"></i>
-                                <i class="fas fa-caret-down transform -translate-y-2"></i>
+                        <div class="flex justify-center">
+                            <span class="mr-2">Tanggal Publikasi</span>
+                            <div class="sort select-none cursor-pointer flex flex-col justify-center gap-y-1">
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4L4 0L8 4H0Z" fill="#B0BAC9" />
+                                </svg>
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L4 4L8 0H0Z" fill="#B0BAC9" />
+                                </svg>
                             </div>
                         </div>
                     </th>
@@ -26,23 +38,32 @@
                 <tr>
                     <td></td>
                     <td class="text-sm px-2">
-                        <span>All</span>
-                        <span class="select-none cursor-pointer float-right sort text-gray-400">
-                            <i class="fas fa-caret-up transform -translate-y-1 translate-x-3"></i>
-                            <i class="fas fa-caret-down transform translate-y-1"></i>
-                        </span>
+                        <div class="flex items-center justify-between">
+                            <span>All</span>
+                            <span class="select-none cursor-pointer float-right text-gray-400 p-0.5">
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L4 4L8 0H0Z" fill="#B0BAC9" />
+                                </svg>
+                            </span>
+                        </div>
                     </td>
                     <td class="text-sm px-2">
-                        <span>All</span>
-                        <span class="select-none cursor-pointer float-right sort text-gray-400">
-                            <i class="fas fa-caret-up transform -translate-y-1 translate-x-3"></i>
-                            <i class="fas fa-caret-down transform translate-y-1"></i>
-                        </span>
+                        <div class="flex items-center justify-between">
+                            <span>All</span>
+                            <span class="select-none cursor-pointer float-right text-gray-400 p-0.5">
+                                <svg width="10" height="5" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L4 4L8 0H0Z" fill="#B0BAC9" />
+                                </svg>
+                            </span>
+                        </div>
                     </td>
                     <td colspan="2"></td>
                     <td></td>
                 </tr>
             </thead>
+            <!-- end nama kolom tabel publikasi -->
+
+            <!-- start isi tabel publikasi -->
             <tbody>
                 <tr class="border-t-2 border-b-2 bg-white">
                     <td class="text-center py-3">1</td>
@@ -115,14 +136,16 @@
                 </tr>
                 <tr class="formEdit">
                     <td colspan="8" class="border-b-2">
-                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 my-2 tambahPublikasi">TAMBAH</div>
+                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 my-2 tambahPublikasi">TAMBAH</div>
                     </td>
                 </tr>
                 <tr class="h-5 formEdit">
                     <td colspan="8" class="rounded-b-3xl"></td>
                 </tr>
             </tbody>
+            <!-- end isi tabel publikasi -->
         </table>
+        <!-- end tabel publikasi -->
     </div>
 </div>
 

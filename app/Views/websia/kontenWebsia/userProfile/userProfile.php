@@ -57,7 +57,7 @@ if ($status == 'bukan user') {
             </p>
             <!-- Instansi tempat bekerja dan jabatan -->
             <p class="font-heading text-base text-center md:text-left">
-                Bekerja di <span class="text-primary"> <?= $tempat_kerja->nama_instansi; ?> </span>
+                Bekerja di <span class="text-primary"> <?= $tempat_kerja->nama_instansi; ?> </span></br>
                 Sebagai <span class="text-primary"> <?= $alumni->jabatan_terakhir; ?> </span>
             </p>
         </div>
@@ -100,7 +100,7 @@ if ($status == 'bukan user') {
                 $ig = $alumni->ig;
             }
             ?>
-            <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
+            <div class="md:space-x-4 flex flex-row items-start justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <div class="w-1/2">
                     <!-- Email -->
                     <div class="inline-block mb-2 flex flex-row">
@@ -110,10 +110,10 @@ if ($status == 'bukan user') {
                     <!-- Facebook -->
                     <div class="inline-block flex flex-row">
                         <img src="/img/icon/facebook.png" alt="" class="float-left ml-1 w-2 h-4">
-                        <span class="font-heading text-xs text-primary text-center flex items-center ml-3 md:ml-4"><?= $fb ?></span>
+                        <span class="font-heading text-xs text-primary text-left flex items-center ml-3 md:ml-4"><?= $fb ?></span>
                     </div>
                 </div>
-                <div class="w-1/2 ml-2">
+                <div class="w-1/2 pl-6">
                     <!-- Twitter -->
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/twitter.png" alt="" class="float-left w-4 w-4">
@@ -133,9 +133,9 @@ if ($status == 'bukan user') {
 <!-- Akhir User Profile-->
 
 <!-- Awal Rekomendasi -->
-<div class="bg-primary py-8 md:py-4 lg:px-20 md:px-8 px-2">
-    <div class="static md:w-full md:px-2 md:py-8 pb-4">
-        <div class="md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
+<div class="bg-primary py-8 md:py-4 lg:px-20 md:px-8 px-3">
+    <div class="static md:w-full md:px-2 md:py-8 pb-8">
+        <div class="-mt-16 sm:mt-0 md:mb-6 mb-2 text-center md:text-left text-secondary font-semibold">
             <!-- link ini mengarah ke halaman tampilan semua rekomendasi -->
             <div class="invisible sm:visible">
                 <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/User/rekomendasi">
@@ -147,14 +147,16 @@ if ($status == 'bukan user') {
         </div>
         <div class="holder mx-auto w-11/12 md:w-full lg:w-11/12 grid grid-cols-2 md:grid-cols-4 gap-x-4 md:gap-x-0 lg:gap-x-8" data-aos="zoom-in">
             <?php foreach ($rekomendasi as $row) :  ?>
-                <div class="each rounded-3xl m-2 shadow-lg border-gray-800 bg-white relative">
+                <div class="card shadow border-gray-800 hover:bg-gray-200 hover:shadow-inner transition duration-700 bg-white relative" data-aos="zoom-in">
                     <a href="/User/profilAlumni?nim=<?= $row->nim; ?>" target="_new">
-                        <img class="w-24 mx-auto py-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
-                        <div class="desc p-2">
-                            <span class="title font-heading font-bold text-primary block cursor-pointer text-center"><?= $row->nama; ?></span>
-                            <!-- <span class="description font-paragraph text-primary text-center text-base block pt-2 border-gray-400 mb-0"><?= $row->nim; ?></span> -->
-                            <span class="description font-paragraph text-primary text-center text-base block py-0 border-gray-400 mb-0">Angkatan <?= $row->angkatan; ?></span>
-                            <!-- <a class="block bg-gray-300 font-paragraph text-primary text-sm text-center py-1 px-3 my-4 mx-auto rounded-lg w-full cursor-pointer border-gray-300 hover:bg-gray-400 hover:border-opacity-70 transition-colors duration-300" href="/profil">Lihat Profil</a> -->
+                        <div class="">
+                            <img class="w-16 md:w-20 lg:w-24 mx-auto mt-4" src="/img/avatar.png" alt="" /> <!-- Hilangin padding klo dah ada gambar, dan pake w-full aja -->
+                        </div>
+                        <div>
+                            <span class="title mt-4 font-heading text-sm md:text-base lg:text-lg font-semibold text-primary block px-2 md:px-0 text-center"><?= $row->nama; ?></span>
+                        </div>
+                        <div>
+                            <span class="description font-paragraph text-primary text-center md:text-base block pt-2 pb-2 border-gray-400 mb-2">Angkatan <?= $row->angkatan; ?></span>
                         </div>
                     </a>
                 </div>
@@ -250,15 +252,15 @@ if ($status == 'bukan user') {
     <div class="lg:px-16">
         <div class="md:shadow-lg lg:shadow-xl rounded-3xl w-full mx-auto mt-5">
             <div class="overflow-x-scroll md:overflow-x-hidden">
-                <table class="table-auto font-paragraph text-black  ">
+                <table class="table-fixed font-paragraph text-black">
                     <thead>
                         <tr>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 rounded-tl-xl lg:rounded-tl-3xl text-sm text-left pl-3 lg:pl-5 lg:pr-3 py-2 md:py-3 lg:py-4">Jenjang Pendidikan</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-12 md:pr-0 py-2 md:py-3 lg:py-4">Univeristas</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-12 md:pr-0 py-2 md:py-3 lg:py-4">Program Studi</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 lg:pr-1 py-2 md:py-3 lg:py-4">Tahun Masuk</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 lg:pr-2 py-2 md:py-3 lg:py-4">Tahun Lulus</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 rounded-tr-xl lg:rounded-tr-3xl text-sm text-left pl-3 pr-32 md:pr-24 lg:pr-80 lg:pl-5 py-2 md:py-3 lg:py-4">Judul Tulisan</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 rounded-tl-xl lg:rounded-tl-3xl text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Jenjang Pendidikan</th>
+                            <th class="w-2/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Univeristas</th>
+                            <th class="w-2/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Program Studi</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Tahun Masuk</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Tahun Lulus</th>
+                            <th class="w-3/12 bg-gray-100 border-b-2 border-gray-200 rounded-tr-xl lg:rounded-tr-3xl text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Judul Tulisan</th>
                         </tr>
                     </thead>
                     <tbody>

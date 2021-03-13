@@ -104,7 +104,7 @@ _modules/*
 nbproject/
 build/
 nbbuild/
-dist/
+# dist/ ini bagian yg bikin bug dari kmren :)
 nbdist/
 nbactions.xml
 nb-configuration.xml
@@ -126,7 +126,9 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-public/*
-!public/public.rar
-!public/css.rar
-!public/js.rar
+# public/*
+# !public/public.rar
+
+# tailwind
+/public/vendor/tailwind/node_modules
+/public/vendor/tailwind/package-lock.json

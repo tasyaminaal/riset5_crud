@@ -94,12 +94,18 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
+    public function getTempatKerja()
+    {
+        $query = "SELECT * FROM tempat_kerja";
+        return $this->db->query($query);
+    }
+
     public function getIdPublikasi()
     {
         $query = "SELECT id_publikasi FROM publikasi";
         return $this->db->query($query);
     }
-    
+
     public function getPendidikanByNIM($nim)
     {
         $query = "SELECT * FROM pendidikan JOIN pendidikan_tinggi ON pendidikan.id_pendidikan=pendidikan_tinggi.id_pendidikan WHERE pendidikan.nim = $nim";
@@ -154,7 +160,8 @@ class AlumniModel extends Model
     }
 
     // FOR API REQUEST
-    public function getUserApi($nim = false){
+    public function getUserApi($nim = false)
+    {
         if ($nim === false) {
             $sql = "SELECT alumni.nama, alumni.nim , users.username FROM alumni JOIN users ON alumni.nim = users.nim";
 
@@ -162,12 +169,12 @@ class AlumniModel extends Model
         } else {
             $sql = "SELECT alumni.nama AS fullname, alumni.nim , users.username FROM alumni JOIN users ON alumni.nim = users.nim AND alumni.nim =?";
 
-            return $this->db->query($sql,[$nim]);
+            return $this->db->query($sql, [$nim]);
         }
-        
     }
 
-    public function getDetailUserApi($nim = false){
+    public function getDetailUserApi($nim = false)
+    {
         if ($nim === false) {
             $sql = "SELECT angkatan, nama, nim, jenis_kelamin, status_bekerja, jabatan_terakhir, aktif_pns FROM alumni";
 
@@ -175,8 +182,7 @@ class AlumniModel extends Model
         } else {
             $sql = "SELECT angkatan, nama, nim, jenis_kelamin, status_bekerja, jabatan_terakhir, aktif_pns FROM alumni WHERE nim =?";
 
-            return $this->db->query($sql,[$nim]);
+            return $this->db->query($sql, [$nim]);
         }
     }
-
 }
