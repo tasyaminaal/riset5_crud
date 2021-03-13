@@ -32,7 +32,7 @@
 
                         <!-- awal jumlah hasil pencarian alumni  -->
                         <div id="jumlahAlumni" class="text-primary md:mb-6 mb-2 font-paragraph font-extralight text-sm">
-                            <?= $jumlah; ?>
+                            <?= $jumlah['text']; ?>
                         </div>
                         <hr class="md:my-4 my-2 border-2 border-gray-400">
                         <!-- akhir jumlah hasil pencarian alumni  -->
@@ -68,6 +68,10 @@
                             <?php endforeach; ?>
                             <hr class="-my-4 border-2 border-gray-400">
                         </div>
+
+                        <nav id="pager" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                            <?= $pager->links() ?>
+                        </nav>
 
                         <!-- awal tulisan "Selengkapnya" di hasil pencarian -->
                         <div class="flex justify-end mt-12">
@@ -154,28 +158,47 @@
 </div>
 
 <script>
+    let x;
+    let string = "<a href='/User/profilAlumni?nim={nim}><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>{nama}</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan {akt}</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>";
+
+    function search($cari = null) {
+        if (x) window.clearTimeout(x);
+        x = setTimeout(function() {
+            cari = $("input[name=cari]").val();
+            $.ajax({
+                url: "<?php base_url('user/searchAndFilter'); ?>",
+                type: 'POST',
+                data: {
+                    'cari': cari
+                },
+                // data: 'cari=' + cari + '&akt=' + $("#cariAngkatan").val(),
+
+                success: (data) => {
+                    data = JSON.parse(data);
+                    $('#filterAlumni').empty()
+                    $('#jumlahAlumni').html(data.jumlah)
+                    if (data.ret) {
+                        $.each(data.data, (i, item) => {
+                            $('#filterAlumni').append(string.replace('{nama}', item.nama).replace('{nim}', item.nim).replace('{akt}', item.angkatan))
+                        })
+                        $('#filterAlumni').append("<hr class='-my-4 border-2 border-gray-400'>")
+                        $('#pager').html(data.pager)
+                        $.each($('.pagination a'), (i, item) => {
+                            item.href += data.search
+                        })
+                    } else {
+                        $('#filterAlumni').append(`<div class=" ml-2 flex-grow min-h-screen "><img src="/img/pencarianKosong.png" class="w-96 mx-auto" alt=""><div class="text-primary text-center font-bold md:text-xl -mt-8 mx-auto">Hasil Pencarian Tidak Ditemukan</div><hr class="border-b-2 border-t-0 w-32 border-gray-400 mx-auto"></div>`)
+                    }
+                }
+            })
+        }, 300)
+    }
+
+    $("input[name=cari").keyup(function() {
+        search()
+    })
     $("#cariAngkatan").keyup(function() {
-        let data1 = <?php echo json_encode($alumni1) ?>;
-        let data2 = <?php echo json_encode($alumni2) ?>;
-        let jumlah = 0;
-        let input = $("#cariAngkatan").val();
-        let string = "";
-        let string2 = "";
-        data2.map((item, index) => {
-            if (input == "") {
-                jumlah++
-                string = string + "<a href='/User/profilAlumni?nim=" + item.nim + "><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>" + item.nama + "</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan " + item.angkatan + "</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>"
-                string2 = "Terdapat " + jumlah + " alumni dengan kata kunci `<B><?= $cari; ?></B>` ditemukan."
-            }
-            if (input == item.angkatan) {
-                jumlah++
-                string = string + "<a href='/User/profilAlumni?nim=" + item.nim + "><div class='mx-2'><div class='flex gap-x-4'><div class='flex items-center'><img src='/img/avatar.png' class='lg:w-18 w-12 mx-auto' alt=''></div><div class='flex items-center'><div><!-- Awal Nama Alumni --><h2 class='md:text-lg font-heading text-primary font-semibold'>" + item.nama + "</h2><!-- Akhir Nama Alumni --><!-- Awal Atribut Alumni --><div class='md:text-sm text-xs font-paragraph text-primary'>Angkatan " + item.angkatan + "</div><!-- Akhir Atribut Alumni --></div></div></div></div></a><!-- Akhir Card Alumni --><hr class='my-4 border-gray-400'>"
-                string2 = "Terdapat " + jumlah + " alumni dengan kata kunci `<B><?= $cari; ?></B>` dan angkatan = " + input + " ditemukan."
-            }
-        });
-        string = string + "<hr class='-my-4 border-2 border-gray-400'>"
-        $("#jumlahAlumni").html(string2);
-        $("#filterAlumni").html(string);
+        search()
     });
 </script>
 <script type="text/javascript" src="/js/search.js"></script>

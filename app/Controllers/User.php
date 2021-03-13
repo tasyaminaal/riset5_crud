@@ -27,21 +27,19 @@ class User extends BaseController
 	{
 		$pager = \Config\Services::pager();
 		$model = new \App\Models\AlumniModel;
-		if (isset($_GET['min']))
-			$minAng = $_GET['min'];
-		else
-			$minAng = $model->getMinAngkatan()[0]->angkatan;
 
-		if (isset($_GET['max']))
-			$maxAng = $_GET['max'];
-		else
-			$maxAng = $model->getMaxAngkatan()[0]->angkatan;
+		// dd($this->request->getVar('cari'));
+
+		$minAng = (isset($_GET['min'])) ? $_GET['min'] : $model->getMinAngkatan()[0]->angkatan;
+		$maxAng = (isset($_GET['max'])) ? $_GET['max'] : $model->getMaxAngkatan()[0]->angkatan;
+		$cari = (isset($_REQUEST['cari'])) ? $_REQUEST['cari'] : "";
 
 		if ($minAng > $maxAng) {
-			$temp = $minAng;
-			$minAng = $maxAng;
-			$maxAng = $temp;
+			$maxAng = $minAng + $maxAng;
+			$minAng = $maxAng - $minAng;
+			$maxAng = $maxAng - $minAng;
 		}
+
 		if ($minAng != NULL && $minAng >= $model->getMinAngkatan()[0]->angkatan) {
 			$min_angkatan  = $minAng;
 		} else {
@@ -53,16 +51,30 @@ class User extends BaseController
 			$max_angkatan  = $model->getMaxAngkatan()[0]->angkatan;
 		}
 
-		if (isset($_GET['cari']))
-			$cari = $_GET['cari'];
-		else
-			$cari = "";
+		$query = $model->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
+		$jumlah = [
+			'text' => (!empty($cari)) ?
+				"Terdapat " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan." :
+				"Memuat " . $query->countAllResults(false) . " data alumni.",
+			'ret' => $query->countAllResults(false)
+		];
+		// dd($query->paginate(5));
 
-		$query = $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
-		if (!empty($cari)) {
-			$jumlah = "Terdapat " . $query->countAllResults(false) . " alumni dengan kata kunci `<B>$cari</B>` ditemukan.";
-		} else {
-			$jumlah = "Memuat " . $query->countAllResults(false) . " data alumni.";
+		//search ajax
+		if (isset($_POST['cari'])) {
+			// $query = $model->getAlumniFilter($cari, $min_angkatan, $max_angkatan);
+			$search = '';
+			foreach (array_keys($_REQUEST) as $key) {
+				$search .= '&' . $key . '=' . $_REQUEST[$key];
+			}
+
+			return json_encode([
+				'data' => $query->paginate(5),
+				'jumlah' => $jumlah['text'],
+				'ret' => $jumlah['ret'],
+				'pager' => $model->pager->links(),
+				'search' => $search
+			]);
 		}
 
 		if ($query->countAllResults(false) == 0) {
@@ -73,18 +85,20 @@ class User extends BaseController
 
 			return view('websia/kontenWebsia/searchAndFilter/searchKosong', $data);
 		} else {
+			$paginate = ($query->countAllResults(false) > 5) ? 5 : $query->countAllResults(false);
 			$data = [
 				'judulHalaman' => 'Pencarian Alumni | Website Riset 5',
 				'active' => '',
 				'cari' => $cari,
-				'alumni1' => $query->paginate(5),
-				'alumni2' => $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan)->get()->getResult(),
+				'alumni1' => $model->getAlumniFilter($cari, $min_angkatan, $max_angkatan)->paginate($paginate),
+				// 'alumni2' => $model->orderBy('nama', $direction = 'ASC')->getAlumniFilter($cari, $min_angkatan, $max_angkatan)->get()->getResult(),
 				'pager' => $model->pager,
 				'page'  => isset($_GET['page']) ? (int)$_GET["page"] : 1,
 				'jumlah' => $jumlah,
 				'min_angkatan' => $model->getMinAngkatan()[0]->angkatan,
 				'max_angkatan' => $model->getMaxAngkatan()[0]->angkatan
 			];
+			// dd($data['alumni1']);
 			return view('websia/kontenWebsia/searchAndFilter/searchAndFilter', $data);
 		}
 	}
