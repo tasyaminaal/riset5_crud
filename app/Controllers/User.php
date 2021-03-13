@@ -479,18 +479,30 @@ class User extends BaseController
 		return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
 	}
 
-	// MASIH SALAH LOGICNYA````````````````````````````````````````````````````````````````````````````````
 	public function updateTempatKerja()
 	{
 		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
-		$kunci = $model->getTempatKerjaByNIM(session('nim'))->getRow()->id_tempat_kerja;
-
-		dd($_POST['id_tempat_kerja']);
 
 		$data = [
+			'id_tempat_kerja'      => $_POST['id_tempat_kerja'],
+		];
+
+		$model->db->table('alumni_tempat_kerja')->set($data)->where('nim', session('nim'))->update();
+
+		return redirect()->to(base_url('User/editTempatKerja'));
+	}
+
+	public function addTempatKerja()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		
+		$data1 = [
 			'nama_instansi'      => $_POST['nama_instansi'],
 			'alamat_instansi'  		=> $_POST['alamat_instansi'],
 			'telp_instansi'  => $_POST['telp_instansi'],
@@ -498,7 +510,14 @@ class User extends BaseController
 			'email_instansi'  => $_POST['email_instansi'],
 		];
 
-		$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja', $kunci)->update();
+		$model->db->table('tempat_kerja')->insert($data1);
+		
+
+		$data2 = [
+			'id_tempat_kerja'      => $model->getIdTempatKerja($_POST['nama_instansi']),
+		];
+
+		$model->db->table('alumni_tempat_kerja')->set($data2)->where('nim', session('nim'))->update();
 
 		return redirect()->to(base_url('User/editTempatKerja'));
 	}
