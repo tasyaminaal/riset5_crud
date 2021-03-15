@@ -24,105 +24,157 @@ if ($alumni->aktif_pns == '1') {
     <div class="lg:grid lg:grid-cols-3 lg:gap-x-4">
         <!-- start foto profil -->
         <div class="p-6">
-            <div class="flex justify-center">
-                <img src="/img/fotoProfil/<?= $alumni->foto_profil ?>" alt="" class="mb-6 md:w-48 md:h-48 w-28 h-28 rounded-full">
-            </div>
-            <div class="flex justify-center">
-                <button class="updateFotoProfil bg-secondary rounded-full font-paragraph text-white px-3 py-1 hover:bg-secondaryhover lg:text-base text-sm focus:outline-none">Ubah foto profil</button>
+            <div class="flex items-center">
+                <div class="md:w-2/3 w-1/2 lg:w-full">
+                    <div class="flex justify-center">
+                        <img src="/img/fotoProfil/<?= $alumni->foto_profil ?>" alt="" class="mb-6 md:w-48 md:h-48 w-28 h-28 rounded-full">
+                    </div>
+                    <div class="flex justify-center">
+                        <button class="updateFotoProfil bg-secondary rounded-full font-paragraph text-white px-3 py-1 hover:bg-secondaryhover lg:text-base text-sm focus:outline-none">Ubah foto profil</button>
+                    </div>
+                </div>
+                <div class="md:w-1/3 w-1/2 ml-4 lg:hidden">
+                    <div class="shadow-xl rounded-lg p-2">
+                        <p class="font-heading font-medium text-sm">Keterangan:</p>
+                        <div class="flex gap-x-2 items-center">
+                            <input type="checkbox" checked onclick="return false;" onkeydown="return false;" class="focus:outline-none">
+                            <p class="font-heading font-medium text-xs">Tampilkan</p>
+                        </div>
+                        <div class="flex gap-x-2 items-center">
+                            <input type="checkbox" onclick="return false" class="focus:outline-none">
+                            <p class="font-heading font-medium text-xs">Sembunyikan</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- end foto profil -->
         <div class="col-span-2 md:mt-6 ml-6 mr-6">
-            <!-- start form edit -->
-            <form action="/User/updateProfil" method="POST" class="font-paragraph text-primary" id="formEditBiodata">
-                <div class="font-medium">Nama Lengkap:</div>
-                <div class="text-black font-heading font-normal mb-2"><?= $alumni->nama ?></div>
-                <div class="grid grid-cols-2 gap-x-4">
-                    <div>
-                        <div class="font-medium">NIM:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->nim ?></div>
-                    </div>
-                    <div>
-                        <div class="font-medium">Angkatan:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->angkatan ?></div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 lg:mr-4 mb-2">
-                    <div class="font-medium">Jenis Kelamin:</div>
-                    <div class="text-black font-heading font-normal mb-2"><?= $jk ?></div>
-                </div>
-                <div class="md:grid md:grid-cols-2 md:gap-x-4">
-                    <div>
-                        <div class="font-medium">Tempat Lahir:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->tempat_lahir ?></div>
-                    </div>
-                    <div>
-                        <div class="font-medium">Tanggal Lahir:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= DATE("d M Y", strtotime($alumni->tanggal_lahir)) ?></div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2">
-                    <div class="lg:mr-2">
-                        <label for="notelepon" class="font-medium">No. Telepon:</label>
-                        <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>">
-                        <label for="email" class="font-medium">Email:</label>
-                        <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>">
-                    </div>
-                </div>
-                <label for="alamat" class="font-medium">Alamat:</label>
-                <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none"><?= $alumni->alamat ?></textarea>
-                <div class="grid grid-cols-2 gap-x-4">
-                    <div>
-                        <div class="font-medium">Status Bekerja:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $status_bekerja ?></div>
-                    </div>
-                    <div>
-                        <div class="font-medium">Aktif PNS:</div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $aktif_pns ?></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="font-medium">Jabatan Terakhir:</div>
-                    <div class="text-black font-heading font-normal mb-2"><?= $alumni->jabatan_terakhir ?></div>
-                </div>
-                <div>
-                    <div class="font-medium">Perkiraan Tahun Pensiun:</div>
-                    <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
-                </div>
-                <div>
-                    <div class="font-medium mb-2">Akun Media Sosial:</div>
-                    <div class="w-full lg:w-3/4">
-                        <div class="flex items-center mb-2">
-                            <div class="md:w-1/4 w-1/3">
-                                <label for="instagram" class="font-medium">Instagram</label>
-                            </div>
-                            <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="ig" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Instagram tanpa memakai (@)" value="<?= $alumni->ig ?>">
-                            </div>
+            <div class="lg:grid lg:grid-cols-4">
+                <!-- start form edit -->
+                <form action="/User/updateProfil" method="POST" class="font-paragraph text-primary lg:col-span-3" id="formEditBiodata">
+                    <div class="font-medium">Nama Lengkap:</div>
+                    <div class="text-black font-heading font-normal mb-2"><?= $alumni->nama ?></div>
+                    <div class="grid grid-cols-2 gap-x-4 mr-6">
+                        <div>
+                            <div class="font-medium">NIM:</div>
+                            <div class="text-black font-heading font-normal mb-2"><?= $alumni->nim ?></div>
                         </div>
-                        <div class="flex items-center mb-2">
-                            <div class="md:w-1/4 w-1/3">
-                                <label for="twitter" class="font-medium">Twitter</label>
-                            </div>
-                            <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Twitter" value="<?= $alumni->twitter ?>">
-                            </div>
-                        </div>
-                        <div class="flex items-center mb-2">
-                            <div class="md:w-1/4 w-1/3">
-                                <label for="facebook" class="font-medium">Facebook</label>
-                            </div>
-                            <div class="md:w-3/4 w-2/3">
-                                <input type="text" name="fb" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Nama Akun Facebook" value="<?= $alumni->fb ?>">
-                            </div>
+                        <div>
+                            <div class="font-medium">Angkatan:</div>
+                            <div class="text-black font-heading font-normal mb-2"><?= $alumni->angkatan ?></div>
                         </div>
                     </div>
+                    <div class="lg:w-1/2 lg:mr-4 mb-2">
+                        <div class="flex justify-between items-center lg:mr-4">
+                            <div class="font-medium">Jenis Kelamin:</div>
+                            <input type="checkbox" name="checkJenisKelamin" id="checkJenisKelamin" class="cursor-pointer focus:outline-none">
+                        </div>
+                        <div class="text-black font-heading font-normal mb-2"><?= $jk ?></div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <div class="font-medium">Tempat Lahir:</div>
+                                <input type="checkbox" name="checkTempatLahir" id="checkTempatLahir" class="cursor-pointer focus:outline-none md:-mr-1">
+                            </div>
+                            <div class="text-black font-heading font-normal mb-2"><?= $alumni->tempat_lahir ?></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <div class="font-medium">Tanggal Lahir:</div>
+                                <input type="checkbox" name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none md:-mr-6">
+                            </div>
+                            <div class="text-black font-heading font-normal mb-2"><?= DATE("d M Y", strtotime($alumni->tanggal_lahir)) ?></div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="mr-6">
+                            <label for="notelepon" class="font-medium">No. Telepon:</label>
+                            <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>">
+                            <label for="email" class="font-medium">Email:</label>
+                            <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <label for="alamat" class="font-medium">Alamat:</label>
+                        <input type="checkbox" name="checkAlamat" id="checkAlamat" class="cursor-pointer focus:outline-none">
+                    </div>
+                    <div class="mr-6">
+                        <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none"><?= $alumni->alamat ?></textarea>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
+                        <div>
+                            <div class="font-medium">Status Bekerja:</div>
+                            <div class="text-black font-heading font-normal mb-2"><?= $status_bekerja ?></div>
+                        </div>
+                        <div>
+                            <div class="font-medium">Aktif PNS:</div>
+                            <div class="text-black font-heading font-normal mb-2"><?= $aktif_pns ?></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <div class="font-medium">Jabatan Terakhir:</div>
+                            <input type="checkbox" name="checkJabatan" id="checkJabatan" class="cursor-pointer focus:outline-none">
+                        </div>
+                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->jabatan_terakhir ?></div>
+                    </div>
+                    <div>
+                        <div class="font-medium">Perkiraan Tahun Pensiun:</div>
+                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
+                    </div>
+                    <div>
+                        <div class="font-medium mb-2">Akun Media Sosial:</div>
+                        <div class="w-full">
+                            <div class="flex items-center mb-2">
+                                <div class="md:w-1/4 w-1/3">
+                                    <label for="instagram" class="font-medium">Instagram</label>
+                                </div>
+                                <div class="md:w-3/4 w-2/3 gap-x-3 flex justify-between items-center">
+                                    <input type="text" name="ig" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Instagram tanpa tanda (@)" value="<?= $alumni->ig ?>">
+                                    <input type="checkbox" name="checkInstagram" id="checkInstagram" class="cursor-pointer focus:outline-none">
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="md:w-1/4 w-1/3">
+                                    <label for="twitter" class="font-medium">Twitter</label>
+                                </div>
+                                <div class="md:w-3/4 w-2/3 gap-x-3 flex justify-between items-center">
+                                    <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Twitter" value="<?= $alumni->twitter ?>">
+                                    <input type="checkbox" name="checkTwitter" id="checkTwitter" class="cursor-pointer focus:outline-none">
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <div class="md:w-1/4 w-1/3">
+                                    <label for="facebook" class="font-medium">Facebook</label>
+                                </div>
+                                <div class="md:w-3/4 w-2/3 gap-x-3 flex justify-between items-center">
+                                    <input type="text" name="fb" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Nama Akun Facebook" value="<?= $alumni->fb ?>">
+                                    <input type="checkbox" name="checkFacebook" id="checkFacebook" class="cursor-pointer focus:outline-none">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-8 mb-6">
+                        <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitBiodata">
+                    </div>
+                </form>
+                <!-- end form edit -->
+                <div>
+                    <div class="shadow-xl rounded-lg p-2 lg:block hidden">
+                        <p class="font-heading font-medium">Keterangan:</p>
+                        <div class="flex gap-x-2 items-center">
+                            <input type="checkbox" checked onclick="return false;" onkeydown="return false;" class="focus:outline-none">
+                            <p class="font-heading font-medium text-sm">Tampilkan</p>
+                        </div>
+                        <div class="flex gap-x-2 items-center">
+                            <input type="checkbox" onclick="return false" class="focus:outline-none">
+                            <p class="font-heading font-medium text-sm">Sembunyikan</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex justify-end mt-8 mb-6">
-                    <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitBiodata">
-                </div>
-            </form>
-            <!-- end form edit -->
+            </div>
         </div>
     </div>
 </div>
@@ -130,28 +182,27 @@ if ($alumni->aktif_pns == '1') {
 <!-- dialog box di edit biodata -->
 <!-- kalau mau ngecek hilangin kelas hidden sama opacity-0 nya-->
 
-<?php if(!session()->getFlashdata('pesan')){
-
-} elseif (session()->getFlashdata('pesan')=="Berhasil"){?>
-<!-- BERHASIL ubah foto -->
-<div id="berhasilUpdateFoto">
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
-        <div class=" duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-            <p class="sm:text-base text-sm font-heading font-bold text-success">Foto Profil Berhasil Diubah</p>
+<?php if (!session()->getFlashdata('pesan')) {
+} elseif (session()->getFlashdata('pesan') == "Berhasil") { ?>
+    <!-- BERHASIL ubah foto -->
+    <div id="berhasilUpdateFoto" class="dialogBox" onclick="fade()">
+        <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
+            <div class=" duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
+                <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+                <p class="sm:text-base text-sm font-heading font-bold text-success">Foto Profil Berhasil Diubah</p>
+            </div>
         </div>
     </div>
-</div>
-<?php }else{?>
-<!-- GAGAL ubah foto -->
-<div id="gagalUpdateFoto">
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
-        <div class="duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #FF7474;">
-            <img src="/img/icon/warning.png" class="h-5 mr-2">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Foto Profil Tidak Berhasil Diubah : <?= $error ?></p>
+<?php } else { ?>
+    <!-- GAGAL ubah foto -->
+    <div id="gagalUpdateFoto" class="dialogBox" onclick="fade()">
+        <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
+            <div class="duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #FF7474;">
+                <img src="/img/icon/warning.png" class="h-5 mr-2">
+                <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Foto Profil Tidak Berhasil Diubah : <?= $error ?></p>
+            </div>
         </div>
     </div>
-</div>
 <?php } ?>
 
 <!-- BERHASIL update biodata -->

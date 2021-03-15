@@ -48,24 +48,27 @@ $('.updateFotoProfil').click(function () {
     $('#unggahFoto').click(function () {
         $('#formEditFoto').remove()
         $('body').prepend(`
-         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id="formUnggahFoto">
-            <div>
-                <div class="bg-primary py-4 px-6 rounded-t-2xl flex items-center justify-between text-secondary text-xl">
-                    <p class="font-heading font-bold">Unggah Foto</p>
-                    <svg class="closeUnggah lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                </div>
-                <div>
-                    <div class="p-2 bg-gray-100 rounded-b-2xl px-6">
-                        <form action="/User/updateFotoProfil" method="POST" enctype="multipart/form-data" class="font-paragraph text-primary mt-4" >
-                        <input type="file" name="file_upload">
-                        <button class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitUnggahFoto">UNGGAH</button>
-                        </form>
-                    </div>
-                </div>
+         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph grid-cols-none" id='formUnggahFoto'>
+        <div class= "duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
+        <div class="bg-primary py-2 px-6 rounded-t-2xl flex items-center justify-between text-secondary md:text-xl sm:text-base">
+        <p class="font-heading font-bold">Unggah Foto</p>
+        <svg class="closeUnggah lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+    </div>
+            <form action="/User/updateFotoProfil" method="post" enctype="multipart/form-data" class="flex flex-col bg-gray-100 px-6 rounded-b-2xl text-sm">
+            <div class="flex justify-between items-center mt-4">
+                <input type="file" name="file_upload">
+                <button class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer focus:outline-none md:text-sm sm:text-xs" id="submitUnggahFoto">UNGGAH</button>
             </div>
-         </div>
+            <div class="my-2 text-xs text-secondary">
+            <p>Format file harus .jpg, .jpeg, atau .png.</p>
+            <p>Ukuran file maksimum 2MB.</p>
+            </div>
+            </form>
+
+        </div>
+    </div>
          `)
          var modal = document.getElementById('formUnggahFoto')
          $(window).click(function (e) {
@@ -387,7 +390,7 @@ function hapusPendidikan(id){
                 <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
                 <form action="/User/deletePendidikan" method="POST" class="text-white flex justify-end">
                     <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
-                    <button id="hapus" name="id_pendidikan" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
+                    <button id="hapus" name="id_pendidikan" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
                 </form>
             </div>
         </div>
@@ -665,7 +668,7 @@ function hapusPrestasi(id){
                 <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data prestasi ini?</p>
                 <form action="/User/deletePrestasi" method="POST" class="text-white flex justify-end">
                     <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
-                    <button id="hapus" name="id_prestasi" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
+                    <button id="hapus" name="id_prestasi" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
                 </form>
             </div>
         </div>
@@ -884,7 +887,7 @@ $('.hapusPublikasi').click(function () {
                 <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data publikasi ini?</p>
                 <div class="text-white flex justify-end">
                     <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
-                    <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
+                    <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
                 </div>
             </div>
         </div>
@@ -982,50 +985,3 @@ $('#simpanAkun').click(function (e) {
     }, 700);
 })
 // akhir js edit akun webservice
-
-
-//awal js modal hapus di edit profil
-$('.hapusModal').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
-        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
-            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
-                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
-                <div class="text-white flex justify-end">
-                    <div class="buttonBatal text-black hover:text-gray-600 font-bold rounded-2xl border border-black hover:border-gray-600 w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
-                    <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    `)
-    $('#formHapus').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#formHapus').children().first().removeClass('opacity-0')
-    }, 10);
-
-    $('.buttonBatal').click(function () {
-        $('#formHapus').children().first().addClass('opacity-0')
-        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
-            $('#formHapus').children().first().addClass('hidden')
-        });
-        setTimeout(function () {
-            $('#formHapus').remove()
-        }, 400);
-    })
-
-    var modal = document.getElementById('formHapus')
-    $(window).click(function (e) {
-        if (e.target === modal) {
-            $('#formHapus').children().first().addClass('opacity-0')
-            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
-                $('#formHapus').children().first().addClass('hidden')
-            });
-            setTimeout(function () {
-                $('#formHapus').remove()
-            }, 400);
-        }
-    })
-})
-
-//akhir js modal hapus di edit profil
