@@ -203,4 +203,10 @@ class AlumniModel extends Model
         $query = "DELETE FROM pendidikan WHERE id_pendidikan= $id";
         return $this->db->query($query);
     }
+
+    public function getIdTempatKerja($nama)
+    {
+        $query = "SELECT id_tempat_kerja FROM tempat_kerja WHERE nama_instansi = '$nama'";
+        return $this->db->query($query)->getRow()->id_tempat_kerja;
+    }
 }

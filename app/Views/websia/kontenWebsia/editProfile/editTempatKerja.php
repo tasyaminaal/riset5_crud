@@ -32,7 +32,7 @@
         <!-- kalau nama instansi ga ada di database -->
 
         <div class="hidden" id="lainnya">
-            <form action="" method="POST" id="formTambahInstansi">
+            <form action="/User/addTempatKerja" method="POST" id="formTambahInstansi">
                 <div class="flex gap-x-2 items-center mb-4">
                     <div>
                         Cari instansi Anda pada daftar instansi:
