@@ -150,7 +150,7 @@ class AlumniModel extends Model
 
     public function getUsersById($id)
     {
-        $query = "SELECT * FROM users WHERE id = $id";
+        $query = "SELECT id,email,username,nim,fullname,user_image FROM users WHERE id = $id";
         return $this->db->query($query);
     }
 

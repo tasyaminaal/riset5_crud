@@ -86,4 +86,21 @@ class Validation
 			'required'      => 'Icon must be filled',
 		]
 	];
+
+	public $editProfil = [
+		'telp_alumni'   => [
+			'rules' =>'required|numeric',
+			'errors' => [
+				'required'	   => 'Nomor harus diisi',
+				'numeric'      => 'Hanya berisi angka',
+			]
+		],
+		'email'			=> [
+			'rules' =>'valid_email|is_unique[alumni.email,nim,{nim}]',
+			'errors' => [
+				'valid_email' => 'Tidak sesuai format email',
+				'is_unique[alumni.email]' => 'Alamat email sudah digunakan',
+			]
+		],
+	];
 }

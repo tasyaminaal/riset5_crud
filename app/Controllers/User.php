@@ -15,6 +15,8 @@ class User extends BaseController
 		if (session()->has('role'))
 			if (!in_array("2", session('role')))
 				echo '<script>window.location.replace("' . base_url() . '");</script>';
+		
+		$this->form_validation = \Config\Services::validation();
 	}
 
 	public function index() //user detail + form update
@@ -319,7 +321,6 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
-			'error'		=> session()->getFlashdata('pesan'),
 		];
 		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
 	}
@@ -332,28 +333,55 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		$foto = $query1->foto_profil;
 
 		$validated = $this->validate([
             'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/png]|max_size[file_upload,2048]'
         ]);
 
         if ($validated == FALSE) {
-			session()->setFlashdata('pesan', 'Format atau ukuran file tidak sesuai.');
+			session()->setFlashdata('edit-foto-fail', 'Format atau ukuran file tidak sesuai.');
             // Kembali ke function index supaya membawa data uploads dan validasi
             return redirect()->to(base_url('User/editProfil'));
  
         } else {
 			$avatar = $this->request->getFile('file_upload');
-            $avatar->move(ROOTPATH.'/public/img/fotoProfil/');
+			$avatar->move(ROOTPATH.'/public/img/user/userid_' . session('id_user'));
+			if($foto != 'default.svg'){
+				unlink(ROOTPATH.'/public/img/user/userid_' . session('id_user').'/'.$foto);
+			}
  
             $data = [
-                'foto_profil' => $avatar->getName()
+                'foto_profil' => 'user/userid_'.session('id_user').'/'.$avatar->getName()
             ];
      
             $model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
-			session()->setFlashdata('pesan', 'Berhasil');
+			session()->setFlashdata('edit-foto-success', 'Foto Profil Berhasil Diubah');
             return redirect()->to(base_url('User/editProfil')); 
         }
+	}
+
+	public function hapusFotoProfil()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+			$model = new AlumniModel();
+			$query1 = $model->bukaProfile(session('nim'))->getRow();
+			$foto = $query1->foto_profil;
+
+			if($foto != 'default.svg'){
+				unlink(ROOTPATH.'/public/img/'.$foto);
+			}
+			
+			$data = [
+                'foto_profil' => 'default.svg'
+            ];
+
+     
+            $model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+			session()->setFlashdata('hapus-foto', 'Foto berhasil dihapus');
+            return redirect()->to(base_url('User/editProfil'));
 	}
 
 	public function updateProfil()
@@ -362,20 +390,38 @@ class User extends BaseController
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
-		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		$telp_alumni   	= $_POST['telp_alumni'];
+		$email			= $_POST['email'];
+		$alamat       	= $_POST['alamat'];
+		$ig				= $_POST['ig'];
+		$fb				= $_POST['fb'];
+		$twitter		= $_POST['twitter'];
 
 		$data = [
-			'telp_alumni'    => $_POST['telp_alumni'],
-			'email'			=> $_POST['email'],
-			'alamat'        => $_POST['alamat'],
-			'ig'			=> $_POST['ig'],
-			'fb'			=> $_POST['fb'],
-			'twitter'		=> $_POST['twitter'],
+			'nim'		=> session('nim'),
+			'telp_alumni'    => $telp_alumni,
+			'email'			=> $email,
+			'alamat'        => $alamat,
+			'ig'			=> $ig,
+			'fb'			=> $fb,
+			'twitter'		=> $twitter,
 		];
 
-		$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+		// dd($this->form_validation->run($data, 'editProfil'));
 
-		return redirect()->to(base_url('User/editProfil'));
+		if ($this->form_validation->run($data, 'editProfil') === FALSE) {
+			session()->setFlashdata('edit-bio-fail', 'Biodata gagal Disimpan');
+			session()->setFlashdata('inputs', $this->request->getPost());
+			session()->setFlashdata('errors', $this->form_validation->getErrors());
+			// dd(session('errors'));
+			return redirect()->to(base_url('User/editProfil'));
+			
+		} else{
+			$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+			session()->setFlashdata('edit-bio-success', 'Biodata Berhasil Disimpan');
+			return redirect()->to(base_url('User/editProfil'));
+		}
+
 	}
 
 	public function editPendidikan()
@@ -662,13 +708,16 @@ class User extends BaseController
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
-		$passlama = $model->getUser(session('id_user'))->getRow()->password_hash;
-		$pass = password_hash($_POST['passlama'], PASSWORD_DEFAULT);
+		$curpass = $model->getUser(session('id_user'))->getRow()->password_hash;
+		$inputpass = $_POST['passlama'];
+		// dd($curpass);
+		// dd($inputpass);
+		dd(password_verify($inputpass, $curpass));
 		// dd($model->getUser(session('id_user'))->getRow());
 		// dd($pass,$passlama);
 
 		// bingung validasinya
-		if($pass == $passlama){
+		if(password_verify($inputpass, $curpass)){
 			if ($_POST['passbaru'] == $_POST['ulangpassbaru']) {
 				$data = [
 					'password_hash' => password_hash($_POST['passbaru'], PASSWORD_DEFAULT),
