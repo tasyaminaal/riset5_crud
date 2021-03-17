@@ -348,7 +348,7 @@ class User extends BaseController
 			$avatar = $this->request->getFile('file_upload');
 			$avatar->move(ROOTPATH.'/public/img/user/userid_' . session('id_user'));
 			if($foto != 'default.svg'){
-				unlink(ROOTPATH.'/public/img/user/userid_' . session('id_user').'/'.$foto);
+				unlink(ROOTPATH.'/public/img/'.$foto);
 			}
  
             $data = [
