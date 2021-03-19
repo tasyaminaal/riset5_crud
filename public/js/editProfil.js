@@ -1,4 +1,12 @@
 // awal js edit biodata 
+$('#buttonEditTampilan').click(function (){
+    if ($('.editTampilan').hasClass('hidden')){
+       $('.editTampilan').removeClass('hidden') 
+    } else {
+        $('.editTampilan').addClass('hidden') 
+    }
+})
+
 $('.updateFotoProfil').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditFoto'>
