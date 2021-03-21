@@ -94,7 +94,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilEditPublikasi').fadeOut();
+    })
+</script>
 <!-- GAGAL edit publikasi -->
 <div id="gagalEditPublikasi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -104,7 +108,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalEditPublikasi').fadeOut();
+    })
+</script>
 <!-- BERHASIL tambah publikasi -->
 <div id="berhasilTambahPublikasi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -114,7 +122,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilTambahPublikasi').fadeOut();
+    })
+</script>
 <!-- GAGAL tambah publikasi -->
 <div id="gagalTambahPublikasi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -124,6 +136,10 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalTambahPublikasi').fadeOut();
+    })
+</script>
 <!-- end dialog box-->
 <?= $this->endSection(); ?>

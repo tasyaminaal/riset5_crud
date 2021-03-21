@@ -90,7 +90,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilEditPrestasi').fadeOut();
+    })
+</script>
 <!-- GAGAL edit prestasi -->
 <div id="gagalEditPrestasi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -100,7 +104,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalEditPrestasi').fadeOut();
+    })
+</script>
 <!-- BERHASIL tambah prestasi -->
 <div id="berhasilTambahPrestasi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -110,7 +118,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilTambahPrestasi').fadeOut();
+    })
+</script>
 <!-- GAGAL tambah prestasi -->
 <div id="gagalTambahPrestasi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -120,6 +132,10 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalTambahPrestasi').fadeOut();
+    })
+</script>
 <!-- end dialog box-->
 <?= $this->endSection(); ?>

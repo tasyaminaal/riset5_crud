@@ -37,7 +37,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilEditAkun').fadeOut();
+    })
+</script>
 <!-- GAGAL edit akun -->
 <div id="gagalEditAkun">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -47,6 +51,10 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalEditAkun').fadeOut();
+    })
+</script>
 <!-- end dialog box -->
 <?= $this->endSection(); ?>

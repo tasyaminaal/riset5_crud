@@ -72,7 +72,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilEditInstansi').fadeOut();
+    })
+</script>
 <!-- GAGAL edit instansi -->
 <div id="gagalEditInstansi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -82,7 +86,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalEditInstansi').fadeOut();
+    })
+</script>
 <!-- BERHASIL tambah instansi -->
 <div id="berhasilTambahInstansi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -92,7 +100,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#berhasilTambahInstansi').fadeOut();
+    })
+</script>
 <!-- GAGAL tambah instansi -->
 <div id="gagalTambahInstansi">
     <div class="hidden opacity-0 fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40">
@@ -102,6 +114,10 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).click(function() {
+        $('#gagalTambahInstansi').fadeOut();
+    })
+</script>
 <!-- end dialog box-->
 <?= $this->endSection(); ?>

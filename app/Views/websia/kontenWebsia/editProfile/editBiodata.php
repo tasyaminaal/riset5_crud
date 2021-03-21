@@ -214,7 +214,7 @@ if ($alumni->aktif_pns == '1') {
 
 <?php if (session()->getFlashdata('edit-foto-success')) { ?>
     <!-- BERHASIL ubah foto -->
-    <div id="berhasilUpdateFoto" class="dialogBox" onclick="fade()">
+    <div id="berhasilUpdateFoto" class="dialogBox">
         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
             <div class=" duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
                 <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
@@ -222,17 +222,25 @@ if ($alumni->aktif_pns == '1') {
             </div>
         </div>
     </div>
+    <script>
+        $(document).click(function() {
+            $('#berhasilUpdateFoto').fadeOut();
+        })
+    </script>
 <?php }
 if (session()->getFlashdata('edit-foto-fail')) { ?>
     <!-- GAGAL ubah foto -->
-    <div id="gagalUpdateFoto" class="dialogBox" onclick="fade()">
-        <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end">
-            <div class="duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #FF7474;">
-                <img src="/img/icon/warning.png" class="h-5 mr-2">
-                <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Foto Profil Tidak Berhasil Diubah : <?= session()->getFlashdata('edit-foto-fail') ?></p>
-            </div>
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id="gagalUpdateFoto">
+        <div class="duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #FF7474;">
+            <img src="/img/icon/warning.png" class="h-5 mr-2">
+            <p class="sm:text-base text-sm font-heading font-bold" style="color: #C51800;">Foto Profil Tidak Berhasil Diubah : <?= session()->getFlashdata('edit-foto-fail') ?></p>
         </div>
     </div>
+    <script>
+        $(document).click(function() {
+            $('#gagalUpdateFoto').fadeOut();
+        })
+    </script>
 <?php }
 if (session()->getFlashdata('edit-bio-success')) { ?>
 
@@ -245,6 +253,11 @@ if (session()->getFlashdata('edit-bio-success')) { ?>
             </div>
         </div>
     </div>
+    <script>
+        $(document).click(function() {
+            $('#berhasilUpdateBiodata').fadeOut();
+        })
+    </script>
 <?php }
 if (session()->getFlashdata('edit-bio-fail')) { ?>
     <!-- GAGAL update biodata -->
@@ -256,6 +269,11 @@ if (session()->getFlashdata('edit-bio-fail')) { ?>
             </div>
         </div>
     </div>
+    <script>
+        $(document).click(function() {
+            $('#gagalUpdateBiodata').fadeOut();
+        })
+    </script>
 <?php }
 if (session()->getFlashdata('hapus-foto') != NULL) { ?>
     <!-- HAPUS foto biodata -->
@@ -267,6 +285,11 @@ if (session()->getFlashdata('hapus-foto') != NULL) { ?>
             </div>
         </div>
     </div>
+    <script>
+        $(document).click(function() {
+            $('#berhasilHapusFoto').fadeOut();
+        })
+    </script>
 <?php } ?>
 
 <!-- end dialog box -->

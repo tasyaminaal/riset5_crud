@@ -110,6 +110,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).click(function() {
+        $('#berhasilEditPendidikan').fadeOut();
+    })
+</script>
 
 <!-- GAGAL edit pendidikan -->
 <div id="gagalEditPendidikan">
@@ -120,6 +125,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).click(function() {
+        $('#gagalEditPendidikan').fadeOut();
+    })
+</script>
 
 <!-- BERHASIL tambah pendidikan -->
 <div id="berhasilTambahPendidikan">
@@ -130,6 +140,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).click(function() {
+        $('#berhasilTambahPendidikan').fadeOut();
+    })
+</script>
 
 <!-- GAGAL tambah pendidikan -->
 <div id="gagalTambahPendidikan">
@@ -140,6 +155,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).click(function() {
+        $('#gagalTambahPendidikan').fadeOut();
+    })
+</script>
 
 <!-- end dialog box -->
 <?= $this->endSection(); ?>
