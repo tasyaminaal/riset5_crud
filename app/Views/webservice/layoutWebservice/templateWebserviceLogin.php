@@ -147,7 +147,7 @@
 
     </div>
     <!-- END HEADER -->
-    <div id="divKosong" class="bg-primary w-full md:h-20 sm:h-14 h-12">
+    <div id="divKosong" class="bg-primary w-full md:h-20 h-16">
     </div>
     <!-- CONTENT PAGE DI SINI -->
     <div class="w-full flex flex-1">
