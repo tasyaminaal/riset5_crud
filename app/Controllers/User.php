@@ -352,7 +352,7 @@ class User extends BaseController
 			}
  
             $data = [
-                'foto_profil' => 'user/userid_'.session('id_user').'/'.$avatar->getName()
+                'foto_profil' => 'user/userid_'.session('id_user').'/'.htmlspecialchars($avatar->getName())
             ];
      
             $model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
@@ -390,12 +390,12 @@ class User extends BaseController
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
-		$telp_alumni   	= $_POST['telp_alumni'];
-		$email			= $_POST['email'];
-		$alamat       	= $_POST['alamat'];
-		$ig				= $_POST['ig'];
-		$fb				= $_POST['fb'];
-		$twitter		= $_POST['twitter'];
+		$telp_alumni   	= htmlspecialchars($_POST['telp_alumni']);
+		$email			= htmlspecialchars($_POST['email']);
+		$alamat       	= htmlspecialchars($_POST['alamat']);
+		$ig				= htmlspecialchars($_POST['ig']);
+		$fb				= htmlspecialchars($_POST['fb']);
+		$twitter		= htmlspecialchars($_POST['twitter']);
 
 		$data = [
 			'nim'		=> session('nim'),
@@ -450,15 +450,15 @@ class User extends BaseController
 		$model = new AlumniModel();
 
 		$data1 = [
-			'program_studi'     => $_POST['program_studi'],
-			'judul_tulisan'		=> $_POST['judul_tulisan'],
+			'program_studi'     => htmlspecialchars($_POST['program_studi']),
+			'judul_tulisan'		=> htmlspecialchars($_POST['judul_tulisan']),
 		];
 
 		$data2 = [
-			'jenjang'    => $_POST['jenjang'],
-			'instansi'	 => $_POST['instansi'],
-			'tahun_masuk'  => $_POST['tahun_masuk'],
-			'tahun_lulus'  => $_POST['tahun_lulus']
+			'jenjang'    => htmlspecialchars($_POST['jenjang']),
+			'instansi'	 => htmlspecialchars($_POST['instansi']),
+			'tahun_masuk'  => htmlspecialchars($_POST['tahun_masuk']),
+			'tahun_lulus'  => htmlspecialchars($_POST['tahun_lulus'])
 		];
 
 		$model->db->table('pendidikan_tinggi')->set($data1)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
@@ -475,18 +475,18 @@ class User extends BaseController
 		$model = new AlumniModel();
 
 		$data2 = [
-			'jenjang'    => $_POST['jenjang'],
-			'instansi'	 => $_POST['instansi'],
-			'tahun_masuk'  => $_POST['tahun_masuk'],
-			'tahun_lulus'  => $_POST['tahun_lulus'],
+			'jenjang'    => htmlspecialchars($_POST['jenjang']),
+			'instansi'	 => htmlspecialchars($_POST['instansi']),
+			'tahun_masuk'  => htmlspecialchars($_POST['tahun_masuk']),
+			'tahun_lulus'  => htmlspecialchars($_POST['tahun_lulus']),
 			'nim'		=> session('nim'),
 		];
 
 		$model->db->table('pendidikan')->insert($data2);
 
 		$data1 = [
-			'program_studi'     => $_POST['program_studi'],
-			'judul_tulisan'		=> $_POST['judul_tulisan'],
+			'program_studi'     => htmlspecialchars($_POST['program_studi']),
+			'judul_tulisan'		=> htmlspecialchars($_POST['judul_tulisan']),
 		];
 
 		$model->db->table('pendidikan_tinggi')->insert($data1);
@@ -549,18 +549,18 @@ class User extends BaseController
 		$model = new AlumniModel();
 		
 		$data1 = [
-			'nama_instansi'      => $_POST['nama_instansi'],
-			'alamat_instansi'  		=> $_POST['alamat_instansi'],
-			'telp_instansi'  => $_POST['telp_instansi'],
-			'faks_instansi'   => $_POST['faks_instansi'],
-			'email_instansi'  => $_POST['email_instansi'],
+			'nama_instansi'      => htmlspecialchars($_POST['nama_instansi']),
+			'alamat_instansi'  		=> htmlspecialchars($_POST['alamat_instansi']),
+			'telp_instansi'  => htmlspecialchars($_POST['telp_instansi']),
+			'faks_instansi'   => htmlspecialchars($_POST['faks_instansi']),
+			'email_instansi'  => htmlspecialchars($_POST['email_instansi']),
 		];
 
 		$model->db->table('tempat_kerja')->insert($data1);
 		
 
 		$data2 = [
-			'id_tempat_kerja'      => $model->getIdTempatKerja($_POST['nama_instansi']),
+			'id_tempat_kerja'      => $model->getIdTempatKerja(htmlspecialchars($_POST['nama_instansi'])),
 		];
 
 		$model->db->table('alumni_tempat_kerja')->set($data2)->where('nim', session('nim'))->update();
@@ -596,8 +596,8 @@ class User extends BaseController
 		$model = new AlumniModel();
 
 		$data = [
-			'nama_prestasi'     => $_POST['nama_prestasi'],
-			'tahun_prestasi'		=> $_POST['tahun_prestasi'],
+			'nama_prestasi'     => htmlspecialchars($_POST['nama_prestasi']),
+			'tahun_prestasi'		=> htmlspecialchars($_POST['tahun_prestasi']),
 			'nim'				=> session('nim'),
 		];
 
@@ -615,8 +615,8 @@ class User extends BaseController
 		$model = new AlumniModel();
 
 		$data = [
-			'nama_prestasi'     => $_POST['nama_prestasi'],
-			'tahun_prestasi'		=> $_POST['tahun_prestasi'],
+			'nama_prestasi'     => htmlspecialchars($_POST['nama_prestasi']),
+			'tahun_prestasi'		=> htmlspecialchars($_POST['tahun_prestasi']),
 			'nim'				=> session('nim'),
 		];
 
@@ -669,12 +669,12 @@ class User extends BaseController
 		$model = new AlumniModel();
 
 		$data = [
-			'judul'     => $_POST['judul'],
-			'topik'     => $_POST['topik'],
-			'deskripsi'     => $_POST['deskripsi'],
-			'publisher'     => $_POST['publisher'],
-			'tanggal_disahkan'     => $_POST['tanggal_disahkan'],
-			'author'     => $_POST['author'],
+			'judul'     => htmlspecialchars($_POST['judul']),
+			'topik'     => htmlspecialchars($_POST['topik']),
+			'deskripsi'     => htmlspecialchars($_POST['deskripsi']),
+			'publisher'     => htmlspecialchars($_POST['publisher']),
+			'tanggal_disahkan'     => htmlspecialchars($_POST['tanggal_disahkan']),
+			'author'     => htmlspecialchars($_POST['author']),
 		];
 
 		$model->db->table('publikasi')->insert($data);
