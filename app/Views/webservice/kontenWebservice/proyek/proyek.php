@@ -17,30 +17,79 @@
     </a>
     <!-- end tombol buat proyek -->
 
-    <!-- ini kalau belum ada proyek (default hidden, bisa disesuaikan) -->
-    <div id="tidakAdaProyek" class="flex justify-center hidden">
+
+
+
+</div>
+
+<?php foreach ($client_app as $key => $data) { ?>
+    <div class="proyek flex justify-between items-center rounded-md border font-paragraph mb-4 md:px-2 md:py-2 px-1 py-1 hover:bg-gray-100 cursor-pointer" data-id="<?= $data['id'] ?>">
+        <span class="font-paragraph md:text-base text-sm"><?php echo $data['nama_app']; ?></span>
+
+        <?php if ($data['status'] == 'Review') { ?>
+            <span class="font-paragraph md:text-base text-sm rounded-full border bg-gray-400 text-white px-3 py-1 md:w-32 w-24 text-center">Menunggu</span>
+        <?php } ?>
+
+        <?php if ($data['status'] == 'Diterima') { ?>
+            <span class="font-paragraph md:text-base text-sm rounded-full border bg-green-400 text-white px-3 py-1 md:w-32 w-24 text-center">Disetujui</span>
+        <?php } ?>
+
+        <?php if ($data['status'] == 'Ditolak') { ?>
+            <span class="font-paragraph md:text-base text-sm rounded-full border bg-red-600 text-white px-3 py-1 md:w-32 w-24 text-center">Ditolak</span>
+        <?php } ?>
+    </div>
+
+    <div class="w-11/12 mx-auto mb-4 rounded-b-xl shadow-xl hidden opacity-0 duration-500 transition-all">
+        <div class="flex justify-start text-sm">
+            <div class="token text-white py-1 w-20 text-center mr-1 cursor-pointer transform hover:scale-105 duration-150 outline-none choosed">
+                TOKEN</div>
+            <div class="detail text-white py-1 w-20 text-center mr-1 cursor-pointer transform hover:scale-105 duration-150 outline-none notchoose">
+                DETAIL</div>
+            <a data-id="<?php echo $data['id'] ?>" class="delete-project text-white bg-red-500 py-1 w-20 text-center mr-1 cursor-pointer transform hover:scale-105 duration-150 outline-none">CANCEL</a>
+        </div>
+        <div class="sm:mx-3 mx-2">
+            <div class="flex mt-3 mb-2">
+                <p class="w-1/4 text-primary text-sm font-bold">Token Pengguna</p>
+                <p id="token_app<?php echo $data['id'] ?>" class="w-3/4 text-primary text-sm break-all"></p>
+            </div>
+
+            <div class="flex mb-2">
+                <p class="w-1/4 text-primary text-sm font-bold">Tanggal Dibuat</p>
+                <p id="req_date<?php echo $data['id'] ?>" class="w-3/4 text-primary text-sm"></p>
+            </div>
+            <div class="flex mb-2 pb-4">
+                <p class="w-1/4 text-primary text-sm font-bold">Tanggal Diperiksa</p>
+                <p id="req_acc<?php echo $data['id'] ?>" class="w-3/4 text-primary text-sm"></p>
+            </div>
+        </div>
+        <div class="hidden">
+            <div class="flex mx-3 mt-3 mb-2">
+                <p class="w-1/4 text-primary text-sm font-bold">Deskripsi</p>
+                <p id="deskripsi<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
+            </div>
+            <!-- <div class="flex mx-3 mt-3 mb-2">
+                <p class="w-1/4 text-primary text-sm font-bold">Redirect URL</p>
+                <p id="redirek<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
+            </div> -->
+            <div class="flex mx-3 pb-4">
+                <p class="w-1/4 text-primary text-sm font-bold">Cakupan Data</p>
+                <p id="scope<?php echo $data['id'] ?>" class="w-3/4 text-justify text-primary text-sm"></p>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<!-- ini harusnya cuma muncul kalau belum ada proyek yg terdaftar di db, jadi mungkin bisa dikasih ifelse buat nampilin div ini atau div isi proyeknya-->
+<?php if ($client_app == NULL) { ?>
+    <div id="tidakAdaProyek" class="flex justify-center">
         <div class="mt-8 mb-24">
             <span class="font-heading text-center text-xl">Belum ada proyek yang terdaftar. <b>Buat proyekmu sekarang!</b></span>
         </div>
     </div>
-
-    <!-- ini kalau ada proyek -->
-    <div id="adaProyek">
-        <div class="proyek flex justify-between items-center rounded-md border font-paragraph mb-4 md:px-2 md:py-2 px-1 py-1 hover:bg-gray-100 cursor-pointer transition-all">
-            <span class="font-paragraph md:text-base text-sm">Judul Proyek : Lorem Ipsum Dolor Sit Amet</span>
-            <span class="font-paragraph md:text-base text-sm rounded-full border bg-gray-400 text-white px-3 py-1 md:w-32 w-24 text-center">Menunggu</span>
-        </div>
-        <div class="proyek flex justify-between items-center rounded-md border font-paragraph mb-4 md:px-2 md:py-2 px-1 py-1 hover:bg-gray-100 cursor-pointer transition-all">
-            <span class="font-paragraph md:text-base text-sm">Judul Proyek : Lorem Ipsum Dolor Sit Amet</span>
-            <span class="font-paragraph md:text-base text-sm rounded-full border bg-green-400 text-white px-3 py-1 md:w-32 w-24 text-center">Disetujui</span>
-        </div>
-        <div class="proyek flex justify-between items-center rounded-md border font-paragraph mb-4 md:px-2 md:py-2 px-1 py-1 hover:bg-gray-100 cursor-pointer transition-all">
-            <span class="font-paragraph md:text-base text-sm">Judul Proyek : Lorem Ipsum Dolor Sit Amet</span>
-            <span class="font-paragraph md:text-base text-sm rounded-full border bg-red-600 text-white px-3 py-1 md:w-32 w-24 text-center">Ditolak</span>
-        </div>
-    </div>
-
+<?php } ?>
 </div>
+
+
 
 <script>
     //buat nampilin detail proyek
@@ -94,8 +143,6 @@
             setTimeout(function() {
                 $this.next().removeClass('opacity-0');
             }, 30);
-
-
             $(this).next().children().first().children().first().children().eq(1).click(function() {
                 $(this).removeClass('notchoose').addClass('choosed')
                 $(this).prev().removeClass('choosed').addClass('notchoose')
@@ -111,7 +158,6 @@
                 $(this).parent().parent().next().next().addClass('hidden')
                 $(this).parent().parent().next().removeClass('hidden')
             })
-
         } else {
             $(this).removeClass('border-primary')
             $(this).css("border-width", "1px")
