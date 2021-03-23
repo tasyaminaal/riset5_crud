@@ -76,11 +76,13 @@
     <?php } ?>
 
     <!-- ini harusnya cuma muncul kalau belum ada proyek yg terdaftar di db, jadi mungkin bisa dikasih ifelse buat nampilin div ini atau div isi proyeknya-->
+    <?php if ($client_app == NULL){?> 
     <div id="tidakAdaProyek" class="flex justify-center">
         <div class="mt-8 mb-24">
             <span class="font-heading text-center text-xl">Belum ada proyek yang terdaftar. <b>Buat proyekmu sekarang!</b></span>
         </div>
     </div>
+    <?php }?>
 </div>
 
 <script type="text/javascript" src="/js/webservices.js"></script>
