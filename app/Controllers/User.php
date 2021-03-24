@@ -323,7 +323,15 @@ class User extends BaseController
 		$query = $model->bukaProfile(session('nim'));
 		$sql = "SELECT * FROM tampilan where nim = ".session('nim');
 		$tampilan = $model->query($sql);
-		// dd($tampilan->getRow());
+
+		$sqlcek = "SELECT password_hash from users where id = ".session('id_user');
+		$cekLM = $model->query($sqlcek);
+
+		if($cekLM->getRow()->password_hash != NULL){
+			session()->set([	//cek login manual atau bukan
+				'manual' => 'yes',
+			]);
+		}
 
 		// dd($query->getRow());
 

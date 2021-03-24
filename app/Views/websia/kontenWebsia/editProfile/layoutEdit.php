@@ -94,9 +94,11 @@
                     <a href="/User/editPublikasi">
                         <li id="publikasi" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editPublikasi') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Publikasi</li>
                     </a>
+                    <?php if(session('manual')=="yes"):?>
                     <a href="/User/editAkun">
                         <li id="akun" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editAkun') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Akun</li>
                     </a>
+                    <?php endif ?>
                 </ul>
 
             </div>
