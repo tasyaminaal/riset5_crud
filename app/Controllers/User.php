@@ -151,6 +151,9 @@ class User extends BaseController
 		//isi :
 		// 'email'
 
+		$sql = "SELECT * FROM tampilan where nim = ".session('nim');
+		$tampilan = $model->query($sql);
+
 		$status = 'user';
 		$jk = $query1->jenis_kelamin;
 		$sb = $query1->status_bekerja;
@@ -189,6 +192,7 @@ class User extends BaseController
 			'prestasi' => $query5,
 			'pendidikan' => $query6,
 			'user' => $query7,
+			'checked'	=> $tampilan->getRow(),
 			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
@@ -266,6 +270,9 @@ class User extends BaseController
 		//isi :
 		// 'email'
 
+		$sql = "SELECT * FROM tampilan where nim = $kunci";
+		$tampilan = $model->query($sql);
+
 		$status = 'bukan user';
 		$jk = $query1->jenis_kelamin;
 		$sb = $query1->status_bekerja;
@@ -301,6 +308,7 @@ class User extends BaseController
 			'prestasi' => $query5,
 			'pendidikan' => $query6,
 			'user' => $query7,
+			'checked'	=> $tampilan->getRow(),
 			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
@@ -313,6 +321,9 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->bukaProfile(session('nim'));
+		$sql = "SELECT * FROM tampilan where nim = ".session('nim');
+		$tampilan = $model->query($sql);
+		// dd($tampilan->getRow());
 
 		// dd($query->getRow());
 
@@ -321,6 +332,7 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
+			'checked'	=> $tampilan->getRow(),
 		];
 		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
 	}
@@ -330,6 +342,7 @@ class User extends BaseController
 	{
 		if (!session()->has('id_user'))
 			return redirect()->to('/');
+
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
@@ -396,6 +409,47 @@ class User extends BaseController
 		$ig				= htmlspecialchars($_POST['ig']);
 		$fb				= htmlspecialchars($_POST['fb']);
 		$twitter		= htmlspecialchars($_POST['twitter']);
+		$cjk = 0;
+		$cteml = 0;
+		$ctl = 0;
+		$cnt = 0;
+		$cemail = 0;
+		$calamat = 0;
+		$cjab = 0;
+		$cig = 0;
+		$ctw = 0;
+		$cfb = 0;
+
+		if(isset($_POST['checkJenisKelamin'])){
+			$cjk = 1;
+		}
+		if(isset($_POST['checkTempatLahir'])){
+			$cteml = 1;
+		}
+		if(isset($_POST['checkTanggalLahir'])){
+			$ctl = 1;
+		}
+		if(isset($_POST['checkTelepon'])){
+			$cnt = 1;
+		}
+		if(isset($_POST['checkEmail'])){
+			$cemail = 1;
+		}
+		if(isset($_POST['checkAlamat'])){
+			$calamat = 1;
+		}
+		if(isset($_POST['checkJabatan'])){
+			$cjab = 1;
+		}
+		if(isset($_POST['checkInstagram'])){
+			$cig = 1;
+		}
+		if(isset($_POST['checkTwitter'])){
+			$ctw = 1;
+		}
+		if(isset($_POST['checkFacebook'])){
+			$cfb = 1;
+		}
 
 		$data = [
 			'nim'		=> session('nim'),
@@ -405,6 +459,19 @@ class User extends BaseController
 			'ig'			=> $ig,
 			'fb'			=> $fb,
 			'twitter'		=> $twitter,
+		];
+
+		$data2 = [
+			'jenis_kelamin' => $cjk,
+			'tempat_lahir' => $cteml,
+			'tanggal_lahir' => $ctl,
+			'no_telp' => $cnt,
+			'email' => $cemail,
+			'alamat' => $calamat,
+			'jabatan' => $cjab,
+			'instagram' => $cig,
+			'twitter' => $ctw,
+			'facebook' => $cfb,
 		];
 
 		// dd($this->form_validation->run($data, 'editProfil'));
@@ -418,6 +485,7 @@ class User extends BaseController
 			
 		} else{
 			$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+			$model->db->table('tampilan')->set($data2)->where('nim', session('nim'))->update();
 			session()->setFlashdata('edit-bio-success', 'Biodata Berhasil Disimpan');
 			return redirect()->to(base_url('User/editProfil'));
 		}

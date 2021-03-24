@@ -7,6 +7,63 @@ if ($status == 'bukan user') {
 } else if ($status == 'user') {
     $tombolEdit = '';
 }
+
+// anehh jk gaada tapi ada di tampilan edit profil waodkaodka
+if($checked->jenis_kelamin == 1){
+    $cjk = "";
+}else{
+    $cjk = "hidden";
+}
+
+// berfungsi, tapi butuh tempat tersendiri biar bisa di hidden, sekarang masih gabung sama tempat lahir
+if($checked->tanggal_lahir == 1){
+    $ctl = "";
+}else{
+    $ctl = "hidden";
+}
+
+// berfungsi, sama anehnya
+if($checked->tempat_lahir == 1){
+    $cteml = "";
+}else{
+    $cteml = "hidden";
+}
+
+if($checked->no_telp == 1){
+    $cnt = "";
+}else{
+    $cnt = "hidden";
+}
+if($checked->email == 1){
+    $cemail = "";
+}else{
+    $cemail = "hidden";
+}
+if($checked->alamat == 1){
+    $calamat = "";
+}else{
+    $calamat = "hidden";
+}
+if($checked->jabatan == 1){
+    $cjab = "";
+}else{
+    $cjab = "hidden";
+}
+if($checked->instagram == 1){
+    $cig = "";
+}else{
+    $cig = "hidden";
+}
+if($checked->twitter == 1){
+    $ctw = "";
+}else{
+    $ctw = "hidden";
+}
+if($checked->facebook == 1){
+    $cfb = "";
+}else{
+    $cfb = "hidden";
+}
 ?>
 <?= $this->extend('websia/layoutWebsia/templateBerandaLogin.php'); ?>
 
@@ -44,7 +101,14 @@ if ($status == 'bukan user') {
 
             </div>
             <!-- tempat dan tanggal lahir -->
-            <p class="font-heading text-primary text-center md:text-left text-sm mb-5 md:mb-3 lg:mb-5"><?= $alumni->tempat_lahir ?>, <?= DATE("d M Y", strtotime($alumni->tanggal_lahir)); ?></p>
+            <p class="font-heading text-primary text-center md:text-left text-sm mb-5 md:mb-3 lg:mb-5">
+            <?php if($cteml=="") :?>
+               | <?= $alumni->tempat_lahir ?> |
+            <?php endif ?>
+            <?php if($ctl=="") :?>
+                <?= strftime("%d %B %Y", strtotime($alumni->tanggal_lahir)); ?>
+            <?php endif ?>
+            </p>
             <p class="font-heading text-center md:text-left text-base mb-5 md:mb-3 lg:mb-5">
                 <!-- Angkatan -->
                 Angkatan <span class="text-primary">ke-<?= $alumni->angkatan; ?> </span><br />
@@ -58,7 +122,9 @@ if ($status == 'bukan user') {
             <!-- Instansi tempat bekerja dan jabatan -->
             <p class="font-heading text-base text-center md:text-left">
                 Bekerja di <span class="text-primary"> <?= $tempat_kerja->nama_instansi; ?> </span></br>
+                <?php if($cjab=="") :?>
                 Sebagai <span class="text-primary"> <?= $alumni->jabatan_terakhir; ?> </span>
+                <?php endif ?>
             </p>
         </div>
     </div>
@@ -71,12 +137,14 @@ if ($status == 'bukan user') {
         </div>
         <!-- Akhir Deskripsi user profile -->
         <div class="md:pl-5 lg:pl-6">
+            <?php if($calamat=="") :?>
             <p class="font-heading text-primary text-xs px-5 md:px-0 mt-6">Lokasi Tempat Tinggal Saat Ini</p>
             <span class="font-heading flex justify-start px-3 md:px-0 text-base text-left mb-5 md:mb-2">
                 <img class="my-2 mt-2 mr-0 md:mr-2 ml-1 md:ml-0 w-6 h-6 md:w-6 float-left" src="/img/icon/maps_flag.png" alt="">
                 <!-- Lokasi tempat tinggal -->
                 <p class="font-heading my-2 mt-2"> <?= $alumni->alamat ?> </p>
             </span>
+            <?php endif ?>
             <!-- Awal media sosial dan telepon -->
             <?php
             if ($alumni->email == "") {
@@ -101,30 +169,42 @@ if ($status == 'bukan user') {
             }
             ?>
             <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
+                <?php if($cemail=="" && $cfb=="") :?>
                 <div class="w-1/2">
                     <!-- Email -->
+                    <?php if($cemail=="") :?>
                     <div class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/message.png" alt="" class="float-left w-5">
                         <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $email ?></span>
                     </div>
+                    <?php endif ?>
                     <!-- Facebook -->
+                    <?php if($cfb=="") :?>
                     <div class="inline-block flex flex-row">
                         <img src="/img/icon/facebook.png" alt="" class="float-left ml-1 w-2 h-4">
                         <span class="font-heading text-xs text-primary text-left flex items-center ml-3 md:ml-4"><?= $fb ?></span>
                     </div>
+                    <?php endif ?>
                 </div>
+                <?php endif ?>
+                <?php if($cig=="" && $ctw=="") :?>
                 <div class="w-1/2 pl-6">
                     <!-- Twitter -->
-                    <div class="inline-block mb-2 flex flex-row">
+                    <?php if($cig=="") :?>
+                    <div <?= $ctw ?> class="inline-block mb-2 flex flex-row">
                         <img src="/img/icon/twitter.png" alt="" class="float-left w-4 w-4">
                         <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3"><?= $twitter ?></span>
                     </div>
+                    <?php endif ?>
                     <!-- Instagram -->
-                    <div class="inline-block flex flex-row">
+                    <?php if($ctw=="") :?>
+                    <div <?= $cig ?> class="inline-block flex flex-row">
                         <img src="/img/icon/instagram.png" alt="" class="float-left w-4">
                         <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3"><?= $ig ?></span>
                     </div>
+                    <?php endif ?>
                 </div>
+                <?php endif ?>
             </div>
             <!--  Akhir media sosial-->
         </div>
