@@ -110,6 +110,9 @@ if ($alumni->aktif_pns == '1') {
                         <?php } ?>
                     </div>
                 </div>
+                <p class="text-xs text-red-500 text-justify mb-2" id="errorNoTelp">
+                    Nomor telepon hanya boleh berupa angka dan panjangnya minimum 9 digit.
+                </p>
                 <div class="flex justify-between items-center md:mr-6">
                     <label for="email" class="font-medium">Email:</label>
                     <input type="checkbox" name="checkEmail" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
@@ -119,9 +122,12 @@ if ($alumni->aktif_pns == '1') {
                         <?php if (session('inputs')) { ?>
                             <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
                         <?php } else { ?>
-                            <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
+                            <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
                         <?php } ?>
                     </div>
+                    <p class="text-xs text-red-500 text-justify mb-2" id="errorEmail">
+                        Email telah digunakan oleh alumni lain.
+                    </p>
                 </div>
                 <div class="flex justify-between items-center">
                     <label for="alamat" class="font-medium">Alamat:</label>

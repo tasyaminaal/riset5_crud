@@ -11,8 +11,14 @@
                 <div class="text-black font-heading font-normal mb-2"><?= $user->email ?></div>
                 <label for="passbaru" class="font-medium">Kata Sandi Baru:</label>
                 <input type="password" name="passbaru" id="passbaru" class="inputForm" placeholder="🞄🞄🞄🞄🞄🞄🞄🞄">
+                <p class="text-xs text-red-500 text-justify mb-2" id="errorPassBaru">
+                    Kata sandi harus terdiri dari huruf dan angka.
+                </p>
                 <label for="ulangpassbaru" class="font-medium">Ketik Ulang Kata Sandi Baru:</label>
                 <input type="password" name="ulangpassbaru" id="ulangpassbaru" class="inputForm" placeholder="🞄🞄🞄🞄🞄🞄🞄🞄">
+                <p class="text-xs text-red-500 text-justify mb-2" id="errorValidPasss">
+                    Kata sandi tidak sesuai.
+                </p>
                 <div class="text-secondary text-xs mt-6 mb-2 text-justify">Silakan Masukkan Kata Sandi Lama Anda untuk Verifikasi!</div>
                 <label for="passlama" class="font-medium">Kata Sandi Lama:</label>
                 <input type="password" name="passlama" id="passlama" class="inputForm" placeholder="🞄🞄🞄🞄🞄🞄🞄🞄" required>

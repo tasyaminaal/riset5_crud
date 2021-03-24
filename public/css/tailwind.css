@@ -33006,6 +33006,34 @@ body {
   }
 }
 
+/* ini untuk input form yg error */
+
+.inputFormError {
+  --tw-border-opacity: 1;
+  border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+  border-radius: 0.5rem;
+  border-width: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.inputFormError:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.inputFormError {
+  padding: 0.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(0, 0, 0, var(--tw-text-opacity));
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .inputFormError {
+    padding: 0.5rem;
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
