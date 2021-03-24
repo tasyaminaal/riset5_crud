@@ -16,7 +16,7 @@
             </div>
             <div class="flex lg:mx-8 sm:mx-6 mx-3">
                 <div class="w-1/4"></div>
-                <p class="w-3/4 text-xs text-red-500 w-3/4 text-justify 
+                <p class="text-xs text-red-500 w-3/4 text-justify 
                     <?php if (session('error') == "Unable to log you in. Please check your credentials.") : ?> 
                         is-invalid
                     <?php else : ?> 
