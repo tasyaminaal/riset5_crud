@@ -11,6 +11,7 @@ module.exports = {
         primaryHover: "#003C75",
         primaryDark: "#015998",
         primaryLight: "#307BB1",
+        primarySidebar: "#044878",
         secondary: "#FFAA00",
         secondaryhover: "#FFBB34",
       },

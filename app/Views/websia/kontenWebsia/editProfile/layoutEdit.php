@@ -52,7 +52,7 @@
 
 <div class="w-full">
     <div class="flex w-full relative">
-        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 bg-primary transition-all duration-500 -mb-8">
+        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 transition-all duration-500 -mb-8 bg-primarySidebar">
             <?php
             function getLastCurrentUrl()
             {
@@ -80,22 +80,22 @@
                 </div>
                 <ul>
                     <a href="/User/editProfil">
-                        <li id="profil" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editProfil') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Biodata</li>
+                        <li id="profil" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mt-4 mr-4 rounded text-sm text-white <?= (getLastCurrentUrl() == 'editProfil') ? 'active' : ''; ?> hover:bg-primaryDark font-semibold">Biodata</li>
                     </a>
                     <a href="/User/editPendidikan">
-                        <li id="pendidikan" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editPendidikan') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Pendidikan</li>
+                        <li id="pendidikan" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded text-sm text-white <?= (getLastCurrentUrl() == 'editPendidikan') ? 'active' : ''; ?>  hover:bg-primaryDark font-semibold">Pendidikan</li>
                     </a>
                     <a href="/User/editTempatKerja">
-                        <li id="tempatkerja" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editTempatKerja') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Tempat Kerja</li>
+                        <li id="tempatkerja" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded text-sm text-white <?= (getLastCurrentUrl() == 'editTempatKerja') ? 'active' : ''; ?>  hover:bg-primaryDark font-semibold">Tempat Kerja</li>
                     </a>
                     <a href="/User/editPrestasi">
-                        <li id="prestasi" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editPrestasi') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Prestasi</li>
+                        <li id="prestasi" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded text-sm text-white <?= (getLastCurrentUrl() == 'editPrestasi') ? 'active' : ''; ?>  hover:bg-primaryDark font-semibold">Prestasi</li>
                     </a>
                     <a href="/User/editPublikasi">
-                        <li id="publikasi" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editPublikasi') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Publikasi</li>
+                        <li id="publikasi" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded text-sm text-white <?= (getLastCurrentUrl() == 'editPublikasi') ? 'active' : ''; ?>  hover:bg-primaryDark font-semibold">Publikasi</li>
                     </a>
                     <a href="/User/editAkun">
-                        <li id="akun" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editAkun') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Akun</li>
+                        <li id="akun" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded text-sm text-white <?= (getLastCurrentUrl() == 'editAkun') ? 'active' : ''; ?> hover:bg-primaryDark font-semibold">Akun</li>
                     </a>
                 </ul>
 
