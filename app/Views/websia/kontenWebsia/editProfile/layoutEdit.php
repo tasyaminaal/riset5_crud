@@ -52,7 +52,7 @@
 
 <div class="w-full">
     <div class="flex w-full relative">
-        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 transition-all duration-500 -mb-8 bg-primarySidebar">
+        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 transition-all duration-500 bg-primarySidebar">
             <?php
             function getLastCurrentUrl()
             {
