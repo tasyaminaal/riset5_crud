@@ -1,9 +1,52 @@
 // awal js edit biodata 
 $('#buttonEditTampilan').click(function (){
     if ($('.editTampilan').hasClass('hidden')){
-       $('.editTampilan').removeClass('hidden') 
+       $('.editTampilan').removeClass('hidden');
+       if(!$('#checkJenisKelamin').is(':checked')) $('#labelJenisKelamin').addClass('text-gray-500');    
+       if(!$('#checkTanggalLahir').is(':checked')){
+           $('#labelTempatLahir').addClass('text-gray-500');    
+           $('#labelTanggalLahir').addClass('text-gray-500');    
+       } 
+       if(!$('#checkTelepon').is(':checked')) $('#labelTelepon').addClass('text-gray-500');    
+       if(!$('#checkEmail').is(':checked')) $('#labelEmail').addClass('text-gray-500');    
+       if(!$('#checkAlamat').is(':checked')) $('#labelAlamat').addClass('text-gray-500');    
+       if(!$('#checkJabatan').is(':checked')) $('#labelJabatan').addClass('text-gray-500');    
+       if(!$('#checkInstagram').is(':checked')) $('#labelInstagram').addClass('text-gray-500');    
+       if(!$('#checkTwitter').is(':checked')) $('#labelTwitter').addClass('text-gray-500');    
+       if(!$('#checkFacebook').is(':checked')) $('#labelFacebook').addClass('text-gray-500');    
     } else {
-        $('.editTampilan').addClass('hidden') 
+        $('.editTampilan').addClass('hidden');
+        $('#labelJenisKelamin').removeClass('text-gray-500');
+        $('#labelTempatLahir').removeClass('text-gray-500');
+        $('#labelTanggalLahir').removeClass('text-gray-500');
+        $('#labelTelepon').removeClass('text-gray-500');
+        $('#labelEmail').removeClass('text-gray-500');
+        $('#labelAlamat').removeClass('text-gray-500');
+        $('#labelJabatan').removeClass('text-gray-500');
+        $('#labelInstagram').removeClass('text-gray-500');
+        $('#labelTwitter').removeClass('text-gray-500');
+        $('#labelFacebook').removeClass('text-gray-500');
+    }
+})
+
+$('.editTampilan').click(function() {
+    let id = $(this).attr('data-id');
+      if($('#check'+id).is(':checked') && id != "TanggalLahir")
+    {
+      $('#label'+id).removeClass("text-gray-500");
+    } else {
+      $('#label'+id).addClass("text-gray-500");
+    }
+  });
+
+$('#checkTanggalLahir').click(function(){
+    if($('#checkTanggalLahir').is(':checked'))
+    {
+      $('#labelTempatLahir').removeClass("text-gray-500");
+      $('#labelTanggalLahir').removeClass("text-gray-500");
+    } else {
+      $('#labelTempatLahir').addClass("text-gray-500");
+      $('#labelTanggalLahir').addClass("text-gray-500");
     }
 })
 

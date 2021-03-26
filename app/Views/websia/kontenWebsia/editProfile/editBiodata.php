@@ -17,55 +17,55 @@ if ($alumni->aktif_pns == '1') {
     $aktif_pns = "Tidak aktif sebagai PNS";
 }
 
-if($checked->jenis_kelamin == 0){
+if ($checked->jenis_kelamin == 0) {
     $cjk = "";
-}else{
+} else {
     $cjk = "checked";
 }
 
-if($checked->tanggal_lahir == 0){
+if ($checked->tanggal_lahir == 0) {
     $ctl = "";
-}else{
+} else {
     $ctl = "checked";
 }
-if($checked->tempat_lahir == 0){
+if ($checked->tempat_lahir == 0) {
     $cteml = "";
-}else{
+} else {
     $cteml = "checked";
 }
-if($checked->no_telp == 0){
+if ($checked->no_telp == 0) {
     $cnt = "";
-}else{
+} else {
     $cnt = "checked";
 }
-if($checked->email == 0){
+if ($checked->email == 0) {
     $cemail = "";
-}else{
+} else {
     $cemail = "checked";
 }
-if($checked->alamat == 0){
+if ($checked->alamat == 0) {
     $calamat = "";
-}else{
+} else {
     $calamat = "checked";
 }
-if($checked->jabatan == 0){
+if ($checked->jabatan == 0) {
     $cjab = "";
-}else{
+} else {
     $cjab = "checked";
 }
-if($checked->instagram == 0){
+if ($checked->instagram == 0) {
     $cig = "";
-}else{
+} else {
     $cig = "checked";
 }
-if($checked->twitter == 0){
+if ($checked->twitter == 0) {
     $ctw = "";
-}else{
+} else {
     $ctw = "checked";
 }
-if($checked->facebook == 0){
+if ($checked->facebook == 0) {
     $cfb = "";
-}else{
+} else {
     $cfb = "checked";
 }
 ?>
@@ -88,8 +88,8 @@ if($checked->facebook == 0){
                 <div class="mt-8 flex justify-center editTampilan hidden lg:absolute lg:top-80">
                     <div>
                         <div class="shadow-xl rounded-lg p-3">
-                            <p class="font-heading font-medium text-sm">Keterangan:</p>
-                            <div class="flex gap-x-2 items-center">
+                            <p class="font-heading font-medium text-sm mb-1">Keterangan:</p>
+                            <div class="flex gap-x-2 items-center mb-1">
                                 <input type="checkbox" checked onclick="return false;" onkeydown="return false;" class="focus:outline-none">
                                 <p class="font-heading font-medium text-xs">Tampilkan</p>
                             </div>
@@ -108,11 +108,11 @@ if($checked->facebook == 0){
             <form action="/User/updateProfil" method="POST" class="font-paragraph text-primary lg:col-span-3" id="formEditBiodata">
                 <div class="flex justify-between items-end">
                     <div class="font-medium">Nama Lengkap:</div>
-                    <div class="bg-secondary hover:bg-secondaryhover text-white lg:py-1.5 py-1 px-3 lg:text-sm text-xs outline-none cursor-pointer rounded-full" id="buttonEditTampilan">
-                        Edit Tampilan
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="lg:w-4 w-3 inline">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                        </svg>
+                    <div class="bg-secondary hover:bg-secondaryhover text-white lg:py-1.5 py-1 px-3 lg:text-sm text-xs outline-none cursor-pointer rounded-full flex gap-x-2 items-center" id="buttonEditTampilan">
+                        <div>
+                            Edit Tampilan
+                        </div>
+                        <img src="/img/icon/edit.png" alt="" class="w-4 h-4">
                     </div>
                 </div>
                 <div class="text-black font-heading font-normal mb-2"><?= $alumni->nama ?></div>
@@ -128,31 +128,31 @@ if($checked->facebook == 0){
                 </div>
                 <div class="mb-2">
                     <div class="flex justify-between items-center">
-                        <div class="font-medium">Jenis Kelamin:</div>
-                        <input type="checkbox" <?= $cjk ?> name="checkJenisKelamin" id="checkJenisKelamin" class="cursor-pointer focus:outline-none editTampilan hidden">
+                        <div class="font-medium" id="labelJenisKelamin">Jenis Kelamin:</div>
+                        <input type="checkbox" <?= $cjk ?> name="checkJenisKelamin" data-id="JenisKelamin" id="checkJenisKelamin" class="cursor-pointer focus:outline-none editTampilan hidden">
                     </div>
                     <div class="text-black font-heading font-normal mb-2"><?= $jk ?></div>
                 </div>
                 <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
-                    <div>
-                        <div class="flex justify-between items-center lg:mr-2">
-                            <div class="font-medium">Tempat Lahir:</div>
-                            <input type="checkbox" <?= $cteml ?> name="checkTempatLahir" id="checkTempatLahir" class="cursor-pointer focus:outline-none md:-mr-1 editTampilan hidden">
-                        </div>
-                        <div class="text-black font-heading font-normal mb-2"><?= $alumni->tempat_lahir ?></div>
+                    <div class="mr-1">
+                        <div class="font-medium" id="labelTempatLahir">Tempat Lahir:</div>
+                        <input type="text" name="tempatLahir" id="tempatLahir" class="inputForm" placeholder="Tempat Lahir" value="<?= $alumni->tempat_lahir ?>">
                     </div>
                     <div>
                         <div class="flex justify-between items-center">
-                            <div class="font-medium">Tanggal Lahir:</div>
+                            <div class="font-medium" id="labelTanggalLahir">Tanggal Lahir:</div>
                             <input type="checkbox" <?= $ctl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                         </div>
-                        <div class="text-black font-heading font-normal mb-2"><?= strftime("%d %B %Y", strtotime($alumni->tanggal_lahir)); ?></div>
+                        <input type="date" name="tanggalLahir" data-id="TanggalLahir" id="tanggalLahir" class="inputForm" value="<?= $alumni->tanggal_lahir ?>">
                     </div>
                 </div>
                 <div class="flex justify-between items-center md:mr-6">
-                    <label for="notelepon" class="font-medium">No. Telepon:</label>
-                    <input type="checkbox" <?= $cnt ?> name="checkTelepon" id="checkTelepon" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
+                    <label for="notelepon" class="font-medium" id="labelTelepon">No. Telepon:</label>
+                    <input type="checkbox" <?= $cnt ?> name="checkTelepon" data-id="Telepon" id="checkTelepon" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
+                <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
+                    Nomor telepon hanya boleh berupa angka dan panjangnya minimum 9 digit.
+                </p>
                 <div class="lg:w-1/2">
                     <div class="lg:mr-6">
                         <?php if (session('inputs')) { ?>
@@ -162,13 +162,13 @@ if($checked->facebook == 0){
                         <?php } ?>
                     </div>
                 </div>
-                <p class="text-xs text-red-500 text-justify mb-2" id="errorNoTelp">
-                    Nomor telepon hanya boleh berupa angka dan panjangnya minimum 9 digit.
-                </p>
                 <div class="flex justify-between items-center md:mr-6">
-                    <label for="email" class="font-medium">Email:</label>
-                    <input type="checkbox" <?= $cemail ?> name="checkEmail" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
+                    <label for="email" class="font-medium" id="labelEmail">Email:</label>
+                    <input type="checkbox" <?= $cemail ?> name="checkEmail" data-id="Email" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
+                <p class="text-xs text-red-500 text-justify" id="errorEmail">
+                    Email telah digunakan oleh alumni lain.
+                </p>
                 <div class="lg:w-1/2">
                     <div class="lg:mr-6">
                         <?php if (session('inputs')) { ?>
@@ -177,13 +177,10 @@ if($checked->facebook == 0){
                             <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
                         <?php } ?>
                     </div>
-                    <p class="text-xs text-red-500 text-justify mb-2" id="errorEmail">
-                        Email telah digunakan oleh alumni lain.
-                    </p>
                 </div>
                 <div class="flex justify-between items-center">
-                    <label for="alamat" class="font-medium">Alamat:</label>
-                    <input type="checkbox" <?= $calamat ?> name="checkAlamat" id="checkAlamat" class="cursor-pointer focus:outline-none editTampilan hidden">
+                    <label for="alamat" class="font-medium" id="labelAlamat">Alamat:</label>
+                    <input type="checkbox" <?= $calamat ?> name="checkAlamat" data-id="Alamat" id="checkAlamat" class="cursor-pointer focus:outline-none editTampilan hidden">
                 </div>
                 <div>
                     <?php if (session('inputs')) { ?>
@@ -204,8 +201,8 @@ if($checked->facebook == 0){
                 </div>
                 <div>
                     <div class="flex justify-between items-center">
-                        <div class="font-medium">Jabatan Terakhir:</div>
-                        <input type="checkbox" <?= $cjab ?> name="checkJabatan" id="checkJabatan" class="cursor-pointer focus:outline-none editTampilan hidden">
+                        <div class="font-medium" id="labelJabatan">Jabatan Terakhir:</div>
+                        <input type="checkbox" <?= $cjab ?> name="checkJabatan" data-id="Jabatan" id="checkJabatan" class="cursor-pointer focus:outline-none editTampilan hidden">
                     </div>
                     <div class="text-black font-heading font-normal mb-2"><?= $alumni->jabatan_terakhir ?></div>
                 </div>
@@ -218,7 +215,7 @@ if($checked->facebook == 0){
                     <div class="w-full">
                         <div class="flex items-center mb-2">
                             <div class="md:w-1/4 w-1/3">
-                                <label for="instagram" class="font-medium">Instagram</label>
+                                <label for="instagram" class="font-medium" id="labelInstagram">Instagram</label>
                             </div>
                             <div class="md:w-3/4 w-2/3 gap-x-3 flex justify-between items-center">
                                 <?php if (session('inputs')) { ?>
@@ -227,12 +224,12 @@ if($checked->facebook == 0){
                                 <?php } else { ?>
                                     <input type="text" name="ig" id="instagram" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Instagram tanpa tanda (@)" value="<?= $alumni->ig ?>">
                                 <?php } ?>
-                                <input type="checkbox" <?= $cig ?> name="checkInstagram" id="checkInstagram" class="cursor-pointer focus:outline-none editTampilan hidden">
+                                <input type="checkbox" <?= $cig ?> name="checkInstagram" data-id="Instagram" id="checkInstagram" class="cursor-pointer focus:outline-none editTampilan hidden">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
                             <div class="md:w-1/4 w-1/3">
-                                <label for="twitter" class="font-medium">Twitter</label>
+                                <label for="twitter" class="font-medium" id="labelTwitter">Twitter</label>
                             </div>
                             <div class="md:w-3/4 w-2/3 gap-x-3 flex justify-between items-center">
                                 <?php if (session('inputs')) { ?>
@@ -240,12 +237,12 @@ if($checked->facebook == 0){
                                 <?php } else { ?>
                                     <input type="text" name="twitter" id="twitter" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Username Twitter" value="<?= $alumni->twitter ?>">
                                 <?php } ?>
-                                <input type="checkbox" <?= $ctw ?> name="checkTwitter" id="checkTwitter" class="cursor-pointer focus:outline-none editTampilan hidden">
+                                <input type="checkbox" <?= $ctw ?> name="checkTwitter" data-id="Twitter" id="checkTwitter" class="cursor-pointer focus:outline-none editTampilan hidden">
                             </div>
                         </div>
                         <div class="flex items-center mb-2">
                             <div class="md:w-1/4 w-1/3">
-                                <label for="facebook" class="font-medium">Facebook</label>
+                                <label for="facebook" class="font-medium" id="labelFacebook">Facebook</label>
                             </div>
                             <div class="md:w-3/4 w-2/3 gap-x-3 flex justify-between items-center">
                                 <?php if (session('inputs')) { ?>
@@ -253,7 +250,7 @@ if($checked->facebook == 0){
                                 <?php } else { ?>
                                     <input type="text" name="fb" id="facebook" class="w-full md:p-2 p-1 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-primary text-black" placeholder="Nama Akun Facebook" value="<?= $alumni->fb ?>">
                                 <?php } ?>
-                                <input type="checkbox" <?= $cfb ?> name="checkFacebook" id="checkFacebook" class="cursor-pointer focus:outline-none editTampilan hidden">
+                                <input type="checkbox" <?= $cfb ?> name="checkFacebook" data-id="Facebook" id="checkFacebook" class="cursor-pointer focus:outline-none editTampilan hidden">
                             </div>
                         </div>
                     </div>
