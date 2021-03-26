@@ -36,16 +36,16 @@ if ($login == 'belum') {
         <!-- akhir keterangan hasil proyek pkl riset 5 -->
     </div>
 
-    <div class="md:w-1/3 w-full md:flex md:items-stretch bg-contain bg-no-repeat bg-right" style="background-image: url(/img/atributBeranda/segitiga2.png)">
-        <img class="lg:w-1/2 md:w-2/3 w-1/3 mb-2 md:mb-0  mx-auto md:self-center" src="/img/logo/logo PKL.png" alt="" data-aos="fade-left">
+    <div class="md:w-1/3 w-full md:flex md:items-stretch bg-contain bg-no-repeat bg-right" style="background-image: url(/img/components/atribut_beranda_sia/segitiga2.png)">
+        <img class="lg:w-1/2 md:w-2/3 w-1/3 mb-2 md:mb-0  mx-auto md:self-center" src="/img/components/logo/logo_pkl.png" alt="logo PKL" data-aos="fade-left">
     </div>
 </div>
 <!-- Akhir Sejarah Singkat HAISTIS -->
 
 <!-- Awal Sejarah Singkat HAISTIS -->
 <div class="flex md:flex-row flex-col bg-primary my-4 py-4 lg:px-20 md:px-8 px-3">
-    <div class="md:w-1/3 w-full md:flex md:items-stretch bg-contain bg-no-repeat bg-left" style="background-image: url(/img/atributBeranda/segitiga1.png)">
-        <img class="lg:w-2/3 md:w-11/12 w-10/12  mx-auto md:self-center" src="/img/logo/logo_haisstis1.png" alt="" data-aos="fade-right">
+    <div class="md:w-1/3 w-full md:flex md:items-stretch bg-contain bg-no-repeat bg-left" style="background-image: url(/img/components/atribut_beranda_sia/segitiga1.png)">
+        <img class="lg:w-2/3 md:w-11/12 w-10/12  mx-auto md:self-center" src="/img/components/logo/logo_haisstis.png" alt="logo HAISSTIS" data-aos="fade-right">
     </div>
 
     <div class="md:w-2/3 block md:px-2 md:py-16 pb-4 ">
@@ -67,21 +67,21 @@ if ($login == 'belum') {
 
     <div class="flex flex-col items-center md:flex-row md:justify-around w-full mt-4">
         <!-- Awal Jumlah Alumni AIS/STIS/Polstat STIS I -->
-        <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/atributBeranda/bulat.png)" data-aos="zoom-in">
+        <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/components/atribut_beranda_sia/bulat.png)" data-aos="zoom-in">
             <div class="text-primary md:text-6xl text-3xl font-bold md:mb-4 mb-2 font-heading">38.578</div>
             <div class="text-gray-500 text-sm font-semibold text-center font-paragraph">Lulusan AIS</div>
         </div>
         <!-- Akhir Jumlah Alumni AIS/STIS/Polstat STIS I-->
 
         <!-- Awal Jumlah Alumni AIS/STIS/Polstat STIS II-->
-        <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/atributBeranda/bulat.png)" data-aos="zoom-in">
+        <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/components/atribut_beranda_sia/bulat.png)" data-aos="zoom-in">
             <div class="text-primary md:text-6xl text-3xl font-bold md:mb-4 mb-2 font-heading">38.578</div>
             <div class="text-gray-500 text-sm font-semibold text-center font-paragraph">Lulusan STIS</div>
         </div>
         <!-- Akhir Jumlah Alumni AIS/STIS/Polstat STIS II-->
 
         <!-- Awal Jumlah Alumni AIS/STIS/Polstat STIS III-->
-        <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/atributBeranda/bulat.png)" data-aos="zoom-in">
+        <div class="w-min mb-2 md:mb-0 py-6 px-6 bg-contain bg-no-repeat bg-center" style="background-image: url(/img/components/atribut_beranda_sia/bulat.png)" data-aos="zoom-in">
             <div class="text-primary md:text-6xl text-3xl font-bold md:mb-4 mb-2 font-heading">38.578</div>
             <div class="text-gray-500 text-sm font-semibold text-center font-paragraph">Lulusan Polstat STIS</div>
         </div>

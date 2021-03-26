@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\I18n\Time;
 
 
 class WebserviceModel extends Model
@@ -155,5 +156,25 @@ class WebserviceModel extends Model
                 FROM token_scope
                 JOIN scope_app ON token_scope.id_scope = scope_app.id AND token_scope.id_token=?;";
         return $this->db->query($sql, [$id_token]);
+    }
+
+    public function getScopeAppToken($token)
+    {
+        $sql = "SELECT token_scope.id_scope
+                FROM token_app
+                JOIN token_scope ON token_app.id = token_scope.id_token AND token_app.token=?;";
+        return $this->db->query($sql, [$token]);
+    }
+
+    public function updateTokenReq($token)
+    {
+        $curr_time = new Time('now');
+
+        $dateTime = $curr_time->toDateTimeString();
+        $sql = "UPDATE token_app
+        SET count_usage = count_usage+1, last_access = ? 
+        WHERE token = ?;";
+
+        return $this->db->query($sql,[$dateTime,$token]);
     }
 }

@@ -2,13 +2,19 @@
 
 <?= $this->section('content'); ?>
 
-<div class="md:grid md:grid-cols-3 lg:gap-x-16 md:gap-x-8 md:my-28 sm:my-24 my-12 md:mx-8 mx-4">
+<div class="md:grid md:grid-cols-3 lg:gap-x-16 md:gap-x-8 my-4 md:mx-8 mx-4">
     <div class="md:col-span-1 mt-8">
         <h1 class="text-2xl text-center font-heading text-secondary font-bold md:hidden block mb-4">DOKUMENTASI</h1>
         <!-- SEARCH DOKUMENTASI -->
         <div class="w-full flex items-center">
             <input type="text" name="pencarian" id="pencarian" placeholder="Pencarian..." class="border-2 border-gray-300 rounded-lg md:px-3 px-1 md:py-2 py-1 w-full">
-            <button><i class="fa fa-search fa-lg text-gray-500 ml-3 hover:text-gray-800"></i></button>
+            <button>
+                <div>
+                    <svg class="text-gray-500 hover:text-black ml-3 w-8 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </button>
         </div>
         <!-- END SEARCH DOKUMENTASI -->
         <hr class="border-gray-300 mt-2">

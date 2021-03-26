@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\AlumniModel;
+use App\Models\WebserviceModel;
 use CodeIgniter\RESTful\ResourceController;
 class Api extends ResourceController
 {
@@ -44,39 +45,135 @@ class Api extends ResourceController
 
 	//--------------------------------------------------------------------
 
-	public function user($data = false) //user:profile
+	public function user() //user:profile
 	{
+		$cek = 0;
 		$init = new AlumniModel();
+		$init2 = new WebserviceModel();
+		$apiKey = $this->request->getPost('api-key');
+		$nim = $this->request->getPost('nim');
 
-		if ($data===false) {
-			$alumni = $init->getUserApi()->getResult();
+		if ($apiKey==NULL) {
+			$respond = [
+				'status' => 401,
+				'message'=> 'Please input an api-key',
+				'data' => []
+			];
 
-			return $this->respond($alumni, 200);
-	
-		} else {
-			$alumni = $init->getUserApi($data)->getResult();
-
-			return $this->respond($alumni, 200);
+			return $this->respond($respond,401);
 		}
 
+		$scope = $init2->getScopeAppToken($apiKey)->getResult();
+
+		foreach ($scope as $key => $value) {
+			 $scope[$key]->id_scope;
+			 if ($scope[$key]->id_scope=='1') {
+				 $cek = $cek+1;
+			 }
+		}
+
+
+		$init2->updateTokenReq($apiKey);
+
+		if($cek == 1){
+			$alumni = $init->getUserApi($nim)->getResult();
+			$respond = [
+				'status' => 200,
+				'message'=> 'Successful!',
+				'data' => $alumni
+			];
+			return $this->respond($respond, 200);
+		} else {
+			$respond = [
+				'status' => 403,
+				'message'=> 'Forbidden!',
+				'data' => []
+			];
+			return $this->respond($respond, 403);	
+		}
+		 
 	}
 
 	//--------------------------------------------------------------------
 
 
-	public function alumni($data = false) //alumni:profile
+	public function alumni() //alumni:profile
 	{
+		$scp2 = 0;
+		$scp3 = 0;
 		$init = new AlumniModel();
-		if ($data===false) {
-			$alumni = $init->getDetailUserApi()->getResult();
+		$init2 = new WebserviceModel();
+		$apiKey = $this->request->getPost('api-key');
+		$list = $this->request->getPost('list');
+		$nim = $this->request->getPost('nim');
 
-			return $this->respond($alumni, 200);
-		} else {
-			$alumni = $init->getDetailUserApi($data)->getResult();
+		if ($apiKey==NULL) {
+			$respond = [
+				'status' => 401,
+				'message'=> 'Please input an api-key!',
+				'data' => []
+			];
 
-			return $this->respond($alumni, 200);
+			return $this->respond($respond,401);
 		}
-	}
+
+		$scope = $init2->getScopeAppToken($apiKey)->getResult();
+
+		foreach ($scope as $key => $value) {
+			 $scope[$key]->id_scope;
+			 if ($scope[$key]->id_scope=='2') {
+				 $scp2 = 1;
+			 };
+
+			 if ($scope[$key]->id_scope=='3') {
+				$scp3 = 1;
+			};
+		};
+
+		$init2->updateTokenReq($apiKey);
+
+
+		if ($list==1) {
+			if ($scp3 == 1) {
+				$alumni = $init->getDetailUserApi()->getResult();
+
+				$respond = [
+					'status' => 200,
+					'message'=> 'Successful!',
+					'data' => $alumni
+				];
+				return $this->respond($respond, 200);
+				
+			} else {
+				$respond = [
+					'status' => 403,
+					'message'=> 'Forbidden!',
+					'data' => []
+				];
+				return $this->respond($respond, 403);
+			}
+		} else {
+
+			if ($scp2 == 1) {
+				$alumni = $init->getDetailUserApi($nim)->getResult();
+	
+				$respond = [
+					'status' => 200,
+					'message'=> 'Successful!',
+					'data' => $alumni
+				];
+				return $this->respond($respond, 200);
+			} else {
+				$respond = [
+					'status' => 403,
+					'message'=> 'Forbidden!',
+					'data' => []
+				];
+				return $this->respond($respond, 403);
+			}
+		};
+
+	} 
 
 	//--------------------------------------------------------------------
 

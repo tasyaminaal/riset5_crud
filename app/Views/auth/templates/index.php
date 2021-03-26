@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="/css/output.css" rel="stylesheet">
+    <link href="/css/tailwind.css" rel="stylesheet">
+
+    <!-- link utk manggil font nya  -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <title>Riset 5</title>
 </head>
@@ -20,7 +24,7 @@
                     <a href="/" class="flex ">
 
                         <!-- logo polstat stis -->
-                        <img src="/img/STISlogo.png" alt="" class="rounded-full w-12 h-12 my-auto md:w-16 md:h-16">
+                        <img src="/img/components/logo/logo_stis.png" alt="logo STIS" class="rounded-full w-12 h-12 my-auto md:w-16 md:h-16">
                         <!-- logo polstat stis -->
 
                         <!-- judul web -->
@@ -37,7 +41,7 @@
                     </div>
                 </div>
                 <div class="block md:flex my-auto md:my-auto hidden" id="submenu">
-                    <div class="text-xs md:text-base font-semibold text-center mx-4 mt-1 md:mt-0 py-1 px-2 hover:bg-gray-100"> <a href="<?= base_url('login')?>"> Login </a></div>
+                    <div class="text-xs md:text-base font-semibold text-center mx-4 mt-1 md:mt-0 py-1 px-2 hover:bg-gray-100"> <a href="<?= base_url('login') ?>"> Login </a></div>
                 </div>
             </div>
         </div>

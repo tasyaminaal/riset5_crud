@@ -210,24 +210,6 @@ $('.updateFotoProfil').click(function () {
     })
 })
 
-// $('#submitBiodata').click(function () {
-//     $('body').prepend(`
-//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalBiodata'>
-//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
-// </div>
-//     </div>
-// `)
-
-//     $('#modalBiodata').children().first().removeClass('hidden')
-//     setTimeout(function () {
-//         $('#modalBiodata').children().first().removeClass('opacity-0')
-//     }, 10);
-//     setTimeout(function () {
-//         $('#formEditBiodata').submit()
-//     }, 700);
-// })
 // akhir js edit biodata
 
 // awal js sorting
@@ -317,24 +299,6 @@ function formPendidikan(id, jenjang, univ, studi, masuk, lulus, tulisan) {
         }
     })
 
-    // $('#backPendidikan').prev().click(function (e) {
-    //     e.preventDefault()
-    //     $('#formEditPendidikan').children().first().addClass('hidden')
-    //     $('#formEditPendidikan').prepend(`
-    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Disimpan</p>
-    //     </div>
-    //     `)
-    //     $('#formEditPendidikan').children().first().removeClass('hidden')
-    //     setTimeout(function () {
-    //         $('#formEditPendidikan').children().first().removeClass('opacity-0')
-    //     }, 10);
-    //     setTimeout(function () {
-    //         $('#formEditPendidikan').children().eq(1).children().eq(1).submit()
-    //     }, 700);
-    // })
-
     $('#editId').val(id);
     $('#editJenjang').val(jenjang);
     $('#editUniversitas').val(univ);
@@ -412,24 +376,6 @@ $('.tambahPendidikan').click(function () {
             }, 400);
         }
     })
-
-    // $('#backPendidikan').prev().click(function (e) {
-    //     e.preventDefault()
-    //     $('#formTambahPendidikan').children().first().addClass('hidden')
-    //     $('#formTambahPendidikan').prepend(`
-    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Ditambahkan</p>
-    //     </div>
-    //     `)
-    //     $('#formTambahPendidikan').children().first().removeClass('hidden')
-    //     setTimeout(function () {
-    //         $('#formTambahPendidikan').children().first().removeClass('opacity-0')
-    //     }, 10);
-    //     setTimeout(function () {
-    //         $('#formTambahPendidikan').children().eq(1).children().eq(1).submit()
-    //     }, 700);
-    // })
 
 })
 
@@ -615,24 +561,6 @@ function formPrestasi(id, prestasi, tahun) {
         }
     })
 
-    // $('#backPrestasi').prev().click(function (e) {
-    //     e.preventDefault()
-    //     $('#formEditPrestasi').children().first().addClass('hidden')
-    //     $('#formEditPrestasi').prepend(`
-    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Disimpan</p>
-    //     </div>
-    //     `)
-    //     $('#formEditPrestasi').children().first().removeClass('hidden')
-    //     setTimeout(function () {
-    //         $('#formEditPrestasi').children().first().removeClass('opacity-0')
-    //     }, 10);
-    //     setTimeout(function () {
-    //         $('#formEditPrestasi').children().eq(1).children().eq(1).submit()
-    //     }, 800);
-    // })
-
     $('#editId').val(id);
     $('#editPrestasi').val(prestasi);
     $('#editTahun').val(tahun);
@@ -692,23 +620,6 @@ $('.tambahPrestasi').click(function () {
         }
     })
 
-    // $('#backPrestasi').prev().click(function (e) {
-    //     e.preventDefault()
-    //     $('#formTambahPrestasi').children().first().addClass('hidden')
-    //     $('#formTambahPrestasi').prepend(`
-    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Ditambahkan</p>
-    //     </div>
-    //     `)
-    //     $('#formTambahPrestasi').children().first().removeClass('hidden')
-    //     setTimeout(function () {
-    //         $('#formTambahPrestasi').children().first().removeClass('opacity-0')
-    //     }, 10);
-    //     setTimeout(function () {
-    //         $('#formTambahPrestasi').children().eq(1).children().eq(1).submit()
-    //     }, 800);
-    // })
 })
 
 function hapusPrestasi(id){
@@ -822,23 +733,6 @@ function formPublikasi(id, topik, publisher, tanggal, deskripsi) {
         }
     })
 
-    // $('#backPublikasi').prev().click(function (e) {
-    //     e.preventDefault()
-    //     $('#formEditPublikasi').children().first().addClass('hidden')
-    //     $('#formEditPublikasi').prepend(`
-    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Disimpan</p>
-    //     </div>
-    //     `)
-    //     $('#formEditPublikasi').children().first().removeClass('hidden')
-    //     setTimeout(function () {
-    //         $('#formEditPublikasi').children().first().removeClass('opacity-0')
-    //     }, 10);
-    //     setTimeout(function () {
-    //         $('#formEditPublikasi').children().eq(1).children().eq(1).submit()
-    //     }, 700);
-    // })
 
     $('#editId').val(id);
     $('#editTopik').val(topik);
@@ -909,24 +803,6 @@ $('.tambahPublikasi').click(function () {
             }, 400);
         }
     })
-
-    // $('#backPublikasi').prev().click(function (e) {
-    //     e.preventDefault()
-    //     $('#formTambahPublikasi').children().first().addClass('hidden')
-    //     $('#formTambahPublikasi').prepend(`
-    //     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    //         <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    //         <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Ditambahkan</p>
-    //     </div>
-    //     `)
-    //     $('#formTambahPublikasi').children().first().removeClass('hidden')
-    //     setTimeout(function () {
-    //         $('#formTambahPublikasi').children().first().removeClass('opacity-0')
-    //     }, 10);
-    //     setTimeout(function () {
-    //         $('#formTambahPublikasi').children().eq(1).children().eq(1).submit()
-    //     }, 700);
-    // })
 
 })
 
@@ -1000,7 +876,7 @@ $('#simpanBiodata').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='popupBiodata'>
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00">Biodata Berhasil Disimpan</p>
         </div>
     </div>`)
@@ -1021,9 +897,9 @@ $('#simpanAkun').click(function (e) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='popupAkun'>
     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
-</div>
+        <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
+        <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
+    </div>
     </div>
 `)
 

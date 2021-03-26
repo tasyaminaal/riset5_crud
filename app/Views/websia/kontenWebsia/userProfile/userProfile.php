@@ -231,7 +231,7 @@ if ($status == 'bukan user') {
             <div class="invisible sm:visible">
                 <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/User/rekomendasi">
                     Lihat Semua Rekomendasi
-                    <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
+                    <img src="/img/components/icon/panah_kanan.png" alt="icon panah kanan" class="float-right pl-2">
                 </a>
             </div>
             <h2 class="font-heading mb-6 text-xl inline-block">Alumni yang mungkin Anda kenal</h2>
@@ -256,7 +256,7 @@ if ($status == 'bukan user') {
         <div class="visible sm:invisible">
             <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/User/rekomendasi">
                 Lihat Semua Rekomendasi
-                <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
+                <img src="/img/icon/g" alt="" class="float-right pl-2">
             </a>
         </div>
     </div>
@@ -343,15 +343,15 @@ if ($status == 'bukan user') {
     <div class="lg:px-16">
         <div class="md:shadow-lg lg:shadow-xl rounded-3xl w-full mx-auto mt-5">
             <div class="overflow-x-scroll md:overflow-x-hidden">
-                <table class="table-auto font-paragraph text-black  ">
+                <table class="table-fixed font-paragraph text-black">
                     <thead>
                         <tr>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 rounded-tl-xl lg:rounded-tl-3xl text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-0 py-2 md:py-3 lg:py-4">Jenjang Pendidikan</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-32 py-2 md:py-3 lg:py-4">Univeristas</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-14 py-2 md:py-3 lg:py-4">Program Studi</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-3 py-2 md:py-3 lg:py-4">Tahun Masuk</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 pr-3 lg:pr-3 py-2 md:py-3 lg:py-4">Tahun Lulus</th>
-                            <th class="bg-gray-100 border-b-2 border-gray-200 rounded-tr-xl lg:rounded-tr-3xl text-sm text-left pl-3 pr-32 md:pr-24 lg:pr-80 lg:pl-5 py-2 md:py-3 lg:py-4">Judul Tulisan</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 rounded-tl-xl lg:rounded-tl-3xl text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Jenjang Pendidikan</th>
+                            <th class="w-2/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Univeristas</th>
+                            <th class="w-2/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Program Studi</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Tahun Masuk</th>
+                            <th class="w-1/12 bg-gray-100 border-b-2 border-gray-200 text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Tahun Lulus</th>
+                            <th class="w-3/12 bg-gray-100 border-b-2 border-gray-200 rounded-tr-xl lg:rounded-tr-3xl text-sm text-left pl-3 lg:pl-5 py-2 md:py-3 lg:py-4">Judul Tulisan</th>
                         </tr>
                     </thead>
                     <tbody>

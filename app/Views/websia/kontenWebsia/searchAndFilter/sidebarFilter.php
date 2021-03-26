@@ -1,27 +1,27 @@
-<div class="md:relative fixed flex flex-col bg-primary rounded-r md:h-auto h-full sidebarSearch">
+<div class="md:relative fixed flex flex-col bg-primarySidebar md:h-auto h-full sidebarSearch">
 
-    <div class="flex md:px-5 px-2 py-2 justify-between bg-primaryHover items-center">
-        <div class="md:text-2xl text-base font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
-        <svg class="md:w-7 w-4 fill-current text-secondary cursor-pointer hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div class="flex md:px-5 px-4 py-3 justify-between bg-primaryHover items-center">
+        <div class="md:text-xl text-base font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
+        <svg class="md:w-7 w-6 fill-current text-secondary cursor-pointer hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </div>
 
-    <div class="flex flex-col mt-4 hidden param2">
+    <div class="flex flex-col mt-4 ml-0 mr-4 hidden param2">
 
         <!-- Awal tombol filter "Semua" -->
-        <div class="md:text-base text-sm text-secondary hover:bg-primaryDark font-heading font-medium px-4 py-1 cursor-pointer filterSidebar">Semua</div>
+        <div class="md:text-base text-sm text-white bg-primary hover:bg-primaryDark font-heading font-medium px-5 py-1 cursor-pointer filterSidebar rounded">Semua</div>
         <!-- Akhir tombol filter "Semua" -->
 
         <!-- Awal filter "Alumni" -->
-        <div class="md:text-base text-sm  text-white hover:bg-primaryDark font-heading font-medium px-4 py-1 cursor-pointer filterSidebar">Alumni</div>
+        <div class="md:text-base text-sm  text-white bg-primary hover:bg-primaryDark font-heading font-medium px-5 py-1 cursor-pointer filterSidebar">Alumni</div>
 
         <div class="flex flex-col py-1 px-6 w-full hidden listFilterSidebarAlumni">
 
             <!-- Awal Filter "Prodi" Untuk Alumni  -->
             <div class="flex flex-col">
-                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded-lg cursor-pointer listSidebar">
-                    <div class="md:text-sm text-xs text-white font-heading">Prodi</div>
+                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded cursor-pointer listSidebar">
+                    <div class="md:text-sm text-xs text-white font-heading">Program Studi</div>
                     <svg class="w-3 h-3 my-auto text-white font-semibold " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -31,9 +31,9 @@
                 </div>
 
                 <!-- Awal List Filter "Prodi" Untuk Alumni  -->
-                <div class="flex flex-col font-paragraph mb-1 px-3 hidden listProdi">
+                <div class="flex flex-col font-paragraph ml-2 mb-1 hidden listProdi bg-primary">
 
-                    <div class="flex items-center justify-between text-white cursor-pointer  py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                    <div class="flex items-center justify-between text-gray-300 cursor-pointer mx-0 py-2 px-3 hover:bg-primaryDark rounded namaProdi">
                         <div class="text-xs w-full">DIII Statistika</div>
 
                         <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +41,7 @@
                         </svg>
                     </div>
 
-                    <div class="flex items-center justify-between text-white cursor-pointer  py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                    <div class="flex items-center justify-between text-gray-300 cursor-pointer  py-2 px-3 hover:bg-primaryDark rounded namaProdi">
                         <div class="text-xs w-full">DIV Statistika</div>
 
                         <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                         </svg>
                     </div>
 
-                    <div class="flex items-center justify-between text-white cursor-pointer  py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                    <div class="flex items-center justify-between text-gray-300 cursor-pointer  py-2 px-3 hover:bg-primaryDark rounded namaProdi">
                         <div class="text-xs w-full">DIV Komputasi Statistik</div>
 
                         <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@
 
             <!-- Awal Filter "Angkatan" Untuk Alumni  -->
             <div class="flex flex-col">
-                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded-lg cursor-pointer listSidebar">
+                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded cursor-pointer listSidebar">
                     <div class="md:text-sm text-xs font-heading text-white">Angkatan</div>
                     <svg class="w-3 h-3 my-auto text-white font-semibold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -91,7 +91,7 @@
 
             <!-- Awal Filter "Tempat Kerja" Untuk Alumni  -->
             <div class="flex flex-col">
-                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded-lg cursor-pointer listSidebar">
+                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded cursor-pointer listSidebar">
                     <div class="md:text-sm text-xs text-white font-heading ">Tempat Kerja</div>
                     <svg class="w-3 h-3 my-auto text-white font-semibold " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -150,7 +150,7 @@
         <!-- Akhir filter "Alumni" -->
 
         <!-- Awal filter "Berita" -->
-        <div class="md:text-base text-sm text-white hover:bg-primaryDark font-medium px-4 py-1 cursor-pointer filterSidebar">Artikel/Berita</div>
+        <div class="md:text-base text-sm text-white bg-primary hover:bg-primaryDark font-medium px-5 py-1 cursor-pointer filterSidebar">Artikel/Berita</div>
 
         <div class="flex flex-col py-1 px-7 w-full hidden listFilterSidebarBerita">
 

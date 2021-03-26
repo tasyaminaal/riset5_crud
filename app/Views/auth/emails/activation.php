@@ -26,7 +26,7 @@
                 <tr>
                     <td style="text-align: center;">
                         <div class="text-author">
-                            <img src="<?= base_url('/img/fav.png') ?>" alt="" style="width: 100px; max-width: 600px; height: auto; margin: auto; display: block;">
+                            <img src="<?= base_url('/img/components/logo/logo_pkl.png') ?>" alt="logo PKL" style="width: 100px; max-width: 600px; height: auto; margin: auto; display: block;">
                             <span class="name" style="font-size:medium"><?= $username ?></span>
                             <br>
                             <br>

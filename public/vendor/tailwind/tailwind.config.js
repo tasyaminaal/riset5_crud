@@ -11,6 +11,7 @@ module.exports = {
         primaryHover: "#003C75",
         primaryDark: "#015998",
         primaryLight: "#307BB1",
+        primarySidebar: "#044878",
         secondary: "#FFAA00",
         secondaryhover: "#FFBB34",
         success: "#54AC00",
@@ -22,7 +23,10 @@ module.exports = {
       },
       spacing: {
         '18': '4.5rem',
-      }
+      },
+      padding: {
+        '22': '5.5rem',
+       }
     },
   },
   variants: {

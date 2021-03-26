@@ -12,12 +12,15 @@ filterSidebar.forEach(o => {
     o.addEventListener("click", () => {
         filterSidebar.forEach(p => {
             p.classList.remove('text-secondary');
+            p.classList.remove('bg-primaryDark');
             if(!p.classList.contains('text-white')){
                 p.classList.add('text-white');
+                
             }
         });
         o.classList.remove('text-white');
         o.classList.add('text-secondary');
+        o.classList.add('bg-primaryDark');
         getList(o.innerHTML);
     })
 })
@@ -106,7 +109,7 @@ function getList(param){
         $('.listFilterSidebarAlumni').addClass('hidden');
     }
 
-    if(param == 'Prodi'){
+    if(param == 'Program Studi'){
         $('.listProdi').toggleClass('hidden');
     } 
 
