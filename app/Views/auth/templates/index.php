@@ -24,7 +24,7 @@
                     <a href="/" class="flex ">
 
                         <!-- logo polstat stis -->
-                        <img src="/img/STISlogo.png" alt="" class="rounded-full w-12 h-12 my-auto md:w-16 md:h-16">
+                        <img src="/img/components/logo/logo_stis.png" alt="logo STIS" class="rounded-full w-12 h-12 my-auto md:w-16 md:h-16">
                         <!-- logo polstat stis -->
 
                         <!-- judul web -->

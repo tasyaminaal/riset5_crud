@@ -37,8 +37,8 @@
                     </svg>
                 </a>
                 <a href="#img-1">
-                    <img src="/img/left-on.png" alt="" class="absolute top-32 sm:top-1/3">
-                    <img src="/img/right-on.png" alt="" class="absolute top-32 right-0 sm:top-1/3">
+                    <img src="/img/components/icon/left-on.png" alt="icon panah kiri on" class="absolute top-32 sm:top-1/3">
+                    <img src="/img/components/icon/right-on.png" alt="icon panah kiri on" class="absolute top-32 right-0 sm:top-1/3">
                 </a>
                 <img src="/img/alumni.jpg" alt="" class="w-full sm:max-w-screen-sm">
                 <p class="mx-12 mt-2 sm:mx-24 md:mx-40 lg:mx-48 text-center text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam impedit optio praesentium soluta quasi. Voluptatibus molestias sequi inventore odit voluptas pariatur a ut, totam obcaecati accusamus iure, labore dolorum dolor.</p>
@@ -47,7 +47,7 @@
         <!-- Awal Navigasi -->
         <div class="flex justify-center md:justify-end items-center mx-8 p-2 text-white font-paragraph">
             <a href="" class="p-1 hover:bg-secondary rounded-full">
-                <img src="/img/icon/panah_kiri.png" alt="">
+                <img src="/img/components/icon/panah_kiri.png" alt="icon panah kiri">
             </a>
             <a href="" class="p-1 hover:text-secondary">
                 1
@@ -62,7 +62,7 @@
                 45
             </a>
             <a href="" class="p-1 hover:bg-secondary rounded-full">
-                <img src="/img/icon/panah_kanan.png" alt=""></a>
+                <img src="/img/components/icon/panah_kanan.png" alt="icon panah kanan"></a>
         </div>
         <!-- Akhir Navigasi -->
     </div>

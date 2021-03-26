@@ -25,6 +25,9 @@
                     </div>
                 <?php endforeach; ?>
                 <?= $pager->simpleLinks() ?>
+
+                Newer
+                Older
             </div>
         </section>
         <div class="mt-8 pb-2 text-center md:text-left font-semibold">
@@ -37,7 +40,7 @@
             </button>
             <!-- Akhir button Tampilkan Lebih Banyak -->
             <a class="float-left bg-secondary font-paragraph text-sm text-white text-center py-1 px-3 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-200" href="/profil">
-                <img src="/img/icon/panah_kiri.png" alt="" class="float-left pr-2">
+                <img src="/img/components/icon/panah_kiri.png" alt="icon panah kiri" class="float-left pr-2">
                 Kembali
             </a>
         </div>

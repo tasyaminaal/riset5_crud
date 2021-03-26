@@ -103,7 +103,7 @@
             <!-- Control sidebar content goes here -->
             <div class="p-3 control-sidebar-content">
                 <div class="profile text-center">
-                    <img class="img-circle" src=" <?= base_url('/img/fav.png') ?>" style="width:100px; height:100px" alt="User Avatar">
+                    <img class="img-circle" src=" <?= base_url('/img/components/logo/logo_pkl.png') ?>" style="width:100px; height:100px" alt="logo PKL">
                     <div class="text-xs mt-3">
                         <h5 class="widget-user-username text-center"><?php if (userdata()) echo (userdata()['fullname']) ?></h5>
                         <h6 class="widget-user-desc text-center"><?= array_to_string(role_user(), 2, 'name') ?></h6>

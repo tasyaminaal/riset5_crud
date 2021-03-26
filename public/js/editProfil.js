@@ -64,7 +64,7 @@ $('.updateFotoProfil').click(function () {
         $('body').prepend(`
         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
         <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Foto Profil Berhasil Diubah</p>
         </div>
     </div>
@@ -83,7 +83,7 @@ $('#submitBiodata').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalBiodata'>
     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+    <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
 </div>
     </div>
@@ -189,7 +189,7 @@ function edit(id, jenjang, univ, studi, masuk, lulus, tulisan) {
         $('#formEditPendidikan').children().first().addClass('hidden')
         $('#formEditPendidikan').prepend(`
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Disimpan</p>
         </div>
         `)
@@ -285,7 +285,7 @@ $('.tambahPendidikan').click(function () {
         $('#formTambahPendidikan').children().first().addClass('hidden')
         $('#formTambahPendidikan').prepend(`
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Ditambahkan</p>
         </div>
         `)
@@ -308,9 +308,9 @@ $('#submitTempatKerja').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Disimpan</p>
-</div>
+        <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
+        <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Disimpan</p>
+    </div>
     </div>
 `)
 
@@ -381,7 +381,7 @@ $('.editPrestasi').click(function () {
         $('#formEditPrestasi').children().first().addClass('hidden')
         $('#formEditPrestasi').prepend(`
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Disimpan</p>
         </div>
         `)
@@ -454,7 +454,7 @@ $('.tambahPrestasi').click(function () {
         $('#formTambahPrestasi').children().first().addClass('hidden')
         $('#formTambahPrestasi').prepend(`
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Ditambahkan</p>
         </div>
         `)
@@ -535,7 +535,7 @@ $('.editPublikasi').click(function () {
         $('#formEditPublikasi').children().first().addClass('hidden')
         $('#formEditPublikasi').prepend(`
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Disimpan</p>
         </div>
         `)
@@ -617,7 +617,7 @@ $('.tambahPublikasi').click(function () {
         $('#formTambahPublikasi').children().first().addClass('hidden')
         $('#formTambahPublikasi').prepend(`
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Ditambahkan</p>
         </div>
         `)
@@ -639,8 +639,8 @@ $('#submitAkun').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalAkun'>
     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Akun Berhasil Diperbarui</p>
+        <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
+        <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Akun Berhasil Diperbarui</p>
 </div>
     </div>
 `)
@@ -660,7 +660,7 @@ $('#simpanBiodata').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='popupBiodata'>
         <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00">Biodata Berhasil Disimpan</p>
         </div>
     </div>`)
@@ -681,9 +681,9 @@ $('#simpanAkun').click(function (e) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='popupAkun'>
     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
-</div>
+        <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
+        <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
+    </div>
     </div>
 `)
 

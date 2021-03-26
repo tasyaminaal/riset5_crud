@@ -12,7 +12,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-indigo">
   <!-- Brand Logo -->
   <a href="<?= base_url() ?>" class="brand-link navbar-white">
-    <img src="<?= base_url('/img/fav.png') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-2">
+    <img src="<?= base_url('/img/components/logo/logo_pkl.png') ?>" alt="logo PKL" class="brand-image img-circle elevation-2">
     <span class="brand-text font-weight-light">Admin Dashboard</span>
   </a>
 

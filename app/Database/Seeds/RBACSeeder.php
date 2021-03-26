@@ -164,7 +164,7 @@ class RBACSeeder extends \CodeIgniter\Database\Seeder
             ],
             [
                 'menu_id'   => 2,
-                'title'     => 'Login Attempts',
+                'title'     => ' Attempts',
                 'url'       => 'admin/login-attempts',
                 'icon'      => 'fas fa-sign-in-alt',
                 'active'    => 1

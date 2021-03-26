@@ -15,7 +15,7 @@ echo $this->section('content');
     </div>
     <div class="sm:flex sm:flex-col sm:justify-center hidden xl:w-4/12 sm:w-1/2 relative" data-aos="fade-left">
         <div class="flex flex-col">
-            <img src="/img/logo api.png" alt="Logo Api">
+            <img src="/img/components/logo/logo_api.png" alt="Logo API">
         </div>
     </div>
 </div>

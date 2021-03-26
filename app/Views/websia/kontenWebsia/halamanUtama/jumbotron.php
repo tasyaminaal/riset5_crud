@@ -1,7 +1,7 @@
 <!-- Kalo mau akses carousel, di controller websia ganti variabel login = 'belum' -->
 <div class="w-full bg-primary">
-    <div class="w-full bg-cover bg-right" style="background-image: url('/img/komponen 1.png');">
-        <!-- <img class="w-full" src="/img/komponen 1.png"> -->
+    <div class="w-full bg-cover bg-right" style="background-image: url('/img/components/jumbotron.png');">
+        <!-- <img class="w-full" src="/img/components/jumbotron.png"> -->
         <div class="container py-12 md:20 lg:py-28">
             <div class="w-2/3 md:w-full lg:w-2/3">
                 <div class="md:py-10 px-10 lg:px-28 md:px-20">

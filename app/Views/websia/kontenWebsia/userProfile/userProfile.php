@@ -73,7 +73,7 @@ if ($status == 'bukan user') {
         <div class="md:pl-5 lg:pl-6">
             <p class="font-heading text-primary text-xs px-5 md:px-0 mt-6">Lokasi Tempat Tinggal Saat Ini</p>
             <span class="font-heading flex justify-start px-3 md:px-0 text-base text-left mb-5 md:mb-2">
-                <img class="my-2 mt-2 mr-0 md:mr-2 ml-1 md:ml-0 w-6 h-6 md:w-6 float-left" src="/img/icon/maps_flag.png" alt="">
+                <img class="my-2 mt-2 mr-0 md:mr-2 ml-1 md:ml-0 w-6 h-6 md:w-6 float-left" src="/img/components/icon/maps_flag.png" alt="icon maps">
                 <!-- Lokasi tempat tinggal -->
                 <p class="font-heading my-2 mt-2"> <?= $alumni->alamat ?> </p>
             </span>
@@ -104,24 +104,24 @@ if ($status == 'bukan user') {
                 <div class="w-1/2">
                     <!-- Email -->
                     <div class="inline-block mb-2 flex flex-row">
-                        <img src="/img/icon/message.png" alt="" class="float-left w-5">
+                        <img src="/img/components/icon/tiny_message.png" alt="icon tiny message" class="float-left w-5">
                         <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $email ?></span>
                     </div>
                     <!-- Facebook -->
                     <div class="inline-block flex flex-row">
-                        <img src="/img/icon/facebook.png" alt="" class="float-left ml-1 w-2 h-4">
+                        <img src="/img/components/icon/tiny_facebook.png" alt="icon tiny facebook" class="float-left ml-1 w-2 h-4">
                         <span class="font-heading text-xs text-primary text-left flex items-center ml-3 md:ml-4"><?= $fb ?></span>
                     </div>
                 </div>
                 <div class="w-1/2 pl-6">
                     <!-- Twitter -->
                     <div class="inline-block mb-2 flex flex-row">
-                        <img src="/img/icon/twitter.png" alt="" class="float-left w-4 w-4">
+                        <img src="/img/components/icon/tiny_twitter.png" alt="icon tiny twitter" class="float-left w-4 w-4">
                         <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3"><?= $twitter ?></span>
                     </div>
                     <!-- Instagram -->
                     <div class="inline-block flex flex-row">
-                        <img src="/img/icon/instagram.png" alt="" class="float-left w-4">
+                        <img src="/img/components/icon/tiny_instagram.png" alt="icon tiny instagram" class="float-left w-4">
                         <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3"><?= $ig ?></span>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ if ($status == 'bukan user') {
             <div class="invisible sm:visible">
                 <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-100" href="/User/rekomendasi">
                     Lihat Semua Rekomendasi
-                    <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
+                    <img src="/img/components/icon/panah_kanan.png" alt="icon panah kanan" class="float-right pl-2">
                 </a>
             </div>
             <h2 class="font-heading mb-6 text-xl inline-block">Alumni yang mungkin Anda kenal</h2>
@@ -165,7 +165,7 @@ if ($status == 'bukan user') {
         <div class="visible sm:invisible">
             <a class="bg-secondary mb-8 mt-1 md:mt-0 float-right font-paragraph text-sm text-white text-center py-1 px-4 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-300" href="/User/rekomendasi">
                 Lihat Semua Rekomendasi
-                <img src="/img/icon/panah.png" alt="" class="float-right pl-2">
+                <img src="/img/icon/g" alt="" class="float-right pl-2">
             </a>
         </div>
     </div>
