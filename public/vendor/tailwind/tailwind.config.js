@@ -14,6 +14,8 @@ module.exports = {
         primarySidebar: "#044878",
         secondary: "#FFAA00",
         secondaryhover: "#FFBB34",
+        success: "#54AC00",
+        successHover: "#458E00",
       },
       fontFamily: {
         heading: ['Poppins'],

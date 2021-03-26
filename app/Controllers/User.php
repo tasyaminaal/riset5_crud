@@ -15,6 +15,8 @@ class User extends BaseController
 		if (session()->has('role'))
 			if (!in_array("2", session('role')))
 				echo '<script>window.location.replace("' . base_url() . '");</script>';
+
+		$this->form_validation = \Config\Services::validation();
 	}
 
 	public function index() //user detail + form update
@@ -149,6 +151,9 @@ class User extends BaseController
 		//isi :
 		// 'email'
 
+		$sql = "SELECT * FROM tampilan where nim = " . session('nim');
+		$tampilan = $model->query($sql);
+
 		$status = 'user';
 		$jk = $query1->jenis_kelamin;
 		$sb = $query1->status_bekerja;
@@ -187,6 +192,7 @@ class User extends BaseController
 			'prestasi' => $query5,
 			'pendidikan' => $query6,
 			'user' => $query7,
+			'checked'	=> $tampilan->getRow(),
 			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
@@ -264,6 +270,9 @@ class User extends BaseController
 		//isi :
 		// 'email'
 
+		$sql = "SELECT * FROM tampilan where nim = $kunci";
+		$tampilan = $model->query($sql);
+
 		$status = 'bukan user';
 		$jk = $query1->jenis_kelamin;
 		$sb = $query1->status_bekerja;
@@ -299,6 +308,7 @@ class User extends BaseController
 			'prestasi' => $query5,
 			'pendidikan' => $query6,
 			'user' => $query7,
+			'checked'	=> $tampilan->getRow(),
 			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
@@ -311,6 +321,17 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->bukaProfile(session('nim'));
+		$sql = "SELECT * FROM tampilan where nim = " . session('nim');
+		$tampilan = $model->query($sql);
+
+		$sqlcek = "SELECT password_hash from users where id = " . session('id_user');
+		$cekLM = $model->query($sqlcek);
+
+		if ($cekLM->getRow()->password_hash != NULL) {
+			session()->set([	//cek login manual atau bukan
+				'manual' => 'yes',
+			]);
+		}
 
 		// dd($query->getRow());
 
@@ -319,8 +340,72 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
+			'checked'	=> $tampilan->getRow(),
 		];
 		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
+	}
+
+	// FUNGSINYA BELUM BISA DIEKSEKUSI```````````````````````````````````````````````````````
+	public function updateFotoProfil()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+
+		$model = new AlumniModel();
+		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		$foto = $query1->foto_profil;
+
+		$validated = $this->validate([
+			'file_upload' => 'uploaded[file_upload]|mime_in[file_upload,image/jpg,image/jpeg,image/png]|max_size[file_upload,2048]'
+		]);
+
+		if ($validated == FALSE) {
+			session()->setFlashdata('edit-foto-fail', 'Format atau ukuran file tidak sesuai.');
+			// Kembali ke function index supaya membawa data uploads dan validasi
+			return redirect()->to(base_url('User/editProfil'));
+		} else {
+			$avatar = $this->request->getFile('file_upload');
+			$avatar->move(ROOTPATH . '/public/img/user/userid_' . session('id_user'));
+			if ($foto != 'default.svg') {
+				$url = ROOTPATH . '/public/img/' . $foto;
+				if (is_file($url))
+					unlink($url);
+			}
+
+			$data = [
+				'foto_profil' => 'user/userid_' . session('id_user') . '/' . htmlspecialchars($avatar->getName())
+			];
+
+			$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+			session()->setFlashdata('edit-foto-success', 'Foto Profil Berhasil Diubah');
+			return redirect()->to(base_url('User/editProfil'));
+		}
+	}
+
+	public function hapusFotoProfil()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		$foto = $query1->foto_profil;
+
+		if ($foto != 'default.svg') {
+			$url = ROOTPATH . '/public/img/' . $foto;
+			if (is_file($url))
+				unlink($url);
+		}
+
+		$data = [
+			'foto_profil' => 'default.svg'
+		];
+
+
+		$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+		session()->setFlashdata('hapus-foto', 'Foto berhasil dihapus');
+		return redirect()->to(base_url('User/editProfil'));
 	}
 
 	public function updateProfil()
@@ -329,38 +414,91 @@ class User extends BaseController
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
-		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		$telp_alumni   	= htmlspecialchars($_POST['telp_alumni']);
+		$email			= htmlspecialchars($_POST['email']);
+		$alamat       	= htmlspecialchars($_POST['alamat']);
+		$ig				= htmlspecialchars($_POST['ig']);
+		$fb				= htmlspecialchars($_POST['fb']);
+		$twitter		= htmlspecialchars($_POST['twitter']);
+		$cjk = 0;
+		$cteml = 0;
+		$ctl = 0;
+		$cnt = 0;
+		$cemail = 0;
+		$calamat = 0;
+		$cjab = 0;
+		$cig = 0;
+		$ctw = 0;
+		$cfb = 0;
+
+		if (isset($_POST['checkJenisKelamin'])) {
+			$cjk = 1;
+		}
+		if (isset($_POST['checkTempatLahir'])) {
+			$cteml = 1;
+		}
+		if (isset($_POST['checkTanggalLahir'])) {
+			$ctl = 1;
+		}
+		if (isset($_POST['checkTelepon'])) {
+			$cnt = 1;
+		}
+		if (isset($_POST['checkEmail'])) {
+			$cemail = 1;
+		}
+		if (isset($_POST['checkAlamat'])) {
+			$calamat = 1;
+		}
+		if (isset($_POST['checkJabatan'])) {
+			$cjab = 1;
+		}
+		if (isset($_POST['checkInstagram'])) {
+			$cig = 1;
+		}
+		if (isset($_POST['checkTwitter'])) {
+			$ctw = 1;
+		}
+		if (isset($_POST['checkFacebook'])) {
+			$cfb = 1;
+		}
 
 		$data = [
-			'angkatan'      => $query1->angkatan,
-			'nama'  		=> $query1->nama,
-			'nim'           => session('nim'),
-			'jenis_kelamin'  => $query1->jenis_kelamin,
-			'tempat_lahir'   => $query1->tempat_lahir,
-			'tanggal_lahir'  => $query1->tanggal_lahir,
-			'telp_alumni'    => $_POST['telp_alumni'],
-			'email'			=> $_POST['email'],
-			'alamat'        => $_POST['alamat'],
-			'status_bekerja' => $_POST['status_bekerja'],
-			'perkiraan_pensiun' => $query1->perkiraan_pensiun,
-			'jabatan_terakhir'  => $_POST['jabatan_terakhir'],
-			'aktif_pns'      => $_POST['aktif_pns'],
-			'ig'			=> $_POST['ig'],
-			'fb'			=> $_POST['fb'],
-			'twitter'		=> $_POST['twitter'],
+			'nim'		=> session('nim'),
+			'telp_alumni'    => $telp_alumni,
+			'email'			=> $email,
+			'alamat'        => $alamat,
+			'ig'			=> $ig,
+			'fb'			=> $fb,
+			'twitter'		=> $twitter,
 		];
 
-		$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
-
-		$query2 = $model->bukaProfile(session('nim'));
-
-		$data = [
-			'judulHalaman' => 'Edit Profil',
-			'login' => 'sudah',
-			'active' 		=> 'profil',
-			'alumni' => $query2->getRow(),
+		$data2 = [
+			'jenis_kelamin' => $cjk,
+			'tempat_lahir' => $cteml,
+			'tanggal_lahir' => $ctl,
+			'no_telp' => $cnt,
+			'email' => $cemail,
+			'alamat' => $calamat,
+			'jabatan' => $cjab,
+			'instagram' => $cig,
+			'twitter' => $ctw,
+			'facebook' => $cfb,
 		];
-		return view('websia/kontenWebsia/editProfile/editBiodata.php', $data);
+
+		// dd($this->form_validation->run($data, 'editProfil'));
+
+		if ($this->form_validation->run($data, 'editProfil') === FALSE) {
+			session()->setFlashdata('edit-bio-fail', 'Biodata gagal Disimpan');
+			session()->setFlashdata('inputs', $this->request->getPost());
+			session()->setFlashdata('errors', $this->form_validation->getErrors());
+			// dd(session('errors'));
+			return redirect()->to(base_url('User/editProfil'));
+		} else {
+			$model->db->table('alumni')->set($data)->where('nim', session('nim'))->update();
+			$model->db->table('tampilan')->set($data2)->where('nim', session('nim'))->update();
+			session()->setFlashdata('edit-bio-success', 'Biodata Berhasil Disimpan');
+			return redirect()->to(base_url('User/editProfil'));
+		}
 	}
 
 	public function editPendidikan()
@@ -377,13 +515,72 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'pendidikan'      => $query->getResult(),
-			// 'jumlah' => $model->getCountPendidikanByNIM(session('nim'))
 		];
 		return view('websia/kontenWebsia/editProfile/editPendidikan.php', $data);
 	}
-	// belum bikin
-	// public function updatePendidikan()
-	// {}
+
+	public function updatePendidikan()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$data1 = [
+			'program_studi'     => htmlspecialchars($_POST['program_studi']),
+			'judul_tulisan'		=> htmlspecialchars($_POST['judul_tulisan']),
+		];
+
+		$data2 = [
+			'jenjang'    => htmlspecialchars($_POST['jenjang']),
+			'instansi'	 => htmlspecialchars($_POST['instansi']),
+			'tahun_masuk'  => htmlspecialchars($_POST['tahun_masuk']),
+			'tahun_lulus'  => htmlspecialchars($_POST['tahun_lulus'])
+		];
+
+		$model->db->table('pendidikan_tinggi')->set($data1)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
+		$model->db->table('pendidikan')->set($data2)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
+
+		return redirect()->to(base_url('User/editPendidikan'));
+	}
+
+	public function addPendidikan()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$data2 = [
+			'jenjang'    => htmlspecialchars($_POST['jenjang']),
+			'instansi'	 => htmlspecialchars($_POST['instansi']),
+			'tahun_masuk'  => htmlspecialchars($_POST['tahun_masuk']),
+			'tahun_lulus'  => htmlspecialchars($_POST['tahun_lulus']),
+			'nim'		=> session('nim'),
+		];
+
+		$model->db->table('pendidikan')->insert($data2);
+
+		$data1 = [
+			'program_studi'     => htmlspecialchars($_POST['program_studi']),
+			'judul_tulisan'		=> htmlspecialchars($_POST['judul_tulisan']),
+		];
+
+		$model->db->table('pendidikan_tinggi')->insert($data1);
+
+		return redirect()->to(base_url('User/editPendidikan'));
+	}
+
+	public function deletePendidikan()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$model->deletePendidikanById($_POST['id_pendidikan']);
+
+		return redirect()->to(base_url('User/editPendidikan'));
+	}
 
 	public function editTempatKerja()
 	{
@@ -405,35 +602,48 @@ class User extends BaseController
 		return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
 	}
 
-	// salahh masihan
-	// public function updateTempatKerja()
-	// {
-	// 	if (!session()->has('id_user'))
-	// 		return redirect()->to('/');
+	public function updateTempatKerja()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
 
-	// 	$model = new AlumniModel();
-	// 	$kunci = $model->getTempatKerjaByNIM(session('nim'))->getRow()->id_tempat_kerja;
+		$model = new AlumniModel();
 
-	// 	$data = [
-	// 		'nama_instansi'      => $_POST['nama_instansi'],
-	// 		'alamat_instansi'  		=> $_POST['alamat_instansi'],
-	// 		'telp_instansi'  => $_POST['telp_instansi'],
-	// 		'faks_instansi'   => $_POST['faks_instansi'],
-	// 		'email_instansi'  => $_POST['email_instansi'],
-	// 	];
+		$data = [
+			'id_tempat_kerja'      => $_POST['id_tempat_kerja'],
+		];
 
-	// 	$model->db->table('tempat_kerja')->set($data)->where('id_tempat_kerja', $kunci)->update();
+		$model->db->table('alumni_tempat_kerja')->set($data)->where('nim', session('nim'))->update();
 
-	// 	$query = $model->getTempatKerjaByNIM(session('nim'));
+		return redirect()->to(base_url('User/editTempatKerja'));
+	}
 
-	// 	$data = [
-	// 		'judulHalaman' => 'Edit Profil',
-	// 		'login' => 'sudah',
-	// 		'active' 		=> 'profil',
-	// 		'tempat_kerja' => $query->getRow(),
-	// 	];
-	// 	return view('websia/kontenWebsia/editProfile/editTempatKerja.php', $data);
-	// }
+	public function addTempatKerja()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$data1 = [
+			'nama_instansi'      => htmlspecialchars($_POST['nama_instansi']),
+			'alamat_instansi'  		=> htmlspecialchars($_POST['alamat_instansi']),
+			'telp_instansi'  => htmlspecialchars($_POST['telp_instansi']),
+			'faks_instansi'   => htmlspecialchars($_POST['faks_instansi']),
+			'email_instansi'  => htmlspecialchars($_POST['email_instansi']),
+		];
+
+		$model->db->table('tempat_kerja')->insert($data1);
+
+
+		$data2 = [
+			'id_tempat_kerja'      => $model->getIdTempatKerja(htmlspecialchars($_POST['nama_instansi'])),
+		];
+
+		$model->db->table('alumni_tempat_kerja')->set($data2)->where('nim', session('nim'))->update();
+
+		return redirect()->to(base_url('User/editTempatKerja'));
+	}
 
 	public function editPrestasi()
 	{
@@ -450,14 +660,57 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'prestasi'      => $query->getResult(),
-			// 'jumlah' => $model->getCountPrestasiByNIM(session('nim'))
 		];
 
 		return view('websia/kontenWebsia/editProfile/editPrestasi.php', $data);
 	}
-	// belum bikin
-	// public function updatePrestasi()
-	// {}
+
+	public function updatePrestasi()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$data = [
+			'nama_prestasi'     => htmlspecialchars($_POST['nama_prestasi']),
+			'tahun_prestasi'		=> htmlspecialchars($_POST['tahun_prestasi']),
+			'nim'				=> session('nim'),
+		];
+
+		$model->db->table('prestasi')->set($data)->where('id_prestasi', $_POST['id_prestasi'])->update();
+
+		return redirect()->to(base_url('User/editPrestasi'));
+	}
+
+	public function addPrestasi()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$data = [
+			'nama_prestasi'     => htmlspecialchars($_POST['nama_prestasi']),
+			'tahun_prestasi'		=> htmlspecialchars($_POST['tahun_prestasi']),
+			'nim'				=> session('nim'),
+		];
+
+		$model->db->table('prestasi')->insert($data);
+
+		return redirect()->to(base_url('User/editPrestasi'));
+	}
+
+	public function deletePrestasi()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+		$model->deletePrestasiById($_POST['id_prestasi']);
+
+		return redirect()->to(base_url('User/editPrestasi'));
+	}
 
 	public function editPublikasi()
 	{
@@ -474,14 +727,36 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'publikasi'      => $query->getResult(),
-			// 'jumlah' => $model->getCountPublikasiByNIM(session('nim'))
 		];
 
 		return view('websia/kontenWebsia/editProfile/editPublikasi.php', $data);
 	}
-	// belum bikin
+
+	// LOGICNYAA BELUMM MASUKKK````````````````````````````````````````````````````
 	// public function updatePublikasi()
 	// {}
+
+	// DATABASENYAA KURANG MASHOOKKKK BOSQUE
+	public function addPublikasi()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$data = [
+			'judul'     => htmlspecialchars($_POST['judul']),
+			'topik'     => htmlspecialchars($_POST['topik']),
+			'deskripsi'     => htmlspecialchars($_POST['deskripsi']),
+			'publisher'     => htmlspecialchars($_POST['publisher']),
+			'tanggal_disahkan'     => htmlspecialchars($_POST['tanggal_disahkan']),
+			'author'     => htmlspecialchars($_POST['author']),
+		];
+
+		$model->db->table('publikasi')->insert($data);
+
+		return redirect()->to(base_url('User/editPublikasi'));
+	}
 
 	public function editAkun()
 	{
@@ -502,34 +777,36 @@ class User extends BaseController
 		return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
 	}
 
+	// BELOM KELAR FUNGSINYA ``````````````````````````````````````````````````````````````````````
 	public function updateAkun()
 	{
 		if (!session()->has('id_user'))
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
+		$curpass = $model->getUser(session('id_user'))->getRow()->password_hash;
+		$inputpass = $_POST['passlama'];
+		// dd($curpass);
+		// dd($inputpass);
+		dd(password_verify($inputpass, $curpass));
+		// dd($model->getUser(session('id_user'))->getRow());
+		// dd($pass,$passlama);
 
-		// belum tahu nih cara validasi ginian
-		if ($_POST['passbaru'] == $_POST['ulangpassbaru']) {
-			$data = [
-				'email'      => $_POST['email'],
-				'password_hash' => password_hash($_POST['passbaru'], PASSWORD_DEFAULT),
-			];
+		// bingung validasinya
+		if (password_verify($inputpass, $curpass)) {
+			if ($_POST['passbaru'] == $_POST['ulangpassbaru']) {
+				$data = [
+					'password_hash' => password_hash($_POST['passbaru'], PASSWORD_DEFAULT),
+				];
 
-			$model->db->table('users')->set($data)->where('id', session('id_user'))->update();
+				$model->db->table('users')->set($data)->where('id', session('id_user'))->update();
+				return redirect()->to(base_url('User/editAkun'));
+			} else {
+				echo "password baru tidak cocok";
+			}
+		} else {
+			echo "Password lama salah";
 		}
-
-		$query = $model->getUsersByNIM(session('id_user'));
-
-
-		$data = [
-			'judulHalaman' => 'Edit Profil',
-			'login' => 'sudah',
-			'active' 		=> 'profil',
-			'username'      => $query->getRow()->username,
-		];
-
-		return view('websia/kontenWebsia/editProfile/editAkun.php', $data);
 	}
 
 	public function galeriFoto()

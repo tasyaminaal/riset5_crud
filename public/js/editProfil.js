@@ -1,30 +1,67 @@
 // awal js edit biodata 
-$(document).ready(function() {
-    $('.jk_radio').on('click',function() {
-    $('.jk_radio').parent().css('color','gray');    
-        $(this).parent().css('color','#014F86');
-    });
-    $('.sb_radio').on('click',function() {
-    $('.sb_radio').parent().css('color','gray');    
-        $(this).parent().css('color','#014F86');
-    });
-    $('.sp_radio').on('click',function() {
-    $('.sp_radio').parent().css('color','gray');    
-        $(this).parent().css('color','#014F86');
-    });
-});
+$('#buttonEditTampilan').click(function (){
+    if ($('.editTampilan').hasClass('hidden')){
+       $('.editTampilan').removeClass('hidden');
+       if(!$('#checkJenisKelamin').is(':checked')) $('#labelJenisKelamin').addClass('text-gray-500');    
+       if(!$('#checkTanggalLahir').is(':checked')){
+           $('#labelTempatLahir').addClass('text-gray-500');    
+           $('#labelTanggalLahir').addClass('text-gray-500');    
+       } 
+       if(!$('#checkTelepon').is(':checked')) $('#labelTelepon').addClass('text-gray-500');    
+       if(!$('#checkEmail').is(':checked')) $('#labelEmail').addClass('text-gray-500');    
+       if(!$('#checkAlamat').is(':checked')) $('#labelAlamat').addClass('text-gray-500');    
+       if(!$('#checkJabatan').is(':checked')) $('#labelJabatan').addClass('text-gray-500');    
+       if(!$('#checkInstagram').is(':checked')) $('#labelInstagram').addClass('text-gray-500');    
+       if(!$('#checkTwitter').is(':checked')) $('#labelTwitter').addClass('text-gray-500');    
+       if(!$('#checkFacebook').is(':checked')) $('#labelFacebook').addClass('text-gray-500');    
+    } else {
+        $('.editTampilan').addClass('hidden');
+        $('#labelJenisKelamin').removeClass('text-gray-500');
+        $('#labelTempatLahir').removeClass('text-gray-500');
+        $('#labelTanggalLahir').removeClass('text-gray-500');
+        $('#labelTelepon').removeClass('text-gray-500');
+        $('#labelEmail').removeClass('text-gray-500');
+        $('#labelAlamat').removeClass('text-gray-500');
+        $('#labelJabatan').removeClass('text-gray-500');
+        $('#labelInstagram').removeClass('text-gray-500');
+        $('#labelTwitter').removeClass('text-gray-500');
+        $('#labelFacebook').removeClass('text-gray-500');
+    }
+})
+
+$('.editTampilan').click(function() {
+    let id = $(this).attr('data-id');
+      if($('#check'+id).is(':checked') && id != "TanggalLahir")
+    {
+      $('#label'+id).removeClass("text-gray-500");
+    } else {
+      $('#label'+id).addClass("text-gray-500");
+    }
+  });
+
+$('#checkTanggalLahir').click(function(){
+    if($('#checkTanggalLahir').is(':checked'))
+    {
+      $('#labelTempatLahir').removeClass("text-gray-500");
+      $('#labelTanggalLahir').removeClass("text-gray-500");
+    } else {
+      $('#labelTempatLahir').addClass("text-gray-500");
+      $('#labelTanggalLahir').addClass("text-gray-500");
+    }
+})
+
 $('.updateFotoProfil').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditFoto'>
-        <div class="hidden opacity-0 duration-700 transition-all md:w-1/3 w-2/3 bg-gray bg-opacity-0"> 
-        <div class="bg-primary py-2 px-6 rounded-t-2xl flex items-center justify-center text-secondary text-sm">
-            <p class="font-bold">Update Foto Profil</p>
+        <div class="hidden opacity-0 duration-700 transition-all md:w-1/4 w-2/3 bg-gray bg-opacity-0"> 
+        <div class="bg-primary py-2.5 px-6 rounded-t-2xl flex items-center justify-center text-secondary text-sm">
+            <p class="font-bold font-heading">Ubah Foto Profil</p>
         </div>
         <div class="bg-gray-100 rounded-b-2xl">
-            <ul class="text-center font-heading font-bold text-sm text-primary">
-                <li id='unggahFoto' class="p-2 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300">Unggah Foto</li>
-                <li class="p-2 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300" id="hapusFoto">Hapus Foto</li>
-                <li class="closeEditFoto p-2 rounded-b-lg cursor-pointer hover:bg-gray-300">Batalkan</li>
+            <ul class="text-center font-heading font-bold text-sm text-primaryx">
+                <li id='unggahFoto' class="p-2.5 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300">Unggah Foto</li>
+                <li class="p-2.5 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300" id="hapusFoto">Hapus Foto</li>
+                <li class="closeEditFoto p-2.5 rounded-b-lg cursor-pointer hover:bg-gray-300">Batalkan</li>
             </ul>
         </div>
         </div> 
@@ -62,41 +99,117 @@ $('.updateFotoProfil').click(function () {
     $('#unggahFoto').click(function () {
         $('#formEditFoto').remove()
         $('body').prepend(`
-        <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
-        <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Foto Profil Berhasil Diubah</p>
+         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph grid-cols-none" id='formUnggahFoto'>
+        <div class= "duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
+        <div class="bg-primary py-2 px-6 rounded-t-2xl flex items-center justify-between text-secondary md:text-xl sm:text-base">
+        <p class="font-heading font-bold">Unggah Foto</p>
+        <svg class="closeUnggah lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+    </div>
+            <form action="/User/updateFotoProfil" method="post" enctype="multipart/form-data" class="flex flex-col bg-gray-100 px-6 rounded-b-2xl text-sm">
+            <div class="flex justify-between items-center mt-4">
+                <input type="file" name="file_upload">
+                <button class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer focus:outline-none md:text-sm sm:text-xs" id="submitUnggahFoto">UNGGAH</button>
+            </div>
+            <div class="my-2 text-xs text-secondary">
+            <p>Format file harus .jpg, .jpeg, atau .png.</p>
+            <p>Ukuran file maksimum 2MB.</p>
+            </div>
+            </form>
+
         </div>
     </div>
-        `)
-        $('#updateSucces').children().first().removeClass('hidden')
+         `)
+         var modal = document.getElementById('formUnggahFoto')
+         $(window).click(function (e) {
+             if (e.target === modal) {
+                 $('#formUnggahFoto').children().first().addClass('opacity-0')
+                 $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                     $('#formUnggahFoto').children().first().addClass('hidden')
+                 });
+                 setTimeout(function () {
+                     $('#formUnggahFoto').remove()
+                 }, 400);
+             }
+         })
+
+         $('.closeUnggah').click(function () {
+            $('#formUnggahFoto').children().first().addClass('opacity-0')
+            $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formUnggahFoto').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formUnggahFoto').remove()
+            }, 400);
+        })
+
+        // $('#submitUnggahFoto').click(function (){
+        //     $('#formUnggahFoto').remove()
+        //         $('body').prepend(`
+        //         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
+        //         <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
+        //             <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+        //             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Foto Profil Berhasil Diubah</p>
+        //         </div>
+        //     </div>
+        //         `)
+        //         $('#updateSucces').children().first().removeClass('hidden')
+        //         setTimeout(function () {
+        //             $('#updateSucces').children().first().removeClass('opacity-0')
+        //         }, 10);
+        //         setTimeout(function () {
+        //             $('#updateSucces').remove()
+        //         }, 1000);
+                
+        // })
+    })
+
+    $('#hapusFoto').click(function () {
+        $('#formEditFoto').remove()
+        $("body").prepend(`
+        <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+            <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+                <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                    <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus foto profil Anda?</p>
+                    <form action="/User/hapusFotoProfil" class="text-white flex justify-end">
+                        <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                        <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        `);
+        $('#formHapus').children().first().removeClass('hidden')
         setTimeout(function () {
-            $('#updateSucces').children().first().removeClass('opacity-0')
+            $('#formHapus').children().first().removeClass('opacity-0')
         }, 10);
-        setTimeout(function () {
-            $('#updateSucces').remove()
-        }, 1000);
+    
+        $('.buttonBatal').click(function () {
+            $('#formHapus').children().first().addClass('opacity-0')
+            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formHapus').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formHapus').remove()
+            }, 400);
+        })
+    
+        var modal = document.getElementById('formHapus')
+        $(window).click(function (e) {
+            if (e.target === modal) {
+                $('#formHapus').children().first().addClass('opacity-0')
+                $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                    $('#formHapus').children().first().addClass('hidden')
+                });
+                setTimeout(function () {
+                    $('#formHapus').remove()
+                }, 400);
+            }
+        })
     })
 })
 
-$('#submitBiodata').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalBiodata'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-    <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-    <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Biodata Berhasil Disimpan</p>
-</div>
-    </div>
-`)
-
-    $('#modalBiodata').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalBiodata').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditBiodata').submit()
-    }, 700);
-})
 // akhir js edit biodata
 
 // awal js sorting
@@ -117,37 +230,39 @@ $(".sort").click(function () {
 // akhir js sorting
 
 // awal js edit pendidikan
-function edit(id, jenjang, univ, studi, masuk, lulus, tulisan) {
+function formPendidikan(id, jenjang, univ, studi, masuk, lulus, tulisan) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formEditPendidikan'>
         <div class="hidden opacity-0 duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
             <div class="bg-primary py-4 px-6 rounded-t-2xl flex items-center justify-between text-secondary text-2xl">
                 <p class="font-heading font-bold">Edit Pendidikan</p>
-                <i class="closePendidikan fas fa-times cursor-pointer"></i>
+                <svg class="closePendidikan lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
             </div>
-            <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl">
-                <input type="hidden" name="id_edit" id="editId">
-                <label for="editJenjang" class="text-primary text-sm mt-4">Jenjang :</label>
-                <input type="text" placeholder="Nama Jenjang" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editJenjang" id="editJenjang">
-                <label for="editUniversitas" class="text-primary text-sm mt-3">Universitas :</label>
-                <input type="text" placeholder="Nama Universitas" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editUniversitas" id="editUniversitas">
-                <label for="editStudi" class="text-primary text-sm mt-3">Program Studi :</label>
-                <input type="text" placeholder="Nama Program Studi" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editStudi" id="editStudi">
+            <form action="/User/updatePendidikan" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+                <input type="hidden" name="id_pendidikan" id="editId">
+                <label for="editJenjang" class="text-primary font-medium mt-2">Jenjang:</label>
+                <input type="text" placeholder="Masukkan nama Jenjang" class="inputForm" name="jenjang" id="editJenjang">
+                <label for="editUniversitas" class="text-primary font-medium">Universitas:</label>
+                <input type="text" placeholder="Masukkan nama Universitas" class="inputForm" name="instansi" id="editUniversitas">
+                <label for="editStudi" class="text-primary font-medium">Program Studi:</label>
+                <input type="text" placeholder="Masukkan nama Program Studi" class="inputForm" name="program_studi" id="editStudi">
                 <div class="flex">
                     <div class="flex flex-col mr-8 w-1/3">
-                        <label for="editMasuk" class="text-primary text-sm mt-3">Tahun Masuk :</label>
-                        <input type="date" placeholder="2021" class="cursor-pointer px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editMasuk" id="editMasuk">
+                        <label for="editMasuk" class="text-primary font-medium">Tahun Masuk:</label>
+                        <input type="number" name="tahun_masuk" id="editMasuk" min="1950" max="2100" class="inputForm">
                     </div>
                     <div class="flex flex-col w-1/3">
-                        <label for="editLulus" class="text-primary text-sm mt-3">Tahun Lulus :</label>
-                        <input type="date" placeholder="2021" class="cursor-pointer px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editLulus" id="editLulus">
+                        <label for="editLulus" class="text-primary font-medium">Tahun Lulus:</label>
+                        <input type="number" name="tahun_lulus" id="editLulus" min="1950" max="2100" class="inputForm">
                     </div>
                 </div>
-                <label for="editTulisan" class="text-primary text-sm mt-3">Judul Tulisan</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2 resize-none" placeholder="Gadget Paling Top Untuk Digunakan Sehari-Hari"></textarea>
-                <div class="flex justify-end my-8">
-                    <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 text-sm mr-4 outline-none">
-                    <input type="button" value="KEMBALI" class="closePendidikan bg-secondary text-white rounded-full w-24 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 text-sm outline-none" id='backPendidikan'>
+                <label for="editTulisan" class="text-primary font-medium">Judul Tulisan:</label>
+                <textarea name="judul_tulisan" id="editTulisan" rows="2" class="inputForm" placeholder="Masukkan judul tulisan"></textarea>
+                <div class="flex justify-end my-4">
+                    <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
+                    <input type="button" value="KEMBALI" class="closePendidikan bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPendidikan'>
                 </div>
 
             </form>
@@ -184,24 +299,6 @@ function edit(id, jenjang, univ, studi, masuk, lulus, tulisan) {
         }
     })
 
-    $('#backPendidikan').prev().click(function (e) {
-        e.preventDefault()
-        $('#formEditPendidikan').children().first().addClass('hidden')
-        $('#formEditPendidikan').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Disimpan</p>
-        </div>
-        `)
-        $('#formEditPendidikan').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formEditPendidikan').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formEditPendidikan').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
-
     $('#editId').val(id);
     $('#editJenjang').val(jenjang);
     $('#editUniversitas').val(univ);
@@ -222,25 +319,25 @@ $('.tambahPendidikan').click(function () {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
             </div>
-            <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
-                <label for="editJenjang" class="text-primary font-medium mt-2">Jenjang :</label>
-                <input type="text" placeholder="Nama Jenjang" class="inputForm" name="editJenjang" id="editJenjang">
-                <label for="editUniversitas" class="text-primary font-medium">Universitas :</label>
-                <input type="text" placeholder="Nama Universitas" class="inputForm" name="editUniversitas" id="editUniversitas">
-                <label for="editStudi" class="text-primary font-medium">Program Studi :</label>
-                <input type="text" placeholder="Nama Program Studi" class="inputForm" name="editStudi" id="editStudi">
+            <form action="/User/addPendidikan" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+                <label for="editJenjang" class="text-primary font-medium mt-2">Jenjang:</label>
+                <input type="text" placeholder="Masukkan nama Jenjang" class="inputForm" name="jenjang" id="editJenjang">
+                <label for="editUniversitas" class="text-primary font-medium">Universitas:</label>
+                <input type="text" placeholder="Masukkan nama Universitas" class="inputForm" name="instansi" id="editUniversitas">
+                <label for="editStudi" class="text-primary font-medium">Program Studi:</label>
+                <input type="text" placeholder="Masukkan nama Program Studi" class="inputForm" name="program_studi" id="editStudi">
                 <div class="flex">
                     <div class="flex flex-col mr-8 w-1/3">
-                        <label for="editMasuk" class="text-primary font-medium">Tahun Masuk :</label>
-                        <input type="date" class="cursor-pointer inputForm" name="editMasuk" id="editMasuk">
+                        <label for="editMasuk" class="text-primary font-medium">Tahun Masuk:</label>
+                        <input type="number" name="tahun_masuk" id="editMasuk" placeholder="1973" min="1950" max="2100" class="inputForm">
                     </div>
                     <div class="flex flex-col w-1/3">
-                        <label for="editLulus" class="text-primary font-medium">Tahun Lulus :</label>
-                        <input type="date" class="cursor-pointer px-4 inputForm" name="editLulus" id="editLulus">
+                        <label for="editLulus" class="text-primary font-medium">Tahun Lulus:</label>
+                        <input type="number" name="tahun_lulus" id="editLulus" placeholder="1977" min="1950" max="2100" class="inputForm">
                     </div>
                 </div>
-                <label for="editTulisan" class="text-primary font-medium">Judul Tulisan</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Gadget Paling Top Untuk Digunakan Sehari-Hari"></textarea>
+                <label for="editTulisan" class="text-primary font-medium">Judul Tulisan:</label>
+                <textarea name="judul_tulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Masukkan judul tulisan"></textarea>
                 <div class="flex justify-end my-4">
                     <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
                     <input type="button" value="KEMBALI" class="closePendidikan bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPendidikan'>
@@ -280,68 +377,156 @@ $('.tambahPendidikan').click(function () {
         }
     })
 
-    $('#backPendidikan').prev().click(function (e) {
-        e.preventDefault()
-        $('#formTambahPendidikan').children().first().addClass('hidden')
-        $('#formTambahPendidikan').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Pendidikan Berhasil Ditambahkan</p>
-        </div>
-        `)
-        $('#formTambahPendidikan').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formTambahPendidikan').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formTambahPendidikan').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
-
 })
 
+function hapusPendidikan(id){
+    $('body').prepend(`
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
+                <form action="/User/deletePendidikan" method="POST" class="text-white flex justify-end">
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                    <button id="hapus" name="id_pendidikan" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    `)
+
+    $('#hapus').val(id);
+
+    $('#formHapus').children().first().removeClass('hidden')
+    setTimeout(function () {
+        $('#formHapus').children().first().removeClass('opacity-0')
+    }, 10);
+
+    $('.buttonBatal').click(function () {
+        $('#formHapus').children().first().addClass('opacity-0')
+        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+            $('#formHapus').children().first().addClass('hidden')
+        });
+        setTimeout(function () {
+            $('#formHapus').remove()
+        }, 400);
+    })
+
+    var modal = document.getElementById('formHapus')
+    $(window).click(function (e) {
+        if (e.target === modal) {
+            $('#formHapus').children().first().addClass('opacity-0')
+            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formHapus').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formHapus').remove()
+            }, 400);
+        }
+    })
+}
 // akhir js edit pendidikan
 
 
 // awal js edit tempat kerja
-$('#submitTempatKerja').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-        <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-        <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Disimpan</p>
-    </div>
-    </div>
-`)
+document.querySelector('input[list]').addEventListener('input', function(e) {
+    var input = e.target,
+        list = input.getAttribute('list'),
+        options = document.querySelectorAll('#' + list + ' option'),
+        hiddenInput = document.getElementById(input.getAttribute('id') + '-hidden'),
+        inputValue = input.value;
 
-    $('#modalTempatKerja').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalTempatKerja').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditTempatKerja').submit()
-    }, 700);
-})
+    hiddenInput.value = inputValue;
+
+    for (var i = 0; i < options.length; i++) {
+        var option = options[i];
+
+        if (option.innerText === inputValue) {
+            hiddenInput.value = option.getAttribute('data-value');
+            break;
+        }
+    }
+});
+
+$('.tambahInstansi').click(function () {
+    if ($('#lainnya').hasClass('hidden')) {
+        $('#lainnya').removeClass('hidden')
+        $('#adainstansi').addClass('hidden')
+    } else {
+        $('#lainnya').addClass('hidden')
+        $('#adainstansi').removeClass('hidden')
+    }
+});
+
+$('.kembaliInstansi').click(function () {
+    if ($('#adainstansi').hasClass('hidden')) {
+        $('#adainstansi').removeClass('hidden')
+        $('#lainnya').addClass('hidden')
+    } else {
+        $('#adainstansi').addClass('hidden')
+        $('#lainnya').removeClass('hidden')
+    }
+});
+
+// $('#submitTempatKerja').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Disimpan</p>
+// </div>
+//     </div>
+// `)
+//     $('#modalTempatKerja').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalTempatKerja').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditTempatKerja').submit()
+//     }, 700);
+// })
+
+// $('#tambahTempatKerja').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalTempatKerja'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Tempat Kerja Berhasil Ditambahkan</p>
+// </div>
+//     </div>
+// `)
+//     $('#modalTempatKerja').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalTempatKerja').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditTempatKerja').submit()
+//     }, 700);
+// })
 // akhir js edit tempat kerja
 
 
 // awal js edit prestasi
-$('.editPrestasi').click(function () {
+function formPrestasi(id, prestasi, tahun) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditPrestasi'>
         <div class="hidden opacity-0 duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0 font-paragraph">
         <div class="bg-primary py-4 px-6 rounded-t-2xl flex items-center justify-between text-secondary text-2xl">
             <p class="font-heading font-bold">Edit Prestasi</p>
-            <i class="closePrestasi fas fa-times cursor-pointer"></i>
+            <svg class="closePrestasi lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
         </div>
-        <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl">
-            <label for="editJenjang" class="text-primary text-sm mt-4">Nama Prestasi :</label>
-            <input type="text" placeholder="Nama Prestasi" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editJenjang" id="editJenjang">
-            <label for="editMasuk" class="text-primary text-sm mt-3">Tahun Masuk :</label>
-            <input type="date" placeholder="2021" class="w-2/5 cursor-pointer px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editMasuk" id="editMasuk">
-            <div class="flex justify-end my-8">
-                <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 text-sm mr-4 outline-none">
-                <input type="button" value="KEMBALI" class="closePrestasi bg-secondary text-white rounded-full w-24 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 text-sm outline-none" id='backPrestasi'>
+        <form action="/User/updatePrestasi" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+            <label for="editPrestasi" class="text-primary font-medium mt-2">Nama Prestasi:</label>
+            <input type="hidden" name="id_prestasi" id="editId">
+            <input type="text" placeholder="Masukkan nama Prestasi" class="inputForm" name="nama_prestasi" id="editPrestasi">
+            <div class="sm:w-2/5 w-1/2">
+                <label for="editTahun" class="text-primary font-medium">Tahun:</label>
+                <input type="number" name="tahun_prestasi" id="editTahun" placeholder="1980" min="1950" max="2100" class="inputForm">
+            </div>
+            <div class="flex justify-end my-4">
+                <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
+                <input type="button" value="KEMBALI" class="closePrestasi bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPrestasi'>
             </div>
         </form>
         </div>
@@ -376,24 +561,10 @@ $('.editPrestasi').click(function () {
         }
     })
 
-    $('#backPrestasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formEditPrestasi').children().first().addClass('hidden')
-        $('#formEditPrestasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Disimpan</p>
-        </div>
-        `)
-        $('#formEditPrestasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formEditPrestasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formEditPrestasi').children().eq(1).children().eq(1).submit()
-        }, 800);
-    })
-})
+    $('#editId').val(id);
+    $('#editPrestasi').val(prestasi);
+    $('#editTahun').val(tahun);
+}
 
 $('.tambahPrestasi').click(function () {
     $('body').prepend(`
@@ -405,12 +576,12 @@ $('.tambahPrestasi').click(function () {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
         </div>
-        <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
-            <label for="editJenjang" class="text-primary font-medium mt-2">Nama Prestasi :</label>
-            <input type="text" placeholder="Nama Prestasi" class="inputForm" name="editJenjang" id="editJenjang">
+        <form action="/User/addPrestasi" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+            <label for="editJenjang" class="text-primary font-medium mt-2">Nama Prestasi:</label>
+            <input type="text" placeholder="Masukkan nama Prestasi" class="inputForm" name="nama_prestasi" id="editPrestasi">
             <div class="sm:w-2/5 w-1/2">
-                <label for="editMasuk" class="text-primary font-medium">Tahun Masuk :</label>
-                <input type="date" class="cursor-pointer inputForm" name="editMasuk" id="editMasuk">
+                <label for="editMasuk" class="text-primary font-medium">Tahun:</label>
+                <input type="number" name="tahun_prestasi" id="editTahun" placeholder="1980" min="1950" max="2100" class="inputForm">
             </div>
             <div class="flex justify-end my-4">
                 <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
@@ -449,51 +620,83 @@ $('.tambahPrestasi').click(function () {
         }
     })
 
-    $('#backPrestasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formTambahPrestasi').children().first().addClass('hidden')
-        $('#formTambahPrestasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Prestasi Berhasil Ditambahkan</p>
-        </div>
-        `)
-        $('#formTambahPrestasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formTambahPrestasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formTambahPrestasi').children().eq(1).children().eq(1).submit()
-        }, 800);
-    })
 })
+
+function hapusPrestasi(id){
+    $('body').prepend(`
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data prestasi ini?</p>
+                <form action="/User/deletePrestasi" method="POST" class="text-white flex justify-end">
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                    <button id="hapus" name="id_prestasi" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    `)
+
+    $('#hapus').val(id);
+
+    $('#formHapus').children().first().removeClass('hidden')
+    setTimeout(function () {
+        $('#formHapus').children().first().removeClass('opacity-0')
+    }, 10);
+
+    $('.buttonBatal').click(function () {
+        $('#formHapus').children().first().addClass('opacity-0')
+        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+            $('#formHapus').children().first().addClass('hidden')
+        });
+        setTimeout(function () {
+            $('#formHapus').remove()
+        }, 400);
+    })
+
+    var modal = document.getElementById('formHapus')
+    $(window).click(function (e) {
+        if (e.target === modal) {
+            $('#formHapus').children().first().addClass('opacity-0')
+            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formHapus').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formHapus').remove()
+            }, 400);
+        }
+    })
+}
 // akhir js edit prestasi
 
 // awal js edit publikasi
-$('.editPublikasi').click(function () {
+function formPublikasi(id, topik, publisher, tanggal, deskripsi) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formEditPublikasi'>
         <div class="hidden opacity-0 duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
             <div class="bg-primary py-4 px-6 rounded-t-2xl flex items-center justify-between text-secondary text-2xl">
                 <p class="font-heading font-bold">Edit Publikasi</p>
-                <i class="closePublikasi fas fa-times cursor-pointer"></i>
+                <svg class="closePublikasi lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
             </div>
-            <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl">
-                <label for="editTopik" class="text-primary text-sm mt-4">Topik :</label>
-                <input type="text" placeholder="Topik Publikasi" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editTopik" id="editTopik">
-                <label for="editPublisher" class="text-primary text-sm mt-3">Publisher :</label>
-                <input type="text" placeholder="Nama Lengkap" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editPublisher" id="editPublisher">
+            <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
+                <input type="hidden" name="id_edit" id="editId">
+                <label for="editTopik" class="text-primary font-medium mt-2">Topik:</label>
+                <input type="text" placeholder="Masukkan topik Publikasi" class="inputForm" name="topik" id="editTopik">
+                <label for="editPublisher" class="text-primary font-medium">Publisher:</label>
+                <input type="text" placeholder="Masukkan nama Publisher" class="inputForm" name="publisher" id="editPublisher">
                 <div class="flex">
-                    <div class="flex flex-col mr-8 w-1/3">
-                        <label for="editMasuk" class="text-primary text-sm mt-3">Tanggal Publikasi :</label>
-                        <input type="date" placeholder="2021" class="cursor-pointer px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2" name="editMasuk" id="editMasuk">
+                    <div class="flex flex-col mr-8 sm:w-1/3 w-1/2">
+                        <label for="editMasuk" class="text-primary font-medium">Tanggal Publikasi:</label>
+                        <input type="date" class="cursor-pointer inputForm" name="tanggal_disahkan" id="editTanggal">
                     </div>
                 </div>
-                <label for="editTulisan" class="text-primary text-sm mt-3">Deskripsi</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="px-4 text-gray-400 text-sm border-2 rounded-lg border-gray-400 outline-none py-1 mt-2 resize-none" placeholder="Penggunaan Jutsu Air dalam mengatasi Permasalahan Banjir yang Sering Terjadi di Wilayah Pemukiman Rawan Longsor"></textarea>
+                <label for="editTulisan" class="text-primary font-medium">Deskripsi:</label>
+                <textarea name="deskripsi" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Masukkan deskripsi publikasi"></textarea>
                 <div class="flex justify-end my-8">
-                    <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 text-sm mr-4 outline-none">
-                    <input type="button" value="KEMBALI" class="closePublikasi bg-secondary text-white rounded-full w-24 py-0.5 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white hover:border-opacity-70 transition-colors duration-300 text-sm outline-none" id='backPublikasi'>
+                    <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
+                    <input type="button" value="KEMBALI" class="closePublikasi bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPublikasi'>
                 </div>
 
             </form>
@@ -530,25 +733,14 @@ $('.editPublikasi').click(function () {
         }
     })
 
-    $('#backPublikasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formEditPublikasi').children().first().addClass('hidden')
-        $('#formEditPublikasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Disimpan</p>
-        </div>
-        `)
-        $('#formEditPublikasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formEditPublikasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formEditPublikasi').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
 
-})
+    $('#editId').val(id);
+    $('#editTopik').val(topik);
+    $('#editPublisher').val(publisher);
+    $('#editTanggal').val(tanggal);
+    $('#editTulisan').val(deskripsi);
+
+}
 
 $('.tambahPublikasi').click(function () {
     $('body').prepend(`
@@ -561,18 +753,18 @@ $('.tambahPublikasi').click(function () {
                         </svg>
             </div>
             <form action="" method="post" class="flex flex-col bg-gray-100 sm:px-12 px-4 rounded-b-2xl text-sm">
-                <label for="editTopik" class="text-primary font-medium mt-2">Topik :</label>
-                <input type="text" placeholder="Topik Publikasi" class="inputForm" name="editTopik" id="editTopik">
-                <label for="editPublisher" class="text-primary font-medium">Publisher :</label>
-                <input type="text" placeholder="Nama Publisher" class="inputForm" name="editPublisher" id="editPublisher">
+                <label for="editTopik" class="text-primary font-medium mt-2">Topik:</label>
+                <input type="text" placeholder="Masukkan topik Publikasi" class="inputForm" name="topik" id="editTopik">
+                <label for="editPublisher" class="text-primary font-medium">Publisher:</label>
+                <input type="text" placeholder="Masukkan nama Publisher" class="inputForm" name="publisher" id="editPublisher">
                 <div class="flex">
                     <div class="flex flex-col mr-8 sm:w-1/3 w-1/2">
-                        <label for="editMasuk" class="text-primary font-medium">Tanggal Publikasi :</label>
-                        <input type="date" class="cursor-pointer inputForm" name="editMasuk" id="editMasuk">
+                        <label for="editMasuk" class="text-primary font-medium">Tanggal Publikasi:</label>
+                        <input type="date" class="cursor-pointer inputForm" name="tanggal_disahkan" id="editMasuk">
                     </div>
                 </div>
-                <label for="editTulisan" class="text-primary font-medium">Deskripsi</label>
-                <textarea name="editTulisan" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Penggunaan Jutsu Air dalam mengatasi Permasalahan Banjir yang Sering Terjadi di Wilayah Pemukiman Rawan Longsor"></textarea>
+                <label for="editTulisan" class="text-primary font-medium">Deskripsi:</label>
+                <textarea name="deskripsi" id="editTulisan" rows="2" class="inputForm resize-none" placeholder="Masukkan deskripsi publikasi"></textarea>
                 <div class="flex justify-end my-8">
                     <input type="submit" value="SIMPAN" class="bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm mr-4 outline-none">
                     <input type="button" value="KEMBALI" class="closePublikasi bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 text-sm outline-none" id='backPublikasi'>
@@ -612,47 +804,71 @@ $('.tambahPublikasi').click(function () {
         }
     })
 
-    $('#backPublikasi').prev().click(function (e) {
-        e.preventDefault()
-        $('#formTambahPublikasi').children().first().addClass('hidden')
-        $('#formTambahPublikasi').prepend(`
-        <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-            <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-            <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Publikasi Berhasil Ditambahkan</p>
-        </div>
-        `)
-        $('#formTambahPublikasi').children().first().removeClass('hidden')
-        setTimeout(function () {
-            $('#formTambahPublikasi').children().first().removeClass('opacity-0')
-        }, 10);
-        setTimeout(function () {
-            $('#formTambahPublikasi').children().eq(1).children().eq(1).submit()
-        }, 700);
-    })
-
 })
 
+$('.hapusPublikasi').click(function () {
+    $('body').prepend(`
+    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data publikasi ini?</p>
+                <div class="text-white flex justify-end">
+                    <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                    <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `)
+    $('#formHapus').children().first().removeClass('hidden')
+    setTimeout(function () {
+        $('#formHapus').children().first().removeClass('opacity-0')
+    }, 10);
+
+    $('.buttonBatal').click(function () {
+        $('#formHapus').children().first().addClass('opacity-0')
+        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+            $('#formHapus').children().first().addClass('hidden')
+        });
+        setTimeout(function () {
+            $('#formHapus').remove()
+        }, 400);
+    })
+
+    var modal = document.getElementById('formHapus')
+    $(window).click(function (e) {
+        if (e.target === modal) {
+            $('#formHapus').children().first().addClass('opacity-0')
+            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                $('#formHapus').children().first().addClass('hidden')
+            });
+            setTimeout(function () {
+                $('#formHapus').remove()
+            }, 400);
+        }
+    })
+})
 // akhir js edit publikasi
 
 // awal js edit akun
-$('#submitAkun').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalAkun'>
-    <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
-        <img src="/img/components/icon/check.png" class="h-5 mr-2" style="color: #54AC00;" alt="icon check">
-        <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Akun Berhasil Diperbarui</p>
-</div>
-    </div>
-`)
+// $('#submitAkun').click(function () {
+//     $('body').prepend(`
+//     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='modalAkun'>
+//     <div class="hidden opacity-0 duration-700 transition-all p-3 rounded-lg flex items-center" style="background-color: #B1FF66;">
+//     <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
+//     <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Akun Berhasil Diperbarui</p>
+// </div>
+//     </div>
+// `)
 
-    $('#modalAkun').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#modalAkun').children().first().removeClass('opacity-0')
-    }, 10);
-    setTimeout(function () {
-        $('#formEditAkun').submit()
-    }, 700);
-})
+//     $('#modalAkun').children().first().removeClass('hidden')
+//     setTimeout(function () {
+//         $('#modalAkun').children().first().removeClass('opacity-0')
+//     }, 10);
+//     setTimeout(function () {
+//         $('#formEditAkun').submit()
+//     }, 700);
+// })
 // akhir js edit akun
 
 // awal js edit biodata webservice
@@ -696,50 +912,3 @@ $('#simpanAkun').click(function (e) {
     }, 700);
 })
 // akhir js edit akun webservice
-
-
-//awal js modal hapus di edit profil
-$('.hapusModal').click(function () {
-    $('body').prepend(`
-    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
-        <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
-            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
-                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
-                <div class="text-white flex justify-end">
-                    <div class="buttonBatal text-black hover:text-gray-600 font-bold rounded-2xl border border-black hover:border-gray-600 w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
-                    <div class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all">HAPUS</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `)
-    $('#formHapus').children().first().removeClass('hidden')
-    setTimeout(function () {
-        $('#formHapus').children().first().removeClass('opacity-0')
-    }, 10);
-
-    $('.buttonBatal').click(function () {
-        $('#formHapus').children().first().addClass('opacity-0')
-        $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
-            $('#formHapus').children().first().addClass('hidden')
-        });
-        setTimeout(function () {
-            $('#formHapus').remove()
-        }, 400);
-    })
-
-    var modal = document.getElementById('formHapus')
-    $(window).click(function (e) {
-        if (e.target === modal) {
-            $('#formHapus').children().first().addClass('opacity-0')
-            $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
-                $('#formHapus').children().first().addClass('hidden')
-            });
-            setTimeout(function () {
-                $('#formHapus').remove()
-            }, 400);
-        }
-    })
-})
-
-//akhir js modal hapus di edit profil
