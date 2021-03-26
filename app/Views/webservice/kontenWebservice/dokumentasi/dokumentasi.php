@@ -1,72 +1,44 @@
-<?= $this->extend('webservice/layoutWebservice/templateWebserviceLogin.php'); ?>
+<?= $this->extend('webservice/kontenWebservice/dokumentasi/layoutDokumentasi.php'); ?>
 
-<?= $this->section('content'); ?>
+<?= $this->section('dokumentasi'); ?>
 
-<div class="md:grid md:grid-cols-3 lg:gap-x-16 md:gap-x-8 my-4 md:mx-8 mx-4">
-    <div class="md:col-span-1 mt-8">
-        <h1 class="text-2xl text-center font-heading text-secondary font-bold md:hidden block mb-4">DOKUMENTASI</h1>
-        <!-- SEARCH DOKUMENTASI -->
-        <div class="w-full flex items-center">
-            <input type="text" name="pencarian" id="pencarian" placeholder="Pencarian..." class="border-2 border-gray-300 rounded-lg md:px-3 px-1 md:py-2 py-1 w-full">
-            <button>
-                <div>
-                    <svg class="text-gray-500 hover:text-black ml-3 w-8 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-            </button>
-        </div>
-        <!-- END SEARCH DOKUMENTASI -->
-        <hr class="border-gray-300 mt-2">
-
-        <!-- MINIMAP UNTUK DOKUMENTASI -->
-        <ul class="mt-4 font-heading text-secondary lg:text-2xl md:text-xl text-lg">
-            <li class="mt-2 font-bold"><a href="#judul1">Judul 1</a>
-                <ul class="ml-4 lg:mt-2 text-black lg:text-xl md:text-lg text-base font-paragraph font-bold">
-                    <li><a href="#sub11">Subjudul 1.1</a></li>
-                    <li><a href="#sub12">Subjudul 1.2</a></li>
-                </ul>
-            </li>
-            <li class="mt-2 font-bold"><a href="#judul2">Judul 2</a>
-                <ul class="ml-4 lg:mt-2 text-black lg:text-xl md:text-lg text-base font-paragraph font-bold">
-                    <li><a href="#sub21">Subjudul 2.1</a></li>
-                    <li><a href="#sub22">Subjudul 2.2</a></li>
-                </ul>
-            </li>
-        </ul>
-        <hr class="border-gray-300 mt-2 md:hidden block">
-        <!-- END MINIMAP UNTUK DOKUMENTASI -->
+<div class="sm:ml-12 sm:mr-5 ml-8 mr-2 sm:mt-7 mt-4 transition-none">
+    <div class="lg:hidden absolute mt-3" id="burgerDok">
+        <svg class="block w-7 cursor-pointer fill-current text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
     </div>
-    <div class="md:col-span-2 mt-8">
-        <h1 class="lg:text-6xl md:text-3xl text-2xl text-center font-heading text-secondary font-bold md:block hidden">DOKUMENTASI</h1>
+    <section>
+        <div class="text-secondary lg:mx-4 mx-3 ml-10">
+            <h1 class="lg:text-xl">Sistem Informasi Alumni</h1>
+            <h2 class="font-bold lg:text-xl">DOKUMENTASI WEB SERVICE</h2>
+        </div>
+        <hr class="border border-gray-500 transform translate-y-2">
+        <div class="lg:mx-4 mx-3 mt-4">
+            <h3 class="text-secondary mb-5">Penjelasan API Sistem Informasi Alumni</h3>
+            <div class="flex 2xl:-mb-10 lg:mb-4 mb-8">
+                <p class="text-justify sm:mr-4 mr-0 xl:w-9/12 lg:w-7/12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, consequuntur hic? Nostrum ratione perferendis repellendus aspernatur illum at nam ex asperiores natus excepturi. Quae, nam laboriosam. Odit consequatur repellendus illo neque rerum ut vel ad quidem! Delectus, sed in similique veniam vero, ducimus qui quasi quos ipsa a consequuntur! Possimus. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit tempora laboriosam deleniti rerum veniam officia provident quis, aspernatur ad doloribus nihil. Molestias placeat error, architecto dolorem et pariatur iusto. Veniam? Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <img src="/img/components/logo/logo_api.png" alt="Logo Api" class="xl:w-3/12 lg:w-5/12 sm:w-4/12 sm:block hidden">
+            </div>
+        </div>
+    </section>
 
-        <!-- DAFTAR DOKUMENTASI -->
-        <h2 class="lg:text-2xl md:text-xl text-lg text-secondary mt-4 font-heading font-bold" id="judul1">Judul 1</h2>
-        <div class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+    <section id="memintaData">
+        <div class="text-secondary lg:mx-4 mx-3">
+            <h1 class="font-bold lg:text-xl">MEMINTA DATA</h1>
         </div>
-        <h3 class="lg:text-xl md:text-lg mt-4 font-bold" id="sub11">Subjudul 1.1</h3>
-        <div class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker.
+        <hr class="border border-gray-500 transform translate-y-2">
+        <div class="lg:mx-4 mx-3 mt-4 mb-8 text-justify">
+            <p class="">Cara meminta data : </p>
+            <ol class="list-decimal list-inside">
+                <li>Klik menu API kemudian pilih sub menu proyek</li>
+                <li>Klik tombol "Buat Proyek" untuk mendaftarkan proyek baru</li>
+                <li>Masukkan identitas proyek/aplikasi seperti nama, deskripsi proyek, pilih cakupan data yang diiginkan dan klik "buat"</li>
+                <li>Tunggu hingga status permintaan berubah dan Anda akan mendapat kunci beserta token API SIA</li>
+            </ol>
+            <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus consectetur vel sint ad reprehenderit officia officiis quod expedita magni accusamus eveniet ipsum possimus soluta ipsa non similique et sed quo, deleniti iusto vero necessitatibus ipsam! Excepturi placeat possimus pariatur odit. Consequatur necessitatibus harum, blanditiis aut explicabo vitae repudiandae in iusto? Lorem100</p>
         </div>
-        <h3 class="lg:text-xl md:text-lg mt-4 font-bold" id="sub12">Subjudul 1.2</h3>
-        <div class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-        <h2 class="lg:text-2xl md:text-xl text-lg text-secondary mt-4 font-heading font-bold" id="judul2">Judul 2</h2>
-        <div class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        </div>
-        <h3 class="lg:text-xl md:text-lg mt-4 font-bold" id="sub21">Subjudul 2.1</h3>
-        <div class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker. Lorem ipsum was introduced to the digital world in the mid-1980s when Aldus employed it in graphic and word-processing templates for its desktop publishing program PageMaker.
-        </div>
-        <h3 class="lg:text-xl md:text-lg mt-4 font-bold" id="sub22">Subjudul 2.2</h3>
-        <div class="text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </div>
-        <!-- END DAFTAR DOKUMENTASI -->
-    </div>
+    </section>
 </div>
 
 <?= $this->endSection(); ?>

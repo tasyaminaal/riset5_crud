@@ -1,16 +1,81 @@
-#nav ul li:hover > ul {
+/* style templateWebserviceLogin */
+/* .menu {
+  background-image: linear-gradient(to right, #014f86, #025e9e, #0567ab);
+  background-size: 200% auto;
+} */
+body div.loading {
+  background: #fff center;
+}
+
+.layoutEdit {
+  z-index: 5;
+}
+
+.choosed {
+  background-color: #003c75;
+}
+
+.notchoose {
+  background-color: #005490;
+}
+
+.list:hover {
+  background-color: #FF8A00;
+}
+
+#utama {
+  z-index: -1;
+}
+
+@media (max-width: 409px) {
+  #divKosong {
+    height: 65px;
+  }
+}
+
+/* style templateWebserviceLogin */
+
+/* style layoutDokumentasi */
+#sidebarDok {
+  z-index: 5;
+}
+
+#menu1:hover,
+#menu1+ul>li>div:hover,
+#menu1+ul>li>ul>li:hover {
+  background-color: rgb(1, 89, 152);
+}
+
+#menuDok>li:first-child:hover,
+#menuDok>li>div:hover,
+#menuDok>li>ul>li:hover {
+  background-color: rgb(1, 89, 152);
+}
+
+.open-submenu {
+  max-height: 65px;
+}
+
+.close-submenu {
+  max-height: 0;
+}
+
+/* style layoutDokumentasi */
+
+#nav ul li:hover>ul {
   max-height: 9em;
 }
 
 @media screen and (max-width: 640px) {
   #utama::before {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
+    top: 25px;
     width: 100%;
     height: 100%;
-    opacity: 0.15;
-    background-image: url("/img/components/logo/logo_api.png");
+    opacity: .15;
+    background-image: url('/img/components/logo/logo_api.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;

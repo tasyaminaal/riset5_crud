@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/leaflet.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/add_style.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
     <script type="text/javascript" src="/js/jquery.js"></script>
     <title><?php echo $judulHalaman ?></title>
@@ -19,6 +20,11 @@
 </head>
 
 <body>
+    <!-- loading -->
+    <div class="loading flex fixed w-full h-screen z-50 transition-opacity duration-200">
+        <img src="/img/loading/load1.gif" class="m-auto items-center md:w-96 sm:w-72 w-60">
+    </div>
+    <!-- loading -->
     <!-- tombol kembali ke atas -->
     <button onclick="topFunction()" id="onTopBtn" title="Kembali ke Atas" class="hidden fixed bottom-5 right-8 w-10 h-10 p-1 cursor-pointer rounded-full border-none focus:outline-none z-50 bg-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white mx-auto" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
@@ -121,7 +127,7 @@
     </div>
     <!-- END FOOTER -->
 </body>
-
+<script type="text/javascript" src="/js/loading.js"></script>
 <script src="/js/aos.js"></script>
 <script>
     AOS.init();

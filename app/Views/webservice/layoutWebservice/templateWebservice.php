@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
-    <link rel="stylesheet" href="/css/aos.css" />
+    <link rel="stylesheet" href="/css/aos.css">
+    <link rel="stylesheet" href="/css/add_style.css">
     <script type="text/javascript" src="/js/jquery.js"></script>
     <title>Web Service | SIA</title>
 
@@ -18,22 +19,33 @@
 
 <body class="flex min-h-screen flex-col w-screen overflow-x-hidden font-paragraph">
 
+    <!-- loading -->
+    <div class="loading flex fixed w-full h-screen z-50 transition-opacity duration-200">
+        <img src="/img/load.gif" class="m-auto items-center md:w-96 sm:w-72 w-60">
+    </div>
+    <!-- loading -->
+    <!-- tombol kembali ke atas -->
+    <button onclick="topFunction()" id="onTopBtn" title="Kembali ke Atas" class="hidden fixed bottom-5 right-8 w-10 h-10 p-1 cursor-pointer rounded-full border-none focus:outline-none z-40 bg-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white mx-auto" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+            <path d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+        </svg>
+    </button>
     <!-- HEADER -->
     <div class="bg-primary md:px-12 sm:px-8 px-4 w-full navbar fixed z-10 bg-no-repeat bg-cover bg-left" style="background-image: url(/img/components/bgHeaderWS.png)">
         <div class="flex justify-between sm:my-2 my-1">
             <div class="font-heading flex items-center sm:gap-x-6 gap-x-3 z-10">
                 <a href="<?= base_url(); ?>">
-                    <img src="/img/components/logo/logo_sia.png" class=" z-50 md:w-16 w-10" alt="logo SIA">
+                    <img src="/img/components/logo/logo_sia.png" class="z-30 md:w-16 w-10" alt="logo SIA">
                 </a>
-                <div class="md:px-3 px-2 my-auto text-white z-50">
+                <div class="md:px-3 px-2 my-auto text-white z-30">
                     <p class="font-heading text-lg md:text-2xl font-semibold">Webservice Sistem Informasi Alumni</p>
                     <p class="font-heading md:text-xs font-normal hidden md:block -mt-1.5">Akademi Ilmu Statistik - Sekolah Tinggi Ilmu Statistik - Politeknik Statistika STIS</p>
                 </div>
             </div>
-            <div id="nav" class="hidden sm:flex sm:items-center z-10">
-                <ul class="flex lg:gap-x-6 md:gap-x-4 gap-x-2 relative">
+            <div id="nav" class="flex items-center z-10">
+                <ul class="flex relative">
                     <a href="/login">
-                        <li class="bg-secondary text-white py-1.5 sm:w-20 md:w-24 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">MASUK</li>
+                        <li class="bg-secondary text-white sm:py-1.5 py-0.5 w-20 md:w-24 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">MASUK</li>
                     </a>
                 </ul>
             </div>
@@ -42,7 +54,7 @@
     </div>
     <!-- END HEADER -->
     <!-- CONTENT PAGE DI SINI -->
-    <div class="w-full flex flex-1 justify-center items-center">
+    <div class="w-full flex flex-1 mt-24">
         <?= $this->renderSection('content'); ?>
     </div>
     <!-- END CONTENT PAGE -->

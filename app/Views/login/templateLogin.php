@@ -51,6 +51,10 @@
                 height: 64px;
             }
         }
+
+        body div.loading {
+            background: #fff center;
+        }
     </style>
 
 </head>
@@ -58,6 +62,11 @@
 <!-- CATATAN: Font Cabin belum bisa dipakai, kayaknya ada salah waktu konfigurasi di Tailwind nya, coba bantu cek lagi ya guys! Sama font Poppins nya masih tebel banget, gabisa diganti jenis ketebalannya... -->
 
 <body class="flex min-h-screen flex-col w-screen overflow-x-hidden font-paragraph">
+    <!-- loading -->
+    <div class="loading flex fixed w-full h-screen z-50 transition-opacity duration-200">
+        <img src="/img/loading/load1.gif" class="m-auto items-center md:w-96 sm:w-72 w-60">
+    </div>
+    <!-- loading -->
     <!-- HEADER -->
     <div class="bg-primary md:px-12 sm:px-8 px-4 w-full navbar fixed z-20 bg-no-repeat bg-cover bg-left">
 
@@ -135,6 +144,7 @@
     </div>
     <!-- END FOOTER -->
 
+    <script type="text/javascript" src="/js/loading.js"></script>
     <script type="text/javascript" src="/js/login.js"></script>
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script src="/js/aos.js"></script>

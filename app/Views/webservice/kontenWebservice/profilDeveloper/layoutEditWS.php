@@ -2,18 +2,13 @@
 
 <?= $this->section('content'); ?>
 
-<style>
-    .layoutEdit {
-        z-index: 5;
-    }
-</style>
 <script src="https://code.jquery.com/jquery-1.10.1.min.js" integrity="sha256-SDf34fFWX/ZnUozXXEH0AeB+Ip3hvRsjLwp6QNTEb3k=" crossorigin="anonymous"></script>
 
 <div class="w-full">
     <div class="flex w-full h-full relative">
-        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 bg-primarySidebar transition-all duration-500 ">
+        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 bg-primarySidebar transition-all duration-500">
             <!-- start sidebar hamburger/posisi tutup -->
-            <div class="md:hidden ">
+            <div class="md:hidden">
                 <svg class="block mx-auto lg:w-10 md:w-8 sm:w-7 w-6 cursor-pointer fill-current text-secondary mt-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -33,10 +28,10 @@
                 </div>
                 <ul>
                     <a href="/developer/edit/biodata">
-                        <li id="profilDev" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg sm:text-base text-sm text-white <?= ($active == 'biodataDev') ? 'active' : ''; ?>  hover:bg-primaryDark font-semibold">Biodata</li>
+                        <li id="profilDev" class="button bg-primarySidebar font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg sm:text-base text-sm text-white <?= ($active == 'biodataDev') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Biodata</li>
                     </a>
                     <a href="/developer/edit/akun">
-                        <li id="akunDev" class="button bg-primary font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg sm:text-base text-sm text-white <?= ($active == 'akunDev') ? 'active' : ''; ?>  hover:bg-primaryDark font-semibold">Akun</li>
+                        <li id="akunDev" class="button bg-primarySidebar font-heading lg:p-3 p-2 pl-3 lg:pl-7 my-2 mr-2 rounded-r-lg sm:text-base text-sm text-white <?= ($active == 'akunDev') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Akun</li>
                     </a>
                 </ul>
 
@@ -55,8 +50,4 @@
 </div>
 
 </div>
-
-
-
-
 <?= $this->endSection(); ?>

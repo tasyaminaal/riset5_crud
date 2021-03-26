@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/tailwind.css">
     <link rel="stylesheet" href="/css/scrollbar.css">
-    <link rel="stylesheet" href="/css/all.css">
     <link rel="stylesheet" href="/css/add_style.css">
     <link rel="stylesheet" href="/css/aos.css" />
     <script type="text/javascript" src="/js/jquery.js"></script>
@@ -16,39 +15,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <style>
-        .menu {
-            background-image: linear-gradient(to right, #014f86, #025e9e, #0567ab);
-            background-size: 200% auto;
-        }
-
-        .choosed {
-            background-color: #003c75;
-        }
-
-        .notchoose {
-            background-color: #005490;
-        }
-
-        .list:hover {
-            background-color: #FF8A00;
-        }
-
-        #utama {
-            z-index: -1;
-        }
-
-        @media (max-width: 409px) {
-            #divKosong {
-                height: 65px;
-            }
-        }
-    </style>
-
 </head>
 
 <body class="flex min-h-screen flex-col w-screen overflow-x-hidden font-paragraph">
 
+    <!-- loading -->
+    <div class="loading flex fixed w-full h-screen z-50 transition-opacity duration-200">
+        <img src="/img/loading/load.gif" class="m-auto items-center md:w-96 sm:w-72 w-60">
+    </div>
+    <!-- loading -->
     <!-- tombol kembali ke atas -->
     <button onclick="topFunction()" id="onTopBtn" title="Kembali ke Atas" class="hidden fixed bottom-5 right-8 w-10 h-10 p-1 cursor-pointer rounded-full border-none focus:outline-none z-50 bg-secondary">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white mx-auto" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
@@ -62,9 +37,9 @@
         <div class="flex justify-between sm:my-2 my-1">
             <div class="font-heading flex items-center gap-x-1 lg:gap-x-3 z-10">
                 <a href="<?= base_url(); ?>">
-                    <img src="/img/components/logo/logo_sia.png" class=" z-50 md:w-16 w-10" alt="logo SIA">
+                    <img src="/img/components/logo/logo_sia.png" class="z-40 md:w-16 w-10" alt="logo SIA">
                 </a>
-                <div class="md:px-3 px-2 my-auto text-white z-50">
+                <div class="md:px-3 px-2 my-auto text-white z-40">
                     <p class="font-heading text-lg lg:text-2xl font-semibold">Webservice Sistem Informasi Alumni</p>
                     <p class="font-heading md:text-xs font-normal hidden md:block lg:-mt-1.5">Akademi Ilmu Statistik - Sekolah Tinggi Ilmu Statistik - Politeknik Statistika STIS</p>
                 </div>
@@ -217,12 +192,13 @@
         <h2 class="text-white text-sm text-center mt-1">Copyright &copy; PKL 60 Riset 5</h2>
     </div>
     <!-- END FOOTER -->
-
+    <script type="text/javascript" src="/js/loading.js"></script>
     <script type="text/javascript" src="/js/onTopBtn.js"></script>
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script src="/js/aos.js"></script>
     <script type="text/javascript" src="/js/footer.js"></script>
     <script type="text/javascript" src="/js/editProfil.js"></script>
+    <script type="text/javascript" src="/js/webservices.js"></script>
     <script>
         AOS.init();
     </script>
