@@ -24,6 +24,12 @@ class AlumniModel extends Model
         return $this->table('alumni')->like($field, $search);
     }
 
+    public function getUser($id)
+    {
+        $query = "SELECT * FROM users WHERE id = $id";
+        return $this->db->query($query);
+    }
+
     public function getAlumniFilter($cari, $min_angkatan, $max_angkatan)
     {
         $query = $this->table('alumni');
@@ -144,7 +150,7 @@ class AlumniModel extends Model
 
     public function getUsersById($id)
     {
-        $query = "SELECT * FROM users WHERE id = $id";
+        $query = "SELECT id,email,username,nim,fullname,user_image FROM users WHERE id = $id";
         return $this->db->query($query);
     }
 
@@ -184,5 +190,23 @@ class AlumniModel extends Model
 
             return $this->db->query($sql, [$nim]);
         }
+    }
+
+    public function deletePrestasiById($id)
+    {
+        $query = "DELETE FROM prestasi WHERE id_prestasi= $id";
+        return $this->db->query($query);
+    }
+
+    public function deletePendidikanById($id)
+    {
+        $query = "DELETE FROM pendidikan WHERE id_pendidikan= $id";
+        return $this->db->query($query);
+    }
+
+    public function getIdTempatKerja($nama)
+    {
+        $query = "SELECT id_tempat_kerja FROM tempat_kerja WHERE nama_instansi = '$nama'";
+        return $this->db->query($query)->getRow()->id_tempat_kerja;
     }
 }
