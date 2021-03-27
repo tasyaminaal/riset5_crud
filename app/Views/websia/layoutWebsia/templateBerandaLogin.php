@@ -67,7 +67,7 @@
     </button>
 
     <!-- HEADER -->
-    <div class="navbar w-full fixed z-10 bg-cover bg-no-repeat bg-left transition duration-700 ease-out" style="background-image: url(/img/components/bgHeader.png)" id="navbar">
+    <div class="navbar w-full fixed z-30 bg-cover bg-no-repeat bg-left transition duration-700 ease-out" style="background-image: url(/img/components/bgHeader.png)" id="navbar">
         <header>
             <div class="flex flex-col">
                 <div class="flex items-center justify-between px-6 pt-3 ">

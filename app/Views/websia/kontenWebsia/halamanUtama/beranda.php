@@ -117,24 +117,39 @@ if ($login == 'belum') {
         </div>
     </div>
 
-    <div class="bg-white p-2 cursor-pointer skalaAwal hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class=" ml-3 w-4 h-4 stroke-current stroke-2 text-black" fill="currentColor" class="bi bi-fullscreen">
-            <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
-        </svg>
-    </div>
+
 
     <!-- awal gambar peta alumni -->
     <div class="bg-primary relative" style="height: 26rem;" data-aos="zoom-in">
-        <div id="mapid" class="bg-primary z-10 h-full w-full"></div>
+
+        <div id="mapProvinsi" class="bg-primary z-10 h-full w-full "></div>
+        <div id="mapKabupaten" class="bg-primary z-10 h-full w-full absolute top-0 invisible"></div>
+
+        <div class="flex flex-col items-end bg-white p-1 rounded-sm zoomResetPeta hover:bg-gray-200 cursor-pointer absolute top-20 left-3 z-20">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-fullscreen" viewBox="0 0 16 16">
+                <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4A1.5 1.5 0 0 1 1.5 0h4a.5.5 0 0 1 0 1h-4zM10 .5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 16 1.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zM.5 10a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 0 14.5v-4a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5z" />
+            </svg>
+        </div>
 
         <div class="flex flex-col items-end absolute top-0 right-0 z-20">
-            <svg class="w-6 h-6 text-white cursor-pointer mb-2 hover:text-gray-300 tombolInfo" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-8 h-8 text-secondary cursor-pointer mb-2 hover:text-gray-300 tombolInfo" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
             </svg>
 
-            <div class="p-2 bg-white rounded-xl text-primary bg-opacity-75 hidden info">
+            <div class="p-2 bg-gray-200 rounded-xl text-primary hidden info">
                 <div class="text-sm font-heading font-semibold">Keterangan :</div>
-                <div class="text-xs font-paragraph">Terdapat total 2000 Alumni yang berada di luar Indonesia</div>
+                <div class="flex items-center text-xs font-paragraph">
+                    <svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    Terdapat total 2000 Alumni yang berada di luar Indonesia
+                </div>
+                <div class="flex items-center text-xs font-paragraph">
+                    <svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    Terdapat total 300 Alumni yang belum menginput data
+                </div>
             </div>
         </div>
     </div>

@@ -12,15 +12,12 @@ filterSidebar.forEach(o => {
     o.addEventListener("click", () => {
         filterSidebar.forEach(p => {
             p.classList.remove('text-secondary');
-            p.classList.remove('bg-primaryDark');
             if(!p.classList.contains('text-white')){
                 p.classList.add('text-white');
-                
             }
         });
         o.classList.remove('text-white');
         o.classList.add('text-secondary');
-        o.classList.add('bg-primaryDark');
         getList(o.innerHTML);
     })
 })
@@ -38,59 +35,31 @@ listSidebar.forEach(o => {
 
 const namaProdi = document.querySelectorAll(".namaProdi");
 namaProdi.forEach(o => {
-    o.children[0].addEventListener("click", () => {
-        namaProdi.forEach(p => {
-            p.classList.remove('text-secondary');
-            p.classList.remove('bg-primaryDark');
-            p.classList.add('text-white');
-            p.children[1].classList.add('hidden');
-        });
-        o.classList.add('text-secondary');
-        o.classList.add('bg-primaryDark');
-        o.classList.remove('text-white');
-        o.children[1].classList.remove('hidden');
+    o.addEventListener("click", () => {
+        o.children[1].classList.toggle("hidden");
+        o.children[2].classList.toggle("hidden");
+        if(o.children[3].checked == false){
+            o.children[3].checked = true;
+        } else {
+            o.children[3].checked = false;
+        };
     })
 })
 
-namaProdi.forEach(o => {
-    o.children[1].addEventListener("click", () => {
-        o.classList.remove('text-secondary');
-        o.classList.remove('bg-primaryDark');
-        o.classList.add('text-white');
-        o.children[1].classList.add('hidden');
-    })
-})
+
 
 function toggleTempatKerja() {
-    $('.onBPS').toggleClass('hidden');
-    $('.offBPS').toggleClass('hidden');
-    $('.onLainnya').toggleClass('hidden');
-    $('.offLainnya').toggleClass('hidden');
-    $('.inputBPS').toggleClass('text-gray-300');
-    $('.inputBPS').toggleClass('text-primary');
-    $('.inputTempatKerjaLainnya').toggleClass('text-gray-300');
-    $('.inputTempatKerjaLainnya').toggleClass('text-primary');
+    $('.inputKerja').toggleClass('text-gray-300');
+    $('.inputKerja').toggleClass('text-primary');
 }
 
-$('.BPS').click(function(){
-    toggleTempatKerja();
-})
-
-$('.Lainnya').click(function(){
-    toggleTempatKerja();
-})
-
-$(".inputBPS input").focus(function() {
-    if ($('.onBPS').hasClass('hidden')) {
+$(".inputKerja input").focus(function() {
         toggleTempatKerja();
-    }
 });
 
-$(".inputTempatKerjaLainnya input").focus(function() {
-    if ($('.onLainnya').hasClass('hidden')) {
-        toggleTempatKerja();
-    };
-});
+$('.inputKerja svg').click(function(){
+    $('.inputKerja input').val('');
+})
 
 function getList(param){
     
@@ -109,7 +78,7 @@ function getList(param){
         $('.listFilterSidebarAlumni').addClass('hidden');
     }
 
-    if(param == 'Program Studi'){
+    if(param == 'Prodi'){
         $('.listProdi').toggleClass('hidden');
     } 
 
@@ -134,17 +103,8 @@ $('.listAngkatan div svg').click(function(){
 })
 // akhir input angkatan
 
-// akhir input tempat kerja BPS
-$('.inputBPS svg').click(function(){
-    $('.inputBPS input').val('');
-})
-// Awal tempat kerja BPS
 
-// akhir input tempat Kerja selain BPS
-$('.inputTempatKerjaLainnya svg').click(function(){
-    $('.inputTempatKerjaLainnya input').val('');
-})
-// Awal input tempat Kerja selain BPS
+
 
 var typingTimer;                
 var doneTypingInterval = 1000;
@@ -352,6 +312,8 @@ tahunKalenderAkhir.forEach(o => {
     })
 })
 //Akhir Kalender Tahun AKhir
+
+
 
 // Akhir Kaleneder
 

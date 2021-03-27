@@ -1,27 +1,27 @@
-<div class="md:relative fixed flex flex-col bg-primarySidebar md:h-auto h-full sidebarSearch">
+<div class="md:relative fixed flex flex-col bg-primary rounded-r md:h-auto h-full sidebarSearch">
 
-    <div class="flex md:px-5 px-4 py-3 justify-between bg-primaryHover items-center">
-        <div class="md:text-xl text-base font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
-        <svg class="md:w-7 w-6 fill-current text-secondary cursor-pointer hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div class="flex md:px-5 px-2 py-2 justify-between bg-primaryHover items-center">
+        <div class="md:text-2xl text-base font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
+        <svg class="md:w-7 w-4 fill-current text-secondary cursor-pointer hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </div>
 
-    <div class="flex flex-col mt-4 ml-0 mr-4 hidden param2">
+    <div class="flex flex-col mt-4 hidden param2">
 
         <!-- Awal tombol filter "Semua" -->
-        <div class="md:text-base text-sm text-white bg-primary hover:bg-primaryDark font-heading font-medium px-5 py-1 cursor-pointer filterSidebar rounded">Semua</div>
+        <div class="md:text-base text-sm text-secondary hover:bg-primaryDark font-heading font-medium px-4 py-1 cursor-pointer filterSidebar">Semua</div>
         <!-- Akhir tombol filter "Semua" -->
 
         <!-- Awal filter "Alumni" -->
-        <div class="md:text-base text-sm  text-white bg-primary hover:bg-primaryDark font-heading font-medium px-5 py-1 cursor-pointer filterSidebar">Alumni</div>
+        <div class="md:text-base text-sm  text-white hover:bg-primaryDark font-heading font-medium px-4 py-1 cursor-pointer filterSidebar">Alumni</div>
 
         <div class="flex flex-col py-1 px-6 w-full hidden listFilterSidebarAlumni">
 
             <!-- Awal Filter "Prodi" Untuk Alumni  -->
             <div class="flex flex-col">
-                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded cursor-pointer listSidebar">
-                    <div class="md:text-sm text-xs text-white font-heading">Program Studi</div>
+                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded-lg cursor-pointer listSidebar">
+                    <div class="md:text-sm text-xs text-white font-heading">Prodi</div>
                     <svg class="w-3 h-3 my-auto text-white font-semibold " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -31,30 +31,62 @@
                 </div>
 
                 <!-- Awal List Filter "Prodi" Untuk Alumni  -->
-                <div class="flex flex-col font-paragraph ml-2 mb-1 hidden listProdi bg-primary">
+                <div class="flex flex-col font-paragraph mb-1 px-3 hidden listProdi">
 
-                    <div class="flex items-center justify-between text-gray-300 cursor-pointer mx-0 py-2 px-3 hover:bg-primaryDark rounded namaProdi">
+                    <div class="flex items-center justify-between text-white cursor-pointer mb-1 py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
+                        <div class="text-xs w-full">DI Statistika</div>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
+                            <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
+                        </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
+                            <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
+                        </svg>
+
+                        <input type="checkbox" checked="true" class="hidden" id="DTigaStatistik">
+                    </div>
+
+                    <div class="flex items-center justify-between text-white cursor-pointer mb-1 py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
                         <div class="text-xs w-full">DIII Statistika</div>
 
-                        <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
+                            <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
                         </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
+                            <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
+                        </svg>
+
+                        <input type="checkbox" checked="true" class="hidden" id="DTigaStatistik">
                     </div>
 
-                    <div class="flex items-center justify-between text-gray-300 cursor-pointer  py-2 px-3 hover:bg-primaryDark rounded namaProdi">
+                    <div class="flex items-center justify-between text-white cursor-pointer mb-1 py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
                         <div class="text-xs w-full">DIV Statistika</div>
 
-                        <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
+                            <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
                         </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
+                            <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
+                        </svg>
+
+                        <input type="checkbox" checked="true" class="hidden" id="DEmpatStatistik">
                     </div>
 
-                    <div class="flex items-center justify-between text-gray-300 cursor-pointer  py-2 px-3 hover:bg-primaryDark rounded namaProdi">
+                    <div class="flex items-center justify-between text-white cursor-pointer mb-1 py-1 px-1 hover:bg-primaryDark rounded-lg namaProdi">
                         <div class="text-xs w-full">DIV Komputasi Statistik</div>
 
-                        <svg class="w-3 h-3 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
+                            <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
                         </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
+                            <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
+                        </svg>
+
+                        <input type="checkbox" checked="true" class="hidden" id="DTigaKomputasi">
                     </div>
                 </div>
                 <!-- Akhir List Filter "Prodi" Untuk Alumni  -->
@@ -64,7 +96,7 @@
 
             <!-- Awal Filter "Angkatan" Untuk Alumni  -->
             <div class="flex flex-col">
-                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded cursor-pointer listSidebar">
+                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded-lg cursor-pointer listSidebar">
                     <div class="md:text-sm text-xs font-heading text-white">Angkatan</div>
                     <svg class="w-3 h-3 my-auto text-white font-semibold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -91,7 +123,7 @@
 
             <!-- Awal Filter "Tempat Kerja" Untuk Alumni  -->
             <div class="flex flex-col">
-                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded cursor-pointer listSidebar">
+                <div class="flex justify-between mb-1 hover:bg-primaryDark py-1 px-2 rounded-lg cursor-pointer listSidebar">
                     <div class="md:text-sm text-xs text-white font-heading ">Tempat Kerja</div>
                     <svg class="w-3 h-3 my-auto text-white font-semibold " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -101,46 +133,14 @@
                     </svg>
                 </div>
 
-                <div class="flex flex-col mb-1 px-4 hidden listTempatKerja">
-                    <div class="flex justify-between mb-1 cursor-pointer BPS">
-                        <div class="text-white text-xs font-heading">BPS</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary onBPS" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
-                            <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden offBPS" id="offBPS" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
-                            <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
-                        </svg>
-                    </div>
-
-                    <!-- Awal Input Filter "Tempat Kerja BPS" Untuk Alumni  -->
-                    <div class="flex w-full outline-none rounded-lg items-center mb-2 text-primary inputBPS">
-                        <input type="text" placeholder="BPS RI/Provinsi/kota" class="w-full placeholder-gray-300 font-paragraph text-xs px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
+                <div class="flex mb-1 px-4 hidden listTempatKerja">
+                    <div class="flex w-full outline-none rounded-lg items-center mb-2 text-primary inputKerja">
+                        <input type="text" placeholder="BPS RI" class="w-full placeholder-gray-300 font-paragraph text-xs px-2 py-1 outline-none focus:ring-2 focus:ring-secondary text-primary font-paragraph rounded-lg">
 
                         <svg class="w-3 h-3 text-primary stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <!-- Awal Input Filter "Tempat Kerja BPS" Untuk Alumni  -->
-
-                    <div class="flex justify-between mb-1 cursor-pointer Lainnya">
-                        <div class="text-white text-xs font-heading">Lainnya</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary hidden onLainnya" fill="currentColor" class="bi bi-toggle-on" viewBox="0 0 16 16">
-                            <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-5 text-secondary offLainnya" fill="currentColor" class="bi bi-toggle-off" viewBox="0 0 16 16">
-                            <path d="M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4h3zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zM0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5z" />
-                        </svg>
-                    </div>
-
-                    <!-- Awal Input Filter "Tempat Kerja Lainnya" Untuk Alumni  -->
-                    <div class="flex w-full outline-none rounded-lg items-center mb-1 text-gray-300 inputTempatKerjaLainnya">
-                        <input type="text" placeholder="Institusi/Perusahaan Lain" class="w-full placeholder-gray-300 text-xs font-paragraph px-2 py-1 outline-none focus:ring-2 focus:ring-secondary font-paragraph rounded-lg">
-
-                        <svg class="w-3 h-3 text-primary stroke-current stroke-2 -ml-5 cursor-pointer" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <!-- Awal Input Filter "Tempat Kerja Lainnya" Untuk Alumni  -->
 
                 </div>
             </div>
@@ -150,7 +150,7 @@
         <!-- Akhir filter "Alumni" -->
 
         <!-- Awal filter "Berita" -->
-        <div class="md:text-base text-sm text-white bg-primary hover:bg-primaryDark font-medium px-5 py-1 cursor-pointer filterSidebar">Artikel/Berita</div>
+        <div class="md:text-base text-sm text-white hover:bg-primaryDark font-medium px-4 py-1 cursor-pointer filterSidebar">Artikel/Berita</div>
 
         <div class="flex flex-col py-1 px-7 w-full hidden listFilterSidebarBerita">
 

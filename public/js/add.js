@@ -1,10 +1,19 @@
 
 // awal js buat map
-var skalaAwal = 5;
-
-var mymap = L.map('mapid', {
+var mapProvinsi = L.map('mapProvinsi', {
     center: [-2.5, 118],
-    zoom: skalaAwal
+    zoom: 5,
+    maxZoom: 8,
+    minZoom: 4,
+    scrollWheelZoom: false
+});
+
+var mapKabupaten = L.map('mapKabupaten', {
+    center: [-2.5, 118],
+    zoom: 5,
+    maxZoom: 8,
+    minZoom: 4,
+    scrollWheelZoom: false
 });
 
 var myStyle = {
@@ -17,12 +26,11 @@ var myStyle = {
 
 
 var jsonTest = new L.GeoJSON.AJAX(["/geojson/provinsi.geojson"], {
-    onEachFeature: popUp,
+    onEachFeature: popUpProvinsi,
     style: myStyle
-}).addTo(mymap);
+}).addTo(mapProvinsi);
 
-
-function popUp(f, l) {
+function popUpProvinsi(f, l) {
     var out = [];
     if (f.properties) {
         out.push(`
@@ -68,6 +76,56 @@ function popUp(f, l) {
     });
 }
 
+var jsonTest = new L.GeoJSON.AJAX(["/geojson/kabupaten.geojson"], {
+    onEachFeature: popUpKabupaten,
+    style: myStyle
+}).addTo(mapKabupaten);
+
+function popUpKabupaten(f, l) {
+    var out = [];
+    if (f.properties) {
+        out.push("<div class='md:text-base text-xs text-primary font-semibold text-center uppercase font-heading'> "+ f.properties["TYPE_2"] +" "+ f.properties["NAME_2"] + "</div> <hr class='my-2'>");
+        out.push("<div class='font-bold text-center md:text-base text-xs text-primary uppercase font-paragraph'>" + f.properties["ID_2"] + "</div>");
+        out.push("<div class='text-center md:text-base text-xs font-semibold text-primary font-paragraph'> Alumni</div>");
+        l.bindPopup(out.join(""));
+    }
+
+    l.on({
+        mouseover: function(e) {
+            e.target.setStyle({
+                color: "#FFAA00",
+                fillColor: "#FFFFFF",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+            });
+        },
+        mouseout: function(e) {
+            e.target.setStyle({
+                color: "#014F86",
+                fillColor: "#FFFFFF",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+            });
+        },
+        click: function(e) {
+            e.target.setStyle({
+                color: "#FFAA00",
+                fillColor: "#FFFFFF",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 1
+            });
+        }
+    });
+}
+
+$('.zoomResetPeta').click(function(){
+    mapProvinsi.setView([-2.5, 118], 5);
+    mapKabupaten.setView([-2.5, 118], 5);
+});
+
 
 
 $('.filterPeta').click(function () {
@@ -84,68 +142,23 @@ function klikFilterPeta(){
 
 $('.petaProvinsi').click(function () {
 
+
     $('.hasilFilterPeta').text('Provinsi');
     
-    var jsonTest = new L.GeoJSON.AJAX(["/geojson/provinsi.geojson"], {
-        onEachFeature: popUp,
-        style: myStyle
-    }).addTo(mymap);
-    
+    $('#mapProvinsi').removeClass('invisible');
+    $('#mapKabupaten').addClass('invisible');
+    mapKabupaten.setView([-2.5, 118], 5);
+    mapKabupaten.closePopup();
 });
 
 $('.petaKabupaten').click(function () {
     $('.hasilFilterPeta').text('Kabupaten');
 
-
-    function popUp(f, l) {
-        var out = [];
-        if (f.properties) {
-            out.push("<div class='md:text-base text-xs text-primary font-semibold text-center uppercase font-heading'> "+ f.properties["TYPE_2"] +" "+ f.properties["NAME_2"] + "</div> <hr class='my-2'>");
-            out.push("<div class='font-bold text-center md:text-base text-xs text-primary uppercase font-paragraph'>" + f.properties["ID_2"] + "</div>");
-            out.push("<div class='text-center md:text-base text-xs font-semibold text-primary font-paragraph'> Alumni</div>");
-            l.bindPopup(out.join(""));
-        }
-
-        l.on({
-            mouseover: function(e) {
-                e.target.setStyle({
-                    color: "#FFAA00",
-                    fillColor: "#FFFFFF",
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 1
-                });
-            },
-            mouseout: function(e) {
-                e.target.setStyle({
-                    color: "#014F86",
-                    fillColor: "#FFFFFF",
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 1
-                });
-            },
-            click: function(e) {
-                e.target.setStyle({
-                    color: "#FFAA00",
-                    fillColor: "#FFFFFF",
-                    weight: 2,
-                    opacity: 1,
-                    fillOpacity: 1
-                });
-            }
-        });
-    }
-
-    var jsonTest = new L.GeoJSON.AJAX(["/geojson/kabupaten.geojson"], {
-        onEachFeature: popUp,
-        style: myStyle
-    }).addTo(mymap);
-   
+    $('#mapProvinsi').addClass('invisible');
+    $('#mapKabupaten').removeClass('invisible');
+    mapProvinsi.setView([-2.5, 118], 5);
+    mapProvinsi.closePopup();
 });
-
-
-
 
 // akhir js buat map
 
