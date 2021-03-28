@@ -32,26 +32,32 @@ class AlumniModel extends Model
 
     public function getAlumniFilter($cari, $min_angkatan, $max_angkatan)
     {
+        if (strpos($cari, "'") !== false) {
+            $cari = str_replace("'", "\'", $cari);
+        }
+        if (strpos($cari, '"') !== false) {
+            $cari = str_replace('"', '\"', $cari);
+        }
         $query = $this->table('alumni');
         if (isset($cari) && !empty($cari)) {
-            $subquery = "(nim LIKE '%$cari%' 
-            OR nama LIKE '%$cari%' 
-            OR jenis_kelamin LIKE '%$cari%'
-            OR tempat_lahir LIKE '%$cari%'  
-            OR tanggal_lahir LIKE '%$cari%' 
-            OR jenis_kelamin LIKE '%$cari%' 
-            OR telp_alumni LIKE '%$cari%' 
-            OR email LIKE '%$cari%' 
-            OR alamat LIKE '%$cari%' 
-            OR status_bekerja LIKE '%$cari%' 
-            OR perkiraan_pensiun LIKE '%$cari%' 
-            OR jabatan_terakhir LIKE '%$cari%'
-            OR ig LIKE '%$cari%' 
-            OR fb LIKE '%$cari%'  
-            OR twitter LIKE '%$cari%' 
-            OR nip LIKE '%$cari%' 
-            OR nip_bps LIKE '%$cari%' 
-            OR aktif_pns LIKE '%$cari%')";
+            $subquery = "(nim LIKE \"%$cari%\" 
+            OR nama LIKE \"%$cari%\"
+            OR jenis_kelamin LIKE \"%$cari%\"
+            OR tempat_lahir LIKE \"%$cari%\"  
+            OR tanggal_lahir LIKE \"%$cari%\"
+            OR jenis_kelamin LIKE \"%$cari%\" 
+            OR telp_alumni LIKE \"%$cari%\" 
+            OR email LIKE \"%$cari%\" 
+            OR alamat LIKE \"%$cari%\" 
+            OR status_bekerja LIKE \"%$cari%\" 
+            OR perkiraan_pensiun LIKE \"%$cari%\" 
+            OR jabatan_terakhir LIKE \"%$cari%\"
+            OR ig LIKE \"%$cari%\"
+            OR fb LIKE \"%$cari%\" 
+            OR twitter LIKE \"%$cari%\" 
+            OR nip LIKE \"%$cari%\"
+            OR nip_bps LIKE \"%$cari%\" 
+            OR aktif_pns LIKE \"%$cari%\")";
             if (isset($min_angkatan) && isset($max_angkatan)) {
                 $where = "Angkatan BETWEEN $min_angkatan AND $max_angkatan";
                 $query = $query
