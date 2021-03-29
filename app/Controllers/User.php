@@ -93,8 +93,6 @@ class User extends BaseController
 
 	public function profil()
 	{
-		if (!session()->has('id_user') && !logged_in())
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
@@ -110,8 +108,7 @@ class User extends BaseController
 		// 'status_bekerja'	
 		// 'perkiraan_pensiun'
 		// 'jabatan_terakhir' 
-		// 'aktif_pns'		
-
+		// 'aktif_pns'	
 		$query2 = $model->getTempatKerjaByNIM(session('nim'))->getRow();
 		//isi :
 		// 'id_tempat_kerja'	
@@ -233,8 +230,7 @@ class User extends BaseController
 		// 'status_bekerja'	
 		// 'perkiraan_pensiun'
 		// 'jabatan_terakhir' 
-		// 'aktif_pns'		
-
+		// 'aktif_pns'	
 		$query2 = $model->getTempatKerjaByNIM($kunci)->getRow();
 		//isi :	
 		// 'id_tempat_kerja'	
@@ -316,8 +312,6 @@ class User extends BaseController
 
 	public function editProfil()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->bukaProfile(session('nim'));
@@ -348,9 +342,6 @@ class User extends BaseController
 	// FUNGSINYA BELUM BISA DIEKSEKUSI```````````````````````````````````````````````````````
 	public function updateFotoProfil()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
@@ -385,8 +376,6 @@ class User extends BaseController
 
 	public function hapusFotoProfil()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query1 = $model->bukaProfile(session('nim'))->getRow();
@@ -410,8 +399,6 @@ class User extends BaseController
 
 	public function updateProfil()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$telp_alumni   	= htmlspecialchars($_POST['telp_alumni']);
@@ -503,8 +490,6 @@ class User extends BaseController
 
 	public function editPendidikan()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getPendidikanByNIM(session('nim'));
@@ -521,8 +506,6 @@ class User extends BaseController
 
 	public function updatePendidikan()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 
@@ -546,8 +529,6 @@ class User extends BaseController
 
 	public function addPendidikan()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 
@@ -573,8 +554,6 @@ class User extends BaseController
 
 	public function deletePendidikan()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$model->deletePendidikanById($_POST['id_pendidikan']);
@@ -584,8 +563,6 @@ class User extends BaseController
 
 	public function editTempatKerja()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getTempatKerjaByNIM(session('nim'));
@@ -604,8 +581,6 @@ class User extends BaseController
 
 	public function updateTempatKerja()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 
@@ -620,9 +595,6 @@ class User extends BaseController
 
 	public function addTempatKerja()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
-
 		$model = new AlumniModel();
 
 		$data1 = [
@@ -647,8 +619,6 @@ class User extends BaseController
 
 	public function editPrestasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getPrestasiByNIM(session('nim'));
@@ -667,8 +637,6 @@ class User extends BaseController
 
 	public function updatePrestasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 
@@ -685,8 +653,6 @@ class User extends BaseController
 
 	public function addPrestasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 
@@ -703,8 +669,6 @@ class User extends BaseController
 
 	public function deletePrestasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$model->deletePrestasiById($_POST['id_prestasi']);
@@ -714,8 +678,6 @@ class User extends BaseController
 
 	public function editPublikasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getPublikasiByNIM(session('nim'));
@@ -739,8 +701,6 @@ class User extends BaseController
 	// DATABASENYAA KURANG MASHOOKKKK BOSQUE
 	public function addPublikasi()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 
@@ -760,8 +720,6 @@ class User extends BaseController
 
 	public function editAkun()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$query = $model->getUsersById(session('id_user'));
@@ -780,8 +738,6 @@ class User extends BaseController
 	// BELOM KELAR FUNGSINYA ``````````````````````````````````````````````````````````````````````
 	public function updateAkun()
 	{
-		if (!session()->has('id_user'))
-			return redirect()->to('/');
 
 		$model = new AlumniModel();
 		$curpass = $model->getUser(session('id_user'))->getRow()->password_hash;
