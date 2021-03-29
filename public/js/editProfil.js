@@ -9,7 +9,12 @@ $('#buttonEditTampilan').click(function (){
        } 
        if(!$('#checkTelepon').is(':checked')) $('#labelTelepon').addClass('text-gray-500');    
        if(!$('#checkEmail').is(':checked')) $('#labelEmail').addClass('text-gray-500');    
-       if(!$('#checkAlamat').is(':checked')) $('#labelAlamat').addClass('text-gray-500');    
+       if(!$('#checkAlamat').is(':checked')) {
+           $('#labelAlamat').addClass('text-gray-500');    
+           $('#labelNegara').addClass('text-gray-500');    
+           $('#labelKabkot').addClass('text-gray-500');    
+           $('#labelProvinsi').addClass('text-gray-500');    
+       }
        if(!$('#checkJabatan').is(':checked')) $('#labelJabatan').addClass('text-gray-500');    
        if(!$('#checkInstagram').is(':checked')) $('#labelInstagram').addClass('text-gray-500');    
        if(!$('#checkTwitter').is(':checked')) $('#labelTwitter').addClass('text-gray-500');    
@@ -22,6 +27,9 @@ $('#buttonEditTampilan').click(function (){
         $('#labelTelepon').removeClass('text-gray-500');
         $('#labelEmail').removeClass('text-gray-500');
         $('#labelAlamat').removeClass('text-gray-500');
+        $('#labelNegara').removeClass('text-gray-500');
+        $('#labelKabkot').removeClass('text-gray-500');
+        $('#labelProvinsi').removeClass('text-gray-500');
         $('#labelJabatan').removeClass('text-gray-500');
         $('#labelInstagram').removeClass('text-gray-500');
         $('#labelTwitter').removeClass('text-gray-500');
@@ -47,6 +55,21 @@ $('#checkTanggalLahir').click(function(){
     } else {
       $('#labelTempatLahir').addClass("text-gray-500");
       $('#labelTanggalLahir').addClass("text-gray-500");
+    }
+})
+
+$('#checkAlamat').click(function(){
+    if($('#checkAlamat').is(':checked'))
+    {
+      $('#labelAlamat').removeClass("text-gray-500");
+      $('#labelNegara').removeClass("text-gray-500");
+      $('#labelKabkot').removeClass("text-gray-500");
+      $('#labelProvinsi').removeClass("text-gray-500");
+    } else {
+      $('#labelAlamat').addClass("text-gray-500");
+      $('#labelNegara').addClass("text-gray-500");
+      $('#labelKabkot').addClass("text-gray-500");
+      $('#labelProvinsi').addClass("text-gray-500");
     }
 })
 

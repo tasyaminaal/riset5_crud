@@ -116,7 +116,7 @@ if ($checked->facebook == 0) {
                     </div>
                 </div>
                 <div class="text-black font-heading font-normal mb-2"><?= $alumni->nama ?></div>
-                <div class="grid grid-cols-2 gap-x-4 mr-6">
+                <div class="grid grid-cols-2 gap-x-4">
                     <div>
                         <div class="font-medium">NIM:</div>
                         <div class="text-black font-heading font-normal mb-2"><?= $alumni->nim ?></div>
@@ -133,7 +133,7 @@ if ($checked->facebook == 0) {
                     </div>
                     <div class="text-black font-heading font-normal mb-2"><?= $jk ?></div>
                 </div>
-                <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
+                <div class="md:grid md:grid-cols-2 md:gap-x-4">
                     <div class="mr-1">
                         <div class="font-medium" id="labelTempatLahir">Tempat Lahir:</div>
                         <input type="text" name="tempatLahir" id="tempatLahir" class="inputForm" placeholder="Tempat Lahir" value="<?= $alumni->tempat_lahir ?>">
@@ -141,7 +141,7 @@ if ($checked->facebook == 0) {
                     <div>
                         <div class="flex justify-between items-center">
                             <div class="font-medium" id="labelTanggalLahir">Tanggal Lahir:</div>
-                            <input type="checkbox" <?= $ctl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
+                            <input type="checkbox" <?= $ctl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none editTampilan hidden">
                         </div>
                         <input type="date" name="tanggalLahir" data-id="TanggalLahir" id="tanggalLahir" class="inputForm" value="<?= $alumni->tanggal_lahir ?>">
                     </div>
@@ -154,7 +154,7 @@ if ($checked->facebook == 0) {
                     Nomor telepon hanya boleh berupa angka dan panjangnya minimum 9 digit.
                 </p>
                 <div class="lg:w-1/2">
-                    <div class="lg:mr-6">
+                    <div class="lg:mr-3">
                         <?php if (session('inputs')) { ?>
                             <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
                         <?php } else { ?>
@@ -170,7 +170,7 @@ if ($checked->facebook == 0) {
                     Email telah digunakan oleh alumni lain.
                 </p>
                 <div class="lg:w-1/2">
-                    <div class="lg:mr-6">
+                    <div class="lg:mr-3">
                         <?php if (session('inputs')) { ?>
                             <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
                         <?php } else { ?>
@@ -188,6 +188,27 @@ if ($checked->facebook == 0) {
                     <?php } else { ?>
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= $alumni->alamat ?></textarea>
                     <?php } ?>
+                </div>
+                <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
+                <input list="daftarNegara" name="negara" id="negara" placeholder="Masukkan nama negara" value="" class="inputForm">
+                <datalist id="daftarNegara" class="font-paragraph">
+                    <option data-value="Indonesia">Indonesia</option>
+                </datalist>
+                <div class="md:grid md:grid-cols-2 md:gap-x-4">
+                    <div>
+                        <label for="kabkota" class="font-medium" id="labelKabkot">Kabupaten/Kota:</label>
+                        <input list="daftarKabkota" name="kabkota" id="kabkota" placeholder="Masukkan nama kabupaten/kota" value="" class="inputForm">
+                        <datalist id="daftarKabkota" class="font-paragraph">
+                            <option data-value="Kota Jakarta Timur">Kota Jakarta Timur</option>
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="provinsi" class="font-medium" id="labelProvinsi">Provinsi:</label>
+                        <input list="daftarProvinsi" name="provinsi" id="provinsi" placeholder="Masukkan nama provinsi" value="" class="inputForm">
+                        <datalist id="daftarProvinsi" class="font-paragraph">
+                            <option data-value="DKI Jakarta">DKI Jakarta</option>
+                        </datalist>
+                    </div>
                 </div>
                 <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
                     <div>
@@ -254,6 +275,10 @@ if ($checked->facebook == 0) {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <label for="biografi" class="font-medium">Biografi:</label>
+                    <textarea name="biografi" id="biografi" cols="30" rows="5" class="inputForm resize-none" placeholder="Tambahkan biografi Anda di sini"></textarea>
                 </div>
                 <div class="flex justify-end mt-8 mb-6">
                     <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitBiodata">
