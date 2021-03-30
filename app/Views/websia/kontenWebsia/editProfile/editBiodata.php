@@ -178,6 +178,28 @@ if ($checked->facebook == 0) {
                         <?php } ?>
                     </div>
                 </div>
+                <hr class="border-gray-500 my-3">
+                <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
+                <input list="daftarNegara" name="negara" id="negara" placeholder="Masukkan nama negara" value="" class="inputForm">
+                <datalist id="daftarNegara" class="font-paragraph">
+                    <option data-value="Indonesia">Indonesia</option>
+                </datalist>
+                <div class="md:grid md:grid-cols-2 md:gap-x-4">
+                    <div>
+                        <label for="provinsi" class="font-medium" id="labelProvinsi">Provinsi:</label>
+                        <input list="daftarProvinsi" name="provinsi" id="provinsi" placeholder="Masukkan nama provinsi" value="" class="inputForm">
+                        <datalist id="daftarProvinsi" class="font-paragraph">
+                            <option data-value="DKI Jakarta">DKI Jakarta</option>
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="kabkota" class="font-medium" id="labelKabkot">Kabupaten/Kota:</label>
+                        <input list="daftarKabkota" name="kabkota" id="kabkota" placeholder="Masukkan nama kabupaten/kota" value="" class="inputForm">
+                        <datalist id="daftarKabkota" class="font-paragraph">
+                            <option data-value="Kota Jakarta Timur">Kota Jakarta Timur</option>
+                        </datalist>
+                    </div>
+                </div>
                 <div class="flex justify-between items-center">
                     <label for="alamat" class="font-medium" id="labelAlamat">Alamat:</label>
                     <input type="checkbox" <?= $calamat ?> name="checkAlamat" data-id="Alamat" id="checkAlamat" class="cursor-pointer focus:outline-none editTampilan hidden">
@@ -189,27 +211,7 @@ if ($checked->facebook == 0) {
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= $alumni->alamat ?></textarea>
                     <?php } ?>
                 </div>
-                <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
-                <input list="daftarNegara" name="negara" id="negara" placeholder="Masukkan nama negara" value="" class="inputForm">
-                <datalist id="daftarNegara" class="font-paragraph">
-                    <option data-value="Indonesia">Indonesia</option>
-                </datalist>
-                <div class="md:grid md:grid-cols-2 md:gap-x-4">
-                    <div>
-                        <label for="kabkota" class="font-medium" id="labelKabkot">Kabupaten/Kota:</label>
-                        <input list="daftarKabkota" name="kabkota" id="kabkota" placeholder="Masukkan nama kabupaten/kota" value="" class="inputForm">
-                        <datalist id="daftarKabkota" class="font-paragraph">
-                            <option data-value="Kota Jakarta Timur">Kota Jakarta Timur</option>
-                        </datalist>
-                    </div>
-                    <div>
-                        <label for="provinsi" class="font-medium" id="labelProvinsi">Provinsi:</label>
-                        <input list="daftarProvinsi" name="provinsi" id="provinsi" placeholder="Masukkan nama provinsi" value="" class="inputForm">
-                        <datalist id="daftarProvinsi" class="font-paragraph">
-                            <option data-value="DKI Jakarta">DKI Jakarta</option>
-                        </datalist>
-                    </div>
-                </div>
+                <hr class="border-gray-500 mb-3 mt-1">
                 <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
                     <div>
                         <div class="font-medium">Status Bekerja di BPS:</div>
@@ -231,6 +233,7 @@ if ($checked->facebook == 0) {
                     <div class="font-medium">Perkiraan Tahun Pensiun:</div>
                     <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
                 </div>
+                <hr class="border-gray-500 my-3">
                 <div>
                     <div class="font-medium mb-2">Akun Media Sosial:</div>
                     <div class="w-full">
