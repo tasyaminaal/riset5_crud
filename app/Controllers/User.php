@@ -488,9 +488,11 @@ class User extends BaseController
 		// dd($this->form_validation->run($data, 'editProfil'));
 
 		if ($this->form_validation->run($data, 'editProfil') === FALSE) {
+			// dd($this->form_validation->getError('email'));
 			session()->setFlashdata('edit-bio-fail', 'Biodata gagal Disimpan');
 			session()->setFlashdata('inputs', $this->request->getPost());
-			session()->setFlashdata('errors', $this->form_validation->getErrors());
+			session()->setFlashdata('error-email', $this->form_validation->getError('email'));
+			session()->setFlashdata('error-telp_alumni', $this->form_validation->getError('telp_alumni'));
 			// dd(session('errors'));
 			return redirect()->to(base_url('User/editProfil'));
 		} else {

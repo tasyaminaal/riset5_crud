@@ -150,13 +150,17 @@ if ($checked->facebook == 0) {
                     <label for="notelepon" class="font-medium" id="labelTelepon">No. Telepon:</label>
                     <input type="checkbox" <?= $cnt ?> name="checkTelepon" data-id="Telepon" id="checkTelepon" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
-                <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
-                    Nomor telepon hanya boleh berupa angka dan panjangnya minimum 9 digit.
-                </p>
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
-                        <?php if (session('inputs')) { ?>
-                            <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
+                        <?php if (session()->getFlashdata('error-telp_alumni')!="") { ?>
+                            <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
+                                <?= session('error-telp_alumni') ?>
+                            </p>
+                            <?php if(session()->getFlashdata()['inputs']['telp_alumni'] != $alumni->telp_alumni){?>
+                                <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
+                            <?php } else { ?>
+                                <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>" required>
+                            <?php } ?>
                         <?php } else { ?>
                             <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>" required>
                         <?php } ?>
@@ -166,13 +170,18 @@ if ($checked->facebook == 0) {
                     <label for="email" class="font-medium" id="labelEmail">Email:</label>
                     <input type="checkbox" <?= $cemail ?> name="checkEmail" data-id="Email" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
-                <p class="text-xs text-red-500 text-justify" id="errorEmail">
-                    Email telah digunakan oleh alumni lain.
-                </p>
+                
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
-                        <?php if (session('inputs')) { ?>
-                            <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
+                        <?php if (session()->getFlashdata('error-email')!="") { ?>
+                            <p class="text-xs text-red-500 text-justify" id="errorEmail">
+                                <?= session('error-email') ?>
+                            </p>
+                            <?php if(session()->getFlashdata()['inputs']['email'] != $alumni->email ){?>
+                                <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
+                            <?php } else { ?>
+                                <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
+                            <?php } ?>
                         <?php } else { ?>
                             <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
                         <?php } ?>
@@ -206,7 +215,7 @@ if ($checked->facebook == 0) {
                 </div>
                 <div>
                     <?php if (session('inputs')) { ?>
-                        <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= session('inputs')['alamat'] ?></textarea>
+                        <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= htmlspecialchars(session('inputs')['alamat']) ?></textarea>
                     <?php } else { ?>
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= $alumni->alamat ?></textarea>
                     <?php } ?>
