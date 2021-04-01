@@ -4,9 +4,13 @@
 
 
 <!-- Awal Rekomendasi -->
-<div class="my-8 pt-0 px-8 text-center md:text-left">
+<div class="mb-8 mt-6 pt-0 px-8 text-center md:text-left">
     <div class="static md:w-full px-4 pb-4">
-        <h2 class="font-heading font-semibold text-xl mb-8">Alumni yang mungkin Anda kenal</h2>
+        <a class="bg-secondary font-paragraph text-sm text-white text-center py-1 px-3 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-200" href="/User/profil">
+            <img src="/img/components/icon/panah_kiri.png" alt="icon panah kiri" class="inline pr-2 pb-1">
+            Kembali
+        </a>
+        <h2 class="font-heading font-semibold text-xl my-4">Alumni yang mungkin Anda kenal</h2>
         <section id="cards">
             <div class="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2 sm:gap-y-4 md:gap-y-8">
                 <?php foreach ($alumni as $row) :  ?>
@@ -24,26 +28,19 @@
                         </a>
                     </div>
                 <?php endforeach; ?>
-                <?= $pager->simpleLinks() ?>
-
-                Newer
-                Older
             </div>
         </section>
+        <!-- Awal button Tampilkan Lebih Banyak -->
         <div class="mt-8 pb-2 text-center md:text-left font-semibold">
-            <!-- Awal button Tampilkan Lebih Banyak -->
-            <button id="showMore" class="showMore float-right bg-secondary font-paragraph text-sm text-white text-center py-1 px-3 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-200 focus:outline-none">
+            <?= $pager->simpleLinks() ?>
+            <!-- <button class="float-right bg-secondary font-paragraph text-sm text-white text-center py-1 px-3 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-200 focus:outline-none">
                 Tampilkan Lebih Banyak
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="-mt-1 text-white w-4 inline text-bold">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
-            </button>
-            <!-- Akhir button Tampilkan Lebih Banyak -->
-            <a class="float-left bg-secondary font-paragraph text-sm text-white text-center py-1 px-3 mx-auto rounded-full cursor-pointer hover:bg-secondaryhover transition-colors duration-200" href="/profil">
-                <img src="/img/components/icon/panah_kiri.png" alt="icon panah kiri" class="float-left pr-2">
-                Kembali
-            </a>
+            </button> -->
         </div>
+        <!-- Akhir button Tampilkan Lebih Banyak -->
     </div>
 </div>
 <!-- Akhir Rekomendasi -->
