@@ -139,16 +139,16 @@ if ($login == 'belum') {
             <div class="p-2 bg-gray-200 rounded-xl text-primary hidden info">
                 <div class="text-sm font-heading font-semibold">Keterangan :</div>
                 <div class="flex items-center text-xs font-paragraph">
-                    <svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                    </svg>
-                    Terdapat total 2000 Alumni yang berada di luar Indonesia
+                    <span class="font-heading flex justify-start text-left">
+                        <img class="mr-0 md:mr-2 ml-1 md:ml-0 w-4 h-4 md:w-4 float-left" src="/img/icon/peta_lokasi.png" alt="">
+                        <p class="font-heading text-xs">Terdapat total 2000 Alumni yang berada di luar Indonesia</p>
+                    </span>
                 </div>
                 <div class="flex items-center text-xs font-paragraph">
-                    <svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
-                    </svg>
-                    Terdapat total 300 Alumni yang belum menginput data
+                    <span class="font-heading flex justify-start text-left">
+                        <img class="mr-0 md:mr-2 ml-1 md:ml-0 w-4 h-4 md:w-4 float-left" src="/img/icon/peta_beluminput.png" alt="">
+                        <p class="font-heading text-xs">Terdapat total 300 Alumni yang belum menginput data</p>
+                    </span>
                 </div>
             </div>
         </div>
