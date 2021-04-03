@@ -4,7 +4,10 @@
 <div class="flex w-screen h-screen justify-center items-center">
 
 	<div class="flex flex-col items-center">
-		<img src="/img/halamanError/404.png" alt="" class="w-96">
+		<div class="relative ">
+			<img src="/img/halamanError/404.png" alt="" class="w-96">
+			<div class="text-primary text-center font-heading font-extrabold text-5xl absolute inset-x-0 top-4 mx-auto"> 404</div>
+		</div>
 		<div class="text-primary text-center font-heading font-bold md:text-xl text-xs -mt-8 mx-auto">Maaf, halaman yang Anda minta tidak tersedia</div>
 		<hr class="border-b-2 border-t-0 w-32 border-gray-400 mx-auto">
 		<a href="">
