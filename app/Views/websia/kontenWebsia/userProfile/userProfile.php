@@ -179,9 +179,9 @@ if ($status == 'bukan user') {
                 $ig = $alumni->ig;
             }
             ?>
-            <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
+            <div class="md:space-x-4 md:flex md:flex-row items-start justify-center lg:justify-start md:py-2 px-5 md:px-0">
                 <?php if ($cemail == "" && $cfb == "") : ?>
-                    <div class="w-1/2">
+                    <div class="w-full md:w-1/2 mr-10">
                         <!-- Email -->
                         <?php if ($cemail == "") : ?>
                             <div class="inline-block mb-2 flex flex-row">
@@ -199,7 +199,7 @@ if ($status == 'bukan user') {
                     </div>
                 <?php endif ?>
                 <?php if ($cig == "" && $ctw == "") : ?>
-                    <div class="w-1/2 pl-6">
+                    <div class="w-full md:w-1/2 mt-2 md:mt-0">
                         <!-- Twitter -->
                         <?php if ($cig == "") : ?>
                             <div <?= $ctw ?> class="inline-block mb-2 flex flex-row">
@@ -332,6 +332,7 @@ if ($status == 'bukan user') {
                 <div class="font-bold"><?= $row->tahun_prestasi; ?></div>
             </div>
         <?php endforeach; ?>
+        <!-- Jika data prestasi belum diinput, ditampilkan "belum ada riwayat prestasi" -->
     </div>
     <hr class="visible sm:invisible border-primary border-opacity-75 w-4/5 object-center mx-auto mt-8">
 </div>
@@ -397,6 +398,12 @@ if ($status == 'bukan user') {
                                 <td class="text-sm text-left border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4"><?= $judul_tulisan; ?></td>
                             </tr>
                         <?php endforeach; ?>
+                        <!-- Tampilan jika data semua kolom belum diisi -->
+
+                        <!-- <tr>
+                            <td colspan="6" class="text-sm text-center border-b-2 border-gray-200 px-3 lg:px-5 py-2 md:py-3 lg:py-4">belum terisi</td>
+                        </tr> -->
+
                         <tr>
                             <td class="bg-gray-100 rounded-bl-xl lg:rounded-bl-3xl text-sm text-left px-3 lg:px-5 py-2 md:py-3 lg:py-4"></td>
                             <td class="bg-gray-100 text-sm text-left px-3 lg:px-5 py-2 md:py-3 lg:py-4"></td>
