@@ -135,4 +135,4 @@ nb-configuration.xml
 /resources/
 
 #untuk halaman rekomendasi
-!/vendor/codeigniter4/framework/system/Pager/Views/default_simple.php
+!vendor/codeigniter4/framework/system/Pager/Views/default_simple.php
