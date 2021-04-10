@@ -134,4 +134,4 @@ nb-configuration.xml
 /public/vendor/tailwind/package-lock.json
 
 #untuk halaman rekomendasi
-vendor/codeigniter..../simple.php
+!/vendor/codeigniter4/framework/system/Pager/Views/*
