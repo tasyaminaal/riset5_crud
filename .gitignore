@@ -132,6 +132,7 @@ nb-configuration.xml
 # tailwind
 /public/vendor/tailwind/node_modules
 /public/vendor/tailwind/package-lock.json
+/resources/
 
 #untuk halaman rekomendasi
 !/vendor/codeigniter4/framework/system/Pager/Views/*
