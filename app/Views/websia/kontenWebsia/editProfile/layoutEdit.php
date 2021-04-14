@@ -56,7 +56,7 @@
 
 <div class="w-full">
     <div class="flex w-full relative">
-        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-16 w-10 lg:w-1/4 md:w-1/5 transition-all duration-500 bg-primarySidebar">
+        <div class="layoutEdit md:static absolute top-0 bottom-0 sm:w-12 w-10 md:w-1/5 transition-all duration-500 bg-primarySidebar">
             <?php
             function getLastCurrentUrl()
             {
@@ -67,16 +67,16 @@
             }
             ?>
             <div class="md:hidden">
-                <svg class="block mx-auto lg:w-10 md:w-8 sm:w-7 w-6 cursor-pointer fill-current text-secondary mt-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="block mx-auto sm:w-7 w-6 cursor-pointer fill-current text-secondary mt-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </div>
 
             <div class="navEdit md:block hidden">
-                <div class="flex justify-between items-center text-secondary bg-primaryHover lg:text-2xl md:text-xl font-bold py-3 lg:pr-5 md:pr-2 lg:pl-7 md:pl-3 px-3">
+                <div class="flex justify-between items-center text-secondary bg-primaryHover md:text-xl font-bold py-2 lg:pr-5 md:pr-2 lg:pl-7 md:pl-3 px-3">
                     <p>EDIT</p>
                     <div class="editTutup select-none">
-                        <svg class="lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </div>
@@ -84,7 +84,7 @@
                 </div>
                 <ul>
                     <a href="/User/editProfil">
-                        <li id="profil" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mt-4 mr-4 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editProfil') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Biodata</li>
+                        <li id="profil" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editProfil') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Biodata</li>
                     </a>
                     <a href="/User/editPendidikan">
                         <li id="pendidikan" class="button font-heading lg:p-3 p-2 pl-3 lg:pl-7 mr-4 rounded-r-lg text-sm text-white <?= (getLastCurrentUrl() == 'editPendidikan') ? 'active' : ''; ?> hover:text-secondary hover:bg-primaryDark font-semibold">Pendidikan</li>
@@ -109,7 +109,7 @@
 
         </div>
 
-        <div class="lg:w-3/4 md:w-4/5 w-full md:pl-0 sm:pl-20 pl-12 md:mx-7 mt-8 rounded-xl text-sm">
+        <div class="md:w-4/5 w-full md:pl-0 sm:pl-20 pl-12 md:mx-7 mt-8 rounded-xl text-sm">
             <?php $this->renderSection('contentEdit'); ?>
         </div>
     </div>

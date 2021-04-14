@@ -152,11 +152,11 @@ if ($checked->facebook == 0) {
                 </div>
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
-                        <?php if (session()->getFlashdata('error-telp_alumni')!="") { ?>
+                        <?php if (session()->getFlashdata('error-telp_alumni') != "") { ?>
                             <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
                                 <?= session('error-telp_alumni') ?>
                             </p>
-                            <?php if(session()->getFlashdata()['inputs']['telp_alumni'] != $alumni->telp_alumni){?>
+                            <?php if (session()->getFlashdata()['inputs']['telp_alumni'] != $alumni->telp_alumni) { ?>
                                 <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
                             <?php } else { ?>
                                 <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>" required>
@@ -170,14 +170,14 @@ if ($checked->facebook == 0) {
                     <label for="email" class="font-medium" id="labelEmail">Email:</label>
                     <input type="checkbox" <?= $cemail ?> name="checkEmail" data-id="Email" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
-                
+
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
-                        <?php if (session()->getFlashdata('error-email')!="") { ?>
+                        <?php if (session()->getFlashdata('error-email') != "") { ?>
                             <p class="text-xs text-red-500 text-justify" id="errorEmail">
                                 <?= session('error-email') ?>
                             </p>
-                            <?php if(session()->getFlashdata()['inputs']['email'] != $alumni->email ){?>
+                            <?php if (session()->getFlashdata()['inputs']['email'] != $alumni->email) { ?>
                                 <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
                             <?php } else { ?>
                                 <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
@@ -187,7 +187,7 @@ if ($checked->facebook == 0) {
                         <?php } ?>
                     </div>
                 </div>
-                <hr class="border-gray-500 my-3">
+                <hr class="border-gray-300 my-3">
                 <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
                 <input list="daftarNegara" name="negara" id="negara" placeholder="Masukkan nama negara" value="" class="inputForm">
                 <datalist id="daftarNegara" class="font-paragraph">
@@ -220,7 +220,7 @@ if ($checked->facebook == 0) {
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= $alumni->alamat ?></textarea>
                     <?php } ?>
                 </div>
-                <hr class="border-gray-500 mb-3 mt-1">
+                <hr class="border-gray-300 mb-3 mt-1">
                 <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
                     <div>
                         <div class="font-medium">Status Bekerja di BPS:</div>
@@ -242,7 +242,7 @@ if ($checked->facebook == 0) {
                     <div class="font-medium">Perkiraan Tahun Pensiun:</div>
                     <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
                 </div>
-                <hr class="border-gray-500 my-3">
+                <hr class="border-gray-300 my-3">
                 <div>
                     <div class="font-medium mb-2">Akun Media Sosial:</div>
                     <div class="w-full">
