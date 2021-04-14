@@ -33,7 +33,7 @@ $('.proyek').each(function () {
     );
 });
 
-$(".proyek").click(function () {
+/*$(".proyek").click(function () {
     if (!$(this).hasClass('border-primary')) {
         $(this).addClass('border-primary')
         $(this).css("border-width", "2px")
@@ -108,4 +108,55 @@ $(".proyek").click(function () {
         $(this).next().addClass('opacity-0')
         $(this).next().addClass('hidden')
     }
+})*/
+
+$(".proyek").click(function() {
+    if (!$(this).hasClass('border-primary')) {
+        $(this).addClass('border-primary')
+        $(this).css("border-width", "2px")
+       
+        var $this = $(this);
+        $(this).next().removeClass('hidden')
+        setTimeout(function() {
+            $this.next().removeClass('opacity-0');
+        }, 30);
+
+
+        $(this).next().children().first().children().eq(1).click(function() {
+            $(this).removeClass('notchoose').addClass('choosed')
+            $(this).prev().removeClass('choosed').addClass('notchoose')
+
+            $(this).parent().next().next().removeClass('hidden')
+            $(this).parent().next().addClass('hidden')
+        })
+
+        $(this).next().children().first().children().eq(0).click(function() {
+            $(this).removeClass('notchoose').addClass('choosed')
+            $(this).next().removeClass('choosed').addClass('notchoose')
+
+            $(this).parent().next().next().addClass('hidden')
+            $(this).parent().next().removeClass('hidden')
+        })
+
+    } else {
+        $(this).removeClass('border-primary')
+        $(this).css("border-width", "1px")
+        // $(this).next().addClass('hidden')
+
+        $(this).next().addClass('opacity-0')
+        $(this).next().addClass('hidden')
+    }
+})
+
+$(".delete-project").click(function() {
+    var appID = $(this).attr("data-id");
+    var r = confirm("Delete Project?");
+    if (r == true) {
+        $.post( baseUrl+'/webservice/delete', { id_app: appID }, function(){
+            var url=baseUrl+'/webservice/proyek';
+            window.location = url;
+        });
+        
+      } 
+
 })
