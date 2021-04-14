@@ -10,10 +10,10 @@
                 <div class="mx-2 mt-4">
                     <form action="<?php echo base_url('/Webservice/insertProyek'); ?>" method="post" class="lg:text-base md:text-sm text-xs">
                         <label for="nama" class="font-bold text-secondary lg:text-lg md:text-base text-sm">Nama*</label>
-                        <input type="text" name="nama" id="nama" placeholder="Nama Proyek" class="inputForm lg:mb-4">
+                        <input type="text" name="nama" id="nama" placeholder="Nama Proyek" class="inputForm lg:mb-4" required>
 
                         <label for="deskripsi" class="font-bold text-secondary lg:text-lg md:text-base text-sm">Deskripsi*</label>
-                        <textarea name="deskripsi" id="deskripsi" cols="50" rows="5" class="inputForm lg:mb-4" placeholder="Masukkan Deskripsi Proyek"></textarea>
+                        <textarea name="deskripsi" id="deskripsi" cols="50" rows="5" class="inputForm lg:mb-4" placeholder="Masukkan Deskripsi Proyek" required></textarea>
                         <div>
                             <label for="scope" class="font-bold text-secondary lg:text-lg md:text-base text-sm">API*</label>
                             <div>

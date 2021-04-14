@@ -71,3 +71,16 @@ $(".proyek").click(function() {
         $(this).next().addClass('hidden')
     }
 })
+
+$(".delete-project").click(function() {
+    var appID = $(this).attr("data-id");
+    var r = confirm("Delete Project?");
+    if (r == true) {
+        $.post( baseUrl+'/webservice/delete', { id_app: appID }, function(){
+            var url=baseUrl+'/webservice/proyek';
+            window.location = url;
+        });
+        
+      } 
+
+})
