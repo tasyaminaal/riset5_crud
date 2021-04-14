@@ -23,7 +23,7 @@ body {
 
 /* menu aktif halamannya */
 .active {
-  @apply text-secondary bg-primary !important;
+  @apply text-secondary bg-primarySidebar !important;
 }
 
 /* ini card untuk rekomendasi */

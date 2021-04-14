@@ -116,7 +116,7 @@ if ($checked->facebook == 0) {
                     </div>
                 </div>
                 <div class="text-black font-heading font-normal mb-2"><?= $alumni->nama ?></div>
-                <div class="grid grid-cols-2 gap-x-4 mr-6">
+                <div class="grid grid-cols-2 gap-x-4">
                     <div>
                         <div class="font-medium">NIM:</div>
                         <div class="text-black font-heading font-normal mb-2"><?= $alumni->nim ?></div>
@@ -133,7 +133,7 @@ if ($checked->facebook == 0) {
                     </div>
                     <div class="text-black font-heading font-normal mb-2"><?= $jk ?></div>
                 </div>
-                <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
+                <div class="md:grid md:grid-cols-2 md:gap-x-4">
                     <div class="mr-1">
                         <div class="font-medium" id="labelTempatLahir">Tempat Lahir:</div>
                         <input type="text" name="tempatLahir" id="tempatLahir" class="inputForm" placeholder="Tempat Lahir" value="<?= $alumni->tempat_lahir ?>">
@@ -141,7 +141,7 @@ if ($checked->facebook == 0) {
                     <div>
                         <div class="flex justify-between items-center">
                             <div class="font-medium" id="labelTanggalLahir">Tanggal Lahir:</div>
-                            <input type="checkbox" <?= $ctl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
+                            <input type="checkbox" <?= $ctl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none editTampilan hidden">
                         </div>
                         <input type="date" name="tanggalLahir" data-id="TanggalLahir" id="tanggalLahir" class="inputForm" value="<?= $alumni->tanggal_lahir ?>">
                     </div>
@@ -150,13 +150,17 @@ if ($checked->facebook == 0) {
                     <label for="notelepon" class="font-medium" id="labelTelepon">No. Telepon:</label>
                     <input type="checkbox" <?= $cnt ?> name="checkTelepon" data-id="Telepon" id="checkTelepon" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
-                <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
-                    Nomor telepon hanya boleh berupa angka dan panjangnya minimum 9 digit.
-                </p>
                 <div class="lg:w-1/2">
-                    <div class="lg:mr-6">
-                        <?php if (session('inputs')) { ?>
-                            <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
+                    <div class="lg:mr-3">
+                        <?php if (session()->getFlashdata('error-telp_alumni')!="") { ?>
+                            <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
+                                <?= session('error-telp_alumni') ?>
+                            </p>
+                            <?php if(session()->getFlashdata()['inputs']['telp_alumni'] != $alumni->telp_alumni){?>
+                                <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
+                            <?php } else { ?>
+                                <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>" required>
+                            <?php } ?>
                         <?php } else { ?>
                             <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>" required>
                         <?php } ?>
@@ -166,16 +170,43 @@ if ($checked->facebook == 0) {
                     <label for="email" class="font-medium" id="labelEmail">Email:</label>
                     <input type="checkbox" <?= $cemail ?> name="checkEmail" data-id="Email" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
-                <p class="text-xs text-red-500 text-justify" id="errorEmail">
-                    Email telah digunakan oleh alumni lain.
-                </p>
+                
                 <div class="lg:w-1/2">
-                    <div class="lg:mr-6">
-                        <?php if (session('inputs')) { ?>
-                            <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
+                    <div class="lg:mr-3">
+                        <?php if (session()->getFlashdata('error-email')!="") { ?>
+                            <p class="text-xs text-red-500 text-justify" id="errorEmail">
+                                <?= session('error-email') ?>
+                            </p>
+                            <?php if(session()->getFlashdata()['inputs']['email'] != $alumni->email ){?>
+                                <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
+                            <?php } else { ?>
+                                <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
+                            <?php } ?>
                         <?php } else { ?>
                             <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
                         <?php } ?>
+                    </div>
+                </div>
+                <hr class="border-gray-500 my-3">
+                <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
+                <input list="daftarNegara" name="negara" id="negara" placeholder="Masukkan nama negara" value="" class="inputForm">
+                <datalist id="daftarNegara" class="font-paragraph">
+                    <option data-value="Indonesia">Indonesia</option>
+                </datalist>
+                <div class="md:grid md:grid-cols-2 md:gap-x-4">
+                    <div>
+                        <label for="provinsi" class="font-medium" id="labelProvinsi">Provinsi:</label>
+                        <input list="daftarProvinsi" name="provinsi" id="provinsi" placeholder="Masukkan nama provinsi" value="" class="inputForm">
+                        <datalist id="daftarProvinsi" class="font-paragraph">
+                            <option data-value="DKI Jakarta">DKI Jakarta</option>
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="kabkota" class="font-medium" id="labelKabkot">Kabupaten/Kota:</label>
+                        <input list="daftarKabkota" name="kabkota" id="kabkota" placeholder="Masukkan nama kabupaten/kota" value="" class="inputForm">
+                        <datalist id="daftarKabkota" class="font-paragraph">
+                            <option data-value="Kota Jakarta Timur">Kota Jakarta Timur</option>
+                        </datalist>
                     </div>
                 </div>
                 <div class="flex justify-between items-center">
@@ -184,11 +215,12 @@ if ($checked->facebook == 0) {
                 </div>
                 <div>
                     <?php if (session('inputs')) { ?>
-                        <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= session('inputs')['alamat'] ?></textarea>
+                        <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= htmlspecialchars(session('inputs')['alamat']) ?></textarea>
                     <?php } else { ?>
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= $alumni->alamat ?></textarea>
                     <?php } ?>
                 </div>
+                <hr class="border-gray-500 mb-3 mt-1">
                 <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
                     <div>
                         <div class="font-medium">Status Bekerja di BPS:</div>
@@ -210,6 +242,7 @@ if ($checked->facebook == 0) {
                     <div class="font-medium">Perkiraan Tahun Pensiun:</div>
                     <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
                 </div>
+                <hr class="border-gray-500 my-3">
                 <div>
                     <div class="font-medium mb-2">Akun Media Sosial:</div>
                     <div class="w-full">
@@ -254,6 +287,10 @@ if ($checked->facebook == 0) {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <label for="biografi" class="font-medium">Biografi:</label>
+                    <textarea name="biografi" id="biografi" cols="30" rows="5" class="inputForm resize-none" placeholder="Tambahkan biografi Anda di sini"></textarea>
                 </div>
                 <div class="flex justify-end mt-8 mb-6">
                     <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitBiodata">
