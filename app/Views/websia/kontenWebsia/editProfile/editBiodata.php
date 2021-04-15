@@ -152,11 +152,11 @@ if ($checked->facebook == 0) {
                 </div>
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
-                        <?php if (session()->getFlashdata('error-telp_alumni')!="") { ?>
+                        <?php if (session()->getFlashdata('error-telp_alumni') != "") { ?>
                             <p class="text-xs text-red-500 text-justify" id="errorNoTelp">
                                 <?= session('error-telp_alumni') ?>
                             </p>
-                            <?php if(session()->getFlashdata()['inputs']['telp_alumni'] != $alumni->telp_alumni){?>
+                            <?php if (session()->getFlashdata()['inputs']['telp_alumni'] != $alumni->telp_alumni) { ?>
                                 <input type="text" name="telp_alumni" id="notelepon" class="inputFormError" placeholder="Nomor telfon WA aktif" value="<?= session('inputs')['telp_alumni'] ?>" required>
                             <?php } else { ?>
                                 <input type="text" name="telp_alumni" id="notelepon" class="inputForm" placeholder="Nomor telfon WA aktif" value="<?= $alumni->telp_alumni ?>" required>
@@ -170,14 +170,14 @@ if ($checked->facebook == 0) {
                     <label for="email" class="font-medium" id="labelEmail">Email:</label>
                     <input type="checkbox" <?= $cemail ?> name="checkEmail" data-id="Email" id="checkEmail" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
-                
+
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
-                        <?php if (session()->getFlashdata('error-email')!="") { ?>
+                        <?php if (session()->getFlashdata('error-email') != "") { ?>
                             <p class="text-xs text-red-500 text-justify" id="errorEmail">
                                 <?= session('error-email') ?>
                             </p>
-                            <?php if(session()->getFlashdata()['inputs']['email'] != $alumni->email ){?>
+                            <?php if (session()->getFlashdata()['inputs']['email'] != $alumni->email) { ?>
                                 <input type="email" name="email" id="email" class="inputFormError" placeholder="Alamat email aktif" value="<?= session('inputs')['email'] ?>" required>
                             <?php } else { ?>
                                 <input type="email" name="email" id="email" class="inputForm" placeholder="Alamat email aktif" value="<?= $alumni->email ?>" required>
@@ -315,9 +315,9 @@ if ($checked->facebook == 0) {
         </div>
     </div>
     <script>
-        $(document).click(function() {
+        setTimeout(function() {
             $('#berhasilUpdateFoto').fadeOut();
-        })
+        }, 1500);
     </script>
 <?php }
 if (session()->getFlashdata('edit-foto-fail')) { ?>
@@ -329,9 +329,9 @@ if (session()->getFlashdata('edit-foto-fail')) { ?>
         </div>
     </div>
     <script>
-        $(document).click(function() {
+        setTimeout(function() {
             $('#gagalUpdateFoto').fadeOut();
-        })
+        }, 1500);
     </script>
 <?php }
 if (session()->getFlashdata('edit-bio-success')) { ?>
@@ -346,9 +346,9 @@ if (session()->getFlashdata('edit-bio-success')) { ?>
         </div>
     </div>
     <script>
-        $(document).click(function() {
+        setTimeout(function() {
             $('#berhasilUpdateBiodata').fadeOut();
-        })
+        }, 1500);
     </script>
 <?php }
 if (session()->getFlashdata('edit-bio-fail')) { ?>
@@ -362,9 +362,9 @@ if (session()->getFlashdata('edit-bio-fail')) { ?>
         </div>
     </div>
     <script>
-        $(document).click(function() {
+        setTimeout(function() {
             $('#gagalUpdateBiodata').fadeOut();
-        })
+        }, 1500);
     </script>
 <?php }
 if (session()->getFlashdata('hapus-foto') != NULL) { ?>
@@ -378,9 +378,9 @@ if (session()->getFlashdata('hapus-foto') != NULL) { ?>
         </div>
     </div>
     <script>
-        $(document).click(function() {
+        setTimeout(function() {
             $('#berhasilHapusFoto').fadeOut();
-        })
+        }, 1500);
     </script>
 <?php } ?>
 

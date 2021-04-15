@@ -95,9 +95,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilEditPublikasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL edit publikasi -->
 <div id="gagalEditPublikasi">
@@ -109,9 +109,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalEditPublikasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- BERHASIL tambah publikasi -->
 <div id="berhasilTambahPublikasi">
@@ -123,9 +123,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilTambahPublikasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL tambah publikasi -->
 <div id="gagalTambahPublikasi">
@@ -137,9 +137,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalTambahPublikasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- end dialog box-->
 <?= $this->endSection(); ?>

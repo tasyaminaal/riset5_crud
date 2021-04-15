@@ -44,9 +44,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilEditAkun').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL edit akun -->
 <div id="gagalEditAkun">
@@ -58,9 +58,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalEditAkun').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- end dialog box -->
 <?= $this->endSection(); ?>

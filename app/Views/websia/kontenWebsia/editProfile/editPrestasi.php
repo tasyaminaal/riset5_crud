@@ -91,9 +91,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilEditPrestasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL edit prestasi -->
 <div id="gagalEditPrestasi">
@@ -105,9 +105,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalEditPrestasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- BERHASIL tambah prestasi -->
 <div id="berhasilTambahPrestasi">
@@ -119,9 +119,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilTambahPrestasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL tambah prestasi -->
 <div id="gagalTambahPrestasi">
@@ -133,9 +133,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalTambahPrestasi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- end dialog box-->
 <?= $this->endSection(); ?>

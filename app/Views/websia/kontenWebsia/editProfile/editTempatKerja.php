@@ -73,9 +73,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilEditInstansi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL edit instansi -->
 <div id="gagalEditInstansi">
@@ -87,9 +87,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalEditInstansi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- BERHASIL tambah instansi -->
 <div id="berhasilTambahInstansi">
@@ -101,9 +101,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#berhasilTambahInstansi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- GAGAL tambah instansi -->
 <div id="gagalTambahInstansi">
@@ -115,9 +115,9 @@
     </div>
 </div>
 <script>
-    $(document).click(function() {
+    setTimeout(function() {
         $('#gagalTambahInstansi').fadeOut();
-    })
+    }, 1500);
 </script>
 <!-- end dialog box-->
 <?= $this->endSection(); ?>
