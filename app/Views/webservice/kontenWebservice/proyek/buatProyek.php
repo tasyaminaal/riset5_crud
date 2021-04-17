@@ -11,10 +11,10 @@
                     <!-- start form buat proyek -->
                     <form action="<?php echo base_url('/Webservice/insertProyek'); ?>" method="post" class="lg:text-base md:text-sm text-xs">
                         <label for="nama" class="font-bold text-secondary lg:text-lg md:text-base text-sm">Nama*</label>
-                        <input type="text" name="nama" id="nama" placeholder="Nama Proyek" class="inputForm lg:mb-4">
+                        <input type="text" name="nama" id="nama" placeholder="Nama Proyek" class="inputForm lg:mb-4" required>
 
                         <label for="deskripsi" class="font-bold text-secondary lg:text-lg md:text-base text-sm">Deskripsi*</label>
-                        <textarea name="deskripsi" id="deskripsi" cols="50" rows="5" class="inputForm lg:mb-4" placeholder="Masukkan Deskripsi Proyek"></textarea>
+                        <textarea name="deskripsi" id="deskripsi" cols="50" rows="5" class="inputForm lg:mb-4" placeholder="Masukkan Deskripsi Proyek" required></textarea>
                         <div>
                             <label for="scope" class="font-bold text-secondary lg:text-lg md:text-base text-sm">API*</label>
                             <!-- start scope webservice -->
@@ -28,24 +28,6 @@
                                         <?= $data['scope_dev'] ?>
                                     </div>
                                 <?php } ?>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-x-2">
-                                    <input type="checkbox" name="scope" id="scope2" class="cursor-pointer focus:outline-none" onclick="scope2JS()">
-                                    <label for="scope2" class="font-heading font-medium text-gray-500" id="labelScope2">Scope 2</label>
-                                </div>
-                                <div class="ml-5 md:mt-2 mb-2">
-                                    Mengakses informasi dengan cakupan Scope 2.
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-x-2">
-                                    <input type="checkbox" name="scope" id="scope3" class="cursor-pointer focus:outline-none" onclick="scope3JS()">
-                                    <label for="scope3" class="font-heading font-medium text-gray-500" id="labelScope3">Scope 3</label>
-                                </div>
-                                <div class="ml-5 md:mt-2 mb-2">
-                                    Mengakses informasi dengan cakupan Scope 3.
-                                </div>
                             </div>
                             <!-- end scope webservice -->
                         </div>
