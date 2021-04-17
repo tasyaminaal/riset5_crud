@@ -776,9 +776,7 @@ class User extends BaseController
 	{
 		$data['judulHalaman'] = 'Galeri Video Kegiatan Alumni';
 		$data['active'] = 'galeri';
-		// ini untuk ganti nya sementara
-		return view('websia/layoutWebsia/lamanMasihDibangun', $data);
-		// return view('kontenWebsia/galeri/galeriVidAlumni', $data);
+		return view('websia/kontenWebsia/galeri/galeriVidAlumni', $data);
 	}
 
 	public function galeriWisuda()
@@ -787,7 +785,6 @@ class User extends BaseController
 		$data['active'] = 'galeri';
 		$data['login'] = 'sudah';
 
-		return view('websia/layoutWebsia/lamanMasihDibangun', $data);
-		// return view('kontenWebsia/galeri/galeriWisuda', $data);
+		return view('websia/kontenWebsia/galeri/galeriWisuda', $data);
 	}
 }
