@@ -64,7 +64,7 @@
                 endforeach; ?>
                 <tr class="formEdit">
                     <td colspan="8" class="border-b-2">
-                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 my-2 tambahPrestasi">TAMBAH</div>
+                        <div class="ml-auto mr-3 bg-secondary text-white rounded-full w-28 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 my-2 tambahPrestasi" onclick="tambahPrestasi()">TAMBAH</div>
                     </td>
                 </tr>
                 <tr class="h-5 formEdit">
