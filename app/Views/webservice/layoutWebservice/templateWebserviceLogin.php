@@ -32,21 +32,21 @@
     </button>
 
     <!-- HEADER -->
-    <div class="bg-primary lg:px-12 sm:px-8 px-4 w-full navbar fixed z-10 bg-no-repeat bg-cover bg-left" style="background-image: url(/img/components/bgHeaderWS.png)">
+    <div class="bg-primary lg:px-12 sm:px-8 px-4 w-full navbar fixed z-30 bg-no-repeat bg-cover bg-left" style="background-image: url(/img/components/bgHeaderWS.png)">
 
         <div class="flex justify-between sm:my-2 my-1">
-            <div class="font-heading flex items-center gap-x-1 lg:gap-x-3 z-10">
+            <div class="font-heading flex items-center gap-x-1 lg:gap-x-3">
                 <a href="<?= base_url(); ?>">
-                    <img src="/img/components/logo/logo_sia.png" class="z-40 md:w-16 w-10" alt="logo SIA">
+                    <img src="/img/components/logo/logo_sia.png" class="md:w-16 w-10" alt="logo SIA">
                 </a>
-                <div class="md:px-3 px-2 my-auto text-white z-40">
+                <div class="md:px-3 px-2 my-auto text-white">
                     <p class="font-heading text-lg lg:text-2xl font-semibold">Webservice Sistem Informasi Alumni</p>
                     <p class="font-heading md:text-xs font-normal hidden md:block lg:-mt-1.5">Akademi Ilmu Statistik - Sekolah Tinggi Ilmu Statistik - Politeknik Statistika STIS</p>
                 </div>
             </div>
-            <div id="nav" class="hidden sm:flex sm:items-center z-10">
+            <div id="nav" class="hidden sm:flex sm:items-center">
                 <ul class="flex lg:gap-x-6 md:gap-x-4 gap-x-2 relative">
-                    <li class="bg-secondary text-white py-1.5 md:w-20 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300 relative">API
+                    <li class="bg-secondary text-white py-1.5 sm:px-1 md:w-20 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300 relative">API
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 inline" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
@@ -64,10 +64,10 @@
                     </li>
 
                     <a href="/developer/profil">
-                        <li class="bg-secondary text-white py-1.5 md:w-20 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">PROFIL</li>
+                        <li class="bg-secondary text-white py-1.5 sm:px-1 md:w-20 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">PROFIL</li>
                     </a>
                     <a href="/logout">
-                        <li class="bg-secondary text-white py-1.5 md:w-20 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">KELUAR</li>
+                        <li class="bg-secondary text-white py-1.5 sm:px-1 md:w-20 text-center cursor-pointer border-secondary border-2 hover:text-secondary hover:bg-white transition-colors duration-300">KELUAR</li>
                     </a>
                 </ul>
             </div>
@@ -87,7 +87,7 @@
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg></div>
                     </li>
-                    <ul class="transform -translate-y-0.5 text-white w-screen flex flex-col items-center hidden z-20 block">
+                    <ul class="transform -translate-y-0.5 text-white w-screen flex flex-col items-center hidden block">
                         <a href="/developer/">
                             <li class="list m-auto hover:text-white bg-white text-center text-secondary text-sm py-0.5 w-44 border-b-2 border-gray-500">BERANDA</li>
                         </a>
@@ -122,7 +122,7 @@
 
     </div>
     <!-- END HEADER -->
-    <div id="divKosong" class="bg-primary w-full md:h-20 h-16">
+    <div id="divKosong" class="bg-primary w-full z-20 md:h-20 sm:h-16 h-10"></div>
     </div>
     <!-- CONTENT PAGE DI SINI -->
     <div class="w-full flex flex-1">
@@ -131,7 +131,7 @@
     <!-- END CONTENT PAGE -->
 
     <!-- FOOTER -->
-    <div class="bg-primary w-full pt-6 pb-3 lg:px-20 md:px-8 px-3">
+    <div class="bg-primary w-full pt-6 pb-3 lg:px-20 md:px-8 px-3 z-30">
         <div class="flex flex-col md:flex-row md:justify-around text-xs">
 
             <!-- awal footer stis -->
@@ -197,7 +197,7 @@
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script src="/js/aos.js"></script>
     <script type="text/javascript" src="/js/footer.js"></script>
-    <script type="text/javascript" src="/js/editProfil.js"></script>
+    <!-- <script type="text/javascript" src="/js/editProfil.js"></script> -->
     <script type="text/javascript" src="/js/webservices.js"></script>
     <script>
         AOS.init();

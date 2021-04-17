@@ -202,17 +202,21 @@ $('#navmobile').click(function () {
 
 // js dokumentasi
 $('#burgerDok').click(function () {
-    $('#sidebarDok').removeClass('sm:-left-80 -left-64').addClass('left-0')
-    $('#sidebarDok').children().first().toggleClass('hidden')
-    $('#sidebarDok').children().eq(1).toggleClass('-mt-5')
-})
-
-$('#sidebarDok').children().first().children().first().click(function () {
-    $('#sidebarDok').removeClass('left-0').addClass('sm:-left-80 -left-64')
-    setTimeout(() => {
-        $('#sidebarDok').children().first().toggleClass('hidden')
-        $('#sidebarDok').children().eq(1).toggleClass('-mt-5')
-    }, 1000)
+    if ($(this).hasClass('tutup')) {
+        $(this).removeClass('bg-secondary').html(`
+    <svg class="cursor-pointer fill-current text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+    `).toggleClass('tutup')
+        $('#sidebarDok').removeClass('-left-64').addClass('left-0')
+    } else {
+        $(this).addClass('bg-secondary').html(`
+        <svg class="cursor-pointer fill-current text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        `).toggleClass('tutup')
+        $('#sidebarDok').removeClass('left-0').addClass('-left-64')
+    }
 })
 // js dokumentasi
 

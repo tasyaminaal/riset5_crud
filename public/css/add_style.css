@@ -40,6 +40,19 @@ body div.loading {
   z-index: 5;
 }
 
+@media (max-width: 409px) {
+
+  #sidebarDok,
+  #divKosong,
+  #burgerDok {
+    top: 4rem;
+  }
+}
+
+.field-response {
+  color: #8bc;
+}
+
 #menu1:hover,
 #menu1+ul>li>div:hover,
 #menu1+ul>li>ul>li:hover {
@@ -48,7 +61,8 @@ body div.loading {
 
 #menuDok>li:first-child:hover,
 #menuDok>li>div:hover,
-#menuDok>li>ul>li:hover {
+#menuDok>li>ul>li:hover,
+#menuDok .activeSideDok {
   background-color: rgb(1, 89, 152);
 }
 

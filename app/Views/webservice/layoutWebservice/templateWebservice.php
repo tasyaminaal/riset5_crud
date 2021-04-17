@@ -53,8 +53,9 @@
 
     </div>
     <!-- END HEADER -->
+    <div id="divKosong" class="bg-primary w-full md:h-20 sm:h-16 h-10"></div>
     <!-- CONTENT PAGE DI SINI -->
-    <div class="w-full flex flex-1 mt-24">
+    <div class="w-full flex flex-1 mt-6">
         <?= $this->renderSection('content'); ?>
     </div>
     <!-- END CONTENT PAGE -->
@@ -121,8 +122,10 @@
         <h2 class="text-white text-sm text-center mt-1">Copyright &copy; PKL 60 Riset 5</h2>
     </div>
     <!-- END FOOTER -->
-
+    <script type="text/javascript" src="/js/loading.js"></script>
+    <script type="text/javascript" src="/js/onTopBtn.js"></script>
     <script src="/js/aos.js"></script>
+    <script type="text/javascript" src="/js/navbar.js"></script>
     <script>
         AOS.init();
     </script>
