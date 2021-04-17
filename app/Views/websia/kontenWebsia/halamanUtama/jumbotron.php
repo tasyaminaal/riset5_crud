@@ -2,7 +2,7 @@
 <div class="w-full bg-primary">
     <div class="w-full bg-cover bg-right" style="background-image: url('/img/components/jumbotron.png');">
         <!-- <img class="w-full" src="/img/components/jumbotron.png"> -->
-        <div class="container py-12 md:20 lg:py-28">
+        <div class="container py-12 md:py-20 lg:py-24">
             <div class="w-2/3 md:w-full lg:w-2/3">
                 <div class="md:py-10 px-10 lg:px-28 md:px-20">
                     <h2 class="font-heading font-bold text-xl md:text-3xl lg:text-6xl text-white">Jalin Silaturahmi Kembali</h2>
