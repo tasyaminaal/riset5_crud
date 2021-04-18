@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class RBAC extends Migration
+class Rbac extends Migration
 {
 	public function up()
 	{
@@ -220,6 +220,8 @@ class RBAC extends Migration
 		//create table
 		$this->forge->createTable('activity_log');
 	}
+
+	//--------------------------------------------------------------------
 
 	public function down()
 	{

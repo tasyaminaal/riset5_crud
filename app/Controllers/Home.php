@@ -114,17 +114,6 @@ class Home extends BaseController
 										'id_tempat_kerja' => $faker->numberBetween($min = 1, $max = 100),
 									];
 									$this->modelAlumni->db->table('alumni_tempat_kerja')->insert($data);
-
-									// $data = [
-									// 	'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
-									// 	'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-									// 	'program_studi' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-									// 	'tahun_lulus' => $faker->year,
-									// 	'tahun_masuk' => $faker->year,
-									// 	'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
-									// 	'nim'             => $user['nim'],
-									// ];
-									// $this->modelAlumni->db->table('pendidikan')->insert($data);
 								}
 
 								if ($this->modelAuth->getUserByUsername($user->getUsername()) == NULL) {
@@ -141,22 +130,23 @@ class Home extends BaseController
 										'active'			=> 1,
 										'force_pass_reset'	=> 0,
 										'created_at'		=> $now,
-										'updated_at'		=> $now,
-										'login'				=> $now
+										'updated_at'		=> $now
+										// 'login'				=> $now
 									];
 									$this->modelAuth->insertUser($data);
-								} else {
-									date_default_timezone_set("Asia/Bangkok");
-									$now = date("Y-m-d H:i:s");
-									$email = $user->getEmail();
-									$this->modelAuth->isLogin($now, $email);
 								}
+								//  else {
+								// 	date_default_timezone_set("Asia/Bangkok");
+								// 	$now = date("Y-m-d H:i:s");
+								// 	$email = $user->getEmail();
+								// 	$this->modelAuth->isLogin($now, $email);
+								// }
 
 								$hasil = $this->modelAuth->getUserByUsername($user->getUsername());
 
 								session()->set([	//set session (informasi identitas) dari tabel users
 									'id_user' => $hasil['id'],
-									'nim' => $hasil['nim'],
+									'id_alumni' => $hasil['id_alumni'],
 									'nama' => $hasil['fullname']
 								]);
 
@@ -300,17 +290,6 @@ class Home extends BaseController
 							'id_tempat_kerja' => $faker->numberBetween($min = 1, $max = 100),
 						];
 						$this->modelAlumni->db->table('alumni_tempat_kerja')->insert($data);
-
-						// $data = [
-						// 	'jenjang' => $faker->randomElement($array = array('S1', 'S2', 'S3')),
-						// 	'universitas' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-						// 	'program_studi' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-						// 	'tahun_lulus' => $faker->year,
-						// 	'tahun_masuk' => $faker->year,
-						// 	'judul_tulisan' => $faker->sentence($nbWords = 5, $variableNbWords = true),
-						// 	'nim'             => $user['nim'],
-						// ];
-						// $this->modelAlumni->db->table('pendidikan')->insert($data);
 					}
 
 					//insert new user sipadu (mahasiswa)
@@ -328,21 +307,22 @@ class Home extends BaseController
 							'active'			=> 1,
 							'force_pass_reset'	=> 0,
 							'created_at'		=> $now,
-							'updated_at'		=> $now,
-							'login'				=> $now
+							'updated_at'		=> $now
+							// 'login'				=> $now
 						];
 						$this->modelAuth->insertUser($data);
-					} else {
-						date_default_timezone_set("Asia/Bangkok");
-						$now = date("Y-m-d H:i:s");
-						$email = $user['nim'] . "@stis.ac.id";
-						$this->modelAuth->isLogin($now, $email);
 					}
+					//  else {
+					// 	date_default_timezone_set("Asia/Bangkok");
+					// 	$now = date("Y-m-d H:i:s");
+					// 	$email = $user['nim'] . "@stis.ac.id";
+					// 	$this->modelAuth->isLogin($now, $email);
+					// }
 
 					$user = $this->modelAuth->getUserByUsername($hasil['profile']['nim']);
 					session()->set([	//set session (informasi identitas) dari tabel users
 						'id_user' => $user['id'],
-						'nim' => $user['nim'],
+						'id_alumni' => $user['id_alumni'],
 						'nama' => $user['fullname']
 					]);
 
