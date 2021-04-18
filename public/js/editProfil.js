@@ -482,7 +482,6 @@ $('.kembaliInstansi').click(function () {
 });
 // akhir js edit tempat kerja
 
-
 // awal js edit prestasi
 function buttonEditTampilanPrestasi(){
     if ($('.editTampilanPrestasi').hasClass('hidden')){
