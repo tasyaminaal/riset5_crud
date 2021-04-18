@@ -8,6 +8,18 @@
 </style>
 
 <div class="w-full bg-white min-h-screen" id="pagePendidikan">
+    <div class="flex justify-end w-full mb-4 w-36">
+        <div class="bg-secondary hover:bg-secondaryhover text-white lg:py-1.5 py-1 px-3 lg:text-sm text-xs outline-none cursor-pointer rounded-full flex gap-x-2 items-center" id="buttonEditTampilanPendidikan">
+            <div>
+                Edit Tampilan
+            </div>
+            <img src="/img/icon/edit.png" alt="" class="w-4 h-4">
+        </div>
+    </div>
+    <div class="editTampilanPendidikan hidden flex justify-between mb-4">
+        <label for="checkPendidikan" id="labelCheckPendidikan" class="text-gray-500 font-bold">Tampilkan Pendidikan</label>
+        <input type="checkbox" name="checkPendidikan" id="checkPendidikan" class="cursor-pointer outline-none">
+    </div>
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
         <!-- start tabel pendidikan-->
         <table class="w-full sm:text-sm text-xs rounded-3xl shadow-2xl md:shadow-none font-paragraph">

@@ -2,12 +2,10 @@
 $('#buttonEditTampilan').click(function (){
     if ($('.editTampilan').hasClass('hidden')){
        $('.editTampilan').removeClass('hidden');
-       if(!$('#checkJenisKelamin').is(':checked')) $('#labelJenisKelamin').addClass('text-gray-500');    
        if(!$('#checkTanggalLahir').is(':checked')){
            $('#labelTempatLahir').addClass('text-gray-500');    
            $('#labelTanggalLahir').addClass('text-gray-500');    
        } 
-       if(!$('#checkTelepon').is(':checked')) $('#labelTelepon').addClass('text-gray-500');    
        if(!$('#checkEmail').is(':checked')) $('#labelEmail').addClass('text-gray-500');    
        if(!$('#checkAlamat').is(':checked')) {
            $('#labelAlamat').addClass('text-gray-500');    
@@ -21,10 +19,8 @@ $('#buttonEditTampilan').click(function (){
        if(!$('#checkFacebook').is(':checked')) $('#labelFacebook').addClass('text-gray-500');    
     } else {
         $('.editTampilan').addClass('hidden');
-        $('#labelJenisKelamin').removeClass('text-gray-500');
         $('#labelTempatLahir').removeClass('text-gray-500');
         $('#labelTanggalLahir').removeClass('text-gray-500');
-        $('#labelTelepon').removeClass('text-gray-500');
         $('#labelEmail').removeClass('text-gray-500');
         $('#labelAlamat').removeClass('text-gray-500');
         $('#labelNegara').removeClass('text-gray-500');
@@ -167,25 +163,6 @@ $('.updateFotoProfil').click(function () {
             }, 400);
         })
 
-        // $('#submitUnggahFoto').click(function (){
-        //     $('#formUnggahFoto').remove()
-        //         $('body').prepend(`
-        //         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 bg-black bg-opacity-40 flex flex-col justify-end" id='updateSucces'>
-        //         <div class="hidden opacity-0 duration-300 transition-all p-2 pl-8 flex items-center" style="background-color: #B1FF66;">
-        //             <img src="/img/icon/check.png" class="h-5 mr-2" style="color: #54AC00;">
-        //             <p class="sm:text-base text-sm font-heading font-bold" style="color: #54AC00;">Foto Profil Berhasil Diubah</p>
-        //         </div>
-        //     </div>
-        //         `)
-        //         $('#updateSucces').children().first().removeClass('hidden')
-        //         setTimeout(function () {
-        //             $('#updateSucces').children().first().removeClass('opacity-0')
-        //         }, 10);
-        //         setTimeout(function () {
-        //             $('#updateSucces').remove()
-        //         }, 1000);
-                
-        // })
     })
 
     $('#hapusFoto').click(function () {
@@ -253,6 +230,21 @@ $(".sort").click(function () {
 // akhir js sorting
 
 // awal js edit pendidikan
+$('#buttonEditTampilanPendidikan').click(function(){
+    if ($('.editTampilanPendidikan').hasClass('hidden')){
+        $('.editTampilanPendidikan').removeClass('hidden');
+        if($('#checkPendidikan').is(':checked')){
+            $('#labelCheckPendidikan').addClass('text-primary');
+        }
+    } else $('.editTampilanPendidikan').addClass('hidden');
+})
+
+$('#checkPendidikan').click(function(){
+    if($('#checkPendidikan').is(':checked')){
+        $('#labelCheckPendidikan').addClass('text-primary');
+    } else $('#labelCheckPendidikan').removeClass('text-primary');
+})
+
 function formPendidikan(id, jenjang, univ, studi, masuk, lulus, tulisan) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formEditPendidikan'>
@@ -492,6 +484,21 @@ $('.kembaliInstansi').click(function () {
 
 
 // awal js edit prestasi
+function buttonEditTampilanPrestasi(){
+    if ($('.editTampilanPrestasi').hasClass('hidden')){
+        $('.editTampilanPrestasi').removeClass('hidden');
+        if($('#checkPrestasi').is(':checked')){
+            $('#labelCheckPrestasi').addClass('text-primary');
+        }
+    } else $('.editTampilanPrestasi').addClass('hidden');
+}
+
+function checkPrestasi(){
+    if($('#checkPrestasi').is(':checked')){
+        $('#labelCheckPrestasi').addClass('text-primary');
+    } else $('#labelCheckPrestasi').removeClass('text-primary');
+}
+
 function formPrestasi(id, prestasi, tahun) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditPrestasi'>

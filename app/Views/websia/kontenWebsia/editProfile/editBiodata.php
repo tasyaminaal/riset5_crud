@@ -129,7 +129,6 @@ if ($checked->facebook == 0) {
                 <div class="mb-2">
                     <div class="flex justify-between items-center">
                         <div class="font-medium" id="labelJenisKelamin">Jenis Kelamin:</div>
-                        <input type="checkbox" <?= $cjk ?> name="checkJenisKelamin" data-id="JenisKelamin" id="checkJenisKelamin" class="cursor-pointer focus:outline-none editTampilan hidden">
                     </div>
                     <div class="text-black font-heading font-normal mb-2"><?= $jk ?></div>
                 </div>
@@ -148,7 +147,6 @@ if ($checked->facebook == 0) {
                 </div>
                 <div class="flex justify-between items-center md:mr-6">
                     <label for="notelepon" class="font-medium" id="labelTelepon">No. Telepon:</label>
-                    <input type="checkbox" <?= $cnt ?> name="checkTelepon" data-id="Telepon" id="checkTelepon" class="cursor-pointer focus:outline-none md:-mr-6 editTampilan hidden">
                 </div>
                 <div class="lg:w-1/2">
                     <div class="lg:mr-3">
@@ -187,8 +185,11 @@ if ($checked->facebook == 0) {
                         <?php } ?>
                     </div>
                 </div>
-                <hr class="border-gray-500 my-3">
-                <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
+                <hr class="border-gray-300 my-3">
+                <div class="flex justify-between items-center">
+                    <label for="negara" class="font-medium" id="labelNegara">Negara:</label>
+                    <input type="checkbox" <?= $calamat ?> name="checkAlamat" data-id="Alamat" id="checkAlamat" class="cursor-pointer focus:outline-none editTampilan hidden">
+                </div>
                 <input list="daftarNegara" name="negara" id="negara" placeholder="Masukkan nama negara" value="" class="inputForm">
                 <datalist id="daftarNegara" class="font-paragraph">
                     <option data-value="Indonesia">Indonesia</option>
@@ -209,10 +210,7 @@ if ($checked->facebook == 0) {
                         </datalist>
                     </div>
                 </div>
-                <div class="flex justify-between items-center">
-                    <label for="alamat" class="font-medium" id="labelAlamat">Alamat:</label>
-                    <input type="checkbox" <?= $calamat ?> name="checkAlamat" data-id="Alamat" id="checkAlamat" class="cursor-pointer focus:outline-none editTampilan hidden">
-                </div>
+                <label for="alamat" class="font-medium" id="labelAlamat">Alamat:</label>
                 <div>
                     <?php if (session('inputs')) { ?>
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= htmlspecialchars(session('inputs')['alamat']) ?></textarea>
@@ -220,7 +218,7 @@ if ($checked->facebook == 0) {
                         <textarea name="alamat" id="alamat" cols="50" rows="3" placeholder="Alamat saat ini" class="inputForm resize-none" required><?= $alumni->alamat ?></textarea>
                     <?php } ?>
                 </div>
-                <hr class="border-gray-500 mb-3 mt-1">
+                <hr class="border-gray-300 mb-3 mt-1">
                 <div class="md:grid md:grid-cols-2 md:gap-x-4 md:mr-6">
                     <div>
                         <div class="font-medium">Status Bekerja di BPS:</div>
@@ -242,7 +240,7 @@ if ($checked->facebook == 0) {
                     <div class="font-medium">Perkiraan Tahun Pensiun:</div>
                     <div class="text-black font-heading font-normal mb-2"><?= $alumni->perkiraan_pensiun ?></div>
                 </div>
-                <hr class="border-gray-500 my-3">
+                <hr class="border-gray-300 my-3">
                 <div>
                     <div class="font-medium mb-2">Akun Media Sosial:</div>
                     <div class="w-full">
