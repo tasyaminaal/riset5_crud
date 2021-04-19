@@ -150,7 +150,7 @@ class Rbac extends Seeder
 			],
 			[
 				'menu_name'     => 'Security',
-				'menu_icon'		=> 'fas fa-users-shield'
+				'menu_icon'		=> 'fas fa-user-shield'
 			],
 			[
 				'menu_name'     => 'Token',
