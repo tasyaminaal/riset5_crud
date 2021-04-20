@@ -60,7 +60,7 @@ class Alumni extends Seeder
 		$this->db->table('angkatan_alumni')->insert($data);
 
 		$data = [
-			'email_alumni'  => "221810129@stis.ac.id",
+			'email_alumni'  => "dummy@stis.ac.id",
 			'id_alumni' 	=> "0110160",
 		];
 		$this->db->table('email')->insert($data);
