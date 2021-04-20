@@ -333,8 +333,6 @@ class User extends BaseController
 			]);
 		}
 
-		// dd($query->getRow());
-
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
@@ -420,28 +418,16 @@ class User extends BaseController
 		$ig				= htmlspecialchars($_POST['ig']);
 		$fb				= htmlspecialchars($_POST['fb']);
 		$twitter		= htmlspecialchars($_POST['twitter']);
-		$cjk = 0;
-		$cteml = 0;
-		$ctl = 0;
-		$cnt = 0;
+		$biografi		= htmlspecialchars($_POST['biografi']);
+		$cttl = 0;
 		$cemail = 0;
 		$calamat = 0;
 		$cjab = 0;
 		$cig = 0;
 		$ctw = 0;
 		$cfb = 0;
-
-		if (isset($_POST['checkJenisKelamin'])) {
-			$cjk = 1;
-		}
-		if (isset($_POST['checkTempatLahir'])) {
-			$cteml = 1;
-		}
 		if (isset($_POST['checkTanggalLahir'])) {
-			$ctl = 1;
-		}
-		if (isset($_POST['checkTelepon'])) {
-			$cnt = 1;
+			$cttl = 1;
 		}
 		if (isset($_POST['checkEmail'])) {
 			$cemail = 1;
@@ -470,13 +456,11 @@ class User extends BaseController
 			'ig'			=> $ig,
 			'fb'			=> $fb,
 			'twitter'		=> $twitter,
+			'biografi'		=> $biografi,
 		];
 
 		$data2 = [
-			'jenis_kelamin' => $cjk,
-			'tempat_lahir' => $cteml,
-			'tanggal_lahir' => $ctl,
-			'no_telp' => $cnt,
+			'ttl' => $cttl,
 			'email' => $cemail,
 			'alamat' => $calamat,
 			'jabatan' => $cjab,
@@ -510,6 +494,8 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->getPendidikanByNIM(session('nim'));
+		$sql = "SELECT * FROM tampilan where nim = " . session('nim');
+		$tampilan = $model->query($sql);
 		// dd($query->getResult());
 
 		$data = [
@@ -517,6 +503,7 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'pendidikan'      => $query->getResult(),
+			'checked'	=> $tampilan->getRow(),
 		];
 		return view('websia/kontenWebsia/editProfile/editPendidikan.php', $data);
 	}
@@ -527,6 +514,11 @@ class User extends BaseController
 			return redirect()->to('/');
 
 		$model = new AlumniModel();
+
+		$cpendidikan=0;
+		if (isset($_POST['checkPendidikan'])) {
+			$cpendidikan = 1;
+		}
 
 		$data1 = [
 			'program_studi'     => htmlspecialchars($_POST['program_studi']),
@@ -540,8 +532,13 @@ class User extends BaseController
 			'tahun_lulus'  => htmlspecialchars($_POST['tahun_lulus'])
 		];
 
+		$data3 = [
+			'pendidikan' => $cpendidikan,
+		];
+
 		$model->db->table('pendidikan_tinggi')->set($data1)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
 		$model->db->table('pendidikan')->set($data2)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
+		$model->db->table('tampilan')->set($data3)->where('nim', session('nim'))->update();
 
 		return redirect()->to(base_url('User/editPendidikan'));
 	}
@@ -654,6 +651,8 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 		$query = $model->getPrestasiByNIM(session('nim'));
+		$sql = "SELECT * FROM tampilan where nim = " . session('nim');
+		$tampilan = $model->query($sql);
 
 		// dd($query->getResult());
 
@@ -662,6 +661,7 @@ class User extends BaseController
 			'login' => 'sudah',
 			'active' 		=> 'profil',
 			'prestasi'      => $query->getResult(),
+			'checked'	=> $tampilan->getRow(),
 		];
 
 		return view('websia/kontenWebsia/editProfile/editPrestasi.php', $data);
@@ -674,13 +674,23 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 
+		$cprestasi=0;
+		if (isset($_POST['checkPrestasi'])) {
+			$cprestasi = 1;
+		}
+
 		$data = [
 			'nama_prestasi'     => htmlspecialchars($_POST['nama_prestasi']),
 			'tahun_prestasi'		=> htmlspecialchars($_POST['tahun_prestasi']),
 			'nim'				=> session('nim'),
 		];
 
+		$data2 = [
+			'prestasi' => $cprestasi,
+		];
+
 		$model->db->table('prestasi')->set($data)->where('id_prestasi', $_POST['id_prestasi'])->update();
+		$model->db->table('tampilan')->set($data2)->where('nim', session('nim'))->update();
 
 		return redirect()->to(base_url('User/editPrestasi'));
 	}

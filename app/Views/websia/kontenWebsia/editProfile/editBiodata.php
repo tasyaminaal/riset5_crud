@@ -16,27 +16,10 @@ if ($alumni->aktif_pns == '1') {
 } else if ($alumni->aktif_pns == '0') {
     $aktif_pns = "Tidak aktif sebagai PNS";
 }
-
-if ($checked->jenis_kelamin == 0) {
-    $cjk = "";
+if ($checked->ttl == 0) {
+    $cttl = "";
 } else {
-    $cjk = "checked";
-}
-
-if ($checked->tanggal_lahir == 0) {
-    $ctl = "";
-} else {
-    $ctl = "checked";
-}
-if ($checked->tempat_lahir == 0) {
-    $cteml = "";
-} else {
-    $cteml = "checked";
-}
-if ($checked->no_telp == 0) {
-    $cnt = "";
-} else {
-    $cnt = "checked";
+    $cttl = "checked";
 }
 if ($checked->email == 0) {
     $cemail = "";
@@ -140,7 +123,7 @@ if ($checked->facebook == 0) {
                     <div>
                         <div class="flex justify-between items-center">
                             <div class="font-medium" id="labelTanggalLahir">Tanggal Lahir:</div>
-                            <input type="checkbox" <?= $ctl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none editTampilan hidden">
+                            <input type="checkbox" <?= $cttl ?> name="checkTanggalLahir" id="checkTanggalLahir" class="cursor-pointer focus:outline-none editTampilan hidden">
                         </div>
                         <input type="date" name="tanggalLahir" data-id="TanggalLahir" id="tanggalLahir" class="inputForm" value="<?= $alumni->tanggal_lahir ?>">
                     </div>
@@ -288,7 +271,11 @@ if ($checked->facebook == 0) {
                 </div>
                 <div>
                     <label for="biografi" class="font-medium">Biografi:</label>
-                    <textarea name="biografi" id="biografi" cols="30" rows="5" class="inputForm resize-none" placeholder="Tambahkan biografi Anda di sini"></textarea>
+                    <?php if (session('inputs')) { ?>
+                        <textarea name="biografi" id="biografi" cols="30" rows="5" placeholder="Tambahkan biografi Anda di sini" class="inputForm resize-none" required><?= htmlspecialchars(session('inputs')['biografi']) ?></textarea>
+                    <?php } else { ?>
+                        <textarea name="biografi" id="biografi" cols="30" rows="5" placeholder="Tambahkan biografi Anda di sini" class="inputForm resize-none" required><?= $alumni->biografi ?></textarea>
+                    <?php } ?>
                 </div>
                 <div class="flex justify-end mt-8 mb-6">
                     <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer mb-6 focus:outline-none" id="submitBiodata">

@@ -1,3 +1,10 @@
+<?php
+if ($checked->pendidikan == 0) {
+    $cpendidikan = "";
+} else {
+    $cpendidikan = "checked";
+}
+?>
 <?= $this->extend('websia/kontenWebsia/editProfile/layoutEdit.php'); ?>
 
 <?= $this->section('contentEdit'); ?>
@@ -18,7 +25,7 @@
     </div>
     <div class="editTampilanPendidikan hidden flex justify-between mb-4">
         <label for="checkPendidikan" id="labelCheckPendidikan" class="text-gray-500 font-bold">Tampilkan Pendidikan</label>
-        <input type="checkbox" name="checkPendidikan" id="checkPendidikan" class="cursor-pointer outline-none">
+        <input type="checkbox" <?= $cpendidikan ?> name="checkPendidikan" id="checkPendidikan" class="cursor-pointer outline-none">
     </div>
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
         <!-- start tabel pendidikan-->

@@ -1,3 +1,10 @@
+<?php
+if ($checked->prestasi == 0) {
+    $cprestasi = "";
+} else {
+    $cprestasi = "checked";
+}
+?>
 <?= $this->extend('websia/kontenWebsia/editProfile/layoutEdit.php'); ?>
 
 <?= $this->section('contentEdit'); ?>
@@ -19,7 +26,7 @@
     </div>
     <div class="editTampilanPrestasi hidden flex justify-between mb-4">
         <label for="checkPrestasi" id="labelCheckPrestasi" class="text-gray-500 font-bold">Tampilkan Prestasi</label>
-        <input type="checkbox" name="checkPrestasi" id="checkPrestasi" class="cursor-pointer outline-none" onclick="checkPrestasi()">
+        <input type="checkbox" <?= $cprestasi ?> name="checkPrestasi" id="checkPrestasi" class="cursor-pointer outline-none" onclick="checkPrestasi()">
     </div>
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
         <!-- start tabel prestasi -->

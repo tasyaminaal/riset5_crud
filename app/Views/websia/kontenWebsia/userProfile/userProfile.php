@@ -4,31 +4,12 @@ Hal ini berpengaruh pada ada tidaknya tampilan tombol edit profil di halaman pro
 <?php
 if ($status == 'bukan user') {
     $tombolEdit = 'hidden';
-    // anehh jk gaada tapi ada di tampilan edit profil waodkaodka
-    if ($checked->jenis_kelamin == 1) {
-        $cjk = "";
-    } else {
-        $cjk = "hidden";
-    }
 
     // berfungsi, tapi butuh tempat tersendiri biar bisa di hidden, sekarang masih gabung sama tempat lahir
-    if ($checked->tanggal_lahir == 1) {
-        $ctl = "";
+    if ($checked->ttl == 1) {
+        $cttl = "";
     } else {
-        $ctl = "hidden";
-    }
-
-    // berfungsi, sama anehnya
-    if ($checked->tempat_lahir == 1) {
-        $cteml = "";
-    } else {
-        $cteml = "hidden";
-    }
-
-    if ($checked->no_telp == 1) {
-        $cnt = "";
-    } else {
-        $cnt = "hidden";
+        $cttl = "hidden";
     }
     if ($checked->email == 1) {
         $cemail = "";
@@ -60,18 +41,27 @@ if ($status == 'bukan user') {
     } else {
         $cfb = "hidden";
     }
+    if ($checked->pendidikan == 1) {
+        $cpendidikan = "1";
+    } else {
+        $cpendidikan = "0";
+    }
+    if ($checked->prestasi == 1) {
+        $cprestasi = "1";
+    } else {
+        $cprestasi = "0";
+    }
 } else if ($status == 'user') {
     $tombolEdit = '';
-    $cjk = "";
-    $ctl = "";
-    $cteml = "";
-    $cnt = "";
+    $cttl = "";
     $cemail = "";
     $calamat = "";
     $cjab = "";
     $cig = "";
     $ctw = "";
     $cfb = "";
+    $cpendidikan = "1";
+    $cprestasi  = "1";
 }
 
 
@@ -113,11 +103,8 @@ if ($status == 'bukan user') {
             </div>
             <!-- tempat dan tanggal lahir -->
             <p class="font-heading text-primary text-center md:text-left text-sm mb-5 md:mb-3 lg:mb-5">
-                <?php if ($cteml == "") : ?>
-                    | <?= $alumni->tempat_lahir ?> |
-                <?php endif ?>
-                <?php if ($ctl == "") : ?>
-                    <?= strftime("%d %B %Y", strtotime($alumni->tanggal_lahir)); ?>
+                <?php if ($cttl == "") : ?>
+                    <?= $alumni->tempat_lahir ?>, <?= strftime("%d %B %Y", strtotime($alumni->tanggal_lahir)); ?>
                 <?php endif ?>
             </p>
             <p class="font-heading text-center md:text-left text-base mb-5 md:mb-3 lg:mb-5">
@@ -143,7 +130,7 @@ if ($status == 'bukan user') {
         <!-- Awal Deskripsi user profile -->
         <div class="md:p-7 md:shadow-lg md:rounded-xl">
             <p class="px-5 md:px-0 mt-8 md:mt-0 font-heading text-primary text-sm italic text-justify mb-4 md:mb-0 text-center md:text-justify lg:text-left">
-                `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea incidunt quos saepe doloribus esse, fugit ratione culpa reprehenderit eos totam tenetur consectetur. Id, recusandae aspernatur incidunt cum, quo quaerat sequi earum ex doloremque eos ullam`
+            <?= $alumni->biografi ?>
             </p>
         </div>
         <!-- Akhir Deskripsi user profile -->
@@ -322,6 +309,7 @@ if ($status == 'bukan user') {
 </div>
 <!-- Akhir Informasi Intsansi -->
 
+<?php if ($cprestasi == 1) { ?>
 <!-- Awal Riwayat Prestasi -->
 <div class="w-full my-8 lg:px-20 md:px-8 px-2">
     <h3 class="font-heading font-bold text-xl text-secondary">Riwayat Prestasi</h3>
@@ -336,7 +324,9 @@ if ($status == 'bukan user') {
     <hr class="visible sm:invisible border-primary border-opacity-75 w-4/5 object-center mx-auto mt-8">
 </div>
 <!-- Akhir Riwayat Prestasi -->
+    <?php } ?>
 
+<?php if ($cpendidikan == 1) { ?>
 <!-- Awal Riwayat Pendidikan -->
 <div class="w-full my-8 lg:px-20 md:px-8 px-2 mb-6 md:mb-12">
     <h3 class="font-heading font-bold text-xl text-secondary">Riwayat Pendidikan</h3>
@@ -412,5 +402,6 @@ if ($status == 'bukan user') {
     </div>
 </div>
 <!-- Akhir Riwayat Pendidikan -->
+    <?php } ?>
 
 <?= $this->endSection(); ?>
