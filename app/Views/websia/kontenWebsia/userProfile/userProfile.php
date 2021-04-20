@@ -167,35 +167,35 @@ if ($status == 'bukan user') {
             }
             ?>
             <div class="md:space-x-4 flex flex-row items-center justify-center lg:justify-start md:py-2 px-5 md:px-0">
-                <?php if ($cemail == "" && $cfb == "") : ?>
+                <?php if ($cemail == "" || $cfb == "") : ?>
                     <div class="w-1/2">
                         <!-- Email -->
                         <?php if ($cemail == "") : ?>
-                            <div class="inline-block mb-2 flex flex-row">
+                            <div <?= $cemail ?> class="inline-block mb-2 flex flex-row">
                                 <img src="/img/icon/message.png" alt="" class="float-left w-5">
                                 <span class="font-heading text-xs text-primary text-center ml-1 md:ml-2"><?= $email ?></span>
                             </div>
                         <?php endif ?>
                         <!-- Facebook -->
                         <?php if ($cfb == "") : ?>
-                            <div class="inline-block flex flex-row">
+                            <div <?= $cfb ?> class="inline-block flex flex-row">
                                 <img src="/img/icon/facebook.png" alt="" class="float-left ml-1 w-2 h-4">
                                 <span class="font-heading text-xs text-primary text-left flex items-center ml-3 md:ml-4"><?= $fb ?></span>
                             </div>
                         <?php endif ?>
                     </div>
                 <?php endif ?>
-                <?php if ($cig == "" && $ctw == "") : ?>
+                <?php if ($cig == "" || $ctw == "") : ?>
                     <div class="w-1/2 pl-6">
                         <!-- Twitter -->
-                        <?php if ($cig == "") : ?>
+                        <?php if ($ctw == "") : ?>
                             <div <?= $ctw ?> class="inline-block mb-2 flex flex-row">
                                 <img src="/img/icon/twitter.png" alt="" class="float-left w-4 w-4">
                                 <span class="font-heading text-xs text-primary text-center ml-2 md:ml-3"><?= $twitter ?></span>
                             </div>
                         <?php endif ?>
                         <!-- Instagram -->
-                        <?php if ($ctw == "") : ?>
+                        <?php if ($cig == "") : ?>
                             <div <?= $cig ?> class="inline-block flex flex-row">
                                 <img src="/img/icon/instagram.png" alt="" class="float-left w-4">
                                 <span class="font-heading text-xs text-primary text-center flex items-center ml-2 md:ml-3"><?= $ig ?></span>
