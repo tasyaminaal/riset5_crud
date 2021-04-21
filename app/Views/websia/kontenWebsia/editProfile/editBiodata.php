@@ -72,6 +72,10 @@ if ($checked->facebook == 0) {
 <?= $this->extend('websia/kontenWebsia/editProfile/layoutEdit.php'); ?>
 
 <?= $this->section('contentEdit'); ?>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/croppie.js"></script>
+<link rel="stylesheet" href="/css/croppie.css" />
 <div class="shadow-2xl rounded-3xl mb-8">
     <div class="lg:grid lg:grid-cols-3 lg:gap-x-4">
         <!-- start foto profil -->
@@ -382,5 +386,220 @@ if (session()->getFlashdata('hapus-foto') != NULL) { ?>
     </script>
 <?php } ?>
 
+
+<script>
+    $image_crop = $('#image_demo').croppie({
+        enableExif: true,
+        viewport: {
+            width: 200,
+            height: 200,
+            type: 'square' //circle
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+
+    $('.updateFotoProfil').click(function() {
+        $('body').prepend(`
+            <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40" id='formEditFoto'>
+                <div class="hidden opacity-0 duration-700 transition-all md:w-1/4 w-2/3 bg-gray bg-opacity-0">
+                    <div class="bg-primary py-2.5 px-6 rounded-t-2xl flex items-center justify-center text-secondary text-sm">
+                        <p class="font-bold font-heading">Ubah Foto Profil</p>
+                    </div>
+                    <div class="bg-gray-100 rounded-b-2xl">
+                        <ul class="text-center font-heading font-bold text-sm text-primaryx">
+                            <li id='unggahFoto' class="p-2.5 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300">Unggah Foto</li>
+                            <li class="p-2.5 border-b-2 border-gray-300 cursor-pointer hover:bg-gray-300" id="hapusFoto">Hapus Foto</li>
+                            <li class="closeEditFoto p-2.5 rounded-b-lg cursor-pointer hover:bg-gray-300">Batalkan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            `)
+
+        $('#formEditFoto').children().first().removeClass('hidden')
+        setTimeout(function() {
+            $('#formEditFoto').children().first().removeClass('opacity-0')
+        }, 10);
+
+        $('.closeEditFoto').click(function() {
+            $('#formEditFoto').children().first().addClass('opacity-0')
+            $('#formEditFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                $('#formEditFoto').children().first().addClass('hidden')
+            });
+            setTimeout(function() {
+                $('#formEditFoto').remove()
+            }, 400);
+        })
+
+        var modal = document.getElementById('formEditFoto')
+        $(window).click(function(e) {
+            if (e.target === modal) {
+                $('#formEditFoto').children().first().addClass('opacity-0')
+                $('#formEditFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                    $('#formEditFoto').children().first().addClass('hidden')
+                });
+                setTimeout(function() {
+                    $('#formEditFoto').remove()
+                }, 400);
+            }
+        })
+
+        $('#unggahFoto').click(function() {
+            $('#formEditFoto').remove()
+            $('body').prepend(`
+         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph grid-cols-none" id='formUnggahFoto'>
+        <div class= "duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
+        <div class="bg-primary py-2 px-6 rounded-t-2xl flex items-center justify-between text-secondary md:text-xl sm:text-base">
+        <p class="font-heading font-bold">Unggah Foto</p>
+        <svg class="closeUnggah lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+    </div>
+            <form enctype="multipart/form-data" class="flex flex-col bg-gray-100 px-6 rounded-b-2xl text-sm">
+            <div class="flex justify-between items-center mt-4">
+                <input type="file" name="upload_image" id="upload_image">
+            </div>
+            <div class="my-2 text-xs text-secondary">
+            <p>Format file harus .jpg, .jpeg, atau .png.</p>
+            <p>Ukuran file maksimum 2MB.</p>
+            </div>
+            </form>
+
+        </div>
+    </div>
+         `)
+            $('#upload_image').on('change', function() {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    $image_crop.croppie('bind', {
+                        url: event.target.result
+                    }).then(function() {
+                        console.log('jQuery bind complete');
+                    });
+                }
+                reader.readAsDataURL(this.files[0]);
+                $('#formUnggahFoto').remove()
+                $('body').prepend(`
+                    <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph grid-cols-none" id='formCropFoto'>
+                        <div class="duration-700 transition-all xl:w-1/2 lg:w-7/12 md:w-2/3 sm:w-3/4 w-11/12 bg-gray bg-opacity-0">
+                            <div class="bg-primary py-2 px-6 rounded-t-2xl flex items-center justify-between text-secondary md:text-xl sm:text-base">
+                                <p class="font-heading font-bold">Crop dan Unggah Foto</p>
+                                <svg class="closeCrop lg:w-10 md:w-8 sm:w-7 w-6 fill-current cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </div>
+                            <form enctype="multipart/form-data" class="bg-gray-100 px-6 py-3 rounded-b-2xl text-sm">
+                                <div class="flex gap-x-6">
+                                    <div id="image_demo" class="border border-black" style="width:300px; height:300px"></div>
+                                    <div class="flex items-center">
+                                        <div>
+                                            <input type="submit" value="UNGGAH FOTO" class="bg-secondary hover:bg-secondaryhover px-3 py-1.5 text-center text-white rounded-full cursor-pointer focus:outline-none w-32">
+                                            <div class="closeCrop w-32 bg-red-500 text-white hover:bg-red-600 mt-2 px-3 py-1.5 text-center rounded-full cursor-pointer">
+                                                BATAL
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    `)
+                $('.closeCrop').click(function() {
+                    $('#formCropFoto').children().first().addClass('opacity-0')
+                    $('#formCropFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                        $('#formCropFoto').children().first().addClass('hidden')
+                    });
+                    setTimeout(function() {
+                        $('#formCropFoto').remove()
+                    }, 400);
+                })
+
+                var modal = document.getElementById('formCropFoto')
+                $(window).click(function(e) {
+                    if (e.target === modal) {
+                        $('#formCropFoto').children().first().addClass('opacity-0')
+                        $('#formCropFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                            $('#formCropFoto').children().first().addClass('hidden')
+                        });
+                        setTimeout(function() {
+                            $('#formCropFoto').remove()
+                        }, 400);
+                    }
+                })
+            });
+
+            var modal = document.getElementById('formUnggahFoto')
+            $(window).click(function(e) {
+                if (e.target === modal) {
+                    $('#formUnggahFoto').children().first().addClass('opacity-0')
+                    $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                        $('#formUnggahFoto').children().first().addClass('hidden')
+                    });
+                    setTimeout(function() {
+                        $('#formUnggahFoto').remove()
+                    }, 400);
+                }
+            })
+
+            $('.closeUnggah').click(function() {
+                $('#formUnggahFoto').children().first().addClass('opacity-0')
+                $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                    $('#formUnggahFoto').children().first().addClass('hidden')
+                });
+                setTimeout(function() {
+                    $('#formUnggahFoto').remove()
+                }, 400);
+            })
+
+        })
+
+        $('#hapusFoto').click(function() {
+            $('#formEditFoto').remove()
+            $("body").prepend(`
+        <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
+            <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
+                <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
+                    <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus foto profil Anda?</p>
+                    <form action="/User/hapusFotoProfil" class="text-white flex justify-end">
+                        <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
+                        <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        `);
+            $('#formHapus').children().first().removeClass('hidden')
+            setTimeout(function() {
+                $('#formHapus').children().first().removeClass('opacity-0')
+            }, 10);
+
+            $('.buttonBatal').click(function() {
+                $('#formHapus').children().first().addClass('opacity-0')
+                $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                    $('#formHapus').children().first().addClass('hidden')
+                });
+                setTimeout(function() {
+                    $('#formHapus').remove()
+                }, 400);
+            })
+
+            var modal = document.getElementById('formHapus')
+            $(window).click(function(e) {
+                if (e.target === modal) {
+                    $('#formHapus').children().first().addClass('opacity-0')
+                    $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function() {
+                        $('#formHapus').children().first().addClass('hidden')
+                    });
+                    setTimeout(function() {
+                        $('#formHapus').remove()
+                    }, 400);
+                }
+            })
+        })
+    })
+</script>
 <!-- end dialog box -->
 <?= $this->endSection(); ?>
