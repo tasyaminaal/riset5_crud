@@ -24,9 +24,16 @@ if ($checked->prestasi == 0) {
             <img src="/img/icon/edit.png" alt="" class="w-4 h-4">
         </div>
     </div>
-    <div class="editTampilanPrestasi hidden flex justify-between mb-4">
-        <label for="checkPrestasi" id="labelCheckPrestasi" class="text-gray-500 font-bold">Tampilkan Prestasi</label>
-        <input type="checkbox" <?= $cprestasi ?> name="checkPrestasi" id="checkPrestasi" class="cursor-pointer outline-none" onclick="checkPrestasi()">
+    <div class="editTampilanPrestasi hidden">
+        <form action="/User/updatePrestasi">
+            <div class="flex justify-between mb-4">
+                <label for="checkPrestasi" id="labelCheckPrestasi" class="text-gray-500 font-bold">Tampilkan Prestasi</label>
+                <input type="checkbox" <?= $cprestasi ?> name="checkPrestasi" id="checkPrestasi" class="cursor-pointer outline-none" onclick="checkPrestasi()">
+            </div>
+            <div class="flex justify-end">
+                <input type="submit" value="SIMPAN" class="ml-auto bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 -mt-2 mb-4">
+            </div>
+        </form>
     </div>
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
         <!-- start tabel prestasi -->

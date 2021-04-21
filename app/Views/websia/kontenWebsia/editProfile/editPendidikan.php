@@ -23,9 +23,16 @@ if ($checked->pendidikan == 0) {
             <img src="/img/icon/edit.png" alt="" class="w-4 h-4">
         </div>
     </div>
-    <div class="editTampilanPendidikan hidden flex justify-between mb-4">
-        <label for="checkPendidikan" id="labelCheckPendidikan" class="text-gray-500 font-bold">Tampilkan Pendidikan</label>
-        <input type="checkbox" <?= $cpendidikan ?> name="checkPendidikan" id="checkPendidikan" class="cursor-pointer outline-none">
+    <div class="editTampilanPendidikan hidden">
+        <form action="/User/updatePendidikan">
+            <div class="flex justify-between mb-4">
+                <label for="checkPendidikan" id="labelCheckPendidikan" class="text-gray-500 font-bold">Tampilkan Pendidikan</label>
+                <input type="checkbox" <?= $cpendidikan ?> name="checkPendidikan" id="checkPendidikan" class="cursor-pointer outline-none" onclick="checkPendidikan()">
+            </div>
+            <div class="flex justify-end">
+                <input type="submit" value="SIMPAN" class="ml-auto bg-secondary text-white rounded-full w-24 py-1 text-center cursor-pointer hover:bg-secondaryhover transition-colors duration-300 -mt-2 mb-4">
+            </div>
+        </form>
     </div>
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
         <!-- start tabel pendidikan-->
