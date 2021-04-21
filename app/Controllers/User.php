@@ -515,11 +515,6 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 
-		$cpendidikan=0;
-		if (isset($_POST['checkPendidikan'])) {
-			$cpendidikan = 1;
-		}
-
 		$data1 = [
 			'program_studi'     => htmlspecialchars($_POST['program_studi']),
 			'judul_tulisan'		=> htmlspecialchars($_POST['judul_tulisan']),
@@ -532,13 +527,29 @@ class User extends BaseController
 			'tahun_lulus'  => htmlspecialchars($_POST['tahun_lulus'])
 		];
 
-		$data3 = [
+		$model->db->table('pendidikan_tinggi')->set($data1)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
+		$model->db->table('pendidikan')->set($data2)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
+
+		return redirect()->to(base_url('User/editPendidikan'));
+	}
+
+	public function updateTampilanPendidikan()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$cpendidikan=0;
+		if (isset($_POST['checkPendidikan'])) {
+			$cpendidikan = 1;
+		}
+
+		$data = [
 			'pendidikan' => $cpendidikan,
 		];
 
-		$model->db->table('pendidikan_tinggi')->set($data1)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
-		$model->db->table('pendidikan')->set($data2)->where('id_pendidikan', $_POST['id_pendidikan'])->update();
-		$model->db->table('tampilan')->set($data3)->where('nim', session('nim'))->update();
+		$model->db->table('tampilan')->set($data)->where('nim', session('nim'))->update();
 
 		return redirect()->to(base_url('User/editPendidikan'));
 	}
@@ -674,23 +685,34 @@ class User extends BaseController
 
 		$model = new AlumniModel();
 
-		$cprestasi=0;
-		if (isset($_POST['checkPrestasi'])) {
-			$cprestasi = 1;
-		}
-
 		$data = [
 			'nama_prestasi'     => htmlspecialchars($_POST['nama_prestasi']),
 			'tahun_prestasi'		=> htmlspecialchars($_POST['tahun_prestasi']),
 			'nim'				=> session('nim'),
 		];
 
-		$data2 = [
+		$model->db->table('prestasi')->set($data)->where('id_prestasi', $_POST['id_prestasi'])->update();
+		
+		return redirect()->to(base_url('User/editPrestasi'));
+	}
+
+	public function updateTampilanPrestasi()
+	{
+		if (!session()->has('id_user'))
+			return redirect()->to('/');
+
+		$model = new AlumniModel();
+
+		$cprestasi=0;
+		if (isset($_POST['checkPrestasi'])) {
+			$cprestasi = 1;
+		}
+
+		$data = [
 			'prestasi' => $cprestasi,
 		];
 
-		$model->db->table('prestasi')->set($data)->where('id_prestasi', $_POST['id_prestasi'])->update();
-		$model->db->table('tampilan')->set($data2)->where('nim', session('nim'))->update();
+		$model->db->table('tampilan')->set($data)->where('nim', session('nim'))->update();
 
 		return redirect()->to(base_url('User/editPrestasi'));
 	}

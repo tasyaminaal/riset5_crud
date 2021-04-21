@@ -25,7 +25,7 @@ if ($checked->prestasi == 0) {
         </div>
     </div>
     <div class="editTampilanPrestasi hidden">
-        <form action="/User/updatePrestasi">
+        <form action="/User/updateTampilanPrestasi" method="POST" >
             <div class="flex justify-between mb-4">
                 <label for="checkPrestasi" id="labelCheckPrestasi" class="text-gray-500 font-bold">Tampilkan Prestasi</label>
                 <input type="checkbox" <?= $cprestasi ?> name="checkPrestasi" id="checkPrestasi" class="cursor-pointer outline-none" onclick="checkPrestasi()">
