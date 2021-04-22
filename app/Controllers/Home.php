@@ -147,6 +147,11 @@ class Home extends BaseController
 									];
 									$this->modelAlumni->db->table('email')->insert($data);
 
+									$data = [
+										'id_alumni' 	=> $data['id_alumni'],
+									];
+									$this->modelAlumni->db->table('akses')->insert($data);
+
 									// $data = [
 									// 	'id_alumni'          => $user->getNip(),
 									// 	'nama'               => $user->getName(),
@@ -377,6 +382,11 @@ class Home extends BaseController
 							'id_alumni' 	=> $data['id_alumni'],
 						];
 						$this->modelAlumni->db->table('email')->insert($data);
+
+						$data = [
+							'id_alumni' 	=> $data['id_alumni'],
+						];
+						$this->modelAlumni->db->table('akses')->insert($data);
 
 						// $data = [
 						// 	'nim'                => $user['nim'],

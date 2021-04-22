@@ -64,5 +64,10 @@ class Alumni extends Seeder
 			'id_alumni' 	=> "0110160",
 		];
 		$this->db->table('email')->insert($data);
+
+		$data = [
+			'id_alumni' 	=> "0110160",
+		];
+		$this->db->table('akses')->insert($data);
 	}
 }

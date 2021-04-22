@@ -199,6 +199,8 @@ class User extends BaseController
 		$jk = $query1->jenis_kelamin;
 		$sb = $query1->status_bekerja;
 		$ap = $query1->aktif_pns;
+		$angkatan = $model->getAngkatanByIdAlumni(session('id_alumni'));
+		$email = $model->getEmailByIdAlumni(session('id_alumni'));
 
 
 
@@ -225,6 +227,8 @@ class User extends BaseController
 			'judulHalaman' 		=> 'Profil User | Website Riset 5',
 			'active' 		=> 'profil',
 			'alumni'      => $query1,
+			'angkatan'	  => $angkatan,
+			'email'		=> $email,
 			'jenis_kelamin'  => $jk,
 			'status_bekerja'	=> $sb,
 			'aktif_pns'		=> $ap,
