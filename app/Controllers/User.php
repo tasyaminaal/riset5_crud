@@ -141,8 +141,8 @@ class User extends BaseController
 		// array :
 			// 'name'
 
-		$query4 = $model->getIdAlumniByAngkatan($model->getAngkatanByIdAlumni(session('id_alumni')),session('id_alumni'));
-		// dd($query4->getResult());
+		$query4 = $model->getIdAlumniByAngkatan($model->getAngkatanByIdAlumni(session('id_alumni')),session('id_alumni'))->getResult();
+		// dd($query4);
 		//isi :
 		// array :
 			// 'angkatan'
@@ -234,7 +234,7 @@ class User extends BaseController
 			'pendidikan' => $query6,
 			'user' => $query7,
 			'checked'	=> $query8,
-			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
+			'rekomendasi'          => $query4,
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
 	}

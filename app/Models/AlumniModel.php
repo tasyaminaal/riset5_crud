@@ -9,12 +9,6 @@ class AlumniModel extends Model
 
     protected $table = 'alumni';
 
-    // sudah diubah <Mochi>
-    public function bukaProfile($kunci)
-    {
-        return $this->table('alumni')->getWhere(['id_alumni' => $kunci]);
-    }
-
     // Sudah diubah
     public function getAlumniById($id_alumni)
     {
@@ -85,6 +79,18 @@ class AlumniModel extends Model
         return $this->table('alumni')->selectMin('angkatan')->get()->getResult();
     }
 
+    public function getRole($user_id)
+    {
+        $query = "select name from auth_groups_users JOIN auth_groups ON group_id=id Where auth_groups_users.user_id = $user_id";
+        return $this->db->query($query);
+    }
+
+    // sudah diubah <Mochi>
+    public function bukaProfile($kunci)
+    {
+        return $this->table('alumni')->getWhere(['id_alumni' => $kunci]);
+    }
+
     // Sudah diubah <Mochi>
     public function getTempatKerjaByNIM($id_alumni)
     {
@@ -103,12 +109,6 @@ class AlumniModel extends Model
         WHERE 
         tempat_kerja.id_tempat_kerja = alumni_tempat_kerja.id_tempat_kerja 
         AND alumni_tempat_kerja.id_alumni = '$id_alumni'";
-        return $this->db->query($query);
-    }
-
-    public function getRole($user_id)
-    {
-        $query = "select name from auth_groups_users JOIN auth_groups ON group_id=id Where auth_groups_users.user_id = $user_id";
         return $this->db->query($query);
     }
 
@@ -143,14 +143,15 @@ class AlumniModel extends Model
     // Sudah diubah <Mochi>
     public function getIdAlumniByAngkatan($angkatan,$id_alumni)
     {
-        $query = "SELECT * FROM angkatan_alumni WHERE angkatan = $angkatan AND NOT id_alumni=$id_alumni";
+        $query = "SELECT * FROM angkatan_alumni WHERE angkatan = $angkatan AND NOT id_alumni=$id_alumni
+                    ORDER BY RAND() LIMIT 4";
         return $this->db->query($query);
     }
 
     // Sudah diubah <Mochi>
     public function getTampilanByIdAlumni($id_alumni)
     {
-        $query = "SELECT * FROM tampilan where id_alumni = $id_alumni";
+        $query = "SELECT * FROM akses where id_alumni = $id_alumni";
         return $this->db->query($query);
     }
 
