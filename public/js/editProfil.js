@@ -1,19 +1,19 @@
 // awal js edit biodata 
-$('#buttonEditTampilan').click(function (){
-    if ($('.editTampilan').hasClass('hidden')){
-       $('.editTampilan').removeClass('hidden');
-       if(!$('#checkJenisKelamin').is(':checked')) $('#labelJenisKelamin').addClass('text-gray-500');    
-       if(!$('#checkTanggalLahir').is(':checked')){
-           $('#labelTempatLahir').addClass('text-gray-500');    
-           $('#labelTanggalLahir').addClass('text-gray-500');    
-       } 
-       if(!$('#checkTelepon').is(':checked')) $('#labelTelepon').addClass('text-gray-500');    
-       if(!$('#checkEmail').is(':checked')) $('#labelEmail').addClass('text-gray-500');    
-       if(!$('#checkAlamat').is(':checked')) $('#labelAlamat').addClass('text-gray-500');    
-       if(!$('#checkJabatan').is(':checked')) $('#labelJabatan').addClass('text-gray-500');    
-       if(!$('#checkInstagram').is(':checked')) $('#labelInstagram').addClass('text-gray-500');    
-       if(!$('#checkTwitter').is(':checked')) $('#labelTwitter').addClass('text-gray-500');    
-       if(!$('#checkFacebook').is(':checked')) $('#labelFacebook').addClass('text-gray-500');    
+$('#buttonEditTampilan').click(function () {
+    if ($('.editTampilan').hasClass('hidden')) {
+        $('.editTampilan').removeClass('hidden');
+        if (!$('#checkJenisKelamin').is(':checked')) $('#labelJenisKelamin').addClass('text-gray-500');
+        if (!$('#checkTanggalLahir').is(':checked')) {
+            $('#labelTempatLahir').addClass('text-gray-500');
+            $('#labelTanggalLahir').addClass('text-gray-500');
+        }
+        if (!$('#checkTelepon').is(':checked')) $('#labelTelepon').addClass('text-gray-500');
+        if (!$('#checkEmail').is(':checked')) $('#labelEmail').addClass('text-gray-500');
+        if (!$('#checkAlamat').is(':checked')) $('#labelAlamat').addClass('text-gray-500');
+        if (!$('#checkJabatan').is(':checked')) $('#labelJabatan').addClass('text-gray-500');
+        if (!$('#checkInstagram').is(':checked')) $('#labelInstagram').addClass('text-gray-500');
+        if (!$('#checkTwitter').is(':checked')) $('#labelTwitter').addClass('text-gray-500');
+        if (!$('#checkFacebook').is(':checked')) $('#labelFacebook').addClass('text-gray-500');
     } else {
         $('.editTampilan').addClass('hidden');
         $('#labelJenisKelamin').removeClass('text-gray-500');
@@ -29,24 +29,22 @@ $('#buttonEditTampilan').click(function (){
     }
 })
 
-$('.editTampilan').click(function() {
+$('.editTampilan').click(function () {
     let id = $(this).attr('data-id');
-      if($('#check'+id).is(':checked') && id != "TanggalLahir")
-    {
-      $('#label'+id).removeClass("text-gray-500");
+    if ($('#check' + id).is(':checked') && id != "TanggalLahir") {
+        $('#label' + id).removeClass("text-gray-500");
     } else {
-      $('#label'+id).addClass("text-gray-500");
+        $('#label' + id).addClass("text-gray-500");
     }
-  });
+});
 
-$('#checkTanggalLahir').click(function(){
-    if($('#checkTanggalLahir').is(':checked'))
-    {
-      $('#labelTempatLahir').removeClass("text-gray-500");
-      $('#labelTanggalLahir').removeClass("text-gray-500");
+$('#checkTanggalLahir').click(function () {
+    if ($('#checkTanggalLahir').is(':checked')) {
+        $('#labelTempatLahir').removeClass("text-gray-500");
+        $('#labelTanggalLahir').removeClass("text-gray-500");
     } else {
-      $('#labelTempatLahir').addClass("text-gray-500");
-      $('#labelTanggalLahir').addClass("text-gray-500");
+        $('#labelTempatLahir').addClass("text-gray-500");
+        $('#labelTanggalLahir').addClass("text-gray-500");
     }
 })
 
@@ -121,20 +119,20 @@ $('.updateFotoProfil').click(function () {
         </div>
     </div>
          `)
-         var modal = document.getElementById('formUnggahFoto')
-         $(window).click(function (e) {
-             if (e.target === modal) {
-                 $('#formUnggahFoto').children().first().addClass('opacity-0')
-                 $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
-                     $('#formUnggahFoto').children().first().addClass('hidden')
-                 });
-                 setTimeout(function () {
-                     $('#formUnggahFoto').remove()
-                 }, 400);
-             }
-         })
+        var modal = document.getElementById('formUnggahFoto')
+        $(window).click(function (e) {
+            if (e.target === modal) {
+                $('#formUnggahFoto').children().first().addClass('opacity-0')
+                $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
+                    $('#formUnggahFoto').children().first().addClass('hidden')
+                });
+                setTimeout(function () {
+                    $('#formUnggahFoto').remove()
+                }, 400);
+            }
+        })
 
-         $('.closeUnggah').click(function () {
+        $('.closeUnggah').click(function () {
             $('#formUnggahFoto').children().first().addClass('opacity-0')
             $('#formUnggahFoto').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
                 $('#formUnggahFoto').children().first().addClass('hidden')
@@ -161,7 +159,7 @@ $('.updateFotoProfil').click(function () {
         //         setTimeout(function () {
         //             $('#updateSucces').remove()
         //         }, 1000);
-                
+
         // })
     })
 
@@ -170,8 +168,8 @@ $('.updateFotoProfil').click(function () {
         $("body").prepend(`
         <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
             <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
-                <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
-                    <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus foto profil Anda?</p>
+                <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3 mx-4">
+                    <p class="font-bold sm:text-lg text-base mb-6 text-justify">Apakah Anda yakin ingin menghapus foto profil Anda?</p>
                     <form action="/User/hapusFotoProfil" class="text-white flex justify-end">
                         <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
                         <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
@@ -184,7 +182,7 @@ $('.updateFotoProfil').click(function () {
         setTimeout(function () {
             $('#formHapus').children().first().removeClass('opacity-0')
         }, 10);
-    
+
         $('.buttonBatal').click(function () {
             $('#formHapus').children().first().addClass('opacity-0')
             $('#formHapus').children().first().on('transitionend MSTransitionEnd webkitTransitionEnd oTransitionEnd', function () {
@@ -194,7 +192,7 @@ $('.updateFotoProfil').click(function () {
                 $('#formHapus').remove()
             }, 400);
         })
-    
+
         var modal = document.getElementById('formHapus')
         $(window).click(function (e) {
             if (e.target === modal) {
@@ -379,12 +377,12 @@ $('.tambahPendidikan').click(function () {
 
 })
 
-function hapusPendidikan(id){
+function hapusPendidikan(id) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
         <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
-            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
-                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3 mx-4">
+                <p class="font-bold sm:text-lg text-base mb-6 text-justify">Apakah Anda yakin ingin menghapus data pendidikan ini?</p>
                 <form action="/User/deletePendidikan" method="POST" class="text-white flex justify-end">
                     <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
                     <button id="hapus" name="id_pendidikan" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
@@ -428,7 +426,7 @@ function hapusPendidikan(id){
 
 
 // awal js edit tempat kerja
-document.querySelector('input[list]').addEventListener('input', function(e) {
+document.querySelector('input[list]').addEventListener('input', function (e) {
     var input = e.target,
         list = input.getAttribute('list'),
         options = document.querySelectorAll('#' + list + ' option'),
@@ -622,12 +620,12 @@ $('.tambahPrestasi').click(function () {
 
 })
 
-function hapusPrestasi(id){
+function hapusPrestasi(id) {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
         <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
-            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
-                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data prestasi ini?</p>
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3 mx-4">
+                <p class="font-bold sm:text-lg text-base mb-6 text-justify">Apakah Anda yakin ingin menghapus data prestasi ini?</p>
                 <form action="/User/deletePrestasi" method="POST" class="text-white flex justify-end">
                     <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
                     <button id="hapus" name="id_prestasi" class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>
@@ -810,8 +808,8 @@ $('.hapusPublikasi').click(function () {
     $('body').prepend(`
     <div class="fixed top-0 bottom-0 right-0 left-0 z-50 flex justify-center items-center bg-black bg-opacity-40 font-paragraph" id='formHapus'>
         <div class="hidden opacity-0 duration-700 transition-all bg-gray bg-opacity-0">
-            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3">
-                <p class="font-bold sm:text-lg text-base mb-6">Apakah Anda yakin ingin menghapus data publikasi ini?</p>
+            <div class="bg-white rounded-2xl flex flex-col justify-center pt-3 pb-4 sm:px-8 px-3 mx-4">
+                <p class="font-bold sm:text-lg text-base mb-6 text-justify">Apakah Anda yakin ingin menghapus data publikasi ini?</p>
                 <div class="text-white flex justify-end">
                     <div class="buttonBatal bg-success hover:bg-successHover transition-all text-white rounded-2xl w-20 mr-2 text-sm flex justify-center items-center cursor-pointer py-1 transition-all">BATAL</div>
                     <button class="rounded-2xl w-20 text-sm flex justify-center items-center cursor-pointer hover:bg-red-800 bg-red-600 transition-all focus:outline-none">HAPUS</button>

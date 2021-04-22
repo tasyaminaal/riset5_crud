@@ -22,7 +22,7 @@
                                 <?php foreach ($scope_app as $key => $data) { ?>
                                     <div class="flex items-center gap-x-2">
                                         <input data-id="<?= $data['id'] ?>" id="scope<?= $data['id'] ?>" type="checkbox" name="scope[]" value="<?= $data['id'] ?>" class="scope cursor-pointer">
-                                        <div id="labelScope<?= $data['id'] ?>" class="font-heading font-medium text-gray-500"><?= $data['scope'] ?></div>
+                                        <label for="scope<?= $data['id'] ?>" id="labelScope<?= $data['id'] ?>" class="cursor-pointer font-heading font-medium text-gray-500"><?= $data['scope'] ?></label>
                                     </div>
                                     <div class="ml-5 md:mt-2 mb-2">
                                         <?= $data['scope_dev'] ?>
@@ -31,7 +31,7 @@
                             </div>
                             <!-- end scope webservice -->
                         </div>
-                        <div class="text-xs text-secondary md:mt-6 mt-4">
+                        <div class="text-sm text-secondary md:mt-6 mt-4">
                             *Harus diisi
                         </div>
                         <div class="flex md:justify-end justify-between gap-x-6 items-center mt-2">

@@ -17,7 +17,7 @@
 
 </head>
 
-<body class="flex min-h-screen flex-col w-screen overflow-x-hidden font-paragraph">
+<body class="flex min-h-screen flex-col overflow-x-hidden">
 
     <!-- loading -->
     <div class="loading flex fixed w-full h-screen z-50 transition-opacity duration-200">

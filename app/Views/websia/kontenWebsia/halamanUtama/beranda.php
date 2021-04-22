@@ -216,6 +216,4 @@ if ($login == 'belum') {
 
 <script type="text/javascript" src="/js/leaflet.ajax.js"></script>
 <script type="text/javascript" src="/js/add.js"></script>
-<script type="text/javascript" src="/js/berita.js"></script>
-
 <?= $this->endSection(); ?>

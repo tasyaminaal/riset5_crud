@@ -1,17 +1,12 @@
 <?= $this->extend('webservice/kontenWebservice/dokumentasi/layoutDokumentasi.php'); ?>
 
 <?= $this->section('dokumentasi'); ?>
-<div id="burgerDok" title="Sidebar" class="lg:hidden select-none fixed transform translate-y-1.5 md:top-20 sm:top-16 z-20 top-11 left-0 w-10 h-10 p-1 cursor-pointer bg-secondary border-none focus:outline-none transition-all duration-700 tutup">
+<div id="burgerDok" title="Sidebar" class="lg:hidden select-none fixed transform md:translate-y-1 sm:translate-y-1.5 translate-y-1 md:top-20 sm:top-16 z-20 top-11 left-0 w-10 h-10 p-1 cursor-pointer bg-secondary border-none focus:outline-none transition-all duration-700 tutup">
     <svg class="cursor-pointer fill-current text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
 </div>
-<div class="sm:ml-12 sm:mr-5 ml-8 mr-2 sm:mt-7 mt-4 transition-none overflow-hidden">
-    <!-- <div class="lg:hidden sm:text-sm text-xs absolute mt-3" id="burgerDok">
-        <svg class="block w-7 cursor-pointer fill-current text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </div> -->
+<div class="sm:ml-12 sm:mr-5 ml-8 mr-2 sm:mt-10 mt-7 transition-none overflow-hidden">
     <section>
         <div class="text-secondary lg:mx-4 mx-3">
             <h1 class="lg:text-xl">Sistem Informasi Alumni</h1>
@@ -46,7 +41,7 @@
 </div>
 
 <!-- Data dokumentasi -->
-<div class="sm:ml-12 sm:mr-5 ml-8 mr-2 transition-none mb-12">
+<div class="sm:ml-12 sm:mr-5 ml-8 transition-none mb-8">
     <section id="data" class="lg:mx-4 mx-3 pb-5">
         <h1 class="font-bold text-secondary lg:text-3xl md:text-2xl text-xl">Data</h1>
         <hr class="border border-gray-500 transform translate-y-2 -mx-3">

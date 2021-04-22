@@ -1,13 +1,8 @@
 <?= $this->extend('websia/kontenWebsia/editProfile/layoutEdit.php'); ?>
 
 <?= $this->section('contentEdit'); ?>
-<style>
-    .formEdit {
-        background-color: #F9F9F9;
-    }
-</style>
 
-<div class="w-full bg-white min-h-screen" id="pagePendidikan">
+<div class="w-full bg-white mb-8" id="pagePendidikan">
     <div class="md:overflow-x-auto overflow-x-scroll shadow-2xl rounded-3xl">
         <!-- start tabel pendidikan-->
         <table class="w-full sm:text-sm text-xs rounded-3xl shadow-2xl md:shadow-none font-paragraph">
