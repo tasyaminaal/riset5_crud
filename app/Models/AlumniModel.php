@@ -14,9 +14,9 @@ class AlumniModel extends Model
         return $this->table('alumni')->getWhere(['nim' => $kunci]);
     }
 
-    public function getUserByNIM($nim)
+    public function getAlumniById($nim)
     {
-        return $this->builder()->where('nim', $nim)->get()->getFirstRow('array');
+        return $this->builder()->where('id_alumni', $nim)->get()->getFirstRow('array');
     }
 
     public function getSearch($field, $search)
@@ -24,7 +24,7 @@ class AlumniModel extends Model
         return $this->table('alumni')->like($field, $search);
     }
 
-    public function getUser($id)
+    public function getAlumni($id)
     {
         $query = "SELECT * FROM users WHERE id = $id";
         return $this->db->query($query);
