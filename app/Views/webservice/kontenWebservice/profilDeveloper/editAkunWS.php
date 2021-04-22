@@ -1,7 +1,7 @@
 <?= $this->extend('webservice/kontenWebservice/profilDeveloper/layoutEditWS.php'); ?>
 
 <?= $this->section('contentEdit'); ?>
-<div class="flex justify-center">
+<div class="flex justify-center mb-8">
     <div class="shadow-2xl rounded-xl md:p-16 p-4 lg:w-full w-5/6">
         <form action="" method="POST" class="font-paragraph text-primary" id="formEditAkunDev">
             <div class="lg:w-1/2 w-full">

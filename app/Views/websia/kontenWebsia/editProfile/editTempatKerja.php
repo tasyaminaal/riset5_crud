@@ -2,7 +2,7 @@
 
 <?= $this->section('contentEdit'); ?>
 <div class="shadow-2xl rounded-3xl mb-8">
-    <div class="p-6 font-paragraph text-primary lg:min-h-screen">
+    <div class="p-6 font-paragraph text-primary">
         <!-- start form edit tempat kerja -->
         <!-- kalau nama instansi ada di database -->
         <div>
@@ -51,7 +51,7 @@
                     <label for="email" class="font-medium">Email:</label>
                     <input type="text" name="email_instansi" id="email" class="inputForm" placeholder="Masukkan email instansi">
                 </div>
-                <div class="flex justify-end md:mb-6 mt-12">
+                <div class="flex justify-end md:mb-6 mt-16">
                     <input type="submit" value="SIMPAN" class="w-24 text-center py-1 bg-secondary hover:bg-secondaryhover text-white rounded-full cursor-pointer focus:outline-none" id="tambahTempatKerja">
                 </div>
             </form>

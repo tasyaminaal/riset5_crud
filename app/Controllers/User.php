@@ -332,6 +332,7 @@ class User extends BaseController
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
+			'activeEditProfil' => 'biodata',
 			'active' 		=> 'profil',
 			'alumni'      => $query->getRow(),
 			'checked'	=> $tampilan->getRow(),
@@ -498,6 +499,7 @@ class User extends BaseController
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
+			'activeEditProfil' => 'pendidikan',
 			'active' 		=> 'profil',
 			'pendidikan'      => $query->getResult(),
 		];
@@ -572,6 +574,7 @@ class User extends BaseController
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
+			'activeEditProfil' => 'tempatKerja',
 			'active' 		=> 'profil',
 			'tempat_kerja'      => $query->getRow(),
 			'list'		=> $listtk,
@@ -628,6 +631,7 @@ class User extends BaseController
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
+			'activeEditProfil' => 'prestasi',
 			'active' 		=> 'profil',
 			'prestasi'      => $query->getResult(),
 		];
@@ -687,6 +691,7 @@ class User extends BaseController
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
+			'activeEditProfil' => 'publikasi',
 			'active' 		=> 'profil',
 			'publikasi'      => $query->getResult(),
 		];
@@ -728,6 +733,7 @@ class User extends BaseController
 		$data = [
 			'judulHalaman' => 'Edit Profil',
 			'login' => 'sudah',
+			'activeEditProfil' => 'akun',
 			'active' 		=> 'profil',
 			'user'      => $query->getRow(),
 		];
@@ -763,6 +769,14 @@ class User extends BaseController
 		} else {
 			echo "Password lama salah";
 		}
+	}
+
+	public function unggahBerita()
+	{
+		$data['judulHalaman'] = 'Unggah Berita/Artikel';
+		// $data['login'] = 'sudah';
+		$data['active'] = '';
+		return view('websia/kontenWebsia/beritaArtikel/unggahBerita.php', $data);
 	}
 
 	public function galeriFoto()

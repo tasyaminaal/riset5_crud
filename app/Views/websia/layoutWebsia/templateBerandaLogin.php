@@ -24,36 +24,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <title><?php echo $judulHalaman ?></title>
-
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-    </style>
 </head>
 
 <!-- CATATAN: Font Cabin belum bisa dipakai, kayaknya ada salah waktu konfigurasi di Tailwind nya, coba bantu cek lagi ya guys! Sama font Poppins nya masih tebel banget, gabisa diganti jenis ketebalannya... -->
 
-<body>
+<body class="flex min-h-screen flex-col overflow-x-hidden">
     <!-- loading -->
     <div class="loading flex fixed w-full h-screen z-50 transition-opacity duration-200">
         <img src="/img/loading/load1.gif" class="m-auto items-center md:w-96 sm:w-72 w-60">
@@ -189,13 +164,13 @@
     <!-- END HEADER -->
 
     <!-- CONTENT PAGE DI SINI -->
-    <div class="w-full">
+    <div class="w-full flex flex-1 flex-col">
         <?= $this->renderSection('content'); ?>
     </div>
     <!-- END CONTENT PAGE -->
 
     <!-- FOOTER -->
-    <div class="bg-primary w-full  pt-6 pb-3 lg:px-20 md:px-8 px-3 ">
+    <div class="bg-primary w-full pt-6 pb-3 lg:px-20 md:px-8 px-3">
         <div class="flex flex-col md:flex-row md:justify-around md:text-sm text-xs">
             <!-- awal footer stis -->
             <div class="flex items-center gap-x-2 mx-auto md:mx-0">
@@ -268,5 +243,6 @@
 <script type="text/javascript" src="/js/footer.js"></script>
 <script type="text/javascript" src="/js/editProfil.js"></script>
 <script type="text/javascript" src="/js/rekomendasi.js"></script>
+<script type="text/javascript" src="/js/berita.js"></script>
 
 </html>

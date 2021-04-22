@@ -2,14 +2,14 @@
 
 <?= $this->section('content'); ?>
 
-<div class="flex w-full">
+<div class="flex w-full flex-1">
 
     <!-- awal sidebar -->
     <?= $this->include('websia/kontenWebsia/searchAndFilter/sidebarFilter'); ?>
     <!-- akhir sidebar -->
 
     <!-- awal Hasil Pencarian  -->
-    <div class=" ml-2 flex-grow min-h-screen ">
+    <div class="flex-grow">
         <div class="flex">
 
             <!-- awal -> ini hanya untuk margin sidebar jadi jangan ubah kecuali jika ubah ukuran sidebarnya  -->
@@ -26,7 +26,7 @@
                 <!-- Catatan : jika hasil tidak ada, bisa isi id="hasilPencarian" dengan coding yang ada pada searchKosong.php  -->
 
                 <!-- HASIL PENCARIAN ALUMNI -->
-                <div class="md:ml-12 mx-3 mt-2">
+                <div class="md:mx-10 sm:mx-5 mx-3 mt-2 mt-4">
                     <div id="cariAlumni">
                         <h1 class="text-secondary font-heading text-2xl font-bold">ALUMNI</h1>
 
@@ -84,7 +84,7 @@
                 <!-- AKHIR HASIL PENCARIAN ALUMNI -->
 
                 <!-- HASIL PENCARIAN BERITA -->
-                <div class="md:ml-12 mx-3 mt-2">
+                <div class="md:mx-10 sm:mx-5 mx-3 mt-2 mb-8">
                     <div>
                         <h1 class="text-secondary font-heading text-2xl font-bold">BERITA</h1>
 

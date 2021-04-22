@@ -1,8 +1,32 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* style templateBerandaLogin */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* style templateWebserviceLogin */
-/* .menu {
-  background-image: linear-gradient(to right, #014f86, #025e9e, #0567ab);
-  background-size: 200% auto;
-} */
 body div.loading {
   background: #fff center;
 }
@@ -40,12 +64,20 @@ body div.loading {
   z-index: 5;
 }
 
-@media (max-width: 409px) {
+@media (max-width: 460px) {
 
-  #sidebarDok,
   #divKosong,
   #burgerDok {
     top: 4rem;
+  }
+
+  #sidebarDok img {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  #sidebarDok {
+    margin-top: -2.8rem;
   }
 }
 
@@ -94,4 +126,73 @@ body div.loading {
     background-position: center;
     background-size: contain;
   }
+}
+
+/* style editProfi */
+.formEdit {
+  background-color: #F9F9F9;
+}
+
+.layoutEdit {
+  z-index: 5;
+}
+
+@media screen and (max-width: 1024px) {
+  #pagePendidikan table tbody tr td {
+    padding-left: .25rem;
+    padding-right: .25rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #pagePendidikan table {
+    width: 670px;
+  }
+}
+
+#pagePendidikan table tr td {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+#pagePrestasi table tr td {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+@media screen and (max-width: 640px) {
+  #pagePrestasi table {
+    width: 580px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #pagePrestasi table tbody tr td {
+    padding-left: .25rem;
+    padding-right: .25rem;
+  }
+}
+
+input[type=checkbox] {
+  transform: scale(1.25);
+}
+
+/* style unggah berita */
+#infoBerita~div {
+  background-color: #6cf;
+}
+
+#infoBerita~div:before {
+  position: absolute;
+  top: -10px;
+  content: "";
+  right: 10px;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #6cf transparent;
+}
+
+/* style proyek WS */
+.proyek+div {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1), 0 0px 3px 3px rgba(0, 0, 0, 0.06);
 }

@@ -1,4 +1,4 @@
-<div class="md:relative fixed flex flex-col bg-primary rounded-r md:h-auto h-full sidebarSearch">
+<div class="md:relative fixed flex flex-col bg-primarySidebar rounded-r md:h-auto h-full sidebarSearch">
 
     <div class="flex md:px-5 px-2 py-2 justify-between bg-primaryHover items-center">
         <div class="md:text-2xl text-base font-heading font-semibold text-secondary hidden md:mr-32 param1"> FILTER</div>
