@@ -9,14 +9,16 @@ class AlumniModel extends Model
 
     protected $table = 'alumni';
 
+    // sudah diubah <Mochi>
     public function bukaProfile($kunci)
     {
-        return $this->table('alumni')->getWhere(['nim' => $kunci]);
+        return $this->table('alumni')->getWhere(['id_alumni' => $kunci]);
     }
 
-    public function getAlumniById($nim)
+    // Sudah diubah
+    public function getAlumniById($id_alumni)
     {
-        return $this->builder()->where('id_alumni', $nim)->get()->getFirstRow('array');
+        return $this->builder()->where('id_alumni', $id_alumni)->get()->getFirstRow('array');
     }
 
     public function getSearch($field, $search)
@@ -83,26 +85,72 @@ class AlumniModel extends Model
         return $this->table('alumni')->selectMin('angkatan')->get()->getResult();
     }
 
-    public function getTempatKerjaByNIM($nim)
+    // Sudah diubah <Mochi>
+    public function getTempatKerjaByNIM($id_alumni)
     {
         $query = "select tempat_kerja.id_tempat_kerja, 
         tempat_kerja.nama_instansi,
+        tempat_kerja.kota,
+        tempat_kerja.provinsi,
+        tempat_kerja.negara,
         tempat_kerja.alamat_instansi,
         tempat_kerja.telp_instansi,
         tempat_kerja.faks_instansi,
         tempat_kerja.email_instansi,
-        alumni_tempat_kerja.nim, 
+        alumni_tempat_kerja.id_alumni, 
         alumni_tempat_kerja.id_tempat_kerja 
         FROM tempat_kerja, alumni_tempat_kerja 
         WHERE 
         tempat_kerja.id_tempat_kerja = alumni_tempat_kerja.id_tempat_kerja 
-        AND alumni_tempat_kerja.nim = '$nim'";
+        AND alumni_tempat_kerja.id_alumni = '$id_alumni'";
         return $this->db->query($query);
     }
 
     public function getRole($user_id)
     {
         $query = "select name from auth_groups_users JOIN auth_groups ON group_id=id Where auth_groups_users.user_id = $user_id";
+        return $this->db->query($query);
+    }
+
+    // Sudah diubah <Mochi>
+    public function getPendidikanByIdAlumni($id_alumni)
+    {
+        $query = "SELECT * FROM pendidikan JOIN pendidikan_tinggi ON pendidikan.id_pendidikan=pendidikan_tinggi.id_pendidikan WHERE pendidikan.id_alumni = $id_alumni";
+        return $this->db->query($query);
+    }
+
+    // Sudah diubah <Mochi>
+    public function getPrestasiByIdAlumni($id_alumni)
+    {
+        $query = "SELECT * FROM prestasi WHERE id_alumni = $id_alumni";
+        return $this->db->query($query);
+    }
+
+    // sudah diubah <Mochi>
+    public function getUsersById($id)
+    {
+        $query = "SELECT id,email,username,id_alumni,fullname,user_image FROM users WHERE id = $id";
+        return $this->db->query($query);
+    }
+
+    // Sudah diubah <Mochi>
+    public function getAngkatanByIdAlumni($id_alumni)
+    {
+        $query = "SELECT * FROM angkatan_alumni WHERE id_alumni = $id_alumni";
+        return $this->db->query($query)->getRow()->angkatan;
+    }
+
+    // Sudah diubah <Mochi>
+    public function getIdAlumniByAngkatan($angkatan,$id_alumni)
+    {
+        $query = "SELECT * FROM angkatan_alumni WHERE angkatan = $angkatan AND NOT id_alumni=$id_alumni";
+        return $this->db->query($query);
+    }
+
+    // Sudah diubah <Mochi>
+    public function getTampilanByIdAlumni($id_alumni)
+    {
+        $query = "SELECT * FROM tampilan where id_alumni = $id_alumni";
         return $this->db->query($query);
     }
 
@@ -118,11 +166,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    public function getPendidikanByNIM($nim)
-    {
-        $query = "SELECT * FROM pendidikan JOIN pendidikan_tinggi ON pendidikan.id_pendidikan=pendidikan_tinggi.id_pendidikan WHERE pendidikan.nim = $nim";
-        return $this->db->query($query);
-    }
+    
 
     public function getCountPendidikanByNIM($nim)
     {
@@ -130,17 +174,14 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    public function getPrestasiByNIM($nim)
-    {
-        $query = "SELECT * FROM prestasi WHERE nim = $nim";
-        return $this->db->query($query);
-    }
+    
 
-    public function getCountPrestasiByNIM($nim)
-    {
-        $query = "SELECT COUNT(*) FROM prestasi WHERE nim = $nim";
-        return $this->db->query($query);
-    }
+    // gakepake
+    // public function getCountPrestasiByNIM($nim)
+    // {
+    //     $query = "SELECT COUNT(*) FROM prestasi WHERE nim = $nim";
+    //     return $this->db->query($query);
+    // }
 
     public function getPublikasiByNIM($nim)
     {
@@ -154,11 +195,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    public function getUsersById($id)
-    {
-        $query = "SELECT id,email,username,nim,fullname,user_image FROM users WHERE id = $id";
-        return $this->db->query($query);
-    }
+    
 
     public function getUsersByNIM($nim)
     {
@@ -166,10 +203,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    public function getAlumniByAngkatan($angkatan)
-    {
-        return $this->table('alumni')->Where('angkatan', $angkatan);
-    }
+    
 
     // FOR API REQUEST
     public function getUserApi($nim = false)

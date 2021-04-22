@@ -95,61 +95,105 @@ class User extends BaseController
 	{
 
 		$model = new AlumniModel();
-		$query1 = $model->bukaProfile(session('nim'))->getRow();
+		$query1 = $model->bukaProfile(session('id_alumni'))->getRow();
+		// dd($query1);
 		//isi :
+		// 'aktif_pns'	
+		// 'alamat_alumni'
+		// 'deskripsi' 
+		// 'fb'
+		// 'foto_profil'
+		// 'id_alumni'
+		// 'ig'
+		// 'jabatan_terakhir' 
+		// 'jenis_kelamin'
+		// 'kota'  
+		// 'nama'
+		// 'negara'
+		// 'nip' 	
+		// 'nip_bps'
 		// 'angkatan'      
-		// 'nama' 	
-		// 'nim'           
-		// 'jenis_kelamin'  
-		// 'tempat_lahir'   
+		// 'perkiraan_pensiun'
+		// 'provinsi'
+		// 'status_bekerja'	
 		// 'tanggal_lahir'  
 		// 'telp_alumni'    
-		// 'alamat'        
-		// 'status_bekerja'	
-		// 'perkiraan_pensiun'
-		// 'jabatan_terakhir' 
-		// 'aktif_pns'	
-		$query2 = $model->getTempatKerjaByNIM(session('nim'))->getRow();
+		// 'tempat_lahir'   
+		// 'twitter'
+
+		$query2 = $model->getTempatKerjaByNIM(session('id_alumni'))->getRow();
+		// dd($query2);
 		//isi :
-		// 'id_tempat_kerja'	
-		// 'nama_instansi'
 		// 'alamat_instansi'
-		// 'telp_instansi'
 		// 'email_instansi'
 		// 'faks_instansi'
+		// 'id_alumni'
+		// 'id_tempat_kerja'	
+		// 'kota'
+		// 'nama_instansi'
+		// 'negara'
+		// 'provinsi'
+		// 'telp_instansi'
 
 		$query3 = $model->getRole(session('id_user'))->getResult();
+		// dd($query3);
 		//isi :
-		// name
+		// array :
+			// 'name'
 
-		$query4 = $model->getAlumniByAngkatan($query1->angkatan);
+		$query4 = $model->getIdAlumniByAngkatan($model->getAngkatanByIdAlumni(session('id_alumni')),session('id_alumni'));
+		// dd($query4->getResult());
 		//isi :
-		// pencarian rekomendasi
+		// array :
+			// 'angkatan'
+			// 'id_alumni'
 
-		$query5 = $model->getPrestasiByNIM(session('nim'))->getResult();
+		$query5 = $model->getPrestasiByIdAlumni(session('id_alumni'))->getResult();
+		// dd($query5);
 		//isi :
-		// 'id_prestasi'
-		// 'nama_prestasi'
-		// 'nim'
-		// 'tahun_prestasi'
+		// array :
+			// 'id_prestasi'
+			// 'nama_prestasi'
+			// 'tahun_prestasi'
+			// 'id_alumni'
 
-		$query6 = $model->getPendidikanByNIM(session('nim'))->getResult();
+		$query6 = $model->getPendidikanByIdAlumni(session('id_alumni'))->getResult();
+		// dd($query6);
 		//isi :
-		// 'id_pendidikan'
-		// 'jenjang'
-		// 'judul_tulisan'
-		// 'nim'
-		// 'program_studi'
-		// 'tahun_lulus'
-		// 'tahun_masuk'
-		// 'universitas'
+		// array :
+			// 'id_pendidikan'
+			// 'jenjang'
+			// 'instansi'
+			// 'tahun_lulus'
+			// 'tahun_masuk'
+			// 'id_alumni'
+			// 'program_studi'
+			// 'nim'
+			// 'judul_tulisan'
 
 		$query7 = $model->getUsersById(session('id_user'))->getRow();
+		// dd($query7);
 		//isi :
 		// 'email'
+		// 'fullname'
+		// 'id'
+		// 'id_alumni'
+		// 'username'
+		// 'user_image'
 
-		$sql = "SELECT * FROM tampilan where nim = " . session('nim');
-		$tampilan = $model->query($sql);
+		$query8 = $model->getTampilanByIdAlumni(session('id_alumni'))->getRow();
+		// dd($query8);
+		//isi :
+		// 'id_alumni'
+		// 'ttl'
+		// 'email'
+		// 'alamat'
+		// 'jabatan_terakhir'
+		// 'ig'
+		// 'twt'
+		// 'fb'
+		// 'pendidikan'
+		// 'prestasi'
 
 		$status = 'user';
 		$jk = $query1->jenis_kelamin;
@@ -158,10 +202,10 @@ class User extends BaseController
 
 
 
-		if ($jk == "L") {
-			$jk = "Laki-laki";
-		} else {
+		if ($jk == "Pr") {
 			$jk = "Perempuan";
+		} else {
+			$jk = "Laki-laki";
 		}
 
 		if ($sb == 0) {
@@ -189,7 +233,7 @@ class User extends BaseController
 			'prestasi' => $query5,
 			'pendidikan' => $query6,
 			'user' => $query7,
-			'checked'	=> $tampilan->getRow(),
+			'checked'	=> $query8,
 			'rekomendasi'          => $query4->orderBy('nama', $direction = 'random')->limit(4)->get()->getResult(),
 		];
 		return view('websia/kontenWebsia/userProfile/userProfile', $data);
