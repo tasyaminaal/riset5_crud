@@ -141,7 +141,7 @@ class AlumniModel extends Model
     }
 
     // Sudah diubah <Mochi>
-    public function getIdAlumniByAngkatan($angkatan,$id_alumni)
+    public function getIdAlumniByAngkatan($angkatan, $id_alumni)
     {
         $query = "SELECT * FROM angkatan_alumni WHERE angkatan = $angkatan AND NOT id_alumni=$id_alumni
                     ORDER BY RAND() LIMIT 4";
@@ -174,7 +174,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    
+
 
     public function getCountPendidikanByNIM($nim)
     {
@@ -182,7 +182,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    
+
 
     // gakepake
     // public function getCountPrestasiByNIM($nim)
@@ -203,7 +203,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    
+
 
     public function getUsersByNIM($nim)
     {
@@ -211,7 +211,7 @@ class AlumniModel extends Model
         return $this->db->query($query);
     }
 
-    
+
 
     // FOR API REQUEST
     public function getUserApi($nim = false)
@@ -256,5 +256,10 @@ class AlumniModel extends Model
     {
         $query = "SELECT id_tempat_kerja FROM tempat_kerja WHERE nama_instansi = '$nama'";
         return $this->db->query($query)->getRow()->id_tempat_kerja;
+    }
+
+    public function searchAlumni($keyword)
+    {
+        return $this->table('alumni')->like('nama', $keyword);
     }
 }
